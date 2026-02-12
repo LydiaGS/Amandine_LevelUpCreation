@@ -1,4 +1,5 @@
-import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
+// /javascripts/dashboard.js
+import { app, auth, onAuthStateChanged, signOut } from "./firebaseClient.js";
 import {
   getFirestore,
   collection,
@@ -7,7 +8,8 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-const db = getFirestore();
+const db = getFirestore(app);
+
 const loading = document.getElementById("loading");
 const dashboard = document.getElementById("dashboard");
 const userEmail = document.getElementById("userEmail");
@@ -15,30 +17,27 @@ const logoutBtn = document.getElementById("logoutBtn");
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-
     window.location.replace("./login.html");
     return;
   }
-
-
   if (loading) loading.style.display = "none";
   if (dashboard) dashboard.style.display = "block";
   if (userEmail) userEmail.textContent = "Connecté : " + user.email;
 
-
-  await loadDocuments(user.uid);
-  await loadProject(user.uid);
-  await loadMessages(user.uid);
-  await loadFormations(user.uid);
+  try {
+    await loadDocuments(user.uid);
+    await loadProject(user.uid);
+    await loadMessages(user.uid);
+    await loadFormations(user.uid);
+  } catch (err) {
+    console.error("Erreur Firestore:", err);
+  }
 });
 
-
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    window.location.replace("./login.html");
-  });
-}
+logoutBtn?.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.replace("./login.html");
+});
 
 // ------------------- LOADERS -------------------
 
@@ -79,7 +78,6 @@ async function loadProject(uid) {
     return;
   }
 
-  // on prend le premier projet trouvé
   const data = snap.docs[0].data();
   container.innerHTML = `
     <p>Status : <strong>${data.status || "—"}</strong></p>

@@ -8,8 +8,22 @@
 </head>
 <body>
 <a href="./index.html" class="close-btn" aria-label="Fermer et retourner à l'accueil">✕</a>
+<section class="hero" id="guestHero" aria-label="Hero">
+    <div class="hero__bg" aria-hidden="true"></div>
 
-  <h1>Créer un compte</h1>
+    <div class="container hero__content">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <span class="hero__title--light">Bienvenue dans</span>
+          <span class="hero__title--accent">ton espace client</span>
+        </h1>
+        <p class="hero__lead" style="font-size: 16px; color: rgb(53, 53, 53);">
+          Il ne s'affiche qu'une fois connecté.
+        </p>
+      </div>
+    </div>
+    <br>
+   <h1>Créer un compte</h1>
 
   <form id="registerForm">
     <input id="email" type="email" placeholder="Email" required>
@@ -19,7 +33,12 @@
     <button type="submit"style="background: rgb(231, 139, 231); border: none;  border-radius: 5px; color: rgb(90, 41, 8); height: 30px; width: 120px; font-size: 16px; font-weight: 900;">S’inscrire</button>
     <p id="msg"></p>
   </form>
+     <br>
   <p>Déjà un compte ? <a href="./login.html" style="color: rgb(250, 119, 255);">Se connecter</a></p>
+  </section>
+   <a class="btn" href="./contact.html" style="margin-top:12px; display:inline-block; width:260px;">
+            Besoin d’aide ? Contacte-nous
+          </a>
 
   <script type="module">
 import { auth, createUserWithEmailAndPassword } from "./javascripts/firebaseClient.js";

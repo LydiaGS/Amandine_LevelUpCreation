@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -8,8 +9,9 @@
   <link rel="stylesheet" href="./css/style.css">
   <title>Dashboard | Level Up Creation</title>
 </head>
+
 <body>
- <!-- Top glow / background -->
+  <!-- Top glow / background -->
   <div class="bg-ambient" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
@@ -21,7 +23,6 @@
         <span class="brand__name">Level Up Creation</span>
       </a>
 
-
       <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="nav__toggle-bars" aria-hidden="true"></span>
       </button>
@@ -32,133 +33,110 @@
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contacts</a>
-             <a class="nav__link" href="./dashboard.html">Dashboard</a>
+        <a class="nav__link" href="./dashboard.html">Dashboard</a>
         <a class="nav__cta" href="./register.html">Inscription</a>
         <a class="nav__cta" href="./login.html">Connexion</a>
       </div>
     </nav>
   </header>
-  <section class="hero" aria-label="Hero">
-      <div class="hero__bg" aria-hidden="true"></div>
 
-      <div class="container hero__content">
-        <div class="hero__text">
-              <h1 class="hero__title">
-            <span class="hero__title--light">
-            Bienvenue dans
-            </span>
-            <span class="hero__title--accent">
-              ton espace client
-            </span>
-          </h1>
-          <p class="hero__lead" style="font-size: 16px; color: rgb(53, 53, 53);">
-          Il ne s'affiche qu'une fois connecté.
-          </p>
+  <!-- Loading (affiché pendant la vérification de connexion) -->
+  <div id="loading" style="margin: 18px auto; max-width: 980px; padding: 14px; text-align:center;">
+    Chargement...
+  </div>
+
+  <!-- DASHBOARD (visible seulement si connecté) -->
+  <div id="dashboard" style="display:none;">
+    <div class="auth-wrap">
+      <br><br>
+
+      <section class="card">
+        <div class="card-inner">
+          <div class="brand">
+            <span class="dot"></span> Level Up Creation — Dashboard
+          </div>
+
+          <h1>Bienvenue</h1>
+          <p class="subtitle" id="userEmail">Chargement...</p>
+
+          <div class="boite">
+            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
+            <h2>Documents</h2>
+            <ul id="documents"></ul>
+          </div>
+
+          <div class="boite">
+            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
+            <h2>Projet</h2>
+            <div id="project"></div>
+          </div>
+
+          <div class="boite">
+            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
+            <h2>Messages</h2>
+            <div id="messages"></div>
+          </div>
+
+          <div class="boite">
+            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
+            <h2>Formations</h2>
+            <ul id="formations"></ul>
+          </div>
+
+          <br>
+
+          <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;">
+            Se déconnecter
+          </button>
         </div>
-      </div>
-<section class="help card" style="margin-top:18px;">
-  <div class="card-inner">
-    <div class="brand"><span class="dot"></span> Guide d’utilisation</div>
-    <h2 style="margin-top:10px;">Comment utiliser ton dashboard</h2>
-    <p class="subtitle">
-      Une fois connecté, tu retrouves tout ce qui concerne ton projet avec Level Up Creation : documents, suivi, messages et formations.
-    </p>
-
-    <div class="help-grid">
-      <div class="help-img">
-        <img
-          src="./asset/image/dashboard.png"
-          alt="Aperçu du dashboard Level Up Creation"
-          loading="lazy"
-        >
-      </div>
-
-      <div class="help-steps">
-        <ol>
-          <li><strong>Documents</strong> : télécharge tes fichiers (brief, livrables, factures) en un clic.</li>
-          <li><strong>Suivi projet</strong> : vérifie le statut (en cours / livré / maintenance) + la progression.</li>
-          <li><strong>Messagerie</strong> : pose tes questions et reçois les réponses directement ici.</li>
-          <li><strong>Formations</strong> : accède à tes ressources et liens de formation selon ton abonnement.</li>
-        </ol>
-
-        <div class="help-tip">
-          Astuce : garde cette page en favori. Si tu es déconnecté(e), tu seras automatiquement renvoyé(e) vers la page de connexion.
-        </div>
-
-        <a class="btn" href="./contact.html" style="margin-top:12px; display:inline-block; width:auto;">
-          Besoin d’aide ? Contacte-nous
-        </a>
-      </div>
+      </section>
     </div>
   </div>
-</section>  
 
-<div id="dashboard" style="display: none;" >
-  <div class="auth-wrap">
-    <br><br>
-    <section class="card">
-      <div class="card-inner">
-        <div class="brand">
-          <span class="dot"></span> Level Up Creation — Dashboard
-        </div>
-
-        <h1>Bienvenue</h1>
-        <p class="subtitle" id="userEmail">Chargement...</p>
-<div class="boite">
-    <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%;border: none; margin-right: 8px;"><h2>Documents</h2>
-<ul id="documents"></ul>
-</div>
-
-
-<div class="boite"><img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%;border: none; margin-right: 8px;"><h2>Projet</h2>
-<div id="project"></div></div>
-
-<div class="boite"><img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%;border: none; margin-right: 8px;"><h2>Messages</h2>
-<div id="messages"></div></div>
-
-<div class="boite"><img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%;border: none; margin-right: 8px;"><h2>Formations</h2>
-<ul id="formations"></ul></div>
-
-
-        <br>
-
-        <button class="btn" id="logoutBtn" style="width: 160px; display: flex; justify-content: center;align-items: center; text-align: center; height: 45px;">Se déconnecter</button>
-      </div>
-      </div>
-    </section>
-  </div>
-    </section>
-
-
-
+  <!-- Scripts UI (si pas d'import dedans) -->
   <script src="./javascripts/scripts.js"></script>
-<script src="./javascripts/dashboard.js"></script>
+
+  <!-- Affichage conditionnel (invité vs connecté) -->
   <script type="module">
-import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
- import { auth, onAuthStateChanged } from "./javascripts/firebaseClient.js";
-const userEmail = document.getElementById("userEmail");
-const logoutBtn = document.getElementById("logoutBtn");
+    import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
 
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.href = "./login.html";
-    }
-  });
-// Protection du dashboard
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "./login.html";
-  } else {
-    userEmail.textContent = "Connecté en tant que : " + user.email;
-  }
-});
+    const dashboard = document.getElementById("dashboard");
+    const loading = document.getElementById("loading");
+    const userEmail = document.getElementById("userEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
 
-// Déconnexion
-logoutBtn.addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "./login.html";
-});
+    const guestHero = document.getElementById("guestHero");
+    const guestHelp = document.getElementById("guestHelp");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // ✅ CONNECTÉ : on cache les sections "invité"
+        if (guestHero) guestHero.style.display = "none";
+        if (guestHelp) guestHelp.style.display = "none";
+
+        // ✅ on affiche le dashboard
+        if (loading) loading.style.display = "none";
+        if (dashboard) dashboard.style.display = "block";
+        if (userEmail) userEmail.textContent = "Connecté en tant que : " + user.email;
+      } else {
+        // ❌ PAS CONNECTÉ : on montre l'accueil invité, on cache le dashboard
+        if (dashboard) dashboard.style.display = "none";
+        if (loading) loading.style.display = "none"; // optionnel
+
+        if (guestHero) guestHero.style.display = "block";
+        if (guestHelp) guestHelp.style.display = "block";
+      }
+    });
+
+    logoutBtn?.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.replace("./login.html");
+    });
   </script>
 
+  <!-- Firestore loaders (documents/projet/messages/formations) -->
+  <!-- IMPORTANT : dashboard.js ne doit PAS refaire un onAuthStateChanged si tu laisses le script ci-dessus -->
+  <script type="module" src="./javascripts/dashboard.js"></script>
 </body>
 </html>
+
