@@ -201,3 +201,44 @@ async function sendContactForm(payload) {
   if (!res.ok || !data.ok) throw new Error(data.error || "Erreur");
   return data;
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+  const openButtons = document.querySelectorAll("[data-open]");
+
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      
+      const card = btn.closest(".ex-card");
+      if (!card) return;
+
+      card.classList.add("ex-card--fullscreen");
+
+      // Création bouton fermeture
+      if (!card.querySelector(".ex-card__close")) {
+        const closeBtn = document.createElement("button");
+        closeBtn.innerHTML = "✕";
+        closeBtn.className = "ex-card__close";
+        card.appendChild(closeBtn);
+
+        closeBtn.addEventListener("click", () => {
+          card.classList.remove("ex-card--fullscreen");
+          closeBtn.remove();
+        });
+      }
+
+    });
+  });
+
+  // Fermer avec ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const active = document.querySelector(".ex-card--fullscreen");
+      if (active) {
+        active.classList.remove("ex-card--fullscreen");
+        const closeBtn = active.querySelector(".ex-card__close");
+        if (closeBtn) closeBtn.remove();
+      }
+    }
+  });
+
+});
