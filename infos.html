@@ -407,7 +407,7 @@
       </div>
 
       <p class="footer__founder">
-        Fondatrice : <strong>Amandine Letellier</strong> <br> <br>
+        Fondatrice : <strong>Amandine Letellier</strong>
       </p>
     </div>
 
@@ -424,12 +424,43 @@
       </a>
     </div>
 
-    <!-- Social -->
+    <!-- Réseaux -->
     <div class="footer__social">
       <h4>Réseaux</h4>
 
-      <a href="#" target="_blank">TikTok</a>
-      <a href="#" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
+      <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">LinkedIn</a>
+    </div>
+
+    <!-- Partenaires -->
+    <div class="footer__partners">
+      <h4>Nos partenaires</h4>
+
+      <ul class="footer__partners-list">
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer__newsletter">
+      <h4>Newsletter</h4>
+      <p>Reçois les nouveautés et conseils web directement par email.</p>
+
+      <form id="newsletterForm" class="newsletter-form">
+        <input 
+          type="email" 
+          id="newsletterEmail" 
+          placeholder="Ton adresse email" 
+          required
+        >
+        <button type="submit">S'inscrire</button>
+      </form>
+
+      <p id="newsletterMsg" style="margin-top:8px; font-size:14px;"></p>
     </div>
 
   </div>
@@ -442,6 +473,21 @@
 </footer>
 
 
+
   <script src="./javascripts/scripts.js" defer></script>
+  <script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const form = document.getElementById("newsletterForm");
+  const msg = document.getElementById("newsletterMsg");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    msg.textContent = "✅ Merci pour ton inscription !";
+    form.reset();
+  });
+</script>
+
 </body>
 </html>

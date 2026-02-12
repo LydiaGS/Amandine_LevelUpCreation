@@ -1023,83 +1023,6 @@ color: var(--text);
   .container{ width:min(var(--container), calc(100% - 28px)); }
   .page{ padding: 50px 0 90px; }
 }
-/* ===== FOOTER ===== */
-
-.footer{
-  margin-top: 120px;
-  padding-top: 60px;
-  background: var(--bg);
-  border-top: 1px solid var(--stroke);
-}
-
-.footer__grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
-  padding-bottom: 40px;
-}
-
-.footer__logo{
-  height:60px;
-  margin-bottom: 15px;
-}
-.footer__logo img{
-  height:100%;
-  width:auto;
-  object-fit:contain;
-  display:block;
-}
-
-.footer__founder{
-  margin:0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* Contact & Social */
-.footer__contact h4,
-.footer__social h4{
-  margin:0 0 14px;
-  font-family: "Playfair Display", serif;
-  font-size: 16px;
-}
-
-.footer__contact a,
-.footer__social a{
-  display:block;
-  text-decoration:none;
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 8px;
-  transition: color .2s ease;
-}
-
-.footer__contact a:hover,
-.footer__social a:hover{
-  color: var(--accent2);
-}
-
-/* Bottom */
-.footer__bottom{
-  border-top: 1px solid var(--stroke);
-  padding: 20px 0;
-  text-align:center;
-  font-size: 13px;
-  color: var(--muted2);
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .footer__grid{
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align:center;
-  }
-
-  .footer__logo{
-    margin-inline:auto;
-  }
-}
 /* ===== Header minimal ===== */
 .site-header{
   position:sticky;
@@ -2021,4 +1944,205 @@ margin-right: 20px;
   display: flex;
  align-items: center;
  gap: 8px;
+}
+/* =========================
+   FOOTER — Level Up Creation
+   Fix: colonnes qui se chevauchent
+   ========================= */
+
+.footer{
+  padding: 48px 0 18px;
+  margin-top: 48px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,10,14,.78);
+  backdrop-filter: blur(10px);
+}
+
+.footer .container{
+  max-width: 1200px;              /* un peu plus large */
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* GRID PRINCIPAL */
+.footer__grid{
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr 1fr 1.35fr; /* logo fixe + 4 colonnes */
+  gap: 42px;                                       /* plus d’espace */
+  align-items: start;
+}
+
+/* Empêche le chevauchement sur les textes longs */
+.footer__contact,
+.footer__social,
+.footer__partners,
+.footer__newsletter{
+  min-width: 0;
+}
+
+.footer h4{
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.90);
+}
+
+/* TEXTE + LIENS */
+.footer p{
+  margin: 0;
+  color: rgba(255,255,255,.70);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.footer a{
+  display: block;                  /* IMPORTANT: évite que 2 liens se collent */
+  width: fit-content;
+  color: rgba(255,255,255,.78);
+  text-decoration: none;
+  margin: 8px 0;                   /* espacement vertical */
+  white-space: normal;             /* autorise retour à la ligne */
+  overflow-wrap: anywhere;         /* casse proprement si long */
+  transition: transform .15s ease, opacity .15s ease;
+}
+.footer a:hover{
+  opacity: .95;
+  transform: translateY(-1px);
+}
+
+/* BRAND */
+.footer__brand{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer__logo img{
+  width: 110px;
+  height: auto;
+  display: block;
+}
+.footer__founder{
+  color: rgba(255,255,255,.70);
+  font-size: 14px;
+}
+.footer__founder strong{
+  color: rgba(255,255,255,.92);
+}
+
+/* CONTACT / SOCIAL alignements */
+.footer__contact a,
+.footer__social a{
+  margin: 10px 0;
+}
+
+/* PARTENAIRES */
+.footer__partners-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer__partners-list li{
+  margin: 10px 0;
+}
+
+/* NEWSLETTER */
+.footer__newsletter p{
+  margin: 0 0 12px;
+}
+
+.newsletter-form{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;               /* reste sur une ligne en desktop */
+  max-width: 100%;
+}
+
+.newsletter-form input{
+  flex: 1 1 auto;
+  min-width: 0;                    /* IMPORTANT: évite le débordement */
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  outline: none;
+}
+.newsletter-form input::placeholder{
+  color: rgba(255,255,255,.55);
+}
+.newsletter-form input:focus{
+  border-color: rgba(255,105,224,.55);
+  box-shadow: 0 0 0 4px rgba(255,105,224,.15);
+}
+
+.newsletter-form button{
+  flex: 0 0 auto;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  color: rgb(90, 41, 8);
+  background: linear-gradient(90deg, rgb(231, 139, 231), rgb(250, 119, 255));
+  transition: transform .15s ease, filter .15s ease;
+}
+.newsletter-form button:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+.newsletter-form button:active{
+  transform: translateY(0);
+}
+
+/* BOTTOM */
+.footer__bottom{
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  text-align: center;
+}
+.footer__bottom p{
+  margin: 0;
+  color: rgba(255,255,255,.55);
+  font-size: 13px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+/* Écran moyen: 3 colonnes */
+@media (max-width: 1100px){
+  .footer__grid{
+    grid-template-columns: 220px 1fr 1fr;
+    gap: 28px;
+  }
+
+  .footer__newsletter{
+    grid-column: 1 / -1; /* newsletter en pleine largeur */
+  }
+}
+
+/* Mobile: 1 colonne */
+@media (max-width: 780px){
+  .footer{
+    padding: 38px 0 16px;
+  }
+
+  .footer__grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .newsletter-form{
+    flex-wrap: wrap;      /* sur mobile on autorise retour à la ligne */
+  }
+  .newsletter-form input,
+  .newsletter-form button{
+    width: 100%;
+  }
 }
