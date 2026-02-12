@@ -1,3 +1,5 @@
 back_end/
 .env
-config.js
+*.key
+*.pem
+config.private.*
