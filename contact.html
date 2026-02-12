@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/font.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <title>Level Up creation</title>
+</head>
+<body>
+    <!-- Top glow / background -->
+    <div class="bg-ambient" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <nav class="nav">
+      <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
+  <span class="brand__logo">
+ <img src="./asset/image/LOGO LVLUP_Ivoire 01.png" alt="Level Up Creation">
+  </span>
+  <span class="brand__name">Level Up Creation</span>
+</a>
+
+
+        <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="nav__toggle-bars" aria-hidden="true"></span>
+        </button>
+
+    <div class="nav__links" id="navLinks">
+<a class="nav__link" href="./index.html">Accueil</a>
+  <a class="nav__link" href="./infos.html">À propos</a>
+  <a class="nav__link" href="./tarif.html">Tarifs</a>
+  <a class="nav__link" href="./realisation.html">Nos réalisations</a>
+  <a class="nav__link" href="./contact.html">Contacts</a>
+  <a class="nav__cta" href="./contact.html">Demander un devis</a>
+        </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="quote">
+    <section class="container quote__hero">
+      <p class="quote__kicker">UNE QUESTION? DEMANDE DE DEVIS SUR MESURE?</p>
+
+      <h1 class="quote__title">Recevez un devis précis, sans engagement</h1>
+
+      <p class="quote__subtitle">
+        Expliquez-nous votre projet, on vous envoie une proposition claire,
+       un accompte de 1/3 du prix est demander et le reste payable à la livraison.
+      </p>
+    </section>
+
+    <section class="container quote__wrap">
+      <form class="form" id="quoteForm">
+        <div class="form__grid">
+          <div class="field">
+            <label for="prenom">Prénom <span>*</span></label>
+            <input id="prenom" name="prenom" type="text" placeholder="" required />
+          </div>
+
+          <div class="field">
+            <label for="nom">Nom <span>*</span></label>
+            <input id="nom" name="nom" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="tel">Téléphone (optionnel)</label>
+            <input id="tel" name="tel" type="tel" placeholder="+32 ..." />
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span>*</span></label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="projet">Décrivez votre projet <span>*</span></label>
+            <textarea id="projet" name="projet" rows="7" required></textarea>
+          </div>
+        </div>
+
+        <p class="form__note">
+          En envoyant ce formulaire, vous acceptez que Level Up Creation vous contacte au sujet de votre demande.
+          Pas de spam, jamais.
+        </p>
+
+        <button class="form__btn" type="submit">ENVOYER MA DEMANDE</button>
+
+        <p class="form__success" id="successMsg" hidden>
+          ✅ Merci ! Votre demande a bien été envoyée. On revient vers vous rapidement.
+        </p>
+      </form>
+    </section>
+  </main>
+
+
+    <footer class="footer">
+  <div class="container footer__grid">
+
+    <!-- Logo + description -->
+    <div class="footer__brand">
+      <div class="footer__logo">
+        <img src="./asset/images/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+      </div>
+
+      <p class="footer__founder">
+        Fondatrice : <strong>Amandine Letellier</strong>
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer__contact">
+      <h4>Contact</h4>
+
+      <a href="mailto:amandine@levelupcreation.com">
+        amandine@levelupcreation.com
+      </a>
+
+      <a href="tel:+32497746906">
+        +32 497 74 69 06
+      </a>
+    </div>
+
+    <!-- Social -->
+    <div class="footer__social">
+      <h4>Réseaux</h4>
+
+      <a href="#" target="_blank">TikTok</a>
+      <a href="#" target="_blank">Instagram</a>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <p>
+      © <span id="year"></span> Level Up Creation — Tous droits réservés.
+    </p>
+  </div>
+</footer>
+   <script src="./javascripts/scripts.js" defer></script>
+<script src="./Javascripts/email.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("pBMx5f_soArWQDzqS");
+</script>
+
+<script>
+  const form = document.getElementById("quoteForm");
+  const successMsg = document.getElementById("successMsg");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // UI
+    submitBtn.disabled = true;
+    submitBtn.textContent = "ENVOI EN COURS...";
+
+    emailjs
+      .sendForm("service_jjxz4c6", "template_k9i1f5v", this)
+      .then(() => {
+        successMsg.hidden = false;
+        form.reset();
+      })
+      .catch((error) => {
+        alert("Erreur lors de l'envoi. Merci de réessayer.");
+        console.error("EmailJS error:", error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "ENVOYER MA DEMANDE";
+      });
+  });
+</script>
+<script>
+  const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+
+function setMenu(open) {
+  if (!navLinks || !navToggle) return;
+  navLinks.classList.toggle("is-open", open);
+  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+}
+
+navToggle?.addEventListener("click", () => {
+  setMenu(!navLinks.classList.contains("is-open"));
+});
+
+navLinks?.addEventListener("click", (e) => {
+  if (e.target.closest("a")) setMenu(false);
+});
+
+// To top
+const toTop = document.getElementById("toTop");
+
+function updateToTop() {
+  if (!toTop) return;
+  const show = window.scrollY > 300;
+  toTop.classList.toggle("is-visible", show);
+}
+
+window.addEventListener("scroll", updateToTop, { passive: true });
+updateToTop();
+
+toTop?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+
+function openModal(src, alt) {
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  modalImg.src = src;
+  modalImg.alt = alt || "Aperçu plein écran";
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  modalImg.removeAttribute("src");
+  document.body.style.overflow = "";
+}
+
+// Open from any card button
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open]");
+  if (!btn) return;
+
+  const card = btn.closest(".ex-card");
+  const img = card?.querySelector("img");
+  if (!img) return;
+
+  openModal(img.dataset.full || img.src, img.alt);
+});
+
+// Close (backdrop or close btn)
+document.addEventListener("click", (e) => {
+  if (!modal.classList.contains("is-open")) return;
+  if (e.target.closest("[data-close]")) closeModal();
+});
+
+// ESC to close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("is-open")) {
+    closeModal();
+  }
+});
+document.getElementById("year").textContent = new Date().getFullYear();
+      const success = document.getElementById("successMsg");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        success.hidden = false;
+        form.reset();
+        setTimeout(() => (success.hidden = true), 5000);
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+  const title = document.querySelector(".hero__title--animate");
+
+  if (!title) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        title.classList.add("is-visible");
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  observer.observe(title);
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const openButtons = document.querySelectorAll("[data-modal-open]");
+  const modals = document.querySelectorAll(".pmodal");
+
+  const openModal = (id) => {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = (modal) => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", () => openModal(btn.dataset.modalOpen));
+  });
+
+  modals.forEach(modal => {
+    modal.addEventListener("click", (e) => {
+      if (e.target.closest("[data-modal-close]")) closeModal(modal);
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const opened = document.querySelector(".pmodal.is-open");
+    if (opened) closeModal(opened);
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("exModal");
+  const content = document.getElementById("modalContent");
+
+  if (!modal || !content) return;
+
+  const openModal = (html) => {
+    content.innerHTML = html;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    content.innerHTML = "";
+    document.body.style.overflow = "";
+  };
+
+  // OUVERTURE au clic sur bouton data-open
+  document.querySelectorAll("[data-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".ex-card");
+      if (!card) return;
+
+      // Priorité : IMG
+      const img = card.querySelector(".ex-card__media img[data-full]");
+      if (img) {
+        const src = img.getAttribute("data-full") || img.src;
+        openModal(`<img src="${src}" alt="${img.alt || "Aperçu"}">`);
+        return;
+      }
+
+      // Sinon : VIDEO
+      const video = card.querySelector("video[data-full]");
+      if (video) {
+        const src = video.getAttribute("data-full");
+        openModal(`
+          <video controls autoplay>
+            <source src="${src}" type="video/mp4">
+          </video>
+        `);
+        return;
+      }
+    });
+  });
+
+  // FERMETURE (croix + backdrop)
+  modal.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]")) closeModal();
+  });
+
+  // ESC pour fermer
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+});
+</script>
+</body>
+</html>

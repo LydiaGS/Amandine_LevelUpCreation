@@ -1,0 +1,27 @@
+:root{
+  /* Backgrounds */
+  --bg: #0b0b0d;        
+  --bg2:#070708;          
+
+  /* Text */
+  --text:#f2f2f4;        
+  --muted:#c7c7cc;      
+  --muted2:#9a9aa1;    
+
+  /* Accents */
+  --accent:#2f2f33;      
+  --accent2:#df437c;    
+
+  /* Cards & borders */
+  --card: rgba(255,255,255,.05);
+  --stroke: rgba(255,255,255,.10);
+
+  /* Effects */
+  --shadow: 0 20px 60px rgba(0,0,0,.55);
+
+  /* Layout */
+  --radius: 18px;
+  --radius2: 22px;
+  --container: 1120px;
+}
+
