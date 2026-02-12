@@ -2171,37 +2171,3 @@ margin-right: 20px;
   cursor: pointer;
   font-weight: bold;
 }
-#scrollTopBtn{
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 22px;
-  font-weight: bold;
-  color: rgb(90, 41, 8);
-  background: linear-gradient(135deg, rgb(231, 139, 231), rgb(250, 119, 255));
-  box-shadow: 0 8px 20px rgba(250,119,255,.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all .3s ease;
-  z-index: 9999;
-}
-
-#scrollTopBtn:hover{
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(250,119,255,.5);
-}
-
-#scrollTopBtn.show{
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
