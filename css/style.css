@@ -2205,3 +2205,56 @@ margin-right: 20px;
   visibility: visible;
   transform: translateY(0);
 }
+/* Desktop */
+.nav__links{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Le bouton burger est caché sur desktop */
+.nav__toggle{
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  .nav__toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.06);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  /* Menu caché par défaut */
+  .nav__links{
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    left: 16px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(10,10,14,.92);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    z-index: 9999;
+  }
+
+  /* ✅ Quand JS ajoute .is-open => le menu s'affiche */
+  .nav__links.is-open{
+    display: flex;
+  }
+
+  /* Pour que le absolute marche */
+  .nav{
+    position: relative;
+  }
+}
