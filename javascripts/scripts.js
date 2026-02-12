@@ -191,3 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
 });
+async function sendContactForm(payload) {
+  const res = await fetch("https://TON-BACKEND.onrender.com/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json();
+  if (!res.ok || !data.ok) throw new Error(data.error || "Erreur");
+  return data;
+}
