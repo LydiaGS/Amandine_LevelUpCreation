@@ -67,7 +67,7 @@
     <div class="help-grid">
       <div class="help-img">
         <img
-          src="./asset/dashboard-guide.png"
+          src="./asset/image/dashboard.png"
           alt="Aperçu du dashboard Level Up Creation"
           loading="lazy"
         >
@@ -91,12 +91,11 @@
       </div>
     </div>
   </div>
-</section>
-    </section>
+</section>  
 
-
-  <div id="dashboard" style="display:none;">
+<div id="dashboard" style="display: none;" >
   <div class="auth-wrap">
+    <br><br>
     <section class="card">
       <div class="card-inner">
         <div class="brand">
@@ -128,14 +127,23 @@
       </div>
     </section>
   </div>
+    </section>
+
+
+
   <script src="./javascripts/scripts.js"></script>
 <script src="./javascripts/dashboard.js"></script>
   <script type="module">
 import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
-
+ import { auth, onAuthStateChanged } from "./javascripts/firebaseClient.js";
 const userEmail = document.getElementById("userEmail");
 const logoutBtn = document.getElementById("logoutBtn");
 
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "./login.html";
+    }
+  });
 // Protection du dashboard
 onAuthStateChanged(auth, (user) => {
   if (!user) {
@@ -150,7 +158,6 @@ logoutBtn.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "./login.html";
 });
-
   </script>
 
 </body>

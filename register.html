@@ -39,8 +39,9 @@ form.addEventListener("submit", async (e) => {
     msg.textContent = "✅ Compte créé ! Redirection...";
     window.location.href = "./dashboard.html";
   } catch (err) {
-    msg.textContent = "❌ " + (err?.message || "Erreur");
-  }
+  console.error(err);
+  msg.textContent = `❌ ${err.code || ""} ${err.message || "Erreur"}`;
+}
 });
 
   </script>

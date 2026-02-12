@@ -8,34 +8,31 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const db = getFirestore();
-
-// عناصر الصفحة
 const loading = document.getElementById("loading");
 const dashboard = document.getElementById("dashboard");
 const userEmail = document.getElementById("userEmail");
 const logoutBtn = document.getElementById("logoutBtn");
 
-// ✅ Protection + affichage
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    // Pas connecté → on ne montre jamais le dashboard
+
     window.location.replace("./login.html");
     return;
   }
 
-  // Connecté → afficher le dashboard
+
   if (loading) loading.style.display = "none";
   if (dashboard) dashboard.style.display = "block";
   if (userEmail) userEmail.textContent = "Connecté : " + user.email;
 
-  // Charger les données Firestore
+
   await loadDocuments(user.uid);
   await loadProject(user.uid);
   await loadMessages(user.uid);
   await loadFormations(user.uid);
 });
 
-// ✅ Déconnexion
+
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
     await signOut(auth);

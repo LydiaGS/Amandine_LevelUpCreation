@@ -1,4 +1,4 @@
-// javascripts/firebaseClient.js
+// /javascripts/firebaseClient.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 import {
   getAuth,
