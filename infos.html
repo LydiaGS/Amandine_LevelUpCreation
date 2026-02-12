@@ -19,6 +19,11 @@
 
   <link rel="manifest" href="https://levelupcreation.com">
   <meta name="theme-color" content="#ff2e8b">
+<script type="module">
+  import { auth, db } from "./firebase.js";
+
+  console.log("Firebase connecté !");
+</script>
 
     <title>Level Up Creation-À propos</title>
 </head>
@@ -42,12 +47,13 @@
         </button>
 
     <div class="nav__links" id="navLinks">
-<a class="nav__link" href="./index.html">Accueil</a>
-  <a class="nav__link" href="./infos.html">À propos</a>
-  <a class="nav__link" href="./tarif.html">Tarifs</a>
-  <a class="nav__link" href="./realisation.html">Nos réalisations</a>
-  <a class="nav__link" href="./contact.html">Contacts</a>
-  <a class="nav__cta" href="./contact.html">Demander un devis</a>
+  <a class="nav__link" href="./index.html">Accueil</a>
+        <a class="nav__link" href="./infos.html">À propos</a>
+        <a class="nav__link" href="./tarif.html">Tarifs</a>
+        <a class="nav__link" href="./realisation.html">Nos réalisations</a>
+        <a class="nav__link" href="./contact.html">Contacts</a>
+        <a class="nav__cta" href="./register.html">Inscription</a>
+        <a class="nav__cta" href="./login.html">Connexion</a>
         </div>
         </div>
       </nav>

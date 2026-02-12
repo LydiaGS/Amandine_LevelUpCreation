@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./css/auth.css">
+  <title>Inscription | Level Up Creation</title>
+</head>
+<body>
+<a href="./index.html" class="close-btn" aria-label="Fermer et retourner à l'accueil">✕</a>
+
+  <h1>Créer un compte</h1>
+
+  <form id="registerForm">
+    <input id="email" type="email" placeholder="Email" required>
+    <br><br>
+    <input id="password" type="password" placeholder="Mot de passe (min 6)" minlength="6" required>
+    <br><br>
+    <button type="submit"style="background: rgb(231, 139, 231); border: none;  border-radius: 5px; color: rgb(90, 41, 8); height: 30px; width: 120px; font-size: 16px; font-weight: 900;">S’inscrire</button>
+    <p id="msg"></p>
+  </form>
+  <p>Déjà un compte ? <a href="./login.html" style="color: rgb(250, 119, 255);">Se connecter</a></p>
+
+  <script type="module">
+    import { auth, createUserWithEmailAndPassword } from "./javascripts/firebaseClient.js";
+
+    const form = document.getElementById("registerForm");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "Création du compte...";
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        msg.textContent = "✅ Compte créé ! Redirection...";
+        window.location.href = "./account.html";
+      } catch (err) {
+        msg.textContent = "❌ " + (err?.message || "Erreur");
+      }
+    });
+  </script>
+</body>
+</html>

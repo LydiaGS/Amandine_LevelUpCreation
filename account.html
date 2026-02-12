@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mon compte | Level Up Creation</title>
+</head>
+<body>
+  <h1>Mon compte</h1>
+
+  <p id="status">Chargement…</p>
+  <button id="logoutBtn" style="display:none;">Se déconnecter</button>
+
+  <script type="module">
+    import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
+
+    const status = document.getElementById("status");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "./login.html";
+      } else {
+        status.textContent = "✅ Connecté : " + user.email;
+        logoutBtn.style.display = "inline-block";
+      }
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "./login.html";
+    });
+  </script>
+</body>
+</html>

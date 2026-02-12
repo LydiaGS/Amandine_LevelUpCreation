@@ -17,6 +17,11 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/image/favicon/2080x2080.png">
 
   <link rel="manifest" href="https://levelupcreation.com">
+<script type="module">
+  import { auth, db } from "./firebase.js";
+
+  console.log("Firebase connecté !");
+</script>
 
   <meta name="theme-color" content="#ff2e8b">
    <title>Level Up Creation-Contacts</title>
@@ -40,12 +45,13 @@
         </button>
 
     <div class="nav__links" id="navLinks">
-<a class="nav__link" href="./index.html">Accueil</a>
-  <a class="nav__link" href="./infos.html">À propos</a>
-  <a class="nav__link" href="./tarif.html">Tarifs</a>
-  <a class="nav__link" href="./realisation.html">Nos réalisations</a>
-  <a class="nav__link" href="./contact.html">Contacts</a>
-  <a class="nav__cta" href="./contact.html">Demander un devis</a>
+  <a class="nav__link" href="./index.html">Accueil</a>
+        <a class="nav__link" href="./infos.html">À propos</a>
+        <a class="nav__link" href="./tarif.html">Tarifs</a>
+        <a class="nav__link" href="./realisation.html">Nos réalisations</a>
+        <a class="nav__link" href="./contact.html">Contacts</a>
+        <a class="nav__cta" href="./register.html">Inscription</a>
+        <a class="nav__cta" href="./login.html">Connexion</a>
         </div>
         </div>
       </nav>
