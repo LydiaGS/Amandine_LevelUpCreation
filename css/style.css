@@ -2017,3 +2017,8 @@ margin-right: 20px;
 .cta__title{ margin: 0 0 8px; }
 .cta__text{ margin: 0; color: var(--muted); max-width: 70ch; }
 .cta__actions{ margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap; }
+.boite{
+  display: flex;
+ align-items: center;
+ gap: 8px;
+}

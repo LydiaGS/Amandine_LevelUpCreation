@@ -22,26 +22,27 @@
   <p>Déjà un compte ? <a href="./login.html" style="color: rgb(250, 119, 255);">Se connecter</a></p>
 
   <script type="module">
-    import { auth, createUserWithEmailAndPassword } from "./javascripts/firebaseClient.js";
+import { auth, createUserWithEmailAndPassword } from "./javascripts/firebaseClient.js";
 
-    const form = document.getElementById("registerForm");
-    const msg = document.getElementById("msg");
+const form = document.getElementById("registerForm");
+const msg = document.getElementById("msg");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      msg.textContent = "Création du compte...";
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  msg.textContent = "Création du compte...";
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        msg.textContent = "✅ Compte créé ! Redirection...";
-        window.location.href = "./account.html";
-      } catch (err) {
-        msg.textContent = "❌ " + (err?.message || "Erreur");
-      }
-    });
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    msg.textContent = "✅ Compte créé ! Redirection...";
+    window.location.href = "./dashboard.html";
+  } catch (err) {
+    msg.textContent = "❌ " + (err?.message || "Erreur");
+  }
+});
+
   </script>
 </body>
 </html>

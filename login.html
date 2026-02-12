@@ -25,24 +25,25 @@
   <script type="module">
     import { auth, signInWithEmailAndPassword } from "./javascripts/firebaseClient.js";
 
-    const form = document.getElementById("loginForm");
-    const msg = document.getElementById("msg");
+const form = document.getElementById("loginForm");
+const msg = document.getElementById("msg");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      msg.textContent = "Connexion...";
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  msg.textContent = "Connexion...";
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        msg.textContent = "✅ Connecté ! Redirection...";
-        window.location.href = "./account.html";
-      } catch (err) {
-        msg.textContent = "❌ " + (err?.message || "Erreur");
-      }
-    });
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    msg.textContent = "✅ Connecté ! Redirection...";
+    window.location.href = "./dashboard.html";
+  } catch (err) {
+    msg.textContent = "❌ " + (err?.message || "Erreur");
+  }
+});
+
   </script>
 </body>
 </html>
