@@ -196,7 +196,7 @@ body{
   background:
     linear-gradient(90deg, rgba(5,7,16,.95) 0%, rgba(5,7,16,.88) 42%, rgba(5,7,16,.55) 70%, rgba(5,7,16,.25) 100%),
     radial-gradient(700px 500px at 25% 30%, rgba(68,83,210,.20), transparent 60%),
-    url("../asset/images/ChatGPT\ Image\ 10\ févr.\ 2026\,\ 23_59_58.png");
+    url("../asset/image/ChatGPT\ Image\ 10\ févr.\ 2026\,\ 23_59_58.png");
   background-size: cover;
   background-position: center right;
   filter: saturate(.9) contrast(1.05);
