@@ -334,7 +334,9 @@
     </p>
   </div>
 </footer>
-
+<button id="scrollTopBtn" aria-label="Remonter en haut">
+  ↑
+</button>
   <script src="./javascripts/scripts.js" defer></script>
   <script>
 
@@ -349,5 +351,24 @@
     form.reset();
   });
 </script>
+<script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add("show");
+  } else {
+    scrollBtn.classList.remove("show");
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
 </body>
 </html>
