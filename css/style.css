@@ -2403,7 +2403,9 @@ margin-right: 20px;
   font-size: 14px;
   line-height: 1.7;
 }
-
+.gm-style-iw{
+  color: var(--accent2);
+}
 /* Bouton itinéraire (style Level Up) */
 .map__btn{
   display: inline-flex;
