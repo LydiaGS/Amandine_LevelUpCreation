@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("[reviews] loadStats error:", err);
       if (hintEl) hintEl.textContent = "Impossible de charger les avis.";
-      // pas d'alert ici (moins agressif)
+  
     }
   }
 
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4500);
 
     try {
-      // IMPORTANT : ces champs respectent tes rules
+    
       await addDoc(collection(db, "reviews"), {
         name,
         email: email || null,
@@ -246,16 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
       if (charCount) charCount.textContent = "0";
 
-      // Message clair : en attente de validation
       if (success) {
-        success.textContent = "Merci 💗 Votre avis a été envoyé et sera publié après validation.";
+        success.textContent = "Merci Votre avis a été envoyé et sera publié après validation.";
         success.hidden = false;
         setTimeout(() => (success.hidden = true), 7000);
       } else {
-        alert("Merci 💗 Votre avis a été envoyé et sera publié après validation.");
+        alert("Merci Votre avis a été envoyé et sera publié après validation.");
       }
 
-      // Stats ne changent pas tant que ce n'est pas approved:true
+  
       await loadStats();
 
     } catch (err) {
@@ -268,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Go
+
   init();
 });
 
