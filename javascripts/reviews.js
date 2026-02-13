@@ -271,5 +271,17 @@ document.addEventListener("DOMContentLoaded", () => {
   init();
 });
 
+const googleLink = "COLLE_ICI_TON_LIEN_AVIS_GOOGLE";
+
+if (success) {
+  success.innerHTML = `
+    Merci 💗 Votre avis a été envoyé (en attente de validation).<br><br>
+    <a class="btn btn--primary" href="${googleLink}" target="_blank" rel="noopener">
+      Publier aussi sur Google ⭐
+    </a>
+  `;
+  success.hidden = false;
+  setTimeout(() => (success.hidden = true), 12000);
+}
 
 
