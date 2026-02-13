@@ -74,3 +74,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+/*// 1) Initialise EmailJS
+emailjs.init("TON_PUBLIC_KEY");
+
+// 2) Quand on submit le formulaire
+document.getElementById("quoteForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const params = {
+    prenom: document.getElementById("prenom").value.trim(),
+    nom: document.getElementById("nom").value.trim(),
+    tel: document.getElementById("tel").value.trim(),
+    email: document.getElementById("email").value.trim(),   // IMPORTANT
+    projet: document.getElementById("projet").value.trim(),
+    page: window.location.href,
+    date: new Date().toLocaleString("fr-BE"),
+    name: (document.getElementById("prenom").value.trim() + " " + document.getElementById("nom").value.trim()).trim()
+  };
+
+  try {
+    // A) Email vers toi (admin)
+    await emailjs.send("service_bt9an7x", "template_bjg7elq", params);
+
+    // B) Auto-réponse vers le client
+    await emailjs.send("service_bt9an7x", "template_4o5xcdf", params);
+
+    alert("✅ Message envoyé ! Le client reçoit aussi un accusé de réception.");
+    e.target.reset();
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    alert("❌ Erreur d’envoi. Regarde la console.");
+  }
+});*/s
