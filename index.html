@@ -24,6 +24,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/image/favicon/2080x2080.png">
 
   <link rel="manifest" href="https://levelupcreation.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.gstatic.com">
+
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js">
+<link rel="modulepreload" href="./javascripts/reviews.js">
+
   <meta name="theme-color" content="#ff2e8b">
   <script type="module">
   import { auth, db } from "./firebase.js";
@@ -112,6 +118,103 @@
         </div>
       </div>
     </section>
+    <section class="reviews section" id="avis">
+  <div class="container">
+    <div class="reviews__head">
+      <h2 class="reviews__title">Avis clients</h2>
+      <p class="reviews__subtitle">
+        Votre retour aide Level Up Creation à s’améliorer 
+      </p>
+    </div>
+
+    <!-- Stats + liste -->
+    <div class="reviews__grid">
+      <div class="reviews__panel">
+        <div class="reviews__summary">
+          <div class="reviews__score">
+            <span id="avgRating" class="reviews__score-number">—</span>
+            <span class="reviews__score-label">/ 5</span>
+          </div>
+          <div class="reviews__meta">
+            <p class="reviews__meta-line">
+              <strong id="reviewCount">0</strong> avis
+            </p>
+            <p class="reviews__meta-sub" id="reviewHint">Soyez le/la premier(e) à laisser un avis </p>
+          </div>
+        </div>
+
+        <div class="reviews__list" id="reviewsList">
+          <!-- Avis injectés ici -->
+        </div>
+
+        <button class="reviews__more" id="loadMoreReviews" type="button" hidden>
+          Voir plus d’avis
+        </button>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="reviews__formCard">
+        <h3 class="reviews__formTitle">Laisser un avis</h3>
+        <p class="reviews__formDesc">
+          Merci  Ton avis sera publié après validation.
+        </p>
+          <br>
+        <form class="rform" id="reviewForm">
+          <div class="rform__row">
+            <div class="field">
+              <label for="r_name">Nom <span>*</span></label>
+              <input id="r_name" name="name" type="text" required />
+            </div>
+
+            <div class="field">
+              <label for="r_email">Email (optionnel)</label>
+              <input id="r_email" name="email" type="email" placeholder="pour te recontacter si besoin" />
+            </div>
+          </div>
+          <br>
+          <div class="field field--full">
+            <label>Note <span>*</span></label>
+
+            <div class="rating" role="radiogroup" aria-label="Note sur 5">
+              <input type="radio" id="star5" name="rating" value="5" />
+              <label for="star5" title="5">★</label>
+
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" title="4">★</label>
+
+              <input type="radio" id="star3" name="rating" value="3" />
+              <label for="star3" title="3">★</label>
+
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" title="2">★</label>
+
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" title="1">★</label>
+            </div>
+
+            <small class="rform__help">Clique sur les étoiles ⭐</small>
+          </div>
+
+          <div class="field field--full">
+            <label for="r_message">Ton avis <span>*</span></label>
+            <textarea id="r_message" name="message" required minlength="10" maxlength="700"
+              placeholder="Compréhension, rapidité, design, communication, résultats…"></textarea>
+            <small class="rform__help"><span id="charCount">0</span>/700</small>
+          </div>
+          <br>
+          <button class="form__btn" type="submit" id="reviewBtn">
+            ENVOYER MON AVIS
+          </button>
+
+          <p class="form__success" id="reviewSuccess" hidden>
+            Merci Ton avis a bien été envoyé (en attente de validation).
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
   </main>
  <footer class="footer">
   <div class="container footer__grid">
@@ -190,6 +293,7 @@
 <button id="scrollTopBtn" aria-label="Remonter en haut">
   ↑
 </button>
+<script type="module" src="./javascripts/reviews.js"></script>
 
   <script src="./javascripts/scripts.js" defer></script>
   <script>
