@@ -147,26 +147,19 @@
       </ul>
     </div>
 
-    <!-- Newsletter -->
-    <div class="footer__newsletter">
-      <h4>Newsletter</h4>
-      <p>Reçois les nouveautés et conseils web directement par email.</p>
+<!-- Newsletter -->
+<section class="newsletter">
+  <h2>Level Up News </h2>
+  <p>Reçois les nouveautés et conseils web directement par email.</p>
 
-      <form id="newsletterForm" class="newsletter-form">
-        <input 
-          type="email" 
-          id="newsletterEmail" 
-          placeholder="Ton adresse email" 
-          required
-        >
-        <button type="submit">S'inscrire</button>
-      </form>
-
-      <p id="newsletterMsg" style="margin-top:8px; font-size:14px;"></p>
-    </div>
-
-  </div>
-
+  <form id="newsletterForm">
+    <input type="email" placeholder="Ton email" required>
+    <button type="submit">Je m'inscris</button>
+  </form>
+<br>
+  <small>Pas de spam. Désinscription en 1 clic.</small>
+</section>
+</div>
   <div class="footer__bottom">
     <p>
       © <span id="year"></span> Level Up Creation — Tous droits réservés.
@@ -252,7 +245,55 @@ scrollBtn.addEventListener("click", () => {
   });
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script>
+  emailjs.init("uxZcJJCuE7h_IO835");
+</script>
+<script>
+  function sendNewsletterEmail() {
+  const emailInput = document.getElementById("newsletterEmail");
+  const msg = document.getElementById("newsletterMsg");
+
+  const email = (emailInput?.value || "").trim();
+
+  if (!email) {
+    msg.textContent = "❌ Entre une adresse email.";
+    msg.style.color = "red";
+    return;
+  }
+
+  // (optionnel) petite validation email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailRegex.test(email)) {
+    msg.textContent = "❌ Adresse email invalide.";
+    msg.style.color = "red";
+    return;
+  }
+
+  msg.textContent = "⏳ Inscription en cours...";
+  msg.style.color = "#fff";
+
+  const params = {
+    email,
+    date: new Date().toLocaleString("fr-BE")
+  };
+
+  emailjs
+    .send("service_bt9an7x", "template_0b0qafq", params)
+    .then(() => {
+      msg.textContent = "✅ Merci ! Vérifie ta boîte mail 🚀";
+      msg.style.color = "#22c55e";
+      emailInput.value = "";
+    })
+    .catch((error) => {
+      console.error("EmailJS error:", error);
+      msg.textContent = "❌ Erreur d’envoi. Réessaie.";
+      msg.style.color = "red";
+    });
+}
+
+</script>
 </body>
 </html>
 
