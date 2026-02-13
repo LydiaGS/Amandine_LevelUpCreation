@@ -118,60 +118,33 @@
     <br> <br>
 
   </main>
- <section class="reviews section" id="avis">
-       <div class="reviews__formCard">
-        <h3 class="reviews__formTitle">Laisser un avis</h3>
-        <p class="reviews__formDesc">
-          Merci  Ton avis sera publié après validation.
-        </p>
-          <br>
-        <form class="rform" id="reviewForm" >
-          <div class="rform__row">
-            <div class="field">
-              <label for="r_name">Nom <span>*</span></label>
-              <input id="r_name" name="name" type="text" required />
-            </div>
+ <!-- SECTION MAPS -->
+<section class="contact-map section">
+  <div class="container">
 
-            <div class="field">
-              <label for="r_email">Email (optionnel)</label>
-              <input id="r_email" name="email" type="email" placeholder="pour te recontacter si besoin" />
-            </div>
-          </div>
-          <br>
-          <div class="field field--full">
-            <label>Note <span>*</span></label>
+    <div class="contact-map__content">
+      <h2 class="contact-map__title">Nous trouver à Bruxelles</h2>
+      <p class="contact-map__desc">
+        Level Up Creation est basé à Bruxelles, Belgique.  
+        Nous accompagnons les entrepreneurs et indépendants dans toute la région.
+      </p>
+    </div>
 
-            <div class="rating" role="radiogroup" aria-label="Note sur 5">
-              <input type="radio" id="star5" name="rating" value="5" />
-              <label for="star5" title="5">★</label>
+    <div class="contact-map__embed">
+      <iframe
+        src="https://www.google.com/maps?q=Bruxelles,Belgique&output=embed"
+        width="100%"
+        height="400"
+        style="border:0; border-radius:16px;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
 
-              <input type="radio" id="star4" name="rating" value="4" />
-              <label for="star4" title="4">★</label>
+  </div>
+</section>
 
-              <input type="radio" id="star3" name="rating" value="3" />
-              <label for="star3" title="3">★</label>
-
-              <input type="radio" id="star2" name="rating" value="2" />
-              <label for="star2" title="2">★</label>
-
-              <input type="radio" id="star1" name="rating" value="1" />
-              <label for="star1" title="1">★</label>
-            </div>
-
-            <small class="rform__help">Clique sur les étoiles ⭐</small>
-          </div>
-
-          <div class="field field--full">
-            <label for="r_message">Ton avis <span>*</span></label>
-            <textarea id="r_message" name="message" required minlength="10" maxlength="700"
-              placeholder="Compréhension, rapidité, design, communication, résultats…"></textarea>
-            <small class="rform__help"><span id="charCount">0</span>/700</small>
-          </div>
-          <br>
-          <button class="form__btn" type="submit" id="reviewBtn">
-            ENVOYER MON AVIS
-          </button>
-    </section>
 <footer class="footer">
   <div class="container footer__grid">
 
