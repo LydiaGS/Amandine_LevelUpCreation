@@ -196,3 +196,86 @@ dropdownMain?.addEventListener("click", function(e){
     dropdown.classList.toggle("is-open");
   }
 });
+const aboutDropdown = document.getElementById("aboutDropdown");
+const aboutLink = document.getElementById("aboutLink");
+
+let pressTimer = null;
+let closeTimer = null;
+
+function openPeek() {
+  if (!aboutDropdown) return;
+  aboutDropdown.classList.add("is-peek");
+}
+
+function closePeek(delay = 0) {
+  if (!aboutDropdown) return;
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(() => {
+    aboutDropdown.classList.remove("is-peek");
+  }, delay);
+}
+
+// Mobile only: long press behavior
+function isMobile() {
+  return window.innerWidth <= 920;
+}
+
+aboutLink?.addEventListener("touchstart", () => {
+  if (!isMobile()) return;
+
+  // long press -> open
+  clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => {
+    openPeek();
+  }, 250); // durée appui long (250ms)
+}, { passive: true });
+
+aboutLink?.addEventListener("touchend", () => {
+  if (!isMobile()) return;
+
+  clearTimeout(pressTimer);
+
+  // Si le menu s'est ouvert (appui long), on le ferme après un petit délai
+  // pour laisser le temps de cliquer "Site web / Design"
+  if (aboutDropdown?.classList.contains("is-peek")) {
+    closePeek(700); // ajuste: 400-900ms selon ton feeling
+  }
+}, { passive: true });
+
+// Si on touche ailleurs -> ferme
+document.addEventListener("touchstart", (e) => {
+  if (!isMobile()) return;
+  if (!aboutDropdown) return;
+  if (!aboutDropdown.contains(e.target)) closePeek(0);
+}, { passive: true });
+
+// Si on clique un sous-lien -> ferme proprement
+aboutDropdown?.addEventListener("click", (e) => {
+  if (!isMobile()) return;
+  if (e.target.closest(".nav__dropdown-item")) {
+    closePeek(0);
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+  const dropdown = document.querySelector(".nav__dropdown");
+  const mainLink = document.querySelector(".nav__dropdown-main");
+
+  if (!dropdown || !mainLink) return;
+
+  mainLink.addEventListener("click", (e) => {
+
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      dropdown.classList.toggle("is-open");
+    }
+
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("is-open");
+    }
+  });
+
+});

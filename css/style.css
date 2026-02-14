@@ -3086,4 +3086,342 @@ button {
     border-color: rgba(223,67,124,.35);
   }
 }
+/* ===== Desktop: hover normal ===== */
+@media (min-width: 921px){
+  .nav__dropdown{ position: relative; }
+
+  .nav__dropdown-menu{
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 220px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(7,7,8,.95);
+    border: 1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+  }
+
+  .nav__dropdown:hover .nav__dropdown-menu{
+    display: flex;
+  }
+}
+
+/* ===== Mobile: menu sous forme de bloc (pas absolute) ===== */
+@media (max-width: 920px){
+  .nav__dropdown{ width:100%; }
+
+  .nav__dropdown-menu{
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    display: none; /* fermé par défaut */
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ouvert via JS (appui long) */
+  .nav__dropdown.is-peek .nav__dropdown-menu{
+    display: flex;
+  }
+
+  .nav__dropdown-item{
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+    color: rgba(242,242,244,.86);
+    text-decoration: none;
+  }
+}
+/* ===== BASE ===== */
+.nav__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav__dropdown-main {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Petite flèche */
+.nav__dropdown-main::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav__dropdown.is-open .nav__dropdown-main::after {
+  transform: rotate(180deg);
+}
+
+/* ===== MENU ===== */
+.nav__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  padding: 8px 0;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+.nav__dropdown.is-open .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Items */
+.nav__dropdown-item {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.nav__dropdown-item:hover {
+  background: #f4f4f4;
+}
+
+/* ===== DESKTOP HOVER ===== */
+@media (hover: hover) {
+  .nav__dropdown:hover .nav__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__dropdown:hover .nav__dropdown-main::after {
+    transform: rotate(180deg);
+  }
+}
+
+/* ============================= */
+/* ===== TABLET & MOBILE ===== */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .nav__dropdown {
+    display: block;
+    width: 100%;
+  }
+
+  .nav__dropdown-main {
+    display: block;
+    padding: 14px 20px;
+    width: 100%;
+  }
+
+  .nav__dropdown-menu {
+    position: static;
+    width: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .nav__dropdown-item {
+    padding: 14px 30px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================= */
+/* ===== ULTRA SMALL 320px ===== */
+/* ============================= */
+
+@media (max-width: 400px) {
+
+  .nav__dropdown-main {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+
+  .nav__dropdown-item {
+    font-size: 0.9rem;
+    padding: 12px 22px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .nav__dropdown-main {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+
+  .nav__dropdown-item {
+    font-size: 0.8rem;
+    padding: 10px 18px;
+  }
+
+}
+/* ===== BASE ===== */
+.nav__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav__dropdown-main {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Petite flèche */
+.nav__dropdown-main::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav__dropdown.is-open .nav__dropdown-main::after {
+  transform: rotate(180deg);
+}
+
+/* ===== MENU ===== */
+.nav__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background:var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+.nav__dropdown.is-open .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Items */
+.nav__dropdown-item {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+  border: none;
+  background: none;
+}
+
+.nav__dropdown-item:hover {
+  background: #414141;
+}
+
+/* ===== DESKTOP HOVER ===== */
+@media (hover: hover) {
+  .nav__dropdown:hover .nav__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__dropdown:hover .nav__dropdown-main::after {
+    transform: rotate(180deg);
+  }
+}
+
+/* ============================= */
+/* ===== TABLET & MOBILE ===== */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .nav__dropdown {
+    display: block;
+    width: 100%;
+  }
+
+  .nav__dropdown-main {
+    display: block;
+    padding: 14px 20px;
+    width: 100%;
+  }
+
+  .nav__dropdown-menu {
+    position: static;
+    width: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .nav__dropdown-item {
+    padding: 14px 30px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================= */
+/* ===== ULTRA SMALL 320px ===== */
+/* ============================= */
+
+@media (max-width: 400px) {
+
+  .nav__dropdown-main {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+
+  .nav__dropdown-item {
+    font-size: 0.9rem;
+    padding: 12px 22px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .nav__dropdown-main {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+
+  .nav__dropdown-item {
+    font-size: 0.8rem;
+    padding: 10px 18px;
+  }
+
+}
 
