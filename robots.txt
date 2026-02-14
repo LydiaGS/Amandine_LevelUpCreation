@@ -1,4 +1,1 @@
-User-agent: *
-Allow: /
 
-Sitemap: https://levelupcreation.com/sitemap.xml
