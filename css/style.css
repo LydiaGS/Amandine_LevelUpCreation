@@ -2967,4 +2967,47 @@ button {
     justify-content:center;
   }
 }
+/* ===== Fix dropdown mobile (Site web / Design ne doivent pas passer au-dessus) ===== */
+@media (max-width: 920px){
+  /* le dropdown prend la largeur comme un lien */
+  .nav__dropdown{
+    width: 100%;
+  }
+
+  /* "À propos" doit ressembler à un lien normal en mobile */
+  .nav__dropdown-main{
+    width: 100%;
+    display: block;
+  }
+
+  /* le menu du dropdown devient "inline" dans la colonne */
+  .nav__dropdown-menu{
+    position: static;      /* IMPORTANT: plus en absolute */
+    width: 100%;
+    min-width: 0;
+    margin-top: 8px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    display: none;         /* fermé par défaut */
+    gap: 8px;
+  }
+
+  /* quand ouvert */
+  .nav__dropdown.is-open .nav__dropdown-menu{
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* items dropdown = même style que les liens mobile */
+  .nav__dropdown-item{
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+  }
+}
 
