@@ -3455,4 +3455,71 @@ button {
   visibility: visible;
   transform: translateY(0);
 }
+#scrollTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+
+  color: white;
+  background: linear-gradient(135deg, #ff4da6, #ff0080);
+
+  box-shadow: 0 10px 25px rgba(255, 0, 128, 0.3);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+/* Visible */
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover desktop */
+#scrollTopBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(255, 0, 128, 0.4);
+}
+
+/* Click effect */
+#scrollTopBtn:active {
+  transform: scale(0.95);
+}
+@media (max-width: 480px) {
+  #scrollTopBtn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  #scrollTopBtn {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
 
