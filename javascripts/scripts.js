@@ -297,34 +297,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-document.addEventListener("DOMContentLoaded", () => {
-  const dropdown = document.querySelector(".nav__dropdown");
-  const mainLink = dropdown?.querySelector(".nav__dropdown-main");
-
-  if (!dropdown || !mainLink) return;
-
-  function isMobile() {
-    return window.matchMedia("(max-width: 768px)").matches;
-  }
-
-  // Pointerdown = mieux que click sur mobile
-  mainLink.addEventListener("pointerdown", (e) => {
-    if (!isMobile()) return;
-
-    // Empêche navigation + empêche ton handler global de fermer le menu
-    e.preventDefault();
-    e.stopPropagation();
-
-    dropdown.classList.toggle("is-open");
-  });
-
-  // Fermer si clic/touch en dehors
-  document.addEventListener("pointerdown", (e) => {
-    if (!dropdown.contains(e.target)) dropdown.classList.remove("is-open");
-  });
-
-  // Reset quand on repasse en desktop
-  window.addEventListener("resize", () => {
-    if (!isMobile()) dropdown.classList.remove("is-open");
-  });
-});
