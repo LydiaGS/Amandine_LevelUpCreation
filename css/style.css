@@ -2891,4 +2891,80 @@ button {
     width: 100%;
   }
 }
+/* ===== Burger button (premium) ===== */
+.nav__toggle{
+  display:none; /* desktop */
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+  cursor:pointer;
+  position: relative;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease;
+  box-shadow: 0 18px 55px rgba(0,0,0,.35);
+}
+
+.nav__toggle:hover{
+  border-color: rgba(223,67,124,.35);
+  background: rgba(255,255,255,.07);
+  transform: translateY(-1px);
+}
+
+.nav__toggle:active{
+  transform: translateY(0);
+}
+
+/* Barres (3 lignes) */
+.nav__toggle-bars{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  background: rgba(242,242,244,.92);
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  transition: background .2s ease, transform .22s ease;
+}
+
+.nav__toggle-bars::before,
+.nav__toggle-bars::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: rgba(242,242,244,.92);
+  border-radius: 999px;
+  transition: transform .22s ease, top .22s ease, opacity .18s ease;
+}
+
+.nav__toggle-bars::before{ top: -7px; }
+.nav__toggle-bars::after{ top: 7px; }
+
+/* État ouvert : burger -> X */
+.nav__toggle.is-open .nav__toggle-bars{
+  background: transparent;
+}
+
+.nav__toggle.is-open .nav__toggle-bars::before{
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav__toggle.is-open .nav__toggle-bars::after{
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Affiche le burger en responsive */
+@media (max-width: 920px){
+  .nav__toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
 
