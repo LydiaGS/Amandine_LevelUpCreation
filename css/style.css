@@ -2523,4 +2523,372 @@ button {
   cursor: pointer;
   transition: 0.3s ease;
 }
+/* ===== Dropdown ===== */
+.nav__dropdown{
+  position: relative;
+}
+
+/* Menu caché par défaut */
+.nav__dropdown-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(7,7,8,.95);
+  border: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 55px rgba(0,0,0,.45);
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+}
+
+/* Sous liens */
+.nav__dropdown-item{
+  display: block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  color: rgba(242,242,244,.85);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  transition: all .2s ease;
+}
+
+.nav__dropdown-item:hover{
+  color: var(--accent2);
+  border-color: rgba(223,67,124,.35);
+}
+
+/* Desktop hover */
+@media (min-width: 921px){
+  .nav__dropdown:hover .nav__dropdown-menu{
+    display: flex;
+  }
+}
+
+/* Mobile open class */
+.nav__dropdown.is-open .nav__dropdown-menu{
+  display: flex;
+}
+/* =========================
+   DESIGN.HTML — CSS PRO
+   ========================= */
+
+.design-hero{
+  text-align:center;
+  padding-top: 56px;
+  padding-bottom: 18px;
+}
+
+.design-hero__title{
+  margin: 0 0 14px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(34px, 4vw, 56px);
+  letter-spacing: -0.4px;
+}
+
+.design-hero__desc{
+  margin: 0 auto;
+  max-width: 760px;
+  color: rgba(242,242,244,.72);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.design-hero__actions{
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Services grid */
+.design-services{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+  margin-top: 30px;
+}
+
+.design-service{
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  transition: transform .22s ease, border-color .22s ease;
+}
+
+.design-service:hover{
+  transform: translateY(-6px);
+  border-color: rgba(223,67,124,.35);
+}
+
+.design-service__title{
+  margin: 0 0 12px;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+}
+
+.design-list{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(242,242,244,.72);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.design-list li{
+  margin: 6px 0;
+}
+
+/* Steps */
+.design-steps{
+  margin-top: 30px;
+}
+
+.design-steps__grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 56px;
+  align-items:start;
+}
+
+.design-step__num{
+  font-weight: 900;
+  font-size: 34px;
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+
+.design-step__title{
+  margin: 0 0 10px;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+.design-step__text{
+  margin: 0;
+  color: rgba(242,242,244,.70);
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 320px;
+}
+
+/* FAQ */
+.design-faq{
+  margin-top: 22px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+.faq-item{
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  padding: 14px 14px;
+  box-shadow: var(--shadow);
+}
+
+.faq-item summary{
+  cursor: pointer;
+  font-weight: 900;
+  color: rgba(242,242,244,.90);
+  font-size: 13.5px;
+}
+
+.faq-item p{
+  margin: 10px 0 0;
+  color: rgba(242,242,244,.70);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .design-steps__grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px;
+  }
+}
+
+@media (max-width: 900px){
+  .design-services{
+    grid-template-columns: 1fr;
+  }
+  .design-steps__grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 480px){
+  .design-hero__actions .btn{
+    width: 100%;
+  }
+}
+/* =========================
+   SITEWEB.HTML — CSS PRO
+   ========================= */
+
+.web-hero{
+  text-align:center;
+  padding-top: 56px;
+  padding-bottom: 18px;
+}
+
+.web-hero__title{
+  margin: 0 0 14px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(34px, 4vw, 56px);
+  letter-spacing: -0.4px;
+}
+
+.web-hero__desc{
+  margin: 0 auto;
+  max-width: 760px;
+  color: rgba(242,242,244,.72);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.web-hero__actions{
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.web-hero__badges{
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.web-badge{
+  display:inline-flex;
+  align-items:center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(242,242,244,.85);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+/* Services grid */
+.web-services{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+  margin-top: 30px;
+}
+
+.web-service{
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  transition: transform .22s ease, border-color .22s ease;
+}
+
+.web-service:hover{
+  transform: translateY(-6px);
+  border-color: rgba(223,67,124,.35);
+}
+
+.web-service__title{
+  margin: 0 0 12px;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+}
+
+.web-list{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(242,242,244,.72);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.web-list li{
+  margin: 6px 0;
+}
+
+/* Steps */
+.web-steps{
+  margin-top: 30px;
+}
+
+.web-steps__grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 56px;
+  align-items:start;
+}
+
+.web-step__num{
+  font-weight: 900;
+  font-size: 34px;
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+
+.web-step__title{
+  margin: 0 0 10px;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+.web-step__text{
+  margin: 0;
+  color: rgba(242,242,244,.70);
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 320px;
+}
+
+/* FAQ (réutilise .faq-item de design, mais au cas où) */
+.web-faq{
+  margin-top: 22px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .web-steps__grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px;
+  }
+}
+
+@media (max-width: 900px){
+  .web-services{
+    grid-template-columns: 1fr;
+  }
+  .web-steps__grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 480px){
+  .web-hero__actions .btn{
+    width: 100%;
+  }
+}
 

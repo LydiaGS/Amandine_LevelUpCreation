@@ -186,3 +186,13 @@
   // expose si tu en as besoin ailleurs
   window.sendContactForm = sendContactForm;
 })();
+// Dropdown mobile
+const dropdown = document.querySelector(".nav__dropdown");
+const dropdownMain = document.querySelector(".nav__dropdown-main");
+
+dropdownMain?.addEventListener("click", function(e){
+  if (window.innerWidth < 921) {
+    e.preventDefault();
+    dropdown.classList.toggle("is-open");
+  }
+});
