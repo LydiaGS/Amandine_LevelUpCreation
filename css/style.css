@@ -3424,4 +3424,9 @@ button {
   }
 
 }
+.nav__dropdown.is-open .nav__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 

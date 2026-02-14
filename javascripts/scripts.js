@@ -279,3 +279,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+  const dropdown = document.querySelector(".nav__dropdown");
+  const mainLink = document.querySelector(".nav__dropdown-main");
+
+  if (!dropdown || !mainLink) return;
+
+  mainLink.addEventListener("touchstart", function (e) {
+
+    // Si menu pas encore ouvert
+    if (!dropdown.classList.contains("is-open")) {
+      e.preventDefault(); // empêche navigation
+      dropdown.classList.add("is-open");
+    }
+
+  });
+
+});
