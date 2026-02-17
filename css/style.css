@@ -3522,4 +3522,121 @@ text-align: center;
     right: 15px;
   }
 }
+/* ===============================
+   INFOS IMPORTANTES / NEWSLETTER
+   =============================== */
+.infos-key {
+  padding: 5rem 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 46, 139, 0.06),
+    rgba(255, 46, 139, 0.01),
+    transparent
+  );
+  text-align: center;
+}
+
+/* Titre principal */
+.infos-key__title strong {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  display: block;
+  margin-bottom: 2rem;
+}
+
+/* Texte au-dessus des médias */
+.infos-key__content {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.infos-key__text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+/* Media container : image + vidéo côte à côte */
+.infos-key__grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* pour mobile */
+  margin-bottom: 3rem;
+}
+
+.infos-key__media {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Image */
+.infos-key__image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+/* Vidéo */
+.infos-key__video video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Bouton inscription */
+.infos-key .btn {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.9rem 2.2rem;
+  font-size: 1rem;
+}
+
+/* ===============================
+   Animation clignotante
+   =============================== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 4s linear infinite;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+@media (max-width: 950px) {
+  .infos-key__grid {
+    flex-direction: column;
+  }
+
+  .infos-key__media {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .infos-key__image img,
+  .infos-key__video video {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .infos-key__text {
+    font-size: 1.1rem;
+  }
+
+  .infos-key__title strong {
+    font-size: 2rem;
+  }
+}
+
+
 
