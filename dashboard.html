@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./css/auth.css">
   <link rel="stylesheet" href="./css/font.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/profils.css">
   <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
 <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
 <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
@@ -16,7 +17,6 @@
 <link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
   <title>Dashboard | Level Up Creation</title>
 </head>
-
 <body>
   <!-- Top glow / background -->
   <div class="bg-ambient" aria-hidden="true"></div>
@@ -53,52 +53,77 @@
   <div id="loading" style="margin: 18px auto; max-width: 980px; padding: 14px; text-align:center;">
     Chargement...
   </div>
+          <div class="container hero__content" id="heroPublic">
+  <div class="hero__text">
+    <h1 class="hero__title">
+      <span class="hero__title--light">
+        Bienvenue dans votre espace,<br>
+        client Level Up Creation<br>
+      </span>
+    </h1>
+      <div class="brand">
+            <span class="dot"></span> Level Up Creation — Dashboard
+          </div>
+  </div>
+</div>
 
   <!-- DASHBOARD (visible seulement si connecté) -->
   <div id="dashboard" style="display:none;">
+    <div class="bg-ambient" aria-hidden="true"></div>
+    <div class="boite">
+  <h2></h2>
+
+  <!-- Photo de profil -->
+  <div class="profile-photo">
+    <img
+      id="profilePreview"
+      src="./asset/image/avatar-default.png"
+      alt=""
+      style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:10px;"
+    >
+    <input type="file" id="profilePhoto" accept="image/*"style="width: auto;">
+  </div>
+
+  <input id="name" placeholder="Nom">
+  <input id="company" placeholder="Société">
+
+  <button id="saveProfile">Enregistrer</button>
+</div>    <br><br>
+<div class="boite">
+  <h2>Messages</h2> 
+  <div id="chatBox"></div>
+  <input id="msgInput" placeholder="Ton message">
+  <button id="sendMsg">Envoyer</button>
+</div>    <br><br>
+        <div class="boite">
+  <h2>Envoyer un fichier</h2>
+  <input type="file" id="fileInput">
+  <button class="btn" id="uploadBtn"style="width: 150px;height: 40px; color:white;">Envoyer</button>
+  <ul id="fileList"></ul>
+</div>       <br><br>
     <div class="auth-wrap">
       <br><br>
-
-      <section class="card">
-        <div class="card-inner">
-          <div class="brand">
-            <span class="dot"></span> Level Up Creation — Dashboard
-          </div>
-
-          <h1>Bienvenue</h1>
-          <p class="subtitle" id="userEmail">Chargement...</p>
-
-          <div class="boite">
-            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
-            <h2>Documents</h2>
-            <ul id="documents"></ul>
-          </div>
-
-          <div class="boite">
-            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
-            <h2>Projet</h2>
-            <div id="project"></div>
-          </div>
-
-          <div class="boite">
-            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
-            <h2>Messages</h2>
-            <div id="messages"></div>
-          </div>
-
-          <div class="boite">
-            <img src="./asset/image/LOGO LVLUP_Framboise 1.png" alt="" style="height: 35px; width: 35px; border-radius: 50%; border: none; margin-right: 8px;">
-            <h2>Formations</h2>
-            <ul id="formations"></ul>
-          </div>
-
+       <section class="card">
+       <div class="card-inner">
+        <div class="boite">
+  <h2>Formations</h2>
+  <ul id="formations"></ul>
+</div>    <br><br>
+<div class="boite">
+  <h2>Planning</h2>
+  <ul id="planning"></ul>
+</div>
+    <br><br>
+<div class="boite">
+  <h2>Formations</h2>
+  <ul id="formations"></ul>
+</div>
           <br>
-
-          <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;">
+        </div>
+  <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
             Se déconnecter
           </button>
-        </div>
-      </section>
+         </section>
     </div>
   </div>
 <footer class="footer">
@@ -173,9 +198,9 @@
 </button>
   <!-- Scripts UI (si pas d'import dedans) -->
   <script src="./javascripts/scripts.js"></script>
-
-  <!-- Affichage conditionnel (invité vs connecté) -->
-  <script type="module">
+  <script type="module" src="./javascripts/dashboard.js"></script>
+ <!--<script type="module" src="./javascripts/compte.js"></script>-->
+    <script type="module">
     import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
 
     const dashboard = document.getElementById("dashboard");
@@ -211,11 +236,8 @@
       window.location.replace("./login.html");
     });
   </script>
-
-  <!-- Firestore loaders (documents/projet/messages/formations) -->
   <!-- IMPORTANT : dashboard.js ne doit PAS refaire un onAuthStateChanged si tu laisses le script ci-dessus -->
-  <script type="module" src="./javascripts/dashboard.js"></script>
-  <script>
+   <script>
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -296,6 +318,7 @@ scrollBtn.addEventListener("click", () => {
 }
 
 </script>
+
 </body>
 </html>
 
