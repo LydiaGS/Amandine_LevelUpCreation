@@ -80,7 +80,7 @@ onAuthStateChanged(auth, user => {
 // ======================
 async function loadProfile(user){
   nameInput.value = user.displayName || "";
-  profilePreview.src = user.photoURL || "./asset/image/avatar-default.png";
+  profilePreview.src = user.photoURL || "./asset/image/amandine.jpeg";
 }
 
 profilePhoto.addEventListener("change", async e => {

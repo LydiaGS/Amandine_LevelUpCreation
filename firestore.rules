@@ -2,14 +2,23 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Avis clients
+    /* =========================
+       AVIS CLIENTS
+    ========================== */
     match /reviews/{reviewId} {
 
-      // Lecture: uniquement les avis approuvés
+      // Lecture uniquement des avis approuvés
       allow read: if resource.data.approved == true;
 
-      // Écriture: tout le monde peut envoyer un avis (mais pas l'approuver)
+      // Création contrôlée
       allow create: if
+        request.resource.data.keys().hasOnly([
+          'approved',
+          'rating',
+          'name',
+          'message',
+          'createdAt'
+        ]) &&
         request.resource.data.approved == false &&
         request.resource.data.rating is int &&
         request.resource.data.rating >= 1 &&
@@ -20,11 +29,31 @@ service cloud.firestore {
         request.resource.data.message.size() >= 10 &&
         request.resource.data.message.size() <= 700;
 
-      // Personne ne modifie/supprime depuis le front
       allow update, delete: if false;
     }
 
-    // Tout le reste interdit
+
+    /* =========================
+       PLANNING CLIENT
+    ========================== */
+    match /planning/{docId} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == resource.data.uid;
+    }
+
+
+    /* =========================
+       MESSAGES CLIENT
+    ========================== */
+    match /messages/{docId} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == resource.data.uid;
+    }
+
+
+    /* =========================
+       PAR DÉFAUT : TOUT BLOQUÉ
+    ========================== */
     match /{document=**} {
       allow read, write: if false;
     }

@@ -43,7 +43,7 @@
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
         <a class="nav__link" href="./dashboard.html">Dashboard</a>
-        <a class="nav__cta" href="./register.html">Inscription</a>
+         <a class="nav__cta" href="./register.html">Inscription</a>
         <a class="nav__cta" href="./login.html">Connexion</a>
       </div>
     </nav>
@@ -53,6 +53,9 @@
   <div id="loading" style="margin: 18px auto; max-width: 980px; padding: 14px; text-align:center;">
     Chargement...
   </div>
+   <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
+            Se déconnecter
+          </button>
           <div class="container hero__content" id="heroPublic">
   <div class="hero__text">
     <h1 class="hero__title">
@@ -64,6 +67,7 @@
       <div class="brand">
             <span class="dot"></span> Level Up Creation — Dashboard
           </div>
+          <br> <br>
   </div>
 </div>
 
@@ -72,7 +76,6 @@
     <div class="bg-ambient" aria-hidden="true"></div>
     <div class="boite">
   <h2></h2>
-
   <!-- Photo de profil -->
   <div class="profile-photo">
     <img
@@ -120,9 +123,6 @@
 </div>
           <br>
         </div>
-  <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
-            Se déconnecter
-          </button>
          </section>
     </div>
   </div>
@@ -173,7 +173,6 @@
         <li><a href="#" target="_blank"></a></li>
       </ul>
     </div>
-
 <!-- Newsletter -->
 <section class="newsletter">
   <h2>Level Up News </h2>
@@ -198,7 +197,7 @@
 </button>
   <!-- Scripts UI (si pas d'import dedans) -->
   <script src="./javascripts/scripts.js"></script>
-  <script type="module" src="./javascripts/dashboard.js"></script>
+  <script type="module" src="./Back_end/dashboard.js"></script>
  <!--<script type="module" src="./javascripts/compte.js"></script>-->
     <script type="module">
     import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
