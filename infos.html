@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Découvrez la développeuse web derrière Level Up Creation à Bruxelles. Expertise, approche humaine et sites sur mesure.">
 
-
+<link rel="stylesheet" href="./css/tchat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./css/style.css" />
@@ -61,9 +61,9 @@
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-             <a class="nav__link" href="./dashboard.html">Dashboard</a>
+           <!--<a class="nav__link" href="./dashboard.html">Dashboard</a>
         <a class="nav__cta" href="./register.html">Inscription</a>
-        <a class="nav__cta" href="./login.html">Connexion</a>
+        <a class="nav__cta" href="./login.html">Connexion</a>-->
         </div>
         </div>
       </nav>
@@ -491,7 +491,51 @@ EN savoir plus
 <button id="scrollTopBtn" aria-label="Remonter en haut">
   ↑
 </button>
+<!-- ═══════════════════════════════════════════════════
+       CHAT WIDGET — HTML
+  ═══════════════════════════════════════════════════ -->
 
+  <!-- Bouton bulle -->
+  <button id="chatToggle" aria-label="Ouvrir l'assistant Level Up Creation">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span id="chatBadge" aria-hidden="true"></span>
+  </button>
+
+  <!-- Panneau -->
+  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+    <div class="cw-header">
+      <div class="cw-avatar">💬</div>
+      <div class="cw-title">
+        <strong>Level Up Creation</strong>
+        <span>En ligne</span>
+      </div>
+      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+    </div>
+
+    <div class="cw-messages" id="cwMessages">
+      <!-- Message de bienvenue injecté par JS -->
+    </div>
+
+    <div class="cw-footer">
+      <input
+        class="cw-input"
+        id="cwInput"
+        type="text"
+        placeholder="Pose ta question…"
+        autocomplete="off"
+        aria-label="Message"
+      />
+      <button class="cw-send" id="cwSend" aria-label="Envoyer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="./javascripts/tchat.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
   <script>
 

@@ -42,9 +42,9 @@
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-        <a class="nav__link" href="./dashboard.html">Dashboard</a>
-         <a class="nav__cta" href="./register.html">Inscription</a>
-        <a class="nav__cta" href="./login.html">Connexion</a>
+     <!--<a class="nav__link" href="./dashboard.html">Dashboard</a>
+        <a class="nav__cta" href="./register.html">Inscription</a>
+        <a class="nav__cta" href="./login.html">Connexion</a>-->
       </div>
     </nav>
   </header>
@@ -53,9 +53,6 @@
   <div id="loading" style="margin: 18px auto; max-width: 980px; padding: 14px; text-align:center;">
     Chargement...
   </div>
-   <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
-            Se déconnecter
-          </button>
           <div class="container hero__content" id="heroPublic">
   <div class="hero__text">
     <h1 class="hero__title">
@@ -69,10 +66,14 @@
           </div>
           <br> <br>
   </div>
+  
 </div>
 
   <!-- DASHBOARD (visible seulement si connecté) -->
-  <div id="dashboard" style="display:none;">
+  <div id="dashboard" class="hidden">
+       <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
+            Se déconnecter
+          </button>
     <div class="bg-ambient" aria-hidden="true"></div>
     <div class="boite">
   <h2></h2>
@@ -92,11 +93,15 @@
 
   <button id="saveProfile">Enregistrer</button>
 </div>    <br><br>
-<div class="boite">
-  <h2>Messages</h2> 
-  <div id="chatBox"></div>
-  <input id="msgInput" placeholder="Ton message">
-  <button id="sendMsg">Envoyer</button>
+<div class="chat-wrapper">
+  <div class="chat-header">
+    <h2> Messages</h2>
+  </div>
+  <div id="chatBox" class="chat-box"></div>
+  <div class="chat-input-area">
+    <input id="msgInput" class="chat-input" type="text" placeholder="Écris un message…" autocomplete="off" />
+    <button id="sendMsg" class="chat-send-btn">Envoyer</button>
+  </div>
 </div>    <br><br>
         <div class="boite">
   <h2>Envoyer un fichier</h2>
@@ -118,8 +123,8 @@
 </div>
     <br><br>
 <div class="boite">
-  <h2>Formations</h2>
-  <ul id="formations"></ul>
+  <h2>agenda</h2>
+  <ul id="Agenda"></ul>
 </div>
           <br>
         </div>
@@ -196,128 +201,13 @@
   ↑
 </button>
   <!-- Scripts UI (si pas d'import dedans) -->
-  <script src="./javascripts/scripts.js"></script>
-  <script type="module" src="./Back_end/dashboard.js"></script>
- <!--<script type="module" src="./javascripts/compte.js"></script>-->
-    <script type="module">
-    import { auth, onAuthStateChanged, signOut } from "./javascripts/firebaseClient.js";
-
-    const dashboard = document.getElementById("dashboard");
-    const loading = document.getElementById("loading");
-    const userEmail = document.getElementById("userEmail");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    const guestHero = document.getElementById("guestHero");
-    const guestHelp = document.getElementById("guestHelp");
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // ✅ CONNECTÉ : on cache les sections "invité"
-        if (guestHero) guestHero.style.display = "none";
-        if (guestHelp) guestHelp.style.display = "none";
-
-        // ✅ on affiche le dashboard
-        if (loading) loading.style.display = "none";
-        if (dashboard) dashboard.style.display = "block";
-        if (userEmail) userEmail.textContent = "Connecté en tant que : " + user.email;
-      } else {
-        // ❌ PAS CONNECTÉ : on montre l'accueil invité, on cache le dashboard
-        if (dashboard) dashboard.style.display = "none";
-        if (loading) loading.style.display = "none"; // optionnel
-
-        if (guestHero) guestHero.style.display = "block";
-        if (guestHelp) guestHelp.style.display = "block";
-      }
-    });
-
-    logoutBtn?.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.replace("./login.html");
-    });
-  </script>
-  <!-- IMPORTANT : dashboard.js ne doit PAS refaire un onAuthStateChanged si tu laisses le script ci-dessus -->
-   <script>
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-
-  const form = document.getElementById("newsletterForm");
-  const msg = document.getElementById("newsletterMsg");
-
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    msg.textContent = "✅ Merci pour ton inscription !";
-    form.reset();
-  });
-</script>
-<script>
-const scrollBtn = document.getElementById("scrollTopBtn");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add("show");
-  } else {
-    scrollBtn.classList.remove("show");
-  }
-});
-
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+    <!--<script src="./javascripts/scripts.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   emailjs.init("uxZcJJCuE7h_IO835");
 </script>
-<script>
-  function sendNewsletterEmail() {
-  const emailInput = document.getElementById("newsletterEmail");
-  const msg = document.getElementById("newsletterMsg");
-
-  const email = (emailInput?.value || "").trim();
-
-  if (!email) {
-    msg.textContent = "❌ Entre une adresse email.";
-    msg.style.color = "red";
-    return;
-  }
-
-  // (optionnel) petite validation email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  if (!emailRegex.test(email)) {
-    msg.textContent = "❌ Adresse email invalide.";
-    msg.style.color = "red";
-    return;
-  }
-
-  msg.textContent = "⏳ Inscription en cours...";
-  msg.style.color = "#fff";
-
-  const params = {
-    email,
-    date: new Date().toLocaleString("fr-BE")
-  };
-
-  emailjs
-    .send("service_bt9an7x", "template_0b0qafq", params)
-    .then(() => {
-      msg.textContent = "✅ Merci ! Vérifie ta boîte mail 🚀";
-      msg.style.color = "#22c55e";
-      emailInput.value = "";
-    })
-    .catch((error) => {
-      console.error("EmailJS error:", error);
-      msg.textContent = "❌ Erreur d’envoi. Réessaie.";
-      msg.style.color = "red";
-    });
-}
-
-</script>
-
+<script src="./javascripts/scripts.js"></script>
+<script type="module" src="./Back_end/dashboard.js"></script>
 </body>
 </html>
 
