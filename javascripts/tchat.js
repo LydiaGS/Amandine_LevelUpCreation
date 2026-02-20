@@ -51,7 +51,12 @@ En quoi puis-je t’aider ?`
     mots: ["level up creation", "studio", "agence", "a propos", "qui etes vous", "votre agence", "c est qui"],
     reponse: `Level Up Creation crée des sites web beaux, rapides et efficaces et On fait du 100% sur-mesure.`
   },
-
+  // ── Devis ─────────────────────
+  {
+    mots: ["Comment avoir un devis", "devis", "je souhaite un devis", "je veux un devis", "c'est gartuit un devis ?", "devis gratuit ?", "devis sans engagement ?", "combien pour un devis ?", "c'est combien un devis ?", "ca coute combien un devis ?"],
+    reponse: `Pour obtenir un devis, contactez-nous via le formulaire de contact.
+Le devis est gratuit et sans engagement 😊`
+  },
   // ── POURQUOI LEVEL UP ─────────────────────────
   {
     mots: ["pourquoi vous", "pourquoi level up", "vos avantages", "points forts", "difference", "ce qui vous distingue"],
@@ -341,10 +346,11 @@ JavaScript = les actions et l’interaction ⚙️
 Si tu veux apprendre plus viens à notre formation "Les bases du développement web" !`
   },
 
+
   // ── REMERCIEMENTS ────────────────────────────
   {
     mots: ["merci", "super", "parfait", "genial", "top", "cool", "nickel", "utile", "tres bien","c est parfait", "c est super", "c est genial", "c est top", "c est cool", "c est nickel", "c est utile", "c est tres bien"],
-    reponse: "Avec plaisir ! N'hésite pas si tu as d'autres questions sur Level Up Creation ou sur le développement web !"
+    reponse: "Avec plaisir ! N'hésite pas si tu as d'autres questions sur Level Up Creation !"
   },
 
   {
