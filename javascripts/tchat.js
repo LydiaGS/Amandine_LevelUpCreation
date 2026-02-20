@@ -1,195 +1,384 @@
 
    (() => {
-    // ── FAQ ────────────────────────────────────────────
-    const FAQ = [
-      { mots: ["bonjour","salut","hello","coucou","bonsoir","hey","hi"],
-        reponse: `Bonjour ! Je suis l'assistante virtuelle de Level Up Creation.\n\nJe peux répondre sur :\n— Les services et tarifs\n— L'équipe\n— Le développement web (HTML, CSS, JS)\n\nQue puis-je faire pour toi ?` },
+ // ================================================
+// CHATBOT — BASE DE CONNAISSANCE LEVEL UP CREATION
+// ================================================
+const FAQ = [
 
-      { mots: ["qui est amandine","amandine letellier","fondatrice","createur"],
-        reponse: `Amandine Letellier est la fondatrice et développeuse de Level Up Creation.\n\nMaman solo en reconversion, formée à MolenGeek (Bruxelles Formation) et à la Web Discovery Piscine chez 42 Belgium.\n\nElle programme les sites web : structure, intégration, optimisation mobile et mise en ligne.` },
+  // ── SALUTATIONS ──────────────────────────────
+  {
+    mots: ["bonjour", "salut", "hello", "coucou", "bonsoir", "hey", "hi"],
+    reponse: `Salut toi 👋
+Je suis l’assistante de Level Up Creation.
 
-      { mots: ["jonathan","designer","graphiste","motion design"],
-        reponse: `Jonathan est le designer graphique & motion designer de l'équipe.\n\nIl s'occupe de :\n— Logo & identité visuelle\n— Montage vidéo\n— Retouche photo\n— Animation 3D\n— Cohérence graphique de ta marque` },
+Tu as une question sur nos services, nos tarifs, l’équipe ou la création de site web ?
+Pose-moi ta question et je te répondrai au mieux 😊
 
-      { mots: ["level up creation","studio","agence","a propos","qui etes vous"],
-        reponse: `Level Up Creation conçoit des sites élégants, rapides et pensés pour convertir.\n\nL'équipe :\n— Amandine : développeuse web & fondatrice\n— Jonathan : designer graphique & motion designer\n\nApproche : 100% sur-mesure, prix accessibles, accompagnement humain.` },
+En quoi puis-je t’aider ? ✨`
+  },
+// ── comment tu vas ──────────────────────────────
+  {
+    mots: ["Comment tu vas", "Est-ce que tu vas bien ?", "Quoi de neuf ?", "Tout va bien",],
+    reponse: `Salut toi 👋
+Je vais bien, et toi ? 😊
+En quoi puis-je t’aider ?`
+  },
+// ── Réponse positive ──────────────────────────────
+  {
+    mots: ["Je vais bien", "Je suis heureuse", " tout va bien", "je suis contente","contente", "ravis","heureux","ça va", "ça va bien","ça va super bien","ça roule", "je vais super bien", "je vais très bien", "je vais très très bien", "je vais très très très bien"],
+    reponse: `Super, je suis ravie de l’entendre ! En quoi puis-je t’aider ? 😊`
+  },
 
-      { mots: ["service","prestation","offre","vous faites quoi","que proposez vous"],
-        reponse: `Level Up Creation propose :\n\nSITES WEB :\n— Landing Page → à partir de 250€ HTVA (10-15 jours)\n— Site Vitrine ★ → à partir de 500€ HTVA (15-30 jours)\n— Boutique en ligne → à partir de 950€ HTVA (30-50 jours)\n— Site sur mesure → à partir de 750€ HTVA (30 jours+)\n\nDESIGN :\n— Design graphique & motion → à partir de 280€ HTVA\n— Design sur mesure ★ → à partir de 450€ HTVA\n\nABONNEMENTS :\n— Basic → 29,99€/mois · Pro → 59,99€/mois\n\nFORMATION : Les bases du développement web (nouveau !)` },
+  // ── Réponse Négatif ──────────────────────────────
+  {
+    mots: ["Je vais mal", "Je suis triste", "je suis déprimée", "je suis déçu", "je suis frustré", "je suis en colère", "je suis stressé", "je suis anxieux", "je suis pas bien", "je vais pas bien", "ça va pas", "ça va mal", "pas terrible", "bof", "peu mieux faire", "j’ai pas la forme", "j’ai pas le moral", "c’est dur en ce moment", "c’est compliqué en ce moment", "c’est pas facile en ce moment", "c’est pas la grande forme en ce moment", "c’est pas la joie en ce moment", "c’est pas la fête en ce moment", "c’est pas la super forme en ce moment", "c’est pas la grande joie en ce moment", "c’est pas la grande fête en ce moment"],
+    reponse: `Je suis désolée de l’apprendre. En quoi puis-je t’aider ? 😊`
+  },
+  // ── QUI EST AMANDINE ─────────────────────────
+  {
+    mots: ["qui est amandine", "amandine letellier", "fondatrice", "createur", "qui etes vous", "qui es tu,"],
+    reponse: `Amandine est la créatrice de Level Up Creation et Développeuse web passionnée.`
+  },
 
-      { mots: ["landing page","page unique","page de vente","one page"],
-        reponse: `Landing Page — à partir de 250€ HTVA\nLivraison : 10 à 15 jours · Mobile + SEO de base\n\n✓ Structure pensée pour maximiser l'acquisition\n✓ Design élégant inspirant confiance\n✓ Formulaire + WhatsApp (ou Messenger)\n✓ Version mobile travaillée au millimètre\n✓ Optimisation technique de base\n✓ Section offre + FAQ + éléments rassurants\n✓ Formation prise en main\n\nAbonnement SUIVI & CROISSANCE disponible en option.` },
+  // ── QUI EST JONATHAN ─────────────────────────
+  {
+    mots: ["jonathan", "designer", "graphiste", "motion design", "qui fait le design", "equipe design"],
+    reponse: `Jonathan est le designer graphique et motion designer de Level Up Creation et motion designer passionné.`
+  },
 
-      { mots: ["site vitrine","site de presentation","site plusieurs pages"],
-        reponse: `Site Vitrine ★ — à partir de 500€ HTVA\nJusqu'à 7 pages · Livraison : 15 à 30 jours\n\n✓ Design sur-mesure aligné à ta marque\n✓ Jusqu'à 6 pages (Accueil, Services, À propos…)\n✓ Pages supplémentaires à 100€/page\n✓ Version mobile travaillée comme une application\n✓ Formulaire + prise de contact fluide\n✓ SEO de base (balises, structure)\n✓ Formation prise en main\n\nL'offre la plus recommandée par Level Up Creation.` },
+  // ── LE STUDIO / À PROPOS ─────────────────────
+  {
+    mots: ["level up creation", "studio", "agence", "a propos", "qui etes vous", "votre agence", "c est qui"],
+    reponse: `Level Up Creation crée des sites web beaux, rapides et efficaces et On fait du 100% sur-mesure.`
+  },
 
-      { mots: ["boutique","e commerce","ecommerce","vendre en ligne","shop"],
-        reponse: `Boutique en ligne — à partir de 950€ HTVA\nLivraison : 30 à 50 jours · Mobile + performance\n\n✓ Catalogue clair, structuré et facile à parcourir\n✓ Design sur-mesure aligné à ta marque\n✓ Paiements courants intégrés\n✓ Optimisation performance (images, cache, UX)\n✓ Pages supplémentaires à 100€/page\n✓ Formation prise en main` },
+  // ── POURQUOI LEVEL UP ─────────────────────────
+  {
+    mots: ["pourquoi vous", "pourquoi level up", "vos avantages", "points forts", "difference", "ce qui vous distingue"],
+    reponse: ` 1.Design premium et cohérent
+Un site moderne, élégant et professionnel.
 
-      { mots: ["site sur mesure","site personnalise","site complet sur mesure"],
-        reponse: `Site Web Sur Mesure — à partir de 750€ HTVA\nJusqu'à 7 pages+ · Livraison : 30 jours+\n\n✓ Structure pensée pour maximiser l'acquisition\n✓ Design élégant inspirant confiance\n✓ Formulaire + WhatsApp\n✓ Version mobile au millimètre\n✓ Formation prise en main\n\nRéduction de 15% sur l'abonnement avec cette offre.` },
+2.100% sur-mesure
+Chaque section est pensée pour convertir.
 
-      { mots: ["design graphique","motion design","logo","identite visuelle","charte graphique","branding","montage video"],
-        reponse: `Design Graphique & Motion — à partir de 280€ HTVA\nLivraison : 15 à 20 jours\n\n✓ Logo\n✓ Design sur-mesure aligné à ta marque\n✓ Montages professionnels\n✓ Animation 3D\n✓ Retouche image\n✓ Création visuelle de ta marque` },
+3.Aligné à ta marque
+Un site unique, prêt à l’emploi.
 
-      { mots: ["design sur mesure","logo personnalise","design premium"],
-        reponse: `Design Sur Mesure ★ — à partir de 450€ HTVA\nLivraison : 30 jours+ · Design premium assuré\n\n✓ Logo 100% personnalisé\n✓ Design élégant inspirant confiance\n✓ Montages professionnels + Animation 3D\n✓ Retouche image\n✓ Création visuelle complète de ta marque\n\nRéduction de 15% sur l'abonnement avec cette offre.` },
+4.Accompagnement complet
+On reste disponibles pour t’aider à évoluer.
 
-      { mots: ["abonnement","suivi","maintenance","entretien","mensuel"],
-        reponse: `Abonnements SUIVI & CROISSANCE :\n\nBASIC — 29,99€/mois HTVA\n— Entretien du site tous les 3 mois\n— Accès illimité au compte client\n— Suivi et croissance limités\n\nPRO — 59,99€/mois HTVA\n— Entretien tous les 3 mois\n— Accès illimité au compte client\n— Refonte du site si besoin\n— Suivi et croissance illimités\n\nFacultatifs · Sans engagement long terme\nRéduction 15% pour les clients site/design sur mesure.` },
+5.Prix clairs
+Pas de frais cachés.
 
-      { mots: ["formation","apprendre","bases du developpement","s inscrire formation"],
-        reponse: `NOUVEAU : Formation "Les bases du développement web" !\n\nIdéale pour apprendre à gérer et modifier ton site en autonomie (HTML, CSS, JavaScript).\n\nAmandine a déjà formé des débutants au HTML/CSS pour l'ASBL UPDATES.\n\nPour réserver :\namandine@levelupcreation.com\n+32 497 74 69 06` },
+6.Livraison rapide
+Site en ligne en quelques jours après validation.`
+  },
 
-      { mots: ["tarif","prix","cout","combien","budget","devis","grille tarifaire"],
-        reponse: `Tarifs Level Up Creation :\n\nLanding Page       → 250€ HTVA  (10-15 jours)\nSite Vitrine ★     → 500€ HTVA  (15-30 jours)\nBoutique en ligne  → 950€ HTVA  (30-50 jours)\nSite sur mesure    → 750€ HTVA  (30 jours+)\nDesign graphique   → 280€ HTVA  (15-20 jours)\nDesign sur mesure★ → 450€ HTVA  (30 jours+)\n\nPage supplémentaire : 100€\n\nAbonnements :\nBasic → 29,99€/mois · Pro → 59,99€/mois\n\nPrix variables selon complexité. Devis gratuit, sans engagement.` },
+  // ── PROCESSUS DE TRAVAIL ─────────────────────
+  {
+    mots: ["processus", "comment ca marche", "etapes", "comment vous travaillez", "deroulement", "comment fonctionne"],
+    reponse: `Le processus de travail chez Level Up Creation en 4 étapes :
 
-      { mots: ["processus","comment ca marche","etapes","comment vous travaillez","deroulement"],
-        reponse: `Le processus en 4 étapes :\n\n1. Écoute & analyse\nOn clarifie ton activité, tes objectifs et ce que le site doit accomplir.\n\n2. Maquette personnalisée\nCréée sur base de ton image, pensée pour convertir.\n\n3. Intégration & réglages\nOn intègre, optimise mobile et ajuste chaque détail.\n\n4. Mise en ligne & suivi\nSite en ligne sur ton domaine. On reste disponibles.` },
+1. Écoute & analyse
 
-      { mots: ["pourquoi vous","pourquoi level up","vos avantages","points forts","difference"],
-        reponse: `Pourquoi choisir Level Up Creation ?\n\n— Design premium inspiré des meilleures agences\n— Sites 100% sur-mesure (pas de templates)\n— Stratégique : chaque section guide vers l'action\n— Prix clairs, sans frais cachés\n— Livraison rapide une fois validé\n— Accompagnement humain du début à la fin` },
+2. Maquette personnalisée
 
-      { mots: ["delai","temps","duree","quand","livraison","combien de temps"],
-        reponse: `Délais de livraison :\n\nLanding Page      : 10 à 15 jours\nSite Vitrine      : 15 à 30 jours\nBoutique en ligne : 30 à 50 jours\nSite sur mesure   : 30 jours+\nDesign graphique  : 15 à 20 jours\nDesign sur mesure : 30 jours+\n\nDélais démarrent une fois le projet validé et les éléments reçus.` },
+3. Intégration & réglages
 
-      { mots: ["realisation","portfolio","exemple","projet realise","travaux","reference"],
-        reponse: `Réalisations de Level Up Creation :\n\n— Landing Page : exemple complet (accueil, offre, méthode, FAQ, contact)\n— Site Vitrine : présentation, planning, galerie, contact\n— Site e-commerce : catalogue, fiche produit, paiement\n— Montage vidéo pour la marque BOTANEYA\n— To-Do Liste en React.JS\n— Site Art Of Skin (tatouage, piercing, ongles)\n— Template site vitrine pour artiste` },
+4. Mise en ligne & suivi
 
-      { mots: ["contact","joindre","email","mail","telephone","appeler","ecrire","coordonnees"],
-        reponse: `Contacter Level Up Creation :\n\nEmail : amandine@levelupcreation.com\nTél : +32 497 74 69 06\n\nRéseaux :\n— TikTok : @levelupcreation\n— Instagram : @level_upcreation\n— LinkedIn : Level Up Creation\n\nAmandine répond sous 24h. Premier échange gratuit.` },
+Tout commence par un échange gratuit, sans engagement.`
+  },
 
-      { mots: ["belgique","bruxelles","localisation","a distance","pays"],
-        reponse: `Level Up Creation est basée en Belgique, à Bruxelles.\n\nOn travaille partout en Belgique et à distance pour les clients ailleurs.` },
+  // ── SERVICES (VUE GLOBALE) ────────────────────
+  {
+    mots: ["service", "prestation", "offre", "vous faites quoi", "que proposez vous", "liste services"],
+    reponse: `Level Up Creation propose :
 
-      { mots: ["newsletter","level up news","abonner newsletter","recevoir infos"],
-        reponse: `La Level Up News : reçois les nouveautés et conseils web par email.\n\nInscription : formulaire en bas de la page d'accueil.\nPas de spam. Désinscription en 1 clic.` },
+- SITES WEB 
 
-      { mots: ["avis","temoignage","avis client","satisfaction","note","etoile"],
-        reponse: `Avis clients (note actuelle : 3/5) :\n\nLisa.L — déc. 2025 — ★★★☆☆\n"Super Pro et humaine"\n\nLucas.S — nov. 2025 — ★★★☆☆\n"Site livré rapidement et très pro"\n\nTu peux laisser ton avis dans la section Avis de la page d'accueil.` },
+- DESIGN ou motion design 
 
-      { mots: ["page supplementaire","ajouter page","plus de pages","100 euros"],
-        reponse: `Pages supplémentaires : 100€/page\n\nS'applique au Site Vitrine, à la Boutique en ligne et au Site sur mesure.\n\nPrécise le nombre de pages dans ta demande de devis.` },
+- FORMATIONS `
+  },
 
-      { mots: ["actualite","nouveaute","news","quoi de neuf","nouveau","annonce"],
-        reponse: `Actualité Level Up Creation :\n\n🔴 NOUVEAU : Formation "Les bases du développement web" disponible !\n\nPour réserver ta place :\namandine@levelupcreation.com\nou via le formulaire de contact.` },
+  // ── LANDING PAGE ─────────────────────────────
+  {
+    mots: ["landing page", "page unique", "page de vente", "one page", "page d accueil,page vitrine simple, page, site web sur une page, page de présenation"],
+    reponse: `Landing Page chez Level Up Creation :
 
-      // HTML
-      { mots: ["html c est quoi","c est quoi html","definition html","a quoi sert html"],
-        reponse: `HTML (HyperText Markup Language) = langage de structure des pages web.\n\nBalises essentielles :\n<h1>–<h6> → titres\n<p>       → paragraphe\n<a href>  → lien\n<img src> → image\n<div>     → bloc\n<form>    → formulaire\n\nHTML structure. CSS met en forme. JS rend interactif.` },
+À partir de 250€ HTVA
+Livraison : 10 à 15 jours
+Mobile + SEO de base`
+  },
 
-      { mots: ["structure html","squelette html","html de base","template html"],
-        reponse: `Structure HTML de base :\n\n<!DOCTYPE html>\n<html lang="fr">\n  <head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width">\n    <title>Ma page</title>\n    <link rel="stylesheet" href="style.css">\n  </head>\n  <body>\n    <h1>Bonjour</h1>\n    <script src="script.js"></script>\n  </body>\n</html>` },
+  // ── SITE VITRINE ─────────────────────────────
+  {
+    mots: ["site vitrine", "site de presentation", "site plusieurs pages", "site classique, je désire un site pour mon projet, site web pour mon entreprise,site web pour mon activité."],
+    reponse: `Voici le prix d'un site vitrine :
+À partir de 500€ HTVA
+Jusqu'à 7 pages · Livraison : 15 à 30 jours
+Mobile + SEO de base
+Idéal pour présenter ton activité et générer des contacts qualifiés.`
+  },
 
-      { mots: ["balise html","tag html","attribut html","syntaxe html"],
-        reponse: `Syntaxe des balises HTML :\n\nAvec fermeture :\n<p>Texte</p>\n<h1>Titre</h1>\n\nAuto-fermantes :\n<img src="photo.jpg" alt="description">\n<input type="text" placeholder="Saisie">\n<br> → saut de ligne\n\nAttributs courants :\nhref, src, alt, class, id, target, rel, required, placeholder` },
+  // ── BOUTIQUE EN LIGNE ─────────────────────────
+  {
+    mots: ["boutique", "e commerce", "ecommerce", "vendre en ligne", "shop", "magasin en ligne", "boutique en ligne"],
+    reponse: `Voici le prix d'un site boutique ou e-shop : 
 
-      { mots: ["lien html","a href","balise a","hyperlien"],
-        reponse: `Liens HTML :\n\nExterne :\n<a href="https://levelupcreation.com" target="_blank" rel="noopener">Visiter</a>\n\nInterne :\n<a href="./contact.html">Contact</a>\n\nVers section :\n<a href="#services">Services</a>\n\nEmail :\n<a href="mailto:amandine@levelupcreation.com">Email</a>\n\nTél :\n<a href="tel:+32497746906">Appeler</a>` },
+À partir de 950€ HTVA
+Livraison : 30 à 50 jours (selon nombre de produits)
+Mobile + performance
+`
+  },
 
-      { mots: ["image html","balise img","afficher image","photo html"],
-        reponse: `Afficher une image :\n\n<img src="photo.jpg" alt="Description" width="600">\n\nsrc → chemin (obligatoire)\nalt → texte alternatif (SEO + accessibilité, obligatoire !)\nwidth / height → dimensions\n\nResponsive CSS :\nimg { max-width: 100%; height: auto; }` },
+  // ── SITE SUR MESURE ──────────────────────────
+  {
+    mots: ["site sur mesure", "site personnalise", "site complet sur mesure", "site web sur mesure"],
+    reponse: `Voici le prix d'un site sur mesure :
+À partir de 750€ HTVA
+Jusqu'à 7 pages et plus · Livraison : 30 jours et plus
+Mobile + SEO de base`
+  },
 
-      { mots: ["formulaire html","form html","input html","champ html"],
-        reponse: `Formulaire HTML :\n\n<form action="envoyer.php" method="POST">\n  <label for="nom">Nom :</label>\n  <input type="text" id="nom" name="nom" required>\n\n  <input type="email" id="email" name="email" required>\n\n  <textarea name="message" rows="5"></textarea>\n\n  <button type="submit">Envoyer</button>\n</form>\n\nTypes : text, email, password, number, tel, date, checkbox, radio, file` },
+  // ── DESIGN GRAPHIQUE ─────────────────────────
+  {
+    mots: ["design graphique", "motion design", "logo", "identite visuelle", "charte graphique", "branding", "montage video", "retouche photo", "animation 3d", "visuel"],
+    reponse: `Voici les prix des services de notre designer & Motion Design :
 
-      { mots: ["liste html","ul ol li","liste a puces"],
-        reponse: `Listes HTML :\n\nPuces :\n<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n</ul>\n\nNumérotée :\n<ol>\n  <li>Étape 1</li>\n  <li>Étape 2</li>\n</ol>` },
+À partir de 280€ HTVA
+Livraison : 15 à 20 jours
+Pro et adapté à tous supports`
+  },
 
-      { mots: ["semantique html","html semantique","header footer main nav section article"],
-        reponse: `HTML sémantique :\n\n<header>  → en-tête\n<nav>     → menu\n<main>    → contenu principal\n<section> → section thématique\n<article> → contenu autonome\n<aside>   → contenu secondaire\n<footer>  → pied de page\n\nImportant pour le SEO et l'accessibilité.` },
+  // ── DESIGN SUR MESURE ────────────────────────
+  {
+    mots: ["design sur mesure", "logo personnalise", "design premium", "design complet"],
+    reponse: `Voici les prix des services de notre designer & Motion Design d'un desgin sur mesure : 
+À partir de 450€ HTVA
+Livraison : 30 jours et plus
+Pro et adapté à tous supports · Design premium assuré`
+  },
 
-      // CSS
-      { mots: ["css c est quoi","c est quoi css","definition css","a quoi sert css"],
-        reponse: `CSS (Cascading Style Sheets) = langage de mise en forme des pages web.\n\nSans CSS : texte brut.\nAvec CSS : couleurs, polices, espacements, animations...\n\nIntégration :\n<link rel="stylesheet" href="style.css">` },
+  // ── FORMATION ────────────────────────────────
+  {
+    mots: ["formation", "apprendre", "cours", "bases du developpement", "s inscrire formation", "formation web", "nouveau"],
+    reponse: `Chez Level Up Creation vous pouvez aussi apprendre "Les bases du développement web" !
 
-      { mots: ["selecteur css","syntaxe css","regle css","comment cibler css"],
-        reponse: `Syntaxe CSS :\n\nsélecteur { propriété: valeur; }\n\np { color: blue; }          → tous les <p>\n.carte { background: red; } → classe\n#titre { font-size: 2rem; } → id\na:hover { }                → au survol\ninput:focus { }            → champ actif` },
+Pour réserver ou avoir plus d'infos :
+— Via le formulaire de contact sur le site (section Contact)
+— Par email : amandine@levelupcreation.com
+— Par téléphone : +32 497 74 69 06`
+  },
 
-      { mots: ["couleur css","color css","background css","rgba hex hsl"],
-        reponse: `Couleurs CSS :\n\ncolor: red;\ncolor: #df437c;\ncolor: rgba(223, 67, 124, 0.5);\ncolor: hsl(337, 71%, 57%);\nbackground: linear-gradient(135deg, #df437c, #6366f1);\n\nPropriétés :\ncolor → texte\nbackground-color → fond\nborder-color → bordure\nopacity → transparence` },
+  // ── TARIFS (VUE GLOBALE) ─────────────────────
+  {
+    mots: ["tarif site web", "prix site web", "cout site web", "combien pour un site web", "budget pour un site web", "grille tarifaire pour un site web", "c est combien pour un site web", "ca coute combien un site"],
+    reponse: `Chez nous les prix sont claire et sans suprise.  :
 
-      { mots: ["police css","font css","typographie","font family","google fonts"],
-        reponse: `Typographie CSS :\n\nfont-family: 'Poppins', sans-serif;\nfont-size: 1rem;\nfont-weight: 700;\nline-height: 1.6;\ntext-align: center;\ntext-transform: uppercase;\n\nGoogle Fonts :\n<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">` },
+SITES WEB :
+Nous pouvont démarrer à partir de 250€ HTVA selon ton projet n'hésite pas à nous contacter aux +32 497 74 69 06.`
+  },
 
-      { mots: ["box model","margin padding","border css","marge","espacement"],
-        reponse: `Box Model CSS :\n\nMARGIN  → espace extérieur\nBORDER  → bordure\nPADDING → espace intérieur\nCONTENT → le contenu\n\nExemple :\n.carte {\n  padding: 20px;\n  border: 2px solid #ddd;\n  border-radius: 12px;\n  margin: 16px auto;\n}\n\nAstuce :\n* { box-sizing: border-box; }` },
+  // ── PAGES SUPPLÉMENTAIRES ────────────────────
+  {
+    mots: ["page supplementaire", "ajouter page", "plus de pages", "combien la page", "pages en plus"],
+    reponse: `Chaque page supplémentaire que tu veux après la mise en ligne du site est facturée 100€ HTVA`
+  },
 
-      { mots: ["flexbox","flex css","display flex","justify content","align items"],
-        reponse: `Flexbox :\n\n.container {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n\nCentrer parfaitement :\ndisplay: flex;\njustify-content: center;\nalign-items: center;` },
+  // ── DÉLAIS ───────────────────────────────────
+  {
+    mots: ["delai", "temps", "duree", "quand", "livraison", "combien de temps", "rapidite","sa prend combien de temps", "c'est rapide ou pas ?", "rapide","lent","long","court","delais de livraison"],
+    reponse: `Les délais de livraison chez Level Up Creation :
 
-      { mots: ["grid css","display grid","css grid","grille css"],
-        reponse: `CSS Grid :\n\n.container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n}\n\nResponsive auto :\ngrid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n\nGrid = 2D · Flex = 1D` },
+Landing Page           : 10 à 15 jours
+Site Vitrine           : 15 à 30 jours
+Boutique en ligne      : 30 à 50 jours (selon nombre de produits)
+Site sur mesure        : 30 jours et plus
+Design graphique       : 15 à 20 jours
+Design sur mesure      : 30 jours et plus
 
-      { mots: ["responsive css","media query","mobile css","breakpoint","mobile first"],
-        reponse: `Responsive CSS :\n\n/* Mobile first */\n.container { padding: 16px; }\n\n/* Tablette */\n@media (min-width: 768px) {\n  .container { padding: 32px; }\n}\n\n/* Desktop */\n@media (min-width: 1024px) {\n  .container { max-width: 1120px; margin: 0 auto; }\n}` },
+Ces délais démarrent une fois le projet validé et les éléments reçus (textes, photos, informations).`
+  },
 
-      { mots: ["variable css","css variable","custom property","root css","var css"],
-        reponse: `Variables CSS :\n\n:root {\n  --accent: #df437c;\n  --radius: 12px;\n  --shadow: 0 20px 60px rgba(0,0,0,0.55);\n}\n\n.bouton {\n  background: var(--accent);\n  border-radius: var(--radius);\n}` },
+  // ── RÉALISATIONS / PORTFOLIO ─────────────────
+  {
+    mots: ["realisation", "portfolio", "exemple", "projet realise", "travaux", "reference", "deja fait"],
+    reponse: `Nos réalisations :
 
-      { mots: ["animation css","transition css","hover css","keyframe css"],
-        reponse: `Animations CSS :\n\nTransition :\n.bouton {\n  transition: transform 0.2s ease;\n}\n.bouton:hover { transform: scale(1.05); }\n\nKeyframes :\n@keyframes fadeIn {\n  from { opacity: 0; transform: translateY(20px); }\n  to   { opacity: 1; transform: translateY(0); }\n}\n.el { animation: fadeIn 0.5s ease forwards; }` },
+— Landing Page 
+— Site Vitrine 
+— Site e-commerce 
+— Design de votre marque
+- Montage vidéo
+Tu peux voir tous ces exemples dans la section Nos réalisations du site.`
+  },
 
-      { mots: ["position css","absolute","relative","fixed","sticky","z index"],
-        reponse: `Positionnement CSS :\n\nstatic  → par défaut\nrelative → décalé, flux conservé\nabsolute → sorti du flux\nfixed   → fixe dans la fenêtre\nsticky  → se fixe au scroll\n\nMenu fixe :\n.nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; }` },
+  // ── CONTACT ──────────────────────────────────
+  {
+    mots: ["contact", "joindre", "email", "mail", "telephone", "appeler", "ecrire", "comment vous contacter", "coordonnees"],
+    reponse: `Pour nous contacter tu peux :
+envoyer un mail à : amandine@levelupcreation.com ou envoyer un what sapp au +32 497 74 69 06.
+Tu peux aussi le faire via le formulaire de contact du site. 
 
-      // JS
-      { mots: ["javascript c est quoi","js c est quoi","definition javascript","a quoi sert js"],
-        reponse: `JavaScript = rend les pages web interactives.\n\nHTML → structure\nCSS  → style\nJS   → comportement\n\nCe qu'il peut faire :\n— Réagir aux clics\n— Modifier le HTML/CSS\n— Valider des formulaires\n— Appeler des APIs\n— Stocker des données\n\n<script src="script.js"></script>` },
+Amandine répond généralement sous 24h en semaine.pas de panique si tu n'as pas de réponse immédiate, on traite les demande dans l'ordre d'arrivée et on fait au mieux pour répondre rapidment à tout le monde !`
+  },
 
-      { mots: ["variable javascript","var let const","declarer variable"],
-        reponse: `Variables JS :\n\nconst nom = "Amandine"  → fixe\nlet age = 25            → modifiable\n\n// var est obsolète, évite-le\n\nconst PI = 3.14\nlet compteur = 0\ncompteur++     → 1\ncompteur += 5  → 6\n\nRègle : const par défaut, let si ça change.` },
 
-      { mots: ["fonction javascript","function js","creer fonction","arrow function"],
-        reponse: `Fonctions JS :\n\nClassique :\nfunction saluer(prenom) {\n  return "Bonjour " + prenom\n}\n\nArrow function :\nconst saluer = (prenom) => "Bonjour " + prenom\nconst double = n => n * 2\n\nsaluer("Amandine") → "Bonjour Amandine"\ndouble(5)          → 10` },
+  // ── LOCALISATION ─────────────────────────────
+  {
+    mots: ["belgique", "bruxelles", "ou etes vous", "localisation", "a distance", "deplacement", "pays","europe", "où vous trouvez vous?","lieu,adresse"],
+    reponse: `Level Up Creation est basée en Belgique, à Bruxelles.
 
-      { mots: ["condition javascript","if else js","ternaire js","switch js"],
-        reponse: `Conditions JS :\n\nif (age >= 18) {\n  console.log("Majeur")\n} else {\n  console.log("Mineur")\n}\n\nTernaire :\nconst msg = age >= 18 ? "Majeur" : "Mineur"\n\nNullish :\nconst nom = user.nom ?? "Anonyme"` },
+On travaille avec des clients :
+— Partout en Belgique
+— À distance pour les clients ailleurs.
 
-      { mots: ["boucle javascript","for js","foreach js","map filter reduce"],
-        reponse: `Boucles JS :\n\nfor (let i = 0; i < 5; i++) { console.log(i) }\n\nforEach :\nfruits.forEach(f => console.log(f))\n\nmap :\nconst maj = fruits.map(f => f.toUpperCase())\n\nfilter :\nconst grands = [5,12,3,18].filter(n => n > 10) → [12,18]\n\nreduce :\n[10,20,30].reduce((acc,n) => acc+n, 0) → 60` },
+La plupart des projets se font à distance, avec des échanges réguliers par email, téléphone ou visio, Vous pouvez Toujour venir à nos bureau Sur Rendez-vous De 09h30 à 12h00  et de 13h00 à 16h30.`
+  },
 
-      { mots: ["dom javascript","manipuler dom","queryselector","getelementbyid"],
-        reponse: `DOM avec JS :\n\ndocument.getElementById("titre")\ndocument.querySelector(".bouton")\ndocument.querySelectorAll("li")\n\nel.textContent = "Nouveau texte"\nel.style.color = "#df437c"\nel.classList.add("actif")\nel.classList.toggle("actif")\n\nCréer :\nconst div = document.createElement("div")\ndocument.body.appendChild(div)` },
 
-      { mots: ["event javascript","addeventlistener","clic js","evenement js"],
-        reponse: `Événements JS :\n\nbtn.addEventListener("click", (e) => {\n  console.log("Cliqué !")\n})\n\nÉvénements courants :\nclick · input · submit · keydown · scroll · resize · DOMContentLoaded\n\nEmpêcher le défaut :\nform.addEventListener("submit", (e) => {\n  e.preventDefault()\n})` },
+  // ── RÉSEAUX SOCIAUX ──────────────────────────
+  {
+    mots: ["instagram", "tiktok", "linkedin", "reseau sociaux", "suivre", "ou vous suivre", "reseaux","social media", "ou vous trouver sur les reseaux sociaux", "compte instagram", "compte tiktok", "compte linkedin", "vos reseaux sociaux"],
+    reponse: `Level Up Creation est active sur les réseaux :
 
-      { mots: ["async await","promise js","fetch js","asynchrone js","appel api"],
-        reponse: `Async/await JS :\n\nasync function getData() {\n  try {\n    const res  = await fetch("https://api.example.com/data")\n    const data = await res.json()\n    return data\n  } catch (err) {\n    console.error(err)\n  }\n}\n\nPOST :\nawait fetch("/api", {\n  method: "POST",\n  headers: { "Content-Type": "application/json" },\n  body: JSON.stringify(data)\n})` },
+TikTok : @levelupcreation
+Instagram : @level_upcreation
+LinkedIn : Level Up Creation
 
-      { mots: ["localstorage","sessionstorage","stocker donnees","sauvegarder js"],
-        reponse: `localStorage JS :\n\nlocalStorage.setItem("nom", "Amandine")\nlocalStorage.setItem("user", JSON.stringify({ age: 25 }))\n\nconst nom  = localStorage.getItem("nom")\nconst user = JSON.parse(localStorage.getItem("user"))\n\nlocalStorage.removeItem("nom")\nlocalStorage.clear()\n\nsessionStorage → s'efface à la fermeture de l'onglet.` },
+Suis-nous pour des conseils web, les coulisses du studio et les dernières actus de Level Up Creation.`
+  },
 
-      { mots: ["console","console log","deboguer","debug js","erreur js"],
-        reponse: `Déboguer JS :\n\nconsole.log("Message")\nconsole.warn("Attention")\nconsole.error("Erreur !")\nconsole.table([{ nom: "A" }])\n\nOuvrir : F12 → onglet Console\n\ndebugger → met en pause l'exécution\n\nErreurs courantes :\n"is not defined" → variable non déclarée\n"is not a function" → mauvais appel\n"Cannot read properties of undefined" → valeur undefined` },
+  // ════════════════════════════════════════════
+  // COURS HTML
+  // ════════════════════════════════════════════
 
-      // REMERCIEMENTS / FIN
-      { mots: ["merci","super","parfait","genial","top","cool","nickel","utile"],
-        reponse: "Avec plaisir ! N'hésite pas si tu as d'autres questions 😊" },
+  {
+    mots: ["html c est quoi", "c est quoi html", "definition html", "a quoi sert html", "kesako html","html signification","html", "c est quoi le html", "a quoi sert le html", "definition du html", "html kesako"],
+    reponse: `HTML, ça veut dire HyperText Markup Language.
 
-      { mots: ["au revoir","bye","bonne journee","bonne soiree","a bientot"],
-        reponse: "À bientôt ! Bonne continuation 👋" },
+C’est le langage de base d’un site web.
+Il sert à structurer le contenu d’une page.
 
-      { mots: ["meteo","sport","foot","recette","cuisine","film","musique"],
-        reponse: "Je suis spécialisée dans Level Up Creation et le développement web. Pour le reste, je ne peux pas aider !\n\nTu voulais en savoir plus sur nos services ou le HTML/CSS/JS ?" }
-    ];
+Avec HTML, on peut :
 
-    const REPONSE_DEFAULT = `Je n'ai pas bien compris.\n\nEssaie par exemple :\n— "Combien coûte un site vitrine ?"\n— "C'est quoi flexbox ?"\n— "Quels sont vos délais ?"\n\nOu contacte Amandine :\namandine@levelupcreation.com`;
+Ajouter des titres
 
-    function reponseBot(message) {
-      const msg = message
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-      for (const item of FAQ) {
-        if (item.mots.some(mot => msg.includes(mot))) return item.reponse;
-      }
-      return REPONSE_DEFAULT;
-    }
+Écrire du texte
+
+Mettre des images
+
+Créer des boutons
+
+Ajouter des liens
+
+👉 En résumé :
+HTML crée la structure du site (le squelette). Si tu veux apprendre plus viens à notre formation "Les bases du développement web" !`
+  },
+
+  // ════════════════════════════════════════════
+  // COURS CSS
+  // ════════════════════════════════════════════
+
+  {
+    mots: ["css c est quoi", "c est quoi css", "definition css", "a quoi sert css", "kesako css","css signification","css", "c est quoi le css", "a quoi sert le css", "definition du css", "css kesako","c est quoi le css", "a quoi sert le css", "definition du css", "css kesako","css"],
+    reponse: `CSS, ça veut dire Cascading Style Sheets.
+
+C’est le langage qui sert à mettre en forme un site web.
+
+Avec CSS, on peut :
+
+Changer les couleurs 🎨
+
+Modifier la taille du texte
+
+Ajouter des marges et des espacements
+
+Mettre des éléments au centre
+
+Créer des animations
+
+👉 En résumé :
+HTML crée la structure (le squelette)
+CSS ajoute le style (les vêtements et le design)
+
+Si tu veux apprendre plus viens à notre formation "Les bases du développement web" !`
+  },
+
+
+  // ════════════════════════════════════════════
+  // COURS JAVASCRIPT
+  // ════════════════════════════════════════════
+
+  {
+    mots: ["javascript c est quoi", "js c est quoi", "definition javascript", "a quoi sert javascript", "a quoi sert js","kesako javascript","javascript signification","js signification","javascript", "c est quoi le javascript", "a quoi sert le javascript", "definition du javascript", "javascript kesako","c est quoi le js", "a quoi sert le js", "definition du js", "js kesako","c est quoi le js", "a quoi sert le js", "definition du js", "js kesako","javascripts"],
+    reponse: `JavaScript, c’est le langage qui rend un site web interactif.
+
+Il sert à ajouter du mouvement et des actions.
+
+Avec JavaScript, on peut :
+
+Faire fonctionner un bouton
+
+Ouvrir un menu
+
+Afficher une popup
+
+Vérifier un formulaire
+
+Mettre à jour du contenu sans recharger la page
+
+👉 En résumé :
+
+HTML = la structure 🏗️
+
+CSS = le style 🎨
+
+JavaScript = les actions et l’interaction ⚙️
+
+Si tu veux apprendre plus viens à notre formation "Les bases du développement web" !`
+  },
+
+  // ── REMERCIEMENTS ────────────────────────────
+  {
+    mots: ["merci", "super", "parfait", "genial", "top", "cool", "nickel", "utile", "tres bien","c est parfait", "c est super", "c est genial", "c est top", "c est cool", "c est nickel", "c est utile", "c est tres bien"],
+    reponse: "Avec plaisir ! N'hésite pas si tu as d'autres questions sur Level Up Creation ou sur le développement web !"
+  },
+
+  {
+    mots: ["au revoir", "bye", "bonne journee", "bonne soiree", "a bientot", "ciao","a plus", "a la prochaine", "bonne continuation", "bonne fin de journée", "bonne fin de soiree"],
+    reponse: "À bientôt ! Bonne continuation 👋"
+  },
+
+  // ── HORS SUJET ────────────────────────────────
+  {
+    mots: ["meteo", "sport", "foot", "recette", "cuisine", "film", "musique", "jeu video","voyage", "vacances", "sante", "medecine", "psychologie", "philosophie", "politique", "economie", "finance", "crypto", "astrologie", "horoscope", "animaux", "nature", "environnement", "espace", "astronomie", "histoire", "geographie", "culture generale"],
+    reponse: "Désolée, je ne suis pas en mesure de répondre à cette question 😊 Je suis l’assistante de Level Up Creation et je peux uniquement t’aider concernant nos services, nos tarifs ou le développement web (HTML, CSS, JavaScript).Si tu as une question dans ce domaine, je serai ravie de t’aider ✨"
+  }
+];
+
+const REPONSE_DEFAULT = `Désolée, je ne suis pas en mesure de répondre à cette question 😊.
+
+Je suis l’assistante de Level Up Creation et je peux uniquement t’aider Si tu as une question dans ce domaine, je serai ravie de t’aider ✨
+Ou contacte directement Amandine :
+amandine@levelupcreation.com · +32 497 74 69 06`;
+
+function reponseBot(message) {
+  const msg = message
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  for (const item of FAQ) {
+    if (item.mots.some(mot => msg.includes(mot))) return item.reponse;
+  }
+  return REPONSE_DEFAULT;
+}
 
     // ── DOM ────────────────────────────────────────────
     const toggle   = document.getElementById("chatToggle");
@@ -275,7 +464,7 @@
 
     // Message de bienvenue au chargement
     setTimeout(() => {
-      ajouterMessage("Bonjour ! Je suis l'assistante de Level Up Creation. Comment puis-je t'aider ?", true);
+      ajouterMessage("Hey toi 👋 Je suis l’assistante de Level Up Creation. Tu cherches un site web, des infos sur nos services ou tu as une question en développement web ? Dis-moi tout, je suis là pour t’aider 💗", true);
       if (!isOpen) badge.classList.add("visible");
     }, 1200);
   })();
