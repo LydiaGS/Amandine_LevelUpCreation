@@ -355,7 +355,7 @@ Si tu veux apprendre plus viens à notre formation "Les bases du développement 
   // ── HORS SUJET ────────────────────────────────
   {
     mots: ["meteo", "sport", "foot", "recette", "cuisine", "film", "musique", "jeu video","voyage", "vacances", "sante", "medecine", "psychologie", "philosophie", "politique", "economie", "finance", "crypto", "astrologie", "horoscope", "animaux", "nature", "environnement", "espace", "astronomie", "histoire", "geographie", "culture generale"],
-    reponse: "Désolée, je ne suis pas en mesure de répondre à cette question 😊 Je suis l’assistante de Level Up Creation et je peux uniquement t’aider concernant nos services, nos tarifs ou le développement web (HTML, CSS, JavaScript).Si tu as une question dans ce domaine, je serai ravie de t’aider ✨"
+    reponse: "Désolée, je ne suis pas en mesure de répondre à cette question 😊 Je suis l’assistante de Level Up Creation et je peux uniquement t’aider concernant nos services, nos tarifs ou.Si tu as une question dans ce domaine, je serai ravie de t’aider ✨"
   }
 ];
 
