@@ -464,7 +464,7 @@ function reponseBot(message) {
 
     // Message de bienvenue au chargement
     setTimeout(() => {
-      ajouterMessage("Hey toi 👋 Je suis l’assistante de Level Up Creation. Tu cherches un site web, des infos sur nos services ou tu as une question en développement web ? Dis-moi tout, je suis là pour t’aider 💗", true);
+      ajouterMessage("Hey toi 👋 Je suis l’assistante de Level Up Creation. Je peux répondre à toutes les questions en lien avec Level Up Creation. Dis-moi tout, je suis là pour t’aider 💗", true);
       if (!isOpen) badge.classList.add("visible");
     }, 1200);
   })();
