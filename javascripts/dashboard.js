@@ -569,7 +569,123 @@ function renderDocuments() {
         documentsContainer.appendChild(docCard);
     });
 }
+// ===================================================================
+// 📧 REQUEST DOCUMENT
+// ===================================================================
 
+const requestDocumentBtn = document.getElementById('requestDocumentBtn');
+const requestDocumentModal = document.getElementById('requestDocumentModal');
+const closeRequestDocModal = document.getElementById('closeRequestDocModal');
+const requestDocumentForm = document.getElementById('requestDocumentForm');
+const submitDocRequest = document.getElementById('submitDocRequest');
+const docRequestSuccess = document.getElementById('docRequestSuccess');
+
+// Ouvrir le modal
+if (requestDocumentBtn) {
+    requestDocumentBtn.addEventListener('click', () => {
+        if (requestDocumentModal) {
+            requestDocumentModal.classList.add('open');
+        }
+    });
+}
+
+// Fermer le modal
+if (closeRequestDocModal) {
+    closeRequestDocModal.addEventListener('click', () => {
+        if (requestDocumentModal) {
+            requestDocumentModal.classList.remove('open');
+        }
+    });
+}
+
+// Soumettre la demande
+if (requestDocumentForm) {
+    requestDocumentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const docType = document.getElementById('docType')?.value;
+        const docMessage = document.getElementById('docMessage')?.value.trim();
+        const docUrgent = document.getElementById('docUrgent')?.checked;
+
+        if (!docType) {
+            alert('⚠️ Sélectionne un type de document');
+            return;
+        }
+
+        // Désactiver le bouton pendant l'envoi
+        if (submitDocRequest) {
+            submitDocRequest.disabled = true;
+            submitDocRequest.textContent = '📤 Envoi en cours...';
+        }
+
+        try {
+            // Créer la demande dans Firestore
+            const requestsRef = collection(db, 'documentRequests');
+            await addDoc(requestsRef, {
+                userId: currentUser.uid,
+                userName: userData.name,
+                userEmail: userData.email,
+                projectName: userData.projectName,
+                docType,
+                message: docMessage || '',
+                urgent: docUrgent || false,
+                status: 'pending', // 'pending', 'processing', 'completed'
+                createdAt: serverTimestamp(),
+                completedAt: null
+            });
+
+            console.log('✅ Demande de document envoyée');
+
+            // Ajouter une notification pour le client
+            await addNotification('📧 Ta demande de document a été envoyée !', 'info');
+
+            // Ajouter à la timeline
+            await addTimelineEvent(`📧 Demande de document : ${getDocTypeLabel(docType)}`);
+
+            // Afficher le message de succès
+            if (docRequestSuccess) {
+                docRequestSuccess.style.display = 'block';
+            }
+
+            // Réinitialiser le formulaire
+            requestDocumentForm.reset();
+
+            // Fermer le modal après 2 secondes
+            setTimeout(() => {
+                if (requestDocumentModal) {
+                    requestDocumentModal.classList.remove('open');
+                }
+                if (docRequestSuccess) {
+                    docRequestSuccess.style.display = 'none';
+                }
+            }, 2000);
+
+        } catch (error) {
+            console.error('❌ Erreur lors de l\'envoi de la demande:', error);
+            alert('❌ Erreur lors de l\'envoi. Réessaye.');
+        }
+
+        // Réactiver le bouton
+        if (submitDocRequest) {
+            submitDocRequest.disabled = false;
+            submitDocRequest.textContent = '📤 Envoyer la demande';
+        }
+    });
+}
+
+// Helper : Obtenir le label du type de document
+function getDocTypeLabel(type) {
+    const labels = {
+        'maquette': '🎨 Maquette / Design',
+        'logo': '🖼️ Logo',
+        'brief': '📋 Brief',
+        'facture': '🧾 Facture',
+        'contrat': '📄 Contrat',
+        'formation': '🎓 Formation',
+        'autre': '📦 Autre'
+    };
+    return labels[type] || type;
+}
 window.downloadDocument = function(url) {
     window.open(url, '_blank');
 };

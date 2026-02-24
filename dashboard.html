@@ -359,7 +359,60 @@
             </div>
         </div>
     </div>
+<!-- Request Document Modal -->
+<div id="requestDocumentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📧 Demander un document</h3>
+            <button class="modal-close" id="closeRequestDocModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p style="color: var(--muted); margin-bottom: 20px;">
+                Indique-nous quel document tu souhaites recevoir et nous te l'enverrons au plus vite.
+            </p>
+            
+            <form id="requestDocumentForm">
+                <div class="form-group">
+                    <label>Type de document <span style="color: var(--accent2);">*</span></label>
+                    <select id="docType" required>
+                        <option value="">-- Sélectionne --</option>
+                        <option value="maquette">🎨 Maquette / Design</option>
+                        <option value="logo">🖼️ Logo / Identité visuelle</option>
+                        <option value="brief">📋 Brief / Cahier des charges</option>
+                        <option value="facture">🧾 Facture / Devis</option>
+                        <option value="contrat">📄 Contrat</option>
+                        <option value="formation">🎓 Support de formation</option>
+                        <option value="autre">📦 Autre</option>
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label>Message / Précisions <span style="color: var(--accent2);">*</span></label>
+                    <textarea 
+                        id="docMessage" 
+                        rows="4" 
+                        placeholder="Ex: J'aimerais recevoir la dernière version de la maquette pour validation..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="docUrgent" style="width: auto; margin-right: 8px;">
+                        C'est urgent
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitDocRequest">
+                    📤 Envoyer la demande
+                </button>
+
+                <p id="docRequestSuccess" style="display: none; color: #10b981; margin-top: 15px; text-align: center; font-weight: 600;">
+                    ✅ Demande envoyée ! Nous te contacterons rapidement.
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
     <script src="./javascripts/404.js"></script>
 <script src="./javascripts/scripts.js"></script>
    <script type="module" src="./javascripts/dashboard.js">
