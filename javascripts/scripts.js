@@ -40,21 +40,24 @@
     // =========================
     // 2) BOUTON "RETOUR EN HAUT"
     // =========================
-    const toTop = document.getElementById("toTop");
 
-    if (toTop) {
-      const updateToTop = () => {
-        const show = window.scrollY > 300;
-        toTop.classList.toggle("is-visible", show);
-      };
+    const scrollBtn = document.getElementById("scrollTopBtn");
 
-      window.addEventListener("scroll", updateToTop, { passive: true });
-      updateToTop();
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    });
 
-      toTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
-    }
+    });
+
 
     // =========================
     // 3) MODAL "PLEIN ÉCRAN" (IMG/VIDEO)
@@ -297,3 +300,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+ 

@@ -323,37 +323,51 @@
       </p>
     </div>
   </footer>
+  
   <button id="scrollTopBtn" aria-label="Remonter en haut">
     ↑
   </button>
-  <!-- ═════════════════ CHAT WIDGET ═════════════════ -->
+  <!-- ═══════════════════════════════════════════════════
+       CHAT WIDGET — HTML
+  ═══════════════════════════════════════════════════ -->
 
-  <div id="chatWidget" class="chatgpt-widget">
-
-    <div class="chatgpt-header">
-      <div class="chatgpt-logo">LUC</div>
-      <div>
-        <strong>Level Up Creation</strong>
-        <span>Assistant IA</span>
-      </div>
-    </div>
-
-    <div id="chatMessages" class="chatgpt-messages"></div>
-
-    <div class="chatgpt-footer">
-      <textarea id="chatInput" placeholder="Pose ta question..." rows="1"></textarea>
-      <button id="chatSend">➤</button>
-    </div>
-
-  </div>
-  <button class="cw-send" id="cwSend" aria-label="Envoyer">
-    ↑
+  <!-- Bouton bulle -->
+  <button id="chatToggle" aria-label="Ouvrir l'assistant Level Up Creation">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span id="chatBadge" aria-hidden="true"></span>
   </button>
 
+  <!-- Panneau -->
+  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+    <div class="cw-header">
+      <div class="cw-avatar">💬</div>
+      <div class="cw-title">
+        <strong>Level Up Creation</strong>
+        <span>En ligne</span>
+      </div>
+      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+    </div>
+
+    <div class="cw-messages" id="cwMessages">
+      <!-- Message de bienvenue injecté par JS -->
+    </div>
+
+    <div class="cw-footer">
+      <input
+        class="cw-input"
+        id="cwInput"
+        type="text"
+        placeholder="Pose ta question…"
+        autocomplete="off"
+        aria-label="Message"
+      />
   </div>
   </div>
     <script src="./javascripts/404.js"></script>
   <script src="./javascripts/ai.js"></script>
+  <script src="./javascripts/tchat.js"></script>
   <script type="module" src="./javascripts/reviews.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
     <script>
@@ -367,24 +381,6 @@
       e.preventDefault();
       msg.textContent = "✅ Merci pour ton inscription !";
       form.reset();
-    });
-  </script>
-  <script>
-    const scrollBtn = document.getElementById("scrollTopBtn");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
-    });
-
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     });
   </script>
   
