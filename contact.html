@@ -153,6 +153,7 @@
     </div>
   </div>
 </section>-->
+
   <footer class="footer">
     <div class="container footer__grid">
 
@@ -202,17 +203,25 @@
         </ul>
       </div>
       <!-- Newsletter -->
-      <section class="newsletter">
-        <h2>Level Up News </h2>
-        <p>Reçois les nouveautés et conseils web directement par email.</p>
+        <!--    <section class="newsletter">
+    <h2>Level Up News 📰</h2>
+    <p>Reçois les nouveautés et conseils web directement par email.</p>
 
-        <form id="newsletterForm">
-          <input type="email" placeholder="Ton email" required>
-          <button type="submit">Je m'inscris</button>
-        </form>
-        <br>
-        <small>Pas de spam. Désinscription en 1 clic.</small>
-      </section>
+    <form id="newsletterForm">
+        <input 
+            type="email" 
+            placeholder="ton@email.com" 
+            required
+            autocomplete="email"
+            spellcheck="false"
+        >
+        <button type="submit">Je m'inscris</button>
+    </form>
+    
+    <small>🔒 Pas de spam. Désinscription en 1 clic.</small>
+</section>-->
+
+
     </div>
 
     <div class="footer__bottom">
@@ -265,11 +274,17 @@
   <script src="./javascripts/scripts.js" defer></script>
   <script src="./Javascripts/email.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+<script src="./javascripts/newsletter.js"></script>
   <script>
     emailjs.init("pBMx5f_soArWQDzqS");
   </script>
-
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  
+  <!-- Votre script newsletter -->
+  <script src="./js/newsletter.js"></script>
+</body>
   <script>
     const form = document.getElementById("quoteForm");
     const successMsg = document.getElementById("successMsg");

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Newsletter - Level Up Creation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #d4a574 0%, #c89960 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-export {
+            background: #d4a574;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-export:hover {
+            background: #c89960;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Administration Newsletter</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number" id="totalSubscribers">0</span>
+                <span class="stat-label">Abonnés totaux</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="todaySubscribers">0</span>
+                <span class="stat-label">Aujourd'hui</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="weekSubscribers">0</span>
+                <span class="stat-label">Cette semaine</span>
+            </div>
+        </div>
+        
+        <button class="btn btn-export" onclick="exportToCSV()">
+            📥 Exporter en CSV
+        </button>
+        
+        <div id="subscribersList">
+            <div class="loading">Chargement des données...</div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Même configuration Firebase
+        const firebaseConfig = {
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "VOTRE_PROJECT_ID.firebaseapp.com",
+            projectId: "VOTRE_PROJECT_ID",
+            storageBucket: "VOTRE_PROJECT_ID.appspot.com",
+            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+            appId: "VOTRE_APP_ID"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        let allSubscribers = [];
+        
+        // Charger les abonnés
+        async function loadSubscribers() {
+            try {
+                const snapshot = await db.collection('newsletter')
+                    .orderBy('subscribedAt', 'desc')
+                    .get();
+                
+                allSubscribers = [];
+                snapshot.forEach(doc => {
+                    allSubscribers.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                
+                displaySubscribers();
+                updateStats();
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('subscribersList').innerHTML = 
+                    '<p style="color: red; text-align: center;">Erreur de chargement des données</p>';
+            }
+        }
+        
+        // Afficher les abonnés
+        function displaySubscribers() {
+            const container = document.getElementById('subscribersList');
+            
+            if (allSubscribers.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">Aucun abonné pour le moment</p>';
+                return;
+            }
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                            <th>Statut</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            allSubscribers.forEach(sub => {
+                const date = sub.subscribedAt ? 
+                    new Date(sub.subscribedAt.toDate()).toLocaleDateString('fr-FR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) : 'N/A';
+                
+                html += `
+                    <tr>
+                        <td>${sub.email}</td>
+                        <td>${date}</td>
+                        <td><span class="status status-${sub.status}">${sub.status}</span></td>
+                        <td>${sub.source || 'N/A'}</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+            
+            const todayCount = allSubscribers.filter(sub => {
+                if (!sub.subscribedAt) return false;
+                const subDate = sub.subscribedAt.toDate();
+                return subDate >= today;
+            }).length;
+            
+            const weekCount = allSubscribers.filter(sub => {
+                if (!sub.subscribedAt) return false;
+                const subDate = sub.subscribedAt.toDate();
+                return subDate >= weekAgo;
+            }).length;
+            
+            document.getElementById('totalSubscribers').textContent = allSubscribers.length;
+            document.getElementById('todaySubscribers').textContent = todayCount;
+            document.getElementById('weekSubscribers').textContent = weekCount;
+        }
+        
+        // Exporter en CSV
+        function exportToCSV() {
+            let csv = 'Email,Date d\'inscription,Statut,Source\n';
+            
+            allSubscribers.forEach(sub => {
+                const date = sub.subscribedAt ? 
+                    new Date(sub.subscribedAt.toDate()).toLocaleDateString('fr-FR') : '';
+                
+                csv += `${sub.email},${date},${sub.status},${sub.source || ''}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `newsletter-subscribers-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+        
+        // Charger au démarrage
+        loadSubscribers();
+        
+        // Rafraîchir toutes les 30 secondes
+        setInterval(loadSubscribers, 30000);
+    </script>
+</body>
+</html>
