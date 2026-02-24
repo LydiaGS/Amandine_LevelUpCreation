@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================
-  // Voir plus (CORRIGÉ)
+  // Voir plus 
   // =========================
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener("click", () => {
