@@ -1,5 +1,5 @@
 // ===================================================================
-// 📁 /javascripts/dashboard.js - VERSION COMPLÈTE FUSIONNÉE
+// 📁 /javascripts/dashboard/main.js - CORE DASHBOARD
 // ===================================================================
 
 import { 
@@ -25,7 +25,7 @@ import {
     uploadBytes,
     getDownloadURL,
     deleteObject
-} from "./firebaseClient.js";
+} from "../firebaseClient.js";
 
 // ===================================================================
 // 🎯 GLOBAL STATE
@@ -187,27 +187,17 @@ async function loadUserData(userId) {
             
             // Add welcome notification
             await addNotification('Bienvenue sur votre dashboard ! 🎉', 'success');
-            
-            // Add welcome to timeline
-            await addTimelineEvent('🎉 Compte créé - Bienvenue !');
         }
 
-        // Initialize missing fields for existing users
+        // Initialize missing fields
         if (!userData.level) userData.level = 1;
         if (!userData.xp) userData.xp = 0;
         if (!userData.earnedBadges) userData.earnedBadges = [];
-        if (!userData.referralCode) {
-            userData.referralCode = generateReferralCode();
-            await updateDoc(userDocRef, { referralCode: userData.referralCode });
-        }
+        if (!userData.referralCode) userData.referralCode = generateReferralCode();
         if (!userData.referrals) userData.referrals = [];
         if (!userData.timeline) userData.timeline = [];
         if (!userData.documents) userData.documents = [];
         if (!userData.projectStartDate) userData.projectStartDate = new Date();
-        if (!userData.steps || userData.steps.length === 0) {
-            userData.steps = defaultSteps;
-            await updateDoc(userDocRef, { steps: defaultSteps });
-        }
 
     } catch (error) {
         console.error('❌ Error loading user data:', error);
@@ -253,34 +243,34 @@ function displayProfile() {
     const photoURL = userData.photoURL || 
         `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name)}&background=df437c&color=fff&size=200`;
     
-    if (profilePhoto) profilePhoto.src = photoURL;
-    if (topbarPhoto) topbarPhoto.src = photoURL;
+    profilePhoto.src = photoURL;
+    topbarPhoto.src = photoURL;
     
     // User info
-    if (userName) userName.textContent = userData.name || 'Utilisateur';
-    if (topbarName) topbarName.textContent = userData.name?.split(' ')[0] || 'User';
-    if (userEmail) userEmail.textContent = userData.email || currentUser.email;
-    if (projectName) projectName.textContent = `Projet: ${userData.projectName || 'Non défini'}`;
+    userName.textContent = userData.name || 'Utilisateur';
+    topbarName.textContent = userData.name?.split(' ')[0] || 'User';
+    userEmail.textContent = userData.email || currentUser.email;
+    projectName.textContent = `Projet: ${userData.projectName || 'Non défini'}`;
     
     // Stats
-    if (statLevel) statLevel.textContent = userData.level || 1;
-    if (statPoints) statPoints.textContent = userData.xp || 0;
-    if (statBadges) statBadges.textContent = userData.earnedBadges?.length || 0;
-    if (userLevelDisplay) userLevelDisplay.textContent = userData.level || 1;
-    if (currentXP) currentXP.textContent = userData.xp || 0;
+    statLevel.textContent = userData.level || 1;
+    statPoints.textContent = userData.xp || 0;
+    statBadges.textContent = userData.earnedBadges?.length || 0;
+    userLevelDisplay.textContent = userData.level || 1;
+    currentXP.textContent = userData.xp || 0;
     
     // Calculate next level XP
     const nextLevel = (userData.level || 1) + 1;
     const xpNeeded = nextLevel * 100;
-    if (nextLevelXP) nextLevelXP.textContent = xpNeeded;
+    nextLevelXP.textContent = xpNeeded;
     
     const xpProgress = ((userData.xp || 0) / xpNeeded) * 100;
-    if (levelProgressFill) levelProgressFill.style.width = `${xpProgress}%`;
+    levelProgressFill.style.width = `${xpProgress}%`;
     
     // Referral
-    if (referralCode) referralCode.value = userData.referralCode || 'LOADING...';
-    if (referralCount) referralCount.textContent = userData.referrals?.length || 0;
-    if (referralEarnings) referralEarnings.textContent = (userData.referrals?.length || 0) * 10;
+    referralCode.value = userData.referralCode || 'LOADING...';
+    referralCount.textContent = userData.referrals?.length || 0;
+    referralEarnings.textContent = (userData.referrals?.length || 0) * 10;
 }
 
 // ===================================================================
@@ -288,8 +278,6 @@ function displayProfile() {
 // ===================================================================
 
 function renderSteps() {
-    if (!stepsContainer) return;
-    
     stepsContainer.innerHTML = '';
 
     userData.steps.forEach((step, index) => {
@@ -383,9 +371,10 @@ function calculateGlobalProgress() {
     const progress = ((completedSteps + (inProgressSteps * 0.5)) / totalSteps) * 100;
     const roundedProgress = Math.round(progress);
 
-    if (globalProgress) globalProgress.textContent = `${roundedProgress}%`;
-    if (progressFill) progressFill.style.width = `${roundedProgress}%`;
-    if (statStepsCompleted) statStepsCompleted.textContent = `${completedSteps}/${totalSteps}`;
+    globalProgress.textContent = `${roundedProgress}%`;
+    progressFill.style.width = `${roundedProgress}%`;
+    
+    statStepsCompleted.textContent = `${completedSteps}/${totalSteps}`;
 }
 
 // ===================================================================
@@ -393,8 +382,6 @@ function calculateGlobalProgress() {
 // ===================================================================
 
 function calculateStats() {
-    if (!statDaysElapsed) return;
-    
     // Days elapsed
     const startDate = userData.projectStartDate?.toDate ? userData.projectStartDate.toDate() : new Date(userData.projectStartDate);
     const today = new Date();
@@ -402,16 +389,16 @@ function calculateStats() {
     statDaysElapsed.textContent = daysElapsed;
     
     // Days remaining
-    if (userData.projectEndDate && statDaysRemaining) {
+    if (userData.projectEndDate) {
         const endDate = userData.projectEndDate.toDate ? userData.projectEndDate.toDate() : new Date(userData.projectEndDate);
         const daysRemaining = Math.floor((endDate - today) / (1000 * 60 * 60 * 24));
         statDaysRemaining.textContent = daysRemaining > 0 ? daysRemaining : '0';
-    } else if (statDaysRemaining) {
+    } else {
         statDaysRemaining.textContent = '-';
     }
     
     // Formations progress
-    if (userData.formations && userData.formations.length > 0 && statFormationsProgress) {
+    if (userData.formations && userData.formations.length > 0) {
         const totalModules = userData.formations.reduce((acc, f) => {
             const formation = availableFormations.find(af => af.id === f.id);
             return acc + (formation?.totalModules || 0);
@@ -421,7 +408,7 @@ function calculateStats() {
         
         const formationProgress = totalModules > 0 ? Math.round((completedModules / totalModules) * 100) : 0;
         statFormationsProgress.textContent = `${formationProgress}%`;
-    } else if (statFormationsProgress) {
+    } else {
         statFormationsProgress.textContent = '0%';
     }
 }
@@ -431,8 +418,6 @@ function calculateStats() {
 // ===================================================================
 
 function renderFormations() {
-    if (!formationsContainer) return;
-    
     formationsContainer.innerHTML = '';
 
     const userFormations = userData.formations || [];
@@ -784,7 +769,7 @@ function renderChatMessages() {
 }
 
 async function sendChatMessage() {
-    const message = chatInput?.value.trim();
+    const message = chatInput.value.trim();
     if (!message) return;
     
     try {
@@ -800,7 +785,7 @@ async function sendChatMessage() {
         chatInput.value = '';
         await loadChatMessages();
         
-        // Simulate admin response
+        // Simulate admin response (in real app, this would be handled by admin)
         setTimeout(async () => {
             await addDoc(chatRef, {
                 userId: currentUser.uid,
@@ -842,6 +827,7 @@ if (photoInput) {
             photoContainer.classList.add('uploading');
             console.log('📤 Upload en cours...');
 
+            // Delete old photo if exists
             if (userData.photoURL && userData.photoURL.includes('firebasestorage')) {
                 try {
                     const oldPhotoRef = ref(storage, `profile-photos/${currentUser.uid}/avatar.jpg`);
@@ -852,29 +838,37 @@ if (photoInput) {
                 }
             }
 
+            // Upload new photo
             const storageRef = ref(storage, `profile-photos/${currentUser.uid}/avatar.jpg`);
             const snapshot = await uploadBytes(storageRef, file);
             const downloadURL = await getDownloadURL(snapshot.ref);
 
             console.log('✅ Photo uploadée:', downloadURL);
 
+            // Update Firestore
             const userDocRef = doc(db, 'users', currentUser.uid);
             await updateDoc(userDocRef, { photoURL: downloadURL });
 
+            // Update Auth profile
             await updateProfile(currentUser, { photoURL: downloadURL });
 
+            // Update local state
             userData.photoURL = downloadURL;
-            if (profilePhoto) profilePhoto.src = downloadURL;
-            if (topbarPhoto) topbarPhoto.src = downloadURL;
+            profilePhoto.src = downloadURL;
+            topbarPhoto.src = downloadURL;
 
+            // Success animation
             photoContainer.classList.remove('uploading');
-            if (profilePhoto) profilePhoto.classList.add('uploaded');
+            profilePhoto.classList.add('uploaded');
             
             setTimeout(() => {
-                if (profilePhoto) profilePhoto.classList.remove('uploaded');
+                profilePhoto.classList.remove('uploaded');
             }, 600);
             
+            // Add to timeline
             await addTimelineEvent('📸 Photo de profil mise à jour');
+            
+            // Add notification
             await addNotification('Photo de profil mise à jour avec succès ! 📸', 'success');
 
             console.log('✅ Photo de profil mise à jour !');
@@ -895,15 +889,10 @@ if (photoInput) {
 
 if (editProfileBtn) {
     editProfileBtn.addEventListener('click', () => {
-        const editName = document.getElementById('editName');
-        const editProjectName = document.getElementById('editProjectName');
-        const editProjectDescription = document.getElementById('editProjectDescription');
-        
-        if (editName) editName.value = userData.name || '';
-        if (editProjectName) editProjectName.value = userData.projectName || '';
-        if (editProjectDescription) editProjectDescription.value = userData.projectDescription || '';
-        
-        if (editProfileModal) editProfileModal.classList.add('open');
+        document.getElementById('editName').value = userData.name || '';
+        document.getElementById('editProjectName').value = userData.projectName || '';
+        document.getElementById('editProjectDescription').value = userData.projectDescription || '';
+        editProfileModal.classList.add('open');
     });
 }
 
@@ -913,39 +902,36 @@ document.querySelectorAll('.modal-close').forEach(btn => {
     });
 });
 
-const editProfileForm = document.getElementById('editProfileForm');
-if (editProfileForm) {
-    editProfileForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+document.getElementById('editProfileForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const newName = document.getElementById('editName').value.trim();
+    const newProjectName = document.getElementById('editProjectName').value.trim();
+    const newProjectDescription = document.getElementById('editProjectDescription').value.trim();
+    
+    try {
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, {
+            name: newName,
+            projectName: newProjectName,
+            projectDescription: newProjectDescription
+        });
         
-        const newName = document.getElementById('editName')?.value.trim();
-        const newProjectName = document.getElementById('editProjectName')?.value.trim();
-        const newProjectDescription = document.getElementById('editProjectDescription')?.value.trim();
+        userData.name = newName;
+        userData.projectName = newProjectName;
+        userData.projectDescription = newProjectDescription;
         
-        try {
-            const userDocRef = doc(db, 'users', currentUser.uid);
-            await updateDoc(userDocRef, {
-                name: newName,
-                projectName: newProjectName,
-                projectDescription: newProjectDescription
-            });
-            
-            userData.name = newName;
-            userData.projectName = newProjectName;
-            userData.projectDescription = newProjectDescription;
-            
-            displayProfile();
-            if (editProfileModal) editProfileModal.classList.remove('open');
-            
-            await addTimelineEvent('✏️ Profil mis à jour');
-            await addNotification('Profil mis à jour avec succès ! ✅', 'success');
-            
-        } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('Erreur lors de la mise à jour');
-        }
-    });
-}
+        displayProfile();
+        editProfileModal.classList.remove('open');
+        
+        await addTimelineEvent('✏️ Profil mis à jour');
+        await addNotification('Profil mis à jour avec succès ! ✅', 'success');
+        
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        alert('Erreur lors de la mise à jour');
+    }
+});
 
 // ===================================================================
 // 🎮 GAMIFICATION
@@ -954,6 +940,7 @@ if (editProfileForm) {
 async function addXP(amount, reason) {
     userData.xp = (userData.xp || 0) + amount;
     
+    // Check level up
     const newLevel = Math.floor(userData.xp / 100) + 1;
     if (newLevel > (userData.level || 1)) {
         userData.level = newLevel;
@@ -979,22 +966,27 @@ async function checkAndAwardBadges() {
     
     const badgesToAward = [];
     
+    // First step
     if (completedSteps >= 1 && !userData.earnedBadges.includes('first-step')) {
         badgesToAward.push('first-step');
     }
     
+    // 50% progress
     if (progressPercent >= 50 && !userData.earnedBadges.includes('half-done')) {
         badgesToAward.push('half-done');
     }
     
+    // 75% progress
     if (progressPercent >= 75 && !userData.earnedBadges.includes('almost-there')) {
         badgesToAward.push('almost-there');
     }
     
+    // 100% completed
     if (progressPercent === 100 && !userData.earnedBadges.includes('completed')) {
         badgesToAward.push('completed');
     }
     
+    // Award badges
     for (const badgeId of badgesToAward) {
         const badge = availableBadges.find(b => b.id === badgeId);
         if (badge) {
@@ -1028,6 +1020,7 @@ async function addTimelineEvent(message, type = 'completed') {
         date: new Date().toISOString()
     });
     
+    // Keep only last 50 events
     if (userData.timeline.length > 50) {
         userData.timeline = userData.timeline.slice(-50);
     }
@@ -1079,120 +1072,109 @@ function formatFileSize(bytes) {
 // ===================================================================
 
 function setupEventListeners() {
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-                console.log("✅ Déconnecté");
-                window.location.href = './login.html';
-            } catch (error) {
-                console.error('❌ Error signing out:', error);
-            }
-        });
-    }
-    
-    if (toggleSidebarBtn && sidebar) {
-        toggleSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    }
-    
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
-            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-        });
-        
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-            themeToggle.textContent = '☀️';
+    // Logout
+    logoutBtn?.addEventListener('click', async () => {
+        try {
+            await signOut(auth);
+            console.log("✅ Déconnecté");
+            window.location.href = './login.html';
+        } catch (error) {
+            console.error('❌ Error signing out:', error);
         }
+    });
+    
+    // Toggle sidebar
+    toggleSidebarBtn?.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+    
+    // Theme toggle
+    themeToggle?.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+    });
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeToggle.textContent = '☀️';
     }
     
-    if (notificationsBtn && notificationsPanel) {
-        notificationsBtn.addEventListener('click', () => {
-            notificationsPanel.classList.toggle('open');
-        });
-    }
+    // Notifications
+    notificationsBtn?.addEventListener('click', () => {
+        notificationsPanel.classList.toggle('open');
+    });
     
-    if (closeNotifications && notificationsPanel) {
-        closeNotifications.addEventListener('click', () => {
-            notificationsPanel.classList.remove('open');
-        });
-    }
+    closeNotifications?.addEventListener('click', () => {
+        notificationsPanel.classList.remove('open');
+    });
     
-    if (chatTrigger && chatWindow) {
-        chatTrigger.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-        });
-    }
+    // Chat
+    chatTrigger?.addEventListener('click', () => {
+        chatWindow.classList.toggle('hidden');
+    });
     
-    if (closeChat && chatWindow) {
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.add('hidden');
-        });
-    }
+    closeChat?.addEventListener('click', () => {
+        chatWindow.classList.add('hidden');
+    });
     
-    if (chatSend) {
-        chatSend.addEventListener('click', sendChatMessage);
-    }
+    chatSend?.addEventListener('click', sendChatMessage);
     
-    if (chatInput) {
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendChatMessage();
-            }
-        });
-    }
+    chatInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendChatMessage();
+        }
+    });
     
-    if (copyReferralCode && referralCode) {
-        copyReferralCode.addEventListener('click', () => {
-            referralCode.select();
-            document.execCommand('copy');
-            copyReferralCode.textContent = '✅ Copié';
-            setTimeout(() => {
-                copyReferralCode.textContent = '📋 Copier';
-            }, 2000);
-        });
-    }
+    // Referral code copy
+    copyReferralCode?.addEventListener('click', () => {
+        referralCode.select();
+        document.execCommand('copy');
+        copyReferralCode.textContent = '✅ Copié';
+        setTimeout(() => {
+            copyReferralCode.textContent = '📋 Copier';
+        }, 2000);
+    });
     
+    // Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             
+            // Update active nav
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
             
+            // Show section
             const sectionId = item.dataset.section;
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            const targetSection = document.getElementById(`section-${sectionId}`);
-            if (targetSection) targetSection.classList.add('active');
+            document.getElementById(`section-${sectionId}`)?.classList.add('active');
             
+            // Update page title
             const pageTitle = document.getElementById('pageTitle');
-            const navLabel = item.querySelector('.nav-label');
-            if (pageTitle && navLabel) {
-                pageTitle.textContent = navLabel.textContent;
+            if (pageTitle) {
+                pageTitle.textContent = item.querySelector('.nav-label').textContent;
             }
             
-            if (window.innerWidth < 1024 && sidebar) {
+            // Close sidebar on mobile
+            if (window.innerWidth < 1024) {
                 sidebar.classList.remove('open');
             }
         });
     });
     
+    // Admin mode
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'A') {
             isAdmin = !isAdmin;
             console.log('🔧 Admin mode:', isAdmin ? 'ON ✅' : 'OFF ❌');
             
-            if (adminBadge) {
-                if (isAdmin) {
-                    adminBadge.classList.add('visible');
-                } else {
-                    adminBadge.classList.remove('visible');
-                }
+            if (isAdmin) {
+                adminBadge.classList.add('visible');
+            } else {
+                adminBadge.classList.remove('visible');
             }
             
             renderSteps();
@@ -1205,11 +1187,9 @@ function setupEventListeners() {
 // ===================================================================
 
 function hideLoading() {
-    if (loading) loading.classList.add('hidden');
-    if (mainContent) mainContent.style.display = 'flex';
-    setTimeout(() => {
-        if (loading) loading.style.display = 'none';
-    }, 500);
+    loading.classList.add('hidden');
+    mainContent.style.display = 'flex';
+    setTimeout(() => loading.style.display = 'none', 500);
     console.log("✅ Dashboard chargé");
 }
 
@@ -1217,9 +1197,10 @@ function hideLoading() {
 // 📊 AUTO-REFRESH
 // ===================================================================
 
+// Refresh notifications every 30 seconds
 setInterval(() => {
     loadNotifications();
     loadChatMessages();
 }, 30000);
 
-console.log("🚀 Dashboard initialized - Version fusionnée");
+console.log("🚀 Dashboard initialized");

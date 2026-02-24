@@ -105,4 +105,4 @@ document.getElementById("quoteForm").addEventListener("submit", async (e) => {
     console.error("EmailJS error:", err);
     alert("❌ Erreur d’envoi. Regarde la console.");
   }
-});*/s
+});*/

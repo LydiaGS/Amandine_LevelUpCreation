@@ -13,93 +13,352 @@
     <title>Dashboard Client | LevelUpCreation</title>
 </head>
 <body>
-    <header class="site-header" id="top">
-    <nav class="nav">
-      <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
-        <span class="brand__logo">
-          <img src="./asset/image/LOGO LVLUP_Ivoire 01.png" alt="Level Up Creation">
-        </span>
-        <span class="brand__name">Level Up Creation</span>
-      </a>
-
-
-      <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="nav__toggle-bars" aria-hidden="true"></span>
-      </button>
-
-      <div class="nav__links" id="navLinks">
-        <a class="nav__link" href="./index.html">Accueil</a>
-   <a class="nav__link " href="./infos.html">
-    À propos
-  </a>
-
-        <a class="nav__link" href="./tarif.html">Tarifs</a>
-        <a class="nav__link" href="./realisation.html">Nos réalisations</a>
-        <a class="nav__link" href="./contact.html">Contact</a>
-      <a class="nav__link" href="./dashboard.html">Dashboard</a>
-      </div>
-    </nav>
-  </header>
     <!-- Loading Screen -->
     <div id="loading">
         <div class="loader"></div>
         <div class="loading-text">Chargement de votre espace...</div>
     </div>
-
+<br> <br>
     <!-- Admin Badge -->
-    <div id="adminBadge" class="admin-badge">
-        Mode Admin activé
+    <div id="adminBadge" class="admin-badge">🔧 Mode Admin</div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="notifications-panel">
+        <div class="notifications-header">
+            <h3>🔔 Notifications</h3>
+            <button id="closeNotifications">✕</button>
+        </div>
+        <div id="notificationsList" class="notifications-list">
+            <!-- Notifications dynamiques -->
+        </div>
     </div>
+
+    <!-- Chat Widget -->
+      <!-- <div id="chatWidget" class="chat-widget">
+        <button id="chatTrigger" class="chat-trigger">
+            💬
+            <span class="chat-badge" id="chatBadge">0</span>
+        </button>
+        <div id="chatWindow" class="chat-window hidden">
+            <div class="chat-header">
+                <h3>💬 Support</h3>
+                <button id="closeChat">✕</button>
+            </div>
+            <div id="chatMessages" class="chat-messages">  -->
+   
+                <!-- Messages dynamiques -->
+                  <!--  </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Votre message...">
+                <button id="chatSend">📤</button>
+            </div>
+        </div>
+    </div> -->
+           
 
     <!-- Main Container -->
     <div class="container" id="mainContent" style="display: none;">
-        <!-- Header -->
-        <div class="header">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
             <div class="logo">LevelUpCreation</div>
-            <div class="header-actions">
-                <button class="btn-logout" id="logoutBtn">Se déconnecter</button>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#project" class="nav-item" data-section="project">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Mon Projet</span>
+                </a>
+                <a href="#formations" class="nav-item" data-section="formations">
+                    <span class="nav-icon">🎓</span>
+                    <span class="nav-label">Formations</span>
+                </a>
+                <a href="#documents" class="nav-item" data-section="documents">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-label">Documents</span>
+                </a>
+                <a href="#timeline" class="nav-item" data-section="timeline">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-label">Historique</span>
+                </a>
+                   <!--   <a href="#rewards" class="nav-item" data-section="rewards">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-label">Accueil</span>
+                </a> -->
+              
+            </nav>
+
+            <div class="sidebar-footer">
+                <!-- Bouton Accueil -->
+            <a href="./index.html" class="btn-home-sidebar">
+                <span>🏠</span> Retour à l'accueil
+            </a>
+                <button id="logoutBtn" class="btn-logout">
+                    <span></span> Déconnexion
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="toggleSidebar" class="btn-toggle-sidebar">☰</button>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <button id="notificationsBtn" class="btn-icon">
+                        🔔
+                        <span class="notification-badge" id="notifBadge">0</span>
+                    </button>
+                    <button id="themeToggle" class="btn-icon">🌙</button>
+                    <div class="user-menu">
+                        <img id="topbarPhoto" class="topbar-photo" src="" alt="Profil">
+                        <span id="topbarName">User</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- SECTION: DASHBOARD -->
+            <section id="section-dashboard" class="content-section active">
+                
+                <!-- Profile Card -->
+                <div class="profile-card fade-in">
+                    <div class="profile-header">
+                        <div class="profile-photo-container">
+                            <img id="profilePhoto" class="profile-photo" src="" alt="Photo de profil">
+                            <label for="photoInput" class="photo-upload-btn" title="Changer la photo">📷</label>
+                            <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="userName">Chargement...</h2>
+                            <p id="userEmail">email@example.com</p>
+                            <p class="project-name" id="projectName">Projet: -</p>
+                            <button id="editProfileBtn" class="btn-edit-profile">✏️ Modifier mon profil</button>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="statLevel">1</span>
+                                <span class="stat-label">Niveau</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="statPoints">0</span>
+                                <span class="stat-label">Points</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="statBadges">0</span>
+                                <span class="stat-label">Badges</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span>Avancement global du projet</span>
+                            <span id="globalProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="statDaysElapsed">0</span>
+                            <span class="stat-label">Jours écoulés</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="statDaysRemaining">-</span>
+                            <span class="stat-label">Jours restants</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="statStepsCompleted">0</span>
+                            <span class="stat-label">Étapes terminées</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="statFormationsProgress">0%</span>
+                            <span class="stat-label">Formations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Notifications -->
+                <div class="recent-notifications">
+                    <h3>🔔 Notifications récentes</h3>
+                    <div id="recentNotifsList" class="recent-notifs-list">
+                        <!-- Dynamique -->
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- SECTION: PROJECT -->
+            <section id="section-project" class="content-section">
+                <h2>📊 Mon Projet</h2>
+
+                <!-- Roadmap -->
+                <div class="roadmap-section">
+                    <h3>🗓️ Roadmap</h3>
+                    <div id="roadmapContainer" class="roadmap-container">
+                        <!-- Roadmap dynamique -->
+                    </div>
+                </div>
+
+                <!-- Project Steps -->
+                <h3>Avancement des étapes</h3>
+                <div class="steps-grid" id="stepsContainer">
+                    <!-- Steps dynamiques -->
+                </div>
+
+                <!-- Validation Section -->
+                <div class="validation-section" id="validationSection">
+                    <h3>✅ Éléments à valider</h3>
+                    <div id="validationItems" class="validation-items">
+                        <!-- Validations dynamiques -->
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section" id="previewSection">
+                    <h3>🖥️ Aperçu de votre site</h3>
+                    <div class="preview-container">
+                        <iframe id="sitePreview" src="" frameborder="0"></iframe>
+                        <div class="preview-overlay">
+                            <p>Aperçu bientôt disponible</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- SECTION: FORMATIONS -->
+            <section id="section-formations" class="content-section">
+                <h2>🎓 Mes Formations</h2>
+                <div class="formations-grid" id="formationsContainer">
+                    <!-- Formations dynamiques -->
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-section" id="quizSection" style="display: none;">
+                    <h3>📝 Quiz</h3>
+                    <div id="quizContainer" class="quiz-container">
+                        <!-- Quiz dynamique -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: DOCUMENTS -->
+            <section id="section-documents" class="content-section">
+                <h2>📁 Mes Documents</h2>
+                <div class="documents-grid" id="documentsContainer">
+                    <!-- Documents dynamiques -->
+                </div>
+                <button id="requestDocumentBtn" class="btn-primary">
+                    📧 Demander un document
+                </button>
+            </section>
+
+            <!-- SECTION: TIMELINE -->
+            <section id="section-timeline" class="content-section">
+                <h2>📅 Historique du Projet</h2>
+                <div class="timeline" id="timelineContainer">
+                    <!-- Timeline dynamique -->
+                </div>
+            </section>
+
+            <!-- SECTION: REWARDS -->
+                <!--  <section id="section-rewards" class="content-section">
+                <h2>🎮 Récompenses & Badges</h2>
+                
+                <div class="rewards-header">
+                    <div class="user-level">
+                        <h3>Niveau <span id="userLevelDisplay">1</span></h3>
+                        <div class="level-progress">
+                            <div class="level-progress-fill" id="levelProgressFill"></div>
+                        </div>
+                        <p><span id="currentXP">0</span> / <span id="nextLevelXP">100</span> XP</p>
+                    </div>
+                </div>
+
+                <div class="badges-grid" id="badgesContainer"> -->
+           
+                    <!-- Badges dynamiques -->
+               
+               <!-- </div>
+            </section>  -->
+        </main>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Modifier mon profil</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" id="editName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom du projet</label>
+                        <input type="text" id="editProjectName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description du projet</label>
+                        <textarea id="editProjectDescription" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">💾 Sauvegarder</button>
+                </form>
             </div>
         </div>
-<!-- Profile Card -->
-<div class="profile-card fade-in">
-    <div class="profile-header">
-        <div class="profile-photo-container">
-            <img id="profilePhoto" class="profile-photo" src="" alt="Photo de profil">
-            <label for="photoInput" class="photo-upload-btn" title="Changer la photo">
-                📷
-            </label>
-            <input type="file" id="photoInput" accept="image/*" style="display: none;">
-        </div>
-        <div class="profile-info">
-            <h2 id="userName">Chargement...</h2>
-            <p id="userEmail">email@example.com</p>
-            <p class="project-name" id="projectName">Projet: -</p>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⭐ Votre avis</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="feedbackForm">
+                    <p>Comment évaluez-vous cette étape ?</p>
+                    <div class="stars-rating" id="starsRating">
+                        <span class="star" data-value="1">⭐</span>
+                        <span class="star" data-value="2">⭐</span>
+                        <span class="star" data-value="3">⭐</span>
+                        <span class="star" data-value="4">⭐</span>
+                        <span class="star" data-value="5">⭐</span>
+                    </div>
+                    <textarea id="feedbackComment" placeholder="Vos commentaires..." rows="4"></textarea>
+                    <button type="submit" class="btn-primary">📤 Envoyer</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="progress-section">
-        <div class="progress-label">
-            <span>Avancement global du projet</span>
-            <span id="globalProgress">0%</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-        </div>
-    </div>
-</div>
-
-        <!-- Project Steps Section -->
-        <section>
-            <h3 class="section-title">Avancement du Projet</h3>
-            <div class="steps-grid" id="stepsContainer"></div>
-        </section>
-
-        <!-- Formations Section -->
-        <section>
-            <h3 class="section-title">Mes Formations</h3>
-            <div class="formations-grid" id="formationsContainer"></div>
-        </section>
-    </div>
     <script src="./javascripts/404.js"></script>
 <script src="./javascripts/scripts.js"></script>
    <script type="module" src="./javascripts/dashboard.js">
