@@ -210,45 +210,242 @@
 
             </section>
 
-            <!-- SECTION: PROJECT -->
-            <section id="section-project" class="content-section">
-                <h2>📊 Mon Projet</h2>
+        <!-- ===================================================================
+     SECTION: PROJECT - VERSION MODERNE
+     =================================================================== -->
 
-                <!-- Roadmap -->
-                <div class="roadmap-section">
-                    <h3>🗓️ Roadmap</h3>
-                    <div id="roadmapContainer" class="roadmap-container">
-                        <!-- Roadmap dynamique -->
+<section id="section-project" class="content-section">
+    <div class="section-title-block">
+        <h2>📊 Mon Projet</h2>
+        <p class="section-subtitle">Gérez et visualisez votre projet en temps réel</p>
+    </div>
+
+    <!-- ========== PROJECT INFO CARD ========== -->
+    <div class="project-info-card">
+        <div class="project-info-header">
+            <div class="project-title-group">
+                <div class="project-icon">🚀</div>
+                <div class="project-details">
+                    <h3 id="projectInfoName">Nom du projet</h3>
+                    <p id="projectInfoDescription">Description du projet</p>
+                </div>
+            </div>
+            <button class="btn-edit" id="editProjectInfoBtn" title="Modifier">
+                <span class="btn-edit-icon">✏️</span>
+                <span class="btn-edit-text">Modifier</span>
+            </button>
+        </div>
+        
+        <div class="project-stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">📈 Progression</div>
+                <div class="stat-progress-wrapper">
+                    <div class="stat-progress-bar">
+                        <div class="stat-progress-fill" id="projectProgressBar" style="width: 0%"></div>
+                    </div>
+                    <span class="stat-progress-text" id="projectProgressText">0%</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">📅 Date de début</div>
+                <div class="stat-value" id="projectStartDate">-</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">⏱️ Durée estimée</div>
+                <div class="stat-value" id="projectDuration">-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TABS NAVIGATION ========== -->
+    <div class="project-tabs">
+        <button class="project-tab active" data-tab="steps">
+            <span class="tab-icon">📋</span>
+            <span class="tab-label">Étapes</span>
+        </button>
+        <button class="project-tab" data-tab="roadmap">
+            <span class="tab-icon">🗓️</span>
+            <span class="tab-label">Roadmap</span>
+        </button>
+        <button class="project-tab" data-tab="validation">
+            <span class="tab-icon">✅</span>
+            <span class="tab-label">Validation</span>
+        </button>
+        <button class="project-tab" data-tab="preview">
+            <span class="tab-icon">🖥️</span>
+            <span class="tab-label">Aperçu</span>
+        </button>
+    </div>
+
+    <!-- ========== TAB CONTENT ========== -->
+    
+    <!-- TAB: STEPS -->
+    <div class="project-tab-content active" data-tab-content="steps">
+        <div class="section-header">
+            <h3>📋 Avancement des étapes</h3>
+            <span class="section-subtitle">Suivez la progression de chaque étape</span>
+        </div>
+        <div class="steps-grid" id="stepsContainer">
+            <!-- Steps dynamiques -->
+        </div>
+    </div>
+
+    <!-- TAB: ROADMAP -->
+    <div class="project-tab-content" data-tab-content="roadmap">
+        <div class="section-header">
+            <h3>🗓️ Roadmap du projet</h3>
+            <span class="section-subtitle">Visualisez l'avancement de votre projet</span>
+        </div>
+        <div class="roadmap-wrapper">
+            <div id="roadmapContainer" class="roadmap-container">
+                <!-- Roadmap dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: VALIDATION -->
+    <div class="project-tab-content" data-tab-content="validation">
+        <div class="section-header">
+            <h3>✅ Éléments à valider</h3>
+            <span class="section-subtitle">Actions requises de votre part</span>
+        </div>
+        <div id="validationItems" class="validation-items">
+            <!-- Validations dynamiques -->
+        </div>
+    </div>
+
+    <!-- TAB: PREVIEW -->
+    <div class="project-tab-content" data-tab-content="preview">
+        <div class="section-header">
+            <h3>🖥️ Aperçu de votre site</h3>
+            <span class="section-subtitle">Prévisualisation en temps réel</span>
+        </div>
+        <div class="preview-container">
+            <div class="preview-toolbar">
+                <div class="preview-device-group">
+                    <button class="preview-device-btn active" data-device="desktop" title="Desktop">
+                        <span class="device-icon">🖥️</span>
+                        <span class="device-label">Desktop</span>
+                    </button>
+                    <button class="preview-device-btn" data-device="tablet" title="Tablet">
+                        <span class="device-icon">📱</span>
+                        <span class="device-label">Tablet</span>
+                    </button>
+                    <button class="preview-device-btn" data-device="mobile" title="Mobile">
+                        <span class="device-icon">📱</span>
+                        <span class="device-label">Mobile</span>
+                    </button>
+                </div>
+                <button class="btn-refresh" id="refreshPreview" title="Actualiser">
+                    <span>🔄</span>
+                    Actualiser
+                </button>
+            </div>
+            
+            <div class="preview-frame-wrapper desktop" id="previewFrameWrapper">
+                <iframe id="sitePreview" src="" frameborder="0" loading="lazy"></iframe>
+                <div class="preview-overlay" id="previewOverlay">
+                    <div class="preview-overlay-content">
+                        <div class="preview-empty-icon">🖥️</div>
+                        <h4>Aperçu bientôt disponible</h4>
+                        <p>Votre site sera prévisualisé ici une fois publié</p>
                     </div>
                 </div>
-
-                <!-- Project Steps -->
-                <h3>Avancement des étapes</h3>
-                <div class="steps-grid" id="stepsContainer">
-                    <!-- Steps dynamiques -->
+            </div>
+            
+            <div class="preview-url-bar" id="previewUrlBar" style="display: none;">
+                <div class="url-display">
+                    <span class="url-lock">🔒</span>
+                    <input type="text" id="previewUrl" readonly placeholder="https://votre-site.com">
                 </div>
-
-                <!-- Validation Section -->
-                <div class="validation-section" id="validationSection">
-                    <h3>✅ Éléments à valider</h3>
-                    <div id="validationItems" class="validation-items">
-                        <!-- Validations dynamiques -->
-                    </div>
+                <div class="url-actions">
+                    <button class="btn-url-action" id="copyPreviewUrl" title="Copier l'URL">
+                        📋
+                    </button>
+                    <button class="btn-url-action" id="openPreviewNew" title="Ouvrir dans un nouvel onglet">
+                        🔗
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Preview Section -->
-                <div class="preview-section" id="previewSection">
-                    <h3>🖥️ Aperçu de votre site</h3>
-                    <div class="preview-container">
-                        <iframe id="sitePreview" src="" frameborder="0"></iframe>
-                        <div class="preview-overlay">
-                            <p>Aperçu bientôt disponible</p>
-                        </div>
-                    </div>
+</section>
+
+<!-- ===================================================================
+     MODAL: EDIT PROJECT INFO - VERSION MODERNE
+     =================================================================== -->
+
+<div class="modal" id="editProjectModal">
+    <div class="modal-backdrop" id="editProjectBackdrop"></div>
+    <div class="modal-content modal-content-modern">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <span class="modal-icon">✏️</span>
+                <h3>Modifier le projet</h3>
+            </div>
+            <button class="modal-close" id="closeEditProjectModal">
+                <span>&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="editProjectForm">
+                <div class="form-group">
+                    <label for="editProjectName">
+                        <span class="label-icon">🚀</span>
+                        Nom du projet
+                    </label>
+                    <input 
+                        type="text" 
+                        id="editProjectName" 
+                        class="form-input"
+                        placeholder="Mon super site web" 
+                        required
+                    >
                 </div>
-
-            </section>
-
+                
+                <div class="form-group">
+                    <label for="editProjectDesc">
+                        <span class="label-icon">📝</span>
+                        Description
+                    </label>
+                    <textarea 
+                        id="editProjectDesc" 
+                        class="form-textarea"
+                        rows="4" 
+                        placeholder="Description détaillée du projet..."
+                    ></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editProjectUrl">
+                        <span class="label-icon">🔗</span>
+                        URL du site <span class="label-optional">(optionnel)</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="editProjectUrl" 
+                        class="form-input"
+                        placeholder="https://mon-site.com"
+                    >
+                    <small class="form-hint">L'URL de votre site en production</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelEditProject">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-icon">💾</span>
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
             <!-- SECTION: FORMATIONS -->
             <section id="section-formations" class="content-section">
                 <h2>🎓 Mes Formations</h2>

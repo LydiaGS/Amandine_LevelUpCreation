@@ -1,5 +1,5 @@
 // ===================================================================
-// 📁 /javascripts/dashboard.js - VERSION COMPLÈTE FUSIONNÉE
+// 📁 /javascripts/dashboard.js - VERSION COMPLÈTE SANS ERREUR
 // ===================================================================
 
 import { 
@@ -13,6 +13,7 @@ import {
     getDoc,
     setDoc,
     updateDoc,
+    onSnapshot,
     collection,
     query,
     where,
@@ -38,6 +39,7 @@ let notifications = [];
 let chatMessages = [];
 let unreadNotifications = 0;
 let unreadMessages = 0;
+let unsubscribeTimeline = null;
 
 // ===================================================================
 // 📊 DEFAULT DATA
@@ -68,6 +70,21 @@ const availableBadges = [
     { id: 'early-adopter', title: 'Early Adopter', icon: '⭐', description: 'Parmi les premiers clients', xp: 50 },
     { id: 'referrer', title: 'Ambassadeur', icon: '🎁', description: 'Premier parrainage réussi', xp: 30 }
 ];
+
+const STATUS_CONFIG = {
+    'done': {
+        icon: '✅',
+        label: 'Terminé'
+    },
+    'in-progress': {
+        icon: '⚡',
+        label: 'En cours'
+    },
+    'todo': {
+        icon: '📌',
+        label: 'À faire'
+    }
+};
 
 // ===================================================================
 // 🎨 DOM ELEMENTS
@@ -113,6 +130,11 @@ const roadmapContainer = document.getElementById('roadmapContainer');
 const badgesContainer = document.getElementById('badgesContainer');
 const referralCode = document.getElementById('referralCode');
 const copyReferralCode = document.getElementById('copyReferralCode');
+const timelineLoader = document.getElementById('timelineLoader');
+const timelineError = document.getElementById('timelineError');
+const timelineErrorMessage = document.getElementById('timelineErrorMessage');
+const timelineRetry = document.getElementById('timelineRetry');
+const timelineEmpty = document.getElementById('timelineEmpty');
 
 // Stats elements
 const statLevel = document.getElementById('statLevel');
@@ -162,37 +184,42 @@ async function loadUserData(userId) {
             console.log("✅ Données user chargées:", userData);
         } else {
             console.log("📝 Création nouveau document user...");
+            
+            const now = new Date();
+            const initialTimeline = [{
+                title: 'Compte créé',
+                description: 'Bienvenue sur votre dashboard !',
+                status: 'done',
+                date: now.toISOString(),
+                timestamp: now.getTime()
+            }];
+            
             userData = {
                 name: currentUser.displayName || currentUser.email.split('@')[0],
                 email: currentUser.email,
                 photoURL: currentUser.photoURL || null,
                 projectName: 'Nouveau projet',
                 projectDescription: '',
-                projectStartDate: new Date(),
+                projectStartDate: now,
                 projectEndDate: null,
+                siteUrl: '',
                 steps: defaultSteps,
                 formations: [],
                 documents: [],
-                timeline: [],
+                timeline: initialTimeline,
                 level: 1,
                 xp: 0,
                 earnedBadges: [],
                 referralCode: generateReferralCode(),
                 referrals: [],
-                createdAt: new Date()
+                createdAt: now
             };
             
             await setDoc(userDocRef, userData);
-            console.log("✅ Document user créé");
-            
-            // Add welcome notification
-            await addNotification('Bienvenue sur votre dashboard ! 🎉', 'success');
-            
-            // Add welcome to timeline
-            await addTimelineEvent('🎉 Compte créé - Bienvenue !');
+            console.log("✅ Document user créé avec timeline initiale");
         }
 
-        // Initialize missing fields for existing users
+        // Initialize missing fields
         if (!userData.level) userData.level = 1;
         if (!userData.xp) userData.xp = 0;
         if (!userData.earnedBadges) userData.earnedBadges = [];
@@ -208,10 +235,11 @@ async function loadUserData(userId) {
             userData.steps = defaultSteps;
             await updateDoc(userDocRef, { steps: defaultSteps });
         }
+        if (!userData.siteUrl) userData.siteUrl = '';
 
     } catch (error) {
         console.error('❌ Error loading user data:', error);
-        alert('Erreur lors du chargement. Vérifiez la console (F12)');
+        alert('Erreur lors du chargement des données. Vérifiez la console (F12)');
     }
 }
 
@@ -220,56 +248,416 @@ async function loadUserData(userId) {
 // ===================================================================
 
 function initializeDashboard() {
-    // Display profile
-    displayProfile();
+    console.log('🚀 Initialisation dashboard...');
     
-    // Render all sections
+    displayProfile();
     renderSteps();
     renderFormations();
-    renderTimeline();
+    loadTimelineRealtime(); 
     renderDocuments();
     renderRoadmap();
     renderBadges();
     renderNotifications();
-    
-    // Calculate stats
     calculateGlobalProgress();
     calculateStats();
-    
-    // Setup event listeners
     setupEventListeners();
-    
-    // Load notifications and chat
     loadNotifications();
     loadChatMessages();
+    renderProjectInfo(); 
+    renderValidationItems(); 
+    setupPreview();
+    
+    // Vérification après initialisation
+    setTimeout(verifyTimelineSetup, 1000);
+    
+    console.log('✅ Dashboard initialisé');
 }
+
+// ===================================================================
+// 🆕 TIMELINE - CHARGEMENT TEMPS RÉEL
+// ===================================================================
+
+function loadTimelineRealtime() {
+    if (!currentUser) {
+        console.error('❌ Utilisateur non connecté');
+        showTimelineError('Vous devez être connecté');
+        return;
+    }
+
+    console.log('📊 Chargement timeline pour:', currentUser.uid);
+    showTimelineLoader();
+
+    // Nettoyer l'ancien listener si existant
+    if (unsubscribeTimeline) {
+        console.log('🧹 Nettoyage ancien listener');
+        unsubscribeTimeline();
+    }
+
+    const userRef = doc(db, 'users', currentUser.uid);
+
+    // 🔥 ÉCOUTE EN TEMPS RÉEL
+    unsubscribeTimeline = onSnapshot(
+        userRef,
+        
+        // ✅ Callback de succès
+        (docSnapshot) => {
+            hideTimelineLoader();
+            
+            try {
+                if (!docSnapshot.exists()) {
+                    console.warn('⚠️ Document utilisateur inexistant');
+                    showTimelineEmpty();
+                    return;
+                }
+
+                const data = docSnapshot.data();
+                const timeline = data.timeline || [];
+
+                console.log('📊 Timeline chargée:', timeline.length, 'événements');
+
+                if (timeline.length === 0) {
+                    showTimelineEmpty();
+                } else {
+                    renderTimelineRealtime(timeline);
+                }
+            } catch (err) {
+                console.error('❌ Erreur traitement données:', err);
+                showTimelineError('Erreur lors du traitement des données');
+            }
+        },
+        
+        // ❌ Callback d'erreur
+        (error) => {
+            console.error('❌ Erreur Firestore onSnapshot:', error);
+            console.error('Code erreur:', error.code);
+            console.error('Message:', error.message);
+            
+            hideTimelineLoader();
+            
+            let errorMsg = 'Une erreur est survenue';
+            
+            switch (error.code) {
+                case 'permission-denied':
+                    errorMsg = '🔒 Permissions insuffisantes. Vérifiez les règles Firestore.';
+                    console.error('💡 Ajoutez cette règle Firestore:', 
+                        'allow read, write: if request.auth != null && request.auth.uid == resource.id;');
+                    break;
+                case 'unavailable':
+                    errorMsg = '📡 Service temporairement indisponible. Réessayez.';
+                    break;
+                case 'unauthenticated':
+                    errorMsg = '🔑 Session expirée. Reconnectez-vous.';
+                    setTimeout(() => window.location.href = './login.html', 2000);
+                    break;
+                case 'not-found':
+                    errorMsg = '📭 Document utilisateur non trouvé';
+                    break;
+                default:
+                    errorMsg = `Erreur: ${error.message}`;
+            }
+            
+            showTimelineError(errorMsg);
+        }
+    );
+
+    console.log('✅ Listener timeline activé');
+}
+
+// ===================================================================
+// 🆕 RENDER TIMELINE EN TEMPS RÉEL
+// ===================================================================
+
+function renderTimelineRealtime(timelineData) {
+    if (!timelineContainer) {
+        console.warn('⚠️ timelineContainer non trouvé');
+        return;
+    }
+
+    console.log('🎨 Rendu timeline:', timelineData.length, 'événements');
+
+    // Trier par timestamp ou date (plus récent en premier)
+    const sortedTimeline = [...timelineData].sort((a, b) => {
+        // Priorité au timestamp si disponible
+        if (a.timestamp && b.timestamp) {
+            return b.timestamp - a.timestamp;
+        }
+        
+        // Sinon parser les dates
+        const dateA = parseTimelineDate(a.date);
+        const dateB = parseTimelineDate(b.date);
+        return dateB - dateA;
+    });
+
+    // Générer le HTML
+    const timelineHTML = sortedTimeline.map((item, index) => {
+        const status = item.status || 'todo';
+        const statusConfig = STATUS_CONFIG[status] || STATUS_CONFIG['todo'];
+        
+        return `
+            <div class="timeline-item animate-fade-in" 
+                 style="animation-delay: ${index * 0.05}s"
+                 data-status="${status}">
+                <div class="timeline-dot status-${status}" 
+                     title="${statusConfig.label}">
+                    ${statusConfig.icon}
+                </div>
+                
+                <div class="timeline-content">
+                    <span class="timeline-status-badge status-${status}">
+                        ${statusConfig.label}
+                    </span>
+                    
+                    <h3 class="timeline-title">
+                        ${escapeHtml(item.title || item.message || 'Événement')}
+                    </h3>
+                    
+                    ${item.description ? 
+                        `<p class="timeline-description">${escapeHtml(item.description)}</p>` 
+                        : ''}
+                    
+                    <div class="timeline-date" title="${item.date}">
+                        ${formatTimelineDate(item.date)}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    timelineContainer.innerHTML = timelineHTML;
+    timelineContainer.style.display = 'block';
+    
+    if (timelineEmpty) timelineEmpty.style.display = 'none';
+    if (timelineError) timelineError.style.display = 'none';
+    
+    console.log('✅ Timeline rendue avec succès');
+}
+
+// ===================================================================
+// 🆕 TIMELINE - UTILITAIRES D'AFFICHAGE
+// ===================================================================
+
+function showTimelineLoader() {
+    if (timelineLoader) timelineLoader.style.display = 'flex';
+    if (timelineContainer) timelineContainer.style.display = 'none';
+    if (timelineError) timelineError.style.display = 'none';
+    if (timelineEmpty) timelineEmpty.style.display = 'none';
+}
+
+function hideTimelineLoader() {
+    if (timelineLoader) timelineLoader.style.display = 'none';
+}
+
+function showTimelineError(message) {
+    if (timelineError) timelineError.style.display = 'block';
+    if (timelineErrorMessage) timelineErrorMessage.textContent = message;
+    if (timelineContainer) timelineContainer.style.display = 'none';
+    if (timelineEmpty) timelineEmpty.style.display = 'none';
+}
+
+function showTimelineEmpty() {
+    if (timelineEmpty) timelineEmpty.style.display = 'block';
+    if (timelineContainer) timelineContainer.style.display = 'none';
+    if (timelineError) timelineError.style.display = 'none';
+}
+
+// ===================================================================
+// 🆕 TIMELINE - UTILITAIRES DE FORMATAGE
+// ===================================================================
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function parseTimelineDate(date) {
+    try {
+        // Timestamp Firestore
+        if (date && typeof date.toDate === 'function') {
+            return date.toDate();
+        }
+        
+        // Timestamp numérique
+        if (typeof date === 'number') {
+            return new Date(date);
+        }
+        
+        // String ISO
+        if (typeof date === 'string') {
+            const parsed = new Date(date);
+            if (!isNaN(parsed.getTime())) {
+                return parsed;
+            }
+        }
+        
+        // Object Date
+        if (date instanceof Date && !isNaN(date.getTime())) {
+            return date;
+        }
+        
+        console.warn('⚠️ Date invalide:', date);
+        return new Date(0); // Epoch par défaut
+        
+    } catch (error) {
+        console.error('❌ Erreur parsing date:', error, date);
+        return new Date(0);
+    }
+}
+
+function formatTimelineDate(date) {
+    try {
+        const dateObj = parseTimelineDate(date);
+        
+        if (dateObj.getTime() === 0) {
+            return 'Date inconnue';
+        }
+
+        const now = new Date();
+        const diffMs = now - dateObj;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+
+        // Temps relatif pour les événements récents
+        if (diffMins < 1) return 'À l\'instant';
+        if (diffMins < 60) return `Il y a ${diffMins} min`;
+        if (diffHours < 24) return `Il y a ${diffHours}h`;
+        if (diffDays < 7) return `Il y a ${diffDays}j`;
+
+        // Date formatée pour les événements plus anciens
+        return dateObj.toLocaleDateString('fr-FR', {
+            day: 'numeric',
+            month: 'long',
+            year: dateObj.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
+        });
+        
+    } catch (error) {
+        console.error('❌ Erreur formatage date:', error);
+        return 'Date invalide';
+    }
+}
+
+// ===================================================================
+// 🆕 ADD TIMELINE EVENT (VERSION UNIFIÉE)
+// ===================================================================
+
+async function addTimelineEvent(title, description = '', status = 'todo') {
+    if (!currentUser) {
+        console.error('❌ Aucun utilisateur connecté');
+        return;
+    }
+
+    if (!userData.timeline) {
+        userData.timeline = [];
+    }
+    
+    const now = new Date();
+    const newEvent = {
+        title: title,
+        description: description,
+        status: status,
+        date: now.toISOString(),
+        timestamp: now.getTime()
+    };
+    
+    userData.timeline.unshift(newEvent); // Ajouter au début (plus récent)
+    
+    // Garder seulement les 50 derniers événements
+    if (userData.timeline.length > 50) {
+        userData.timeline = userData.timeline.slice(0, 50);
+    }
+    
+    try {
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, {
+            timeline: userData.timeline
+        });
+        console.log('✅ Timeline mise à jour:', title);
+    } catch (error) {
+        console.error('❌ Erreur mise à jour timeline:', error);
+        throw error;
+    }
+}
+
+// ===================================================================
+// 🆕 GESTION DU BOUTON RETRY
+// ===================================================================
+
+if (timelineRetry) {
+    timelineRetry.addEventListener('click', () => {
+        console.log('🔄 Retry timeline...');
+        loadTimelineRealtime();
+    });
+}
+
+// ===================================================================
+// 🆕 NETTOYAGE TIMELINE
+// ===================================================================
+
+function cleanupTimeline() {
+    if (unsubscribeTimeline) {
+        unsubscribeTimeline();
+        unsubscribeTimeline = null;
+        console.log('🧹 Timeline listener nettoyé');
+    }
+}
+
+window.addEventListener('beforeunload', cleanupTimeline);
+
+// ===================================================================
+// 🔍 DEBUG TIMELINE
+// ===================================================================
+
+function verifyTimelineSetup() {
+    console.group('🔍 Vérification Timeline');
+    
+    const checks = {
+        'User connecté': !!currentUser,
+        'UserData chargé': !!userData,
+        'Timeline existe': !!userData?.timeline,
+        'Timeline est array': Array.isArray(userData?.timeline),
+        'Container trouvé': !!timelineContainer,
+        'Loader trouvé': !!timelineLoader,
+        'Empty state trouvé': !!timelineEmpty,
+        'Error state trouvé': !!timelineError
+    };
+    
+    Object.entries(checks).forEach(([check, status]) => {
+        console.log(`${status ? '✅' : '❌'} ${check}`);
+    });
+    
+    if (userData?.timeline) {
+        console.log(`📊 ${userData.timeline.length} événements dans la timeline`);
+    }
+    
+    console.groupEnd();
+}
+
+window.debugTimeline = verifyTimelineSetup;
 
 // ===================================================================
 // 👤 DISPLAY PROFILE
 // ===================================================================
 
 function displayProfile() {
-    // Profile photo
     const photoURL = userData.photoURL || 
         `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name)}&background=df437c&color=fff&size=200`;
     
     if (profilePhoto) profilePhoto.src = photoURL;
     if (topbarPhoto) topbarPhoto.src = photoURL;
     
-    // User info
     if (userName) userName.textContent = userData.name || 'Utilisateur';
     if (topbarName) topbarName.textContent = userData.name?.split(' ')[0] || 'User';
     if (userEmail) userEmail.textContent = userData.email || currentUser.email;
     if (projectName) projectName.textContent = `Projet: ${userData.projectName || 'Non défini'}`;
     
-    // Stats
     if (statLevel) statLevel.textContent = userData.level || 1;
     if (statPoints) statPoints.textContent = userData.xp || 0;
     if (statBadges) statBadges.textContent = userData.earnedBadges?.length || 0;
     if (userLevelDisplay) userLevelDisplay.textContent = userData.level || 1;
     if (currentXP) currentXP.textContent = userData.xp || 0;
     
-    // Calculate next level XP
     const nextLevel = (userData.level || 1) + 1;
     const xpNeeded = nextLevel * 100;
     if (nextLevelXP) nextLevelXP.textContent = xpNeeded;
@@ -277,7 +665,6 @@ function displayProfile() {
     const xpProgress = ((userData.xp || 0) / xpNeeded) * 100;
     if (levelProgressFill) levelProgressFill.style.width = `${xpProgress}%`;
     
-    // Referral
     if (referralCode) referralCode.value = userData.referralCode || 'LOADING...';
     if (referralCount) referralCount.textContent = userData.referrals?.length || 0;
     if (referralEarnings) referralEarnings.textContent = (userData.referrals?.length || 0) * 10;
@@ -328,46 +715,61 @@ function renderSteps() {
 // ===================================================================
 
 window.updateStepStatus = async function(stepId, newStatus) {
-    if (!isAdmin) return;
+    if (!isAdmin) {
+        console.warn('⚠️ Accès admin requis');
+        return;
+    }
     
     try {
         const stepIndex = userData.steps.findIndex(s => s.id === stepId);
-        if (stepIndex !== -1) {
-            const oldStatus = userData.steps[stepIndex].status;
-            userData.steps[stepIndex].status = newStatus;
-            
-            if (newStatus === 'done') {
-                userData.steps[stepIndex].date = new Date().toISOString();
-                
-                // Add to timeline
-                await addTimelineEvent(`✅ Étape "${userData.steps[stepIndex].title}" terminée`);
-                
-                // Add notification
-                await addNotification(`Étape "${userData.steps[stepIndex].title}" complétée ! 🎉`, 'success');
-                
-                // Award XP
-                await addXP(20, `Étape "${userData.steps[stepIndex].title}" terminée`);
-                
-                // Check for badges
-                await checkAndAwardBadges();
-            }
-            
-            const userDocRef = doc(db, 'users', currentUser.uid);
-            await updateDoc(userDocRef, { 
-                steps: userData.steps,
-                timeline: userData.timeline
-            });
-
-            renderSteps();
-            calculateGlobalProgress();
-            calculateStats();
-            renderTimeline();
-            
-            console.log("✅ Step mis à jour:", stepId, "→", newStatus);
+        
+        if (stepIndex === -1) {
+            console.error('❌ Step non trouvé:', stepId);
+            return;
         }
+
+        const oldStatus = userData.steps[stepIndex].status;
+        userData.steps[stepIndex].status = newStatus;
+        
+        if (newStatus === 'done') {
+            userData.steps[stepIndex].date = new Date().toISOString();
+            
+            await addTimelineEvent(
+                userData.steps[stepIndex].title,
+                `Étape "${userData.steps[stepIndex].title}" terminée`,
+                'done'
+            );
+            
+            await addNotification(
+                `Étape "${userData.steps[stepIndex].title}" complétée ! 🎉`, 
+                'success'
+            );
+            
+            await addXP(20, `Étape "${userData.steps[stepIndex].title}" terminée`);
+            await checkAndAwardBadges();
+            
+        } else if (newStatus === 'in-progress' && oldStatus !== 'in-progress') {
+            await addTimelineEvent(
+                userData.steps[stepIndex].title,
+                `Étape "${userData.steps[stepIndex].title}" en cours`,
+                'in-progress'
+            );
+        }
+        
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, { 
+            steps: userData.steps
+        });
+
+        renderSteps();
+        calculateGlobalProgress();
+        calculateStats();
+        
+        console.log("✅ Step mis à jour:", stepId, oldStatus, "→", newStatus);
+        
     } catch (error) {
         console.error('❌ Error updating step:', error);
-        alert('Erreur lors de la mise à jour');
+        alert(`Erreur: ${error.message}`);
     }
 };
 
@@ -395,31 +797,34 @@ function calculateGlobalProgress() {
 function calculateStats() {
     if (!statDaysElapsed) return;
     
-    // Days elapsed
-    const startDate = userData.projectStartDate?.toDate ? userData.projectStartDate.toDate() : new Date(userData.projectStartDate);
+    const startDate = userData.projectStartDate?.toDate ? 
+        userData.projectStartDate.toDate() : 
+        new Date(userData.projectStartDate);
     const today = new Date();
     const daysElapsed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
     statDaysElapsed.textContent = daysElapsed;
     
-    // Days remaining
     if (userData.projectEndDate && statDaysRemaining) {
-        const endDate = userData.projectEndDate.toDate ? userData.projectEndDate.toDate() : new Date(userData.projectEndDate);
+        const endDate = userData.projectEndDate.toDate ? 
+            userData.projectEndDate.toDate() : 
+            new Date(userData.projectEndDate);
         const daysRemaining = Math.floor((endDate - today) / (1000 * 60 * 60 * 24));
         statDaysRemaining.textContent = daysRemaining > 0 ? daysRemaining : '0';
     } else if (statDaysRemaining) {
         statDaysRemaining.textContent = '-';
     }
     
-    // Formations progress
     if (userData.formations && userData.formations.length > 0 && statFormationsProgress) {
         const totalModules = userData.formations.reduce((acc, f) => {
             const formation = availableFormations.find(af => af.id === f.id);
             return acc + (formation?.totalModules || 0);
         }, 0);
         
-        const completedModules = userData.formations.reduce((acc, f) => acc + (f.completedModules || 0), 0);
+        const completedModules = userData.formations.reduce((acc, f) => 
+            acc + (f.completedModules || 0), 0);
         
-        const formationProgress = totalModules > 0 ? Math.round((completedModules / totalModules) * 100) : 0;
+        const formationProgress = totalModules > 0 ? 
+            Math.round((completedModules / totalModules) * 100) : 0;
         statFormationsProgress.textContent = `${formationProgress}%`;
     } else if (statFormationsProgress) {
         statFormationsProgress.textContent = '0%';
@@ -481,51 +886,7 @@ function renderFormations() {
 
 window.viewFormation = function(formationId) {
     alert(`Redirection vers formation: ${formationId}\n(Page formation.html à créer)`);
-    // window.location.href = `./formation.html?id=${formationId}`;
 };
-
-// ===================================================================
-// 📅 RENDER TIMELINE
-// ===================================================================
-
-function renderTimeline() {
-    if (!timelineContainer) return;
-    
-    timelineContainer.innerHTML = '';
-    
-    const timeline = userData.timeline || [];
-    
-    if (timeline.length === 0) {
-        timelineContainer.innerHTML = `
-            <div class="empty-state">
-                <div class="empty-state-icon">📅</div>
-                <p>Aucun événement pour le moment</p>
-            </div>
-        `;
-        return;
-    }
-    
-    // Sort by date (most recent first)
-    const sortedTimeline = [...timeline].sort((a, b) => {
-        const dateA = a.date?.toDate ? a.date.toDate() : new Date(a.date);
-        const dateB = b.date?.toDate ? b.date.toDate() : new Date(b.date);
-        return dateB - dateA;
-    });
-    
-    sortedTimeline.forEach((event, index) => {
-        const timelineItem = document.createElement('div');
-        timelineItem.className = `timeline-item ${event.type || ''}`;
-        
-        const eventDate = event.date?.toDate ? event.date.toDate() : new Date(event.date);
-        
-        timelineItem.innerHTML = `
-            <span class="timeline-date">${formatDate(eventDate)}</span>
-            <p>${event.message}</p>
-        `;
-        
-        timelineContainer.appendChild(timelineItem);
-    });
-}
 
 // ===================================================================
 // 📁 RENDER DOCUMENTS
@@ -569,6 +930,11 @@ function renderDocuments() {
         documentsContainer.appendChild(docCard);
     });
 }
+
+window.downloadDocument = function(url) {
+    window.open(url, '_blank');
+};
+
 // ===================================================================
 // 📧 REQUEST DOCUMENT
 // ===================================================================
@@ -580,7 +946,6 @@ const requestDocumentForm = document.getElementById('requestDocumentForm');
 const submitDocRequest = document.getElementById('submitDocRequest');
 const docRequestSuccess = document.getElementById('docRequestSuccess');
 
-// Ouvrir le modal
 if (requestDocumentBtn) {
     requestDocumentBtn.addEventListener('click', () => {
         if (requestDocumentModal) {
@@ -589,7 +954,6 @@ if (requestDocumentBtn) {
     });
 }
 
-// Fermer le modal
 if (closeRequestDocModal) {
     closeRequestDocModal.addEventListener('click', () => {
         if (requestDocumentModal) {
@@ -598,7 +962,6 @@ if (closeRequestDocModal) {
     });
 }
 
-// Soumettre la demande
 if (requestDocumentForm) {
     requestDocumentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -612,14 +975,12 @@ if (requestDocumentForm) {
             return;
         }
 
-        // Désactiver le bouton pendant l'envoi
         if (submitDocRequest) {
             submitDocRequest.disabled = true;
             submitDocRequest.textContent = '📤 Envoi en cours...';
         }
 
         try {
-            // Créer la demande dans Firestore
             const requestsRef = collection(db, 'documentRequests');
             await addDoc(requestsRef, {
                 userId: currentUser.uid,
@@ -629,28 +990,26 @@ if (requestDocumentForm) {
                 docType,
                 message: docMessage || '',
                 urgent: docUrgent || false,
-                status: 'pending', // 'pending', 'processing', 'completed'
+                status: 'pending',
                 createdAt: serverTimestamp(),
                 completedAt: null
             });
 
             console.log('✅ Demande de document envoyée');
 
-            // Ajouter une notification pour le client
             await addNotification('📧 Ta demande de document a été envoyée !', 'info');
+            await addTimelineEvent(
+                'Demande de document',
+                `${getDocTypeLabel(docType)}`,
+                'in-progress'
+            );
 
-            // Ajouter à la timeline
-            await addTimelineEvent(`📧 Demande de document : ${getDocTypeLabel(docType)}`);
-
-            // Afficher le message de succès
             if (docRequestSuccess) {
                 docRequestSuccess.style.display = 'block';
             }
 
-            // Réinitialiser le formulaire
             requestDocumentForm.reset();
 
-            // Fermer le modal après 2 secondes
             setTimeout(() => {
                 if (requestDocumentModal) {
                     requestDocumentModal.classList.remove('open');
@@ -665,7 +1024,6 @@ if (requestDocumentForm) {
             alert('❌ Erreur lors de l\'envoi. Réessaye.');
         }
 
-        // Réactiver le bouton
         if (submitDocRequest) {
             submitDocRequest.disabled = false;
             submitDocRequest.textContent = '📤 Envoyer la demande';
@@ -673,7 +1031,6 @@ if (requestDocumentForm) {
     });
 }
 
-// Helper : Obtenir le label du type de document
 function getDocTypeLabel(type) {
     const labels = {
         'maquette': '🎨 Maquette / Design',
@@ -686,9 +1043,6 @@ function getDocTypeLabel(type) {
     };
     return labels[type] || type;
 }
-window.downloadDocument = function(url) {
-    window.open(url, '_blank');
-};
 
 // ===================================================================
 // 🗓️ RENDER ROADMAP
@@ -754,7 +1108,12 @@ function renderBadges() {
 async function loadNotifications() {
     try {
         const notifRef = collection(db, 'notifications');
-        const q = query(notifRef, where('userId', '==', currentUser.uid), orderBy('createdAt', 'desc'), limit(10));
+        const q = query(
+            notifRef, 
+            where('userId', '==', currentUser.uid), 
+            orderBy('createdAt', 'desc'), 
+            limit(10)
+        );
         const snapshot = await getDocs(q);
         
         notifications = [];
@@ -769,7 +1128,6 @@ async function loadNotifications() {
 }
 
 function renderNotifications() {
-    // Render in panel
     if (notificationsList) {
         notificationsList.innerHTML = '';
         
@@ -780,7 +1138,8 @@ function renderNotifications() {
                 const notifEl = document.createElement('div');
                 notifEl.className = `notification-item ${notif.read ? '' : 'new'} ${notif.type || ''}`;
                 
-                const time = notif.createdAt?.toDate ? formatTimeAgo(notif.createdAt.toDate()) : 'À l\'instant';
+                const time = notif.createdAt?.toDate ? 
+                    formatTimeAgo(notif.createdAt.toDate()) : 'À l\'instant';
                 
                 notifEl.innerHTML = `
                     <p>${notif.message}</p>
@@ -794,7 +1153,6 @@ function renderNotifications() {
         }
     }
     
-    // Render recent in dashboard
     if (recentNotifsList) {
         recentNotifsList.innerHTML = '';
         
@@ -812,7 +1170,6 @@ function renderNotifications() {
         }
     }
     
-    // Update badge
     unreadNotifications = notifications.filter(n => !n.read).length;
     if (notifBadge) {
         notifBadge.textContent = unreadNotifications;
@@ -854,7 +1211,11 @@ async function markNotificationAsRead(notifId) {
 async function loadChatMessages() {
     try {
         const chatRef = collection(db, 'chats');
-        const q = query(chatRef, where('userId', '==', currentUser.uid), orderBy('createdAt', 'asc'));
+        const q = query(
+            chatRef, 
+            where('userId', '==', currentUser.uid), 
+            orderBy('createdAt', 'asc')
+        );
         const snapshot = await getDocs(q);
         
         chatMessages = [];
@@ -888,10 +1249,8 @@ function renderChatMessages() {
         });
     }
     
-    // Scroll to bottom
     chatMessages_el.scrollTop = chatMessages_el.scrollHeight;
     
-    // Update badge
     unreadMessages = chatMessages.filter(m => m.from === 'admin' && !m.read).length;
     if (chatBadge) {
         chatBadge.textContent = unreadMessages;
@@ -916,7 +1275,6 @@ async function sendChatMessage() {
         chatInput.value = '';
         await loadChatMessages();
         
-        // Simulate admin response
         setTimeout(async () => {
             await addDoc(chatRef, {
                 userId: currentUser.uid,
@@ -990,7 +1348,7 @@ if (photoInput) {
                 if (profilePhoto) profilePhoto.classList.remove('uploaded');
             }, 600);
             
-            await addTimelineEvent('📸 Photo de profil mise à jour');
+            await addTimelineEvent('Photo de profil mise à jour', '', 'done');
             await addNotification('Photo de profil mise à jour avec succès ! 📸', 'success');
 
             console.log('✅ Photo de profil mise à jour !');
@@ -1053,7 +1411,7 @@ if (editProfileForm) {
             displayProfile();
             if (editProfileModal) editProfileModal.classList.remove('open');
             
-            await addTimelineEvent('✏️ Profil mis à jour');
+            await addTimelineEvent('Profil mis à jour', '', 'done');
             await addNotification('Profil mis à jour avec succès ! ✅', 'success');
             
         } catch (error) {
@@ -1074,7 +1432,7 @@ async function addXP(amount, reason) {
     if (newLevel > (userData.level || 1)) {
         userData.level = newLevel;
         await addNotification(`🎉 Level Up ! Vous êtes maintenant niveau ${newLevel} !`, 'success');
-        await addTimelineEvent(`🎉 Passage niveau ${newLevel}`);
+        await addTimelineEvent(`Passage niveau ${newLevel}`, '', 'done');
     }
     
     const userDocRef = doc(db, 'users', currentUser.uid);
@@ -1117,7 +1475,7 @@ async function checkAndAwardBadges() {
             userData.earnedBadges.push(badgeId);
             await addXP(badge.xp, `Badge "${badge.title}" débloqué`);
             await addNotification(`🏆 Badge débloqué : ${badge.title} ! +${badge.xp} XP`, 'success');
-            await addTimelineEvent(`🏆 Badge "${badge.title}" débloqué`);
+            await addTimelineEvent(`Badge "${badge.title}" débloqué`, '', 'done');
         }
     }
     
@@ -1132,23 +1490,345 @@ async function checkAndAwardBadges() {
 }
 
 // ===================================================================
-// 📅 TIMELINE
+// 📊 SECTION PROJECT - FUNCTIONS
 // ===================================================================
 
-async function addTimelineEvent(message, type = 'completed') {
-    if (!userData.timeline) userData.timeline = [];
+function renderProjectInfo() {
+    console.log('📊 Render Project Info...');
     
-    userData.timeline.push({
-        message,
-        type,
-        date: new Date().toISOString()
-    });
-    
-    if (userData.timeline.length > 50) {
-        userData.timeline = userData.timeline.slice(-50);
+    if (!userData) {
+        console.log('⚠️ userData non disponible');
+        return;
+    }
+
+    const projectInfoName = document.getElementById('projectInfoName');
+    const projectInfoDescription = document.getElementById('projectInfoDescription');
+    const projectStartDate = document.getElementById('projectStartDate');
+    const projectDuration = document.getElementById('projectDuration');
+    const projectProgressBar = document.getElementById('projectProgressBar');
+    const projectProgressText = document.getElementById('projectProgressText');
+
+    if (projectInfoName) {
+        projectInfoName.textContent = userData.projectName || 'Mon projet';
+    }
+
+    if (projectInfoDescription) {
+        projectInfoDescription.textContent = userData.projectDescription || 'Description non définie';
+    }
+
+    if (projectStartDate) {
+        const startDate = userData.projectStartDate?.toDate ? 
+            userData.projectStartDate.toDate() : 
+            new Date(userData.projectStartDate);
+        projectStartDate.textContent = formatDate(startDate);
+    }
+
+    if (projectDuration) {
+        const start = userData.projectStartDate?.toDate ? 
+            userData.projectStartDate.toDate() : 
+            new Date(userData.projectStartDate);
+        const end = userData.projectEndDate?.toDate ? 
+            userData.projectEndDate.toDate() : 
+            null;
+
+        if (end) {
+            const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            projectDuration.textContent = `${duration} jours`;
+        } else {
+            projectDuration.textContent = 'Non définie';
+        }
+    }
+
+    const totalSteps = userData.steps?.length || 0;
+    const completedSteps = userData.steps?.filter(s => s.status === 'done').length || 0;
+    const progress = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
+
+    if (projectProgressBar) {
+        projectProgressBar.style.width = `${progress}%`;
+    }
+
+    if (projectProgressText) {
+        projectProgressText.textContent = `${progress}%`;
     }
     
-    renderTimeline();
+    console.log('✅ Project Info rendu');
+}
+
+function renderValidationItems() {
+    console.log('📋 Render Validation Items...');
+    
+    const validationItems = document.getElementById('validationItems');
+    
+    if (!validationItems) {
+        console.log('⚠️ validationItems element non trouvé');
+        return;
+    }
+    
+    if (!userData) {
+        console.log('⚠️ userData non disponible');
+        return;
+    }
+
+    const validations = [];
+
+    if (userData.steps) {
+        userData.steps.forEach(step => {
+            if (step.status === 'in-progress' && step.requiresValidation) {
+                validations.push({
+                    id: step.id,
+                    title: `Valider : ${step.title}`,
+                    description: step.validationMessage || 'Cette étape nécessite votre validation',
+                    icon: '✅',
+                    type: 'step'
+                });
+            }
+        });
+    }
+
+    if (validations.length === 0) {
+        validationItems.innerHTML = `
+            <div class="validation-empty">
+                <div class="validation-empty-icon">✅</div>
+                <p>Aucune validation en attente</p>
+                <small>Toutes les étapes sont à jour !</small>
+            </div>
+        `;
+        console.log('✅ Aucune validation');
+        return;
+    }
+
+    validationItems.innerHTML = validations.map(item => `
+        <div class="validation-item" data-id="${item.id}" data-type="${item.type}">
+            <div class="validation-icon">${item.icon}</div>
+            <div class="validation-content">
+                <h4 class="validation-title">${item.title}</h4>
+                <p class="validation-description">${item.description}</p>
+            </div>
+            <div class="validation-actions">
+                <button class="btn-validate" onclick="validateItem('${item.id}', '${item.type}')">
+                    ✓ Valider
+                </button>
+                <button class="btn-reject" onclick="rejectItem('${item.id}', '${item.type}')">
+                    ✗ Refuser
+                </button>
+            </div>
+        </div>
+    `).join('');
+    
+    console.log('✅ Validations rendues:', validations.length);
+}
+
+window.validateItem = async function(itemId, itemType) {
+    try {
+        console.log(`Validating ${itemType}:`, itemId);
+
+        if (itemType === 'step') {
+            const stepIndex = userData.steps.findIndex(s => s.id === itemId);
+            if (stepIndex !== -1) {
+                userData.steps[stepIndex].requiresValidation = false;
+                userData.steps[stepIndex].validated = true;
+                userData.steps[stepIndex].validatedAt = new Date().toISOString();
+            }
+        }
+
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, {
+            steps: userData.steps
+        });
+
+        await addNotification(`✅ Élément validé avec succès !`, 'success');
+
+        renderValidationItems();
+        renderSteps();
+
+    } catch (error) {
+        console.error('Error validating item:', error);
+        alert('Erreur lors de la validation');
+    }
+};
+
+window.rejectItem = async function(itemId, itemType) {
+    const reason = prompt('Raison du refus (optionnel) :');
+    
+    try {
+        console.log(`Rejecting ${itemType}:`, itemId, reason);
+        await addNotification(`❌ Élément refusé`, 'info');
+        renderValidationItems();
+    } catch (error) {
+        console.error('Error rejecting item:', error);
+        alert('Erreur lors du refus');
+    }
+};
+
+function setupPreview() {
+    console.log('🔧 Setup Preview...');
+    
+    const sitePreview = document.getElementById('sitePreview');
+    const previewOverlay = document.getElementById('previewOverlay');
+    const previewUrlBar = document.getElementById('previewUrlBar');
+    const previewUrl = document.getElementById('previewUrl');
+    const copyPreviewUrl = document.getElementById('copyPreviewUrl');
+    const openPreviewNew = document.getElementById('openPreviewNew');
+    const refreshPreview = document.getElementById('refreshPreview');
+
+    console.log('📊 Elements Preview:', {
+        sitePreview: !!sitePreview,
+        previewOverlay: !!previewOverlay,
+        previewUrlBar: !!previewUrlBar,
+        siteUrl: userData?.siteUrl
+    });
+
+    if (userData && userData.siteUrl && userData.siteUrl.trim() !== '') {
+        
+        console.log('✅ URL du site trouvée:', userData.siteUrl);
+        
+        if (sitePreview) {
+            sitePreview.src = userData.siteUrl;
+            console.log('✅ Iframe src défini');
+        }
+        
+        if (previewOverlay) {
+            previewOverlay.style.display = 'none';
+            console.log('✅ Overlay masqué');
+        }
+        
+        if (previewUrlBar) {
+            previewUrlBar.style.display = 'flex';
+            console.log('✅ URL bar affichée');
+        }
+        
+        if (previewUrl) {
+            previewUrl.value = userData.siteUrl;
+        }
+        
+        console.log('✅ Preview configuré avec succès');
+        
+    } else {
+        console.log('ℹ️ Aucune URL de site définie');
+        
+        if (previewOverlay) {
+            previewOverlay.style.display = 'flex';
+        }
+        
+        if (previewUrlBar) {
+            previewUrlBar.style.display = 'none';
+        }
+    }
+
+    const deviceButtons = document.querySelectorAll('.preview-device-btn');
+    
+    if (deviceButtons.length > 0) {
+        deviceButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                deviceButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const device = btn.dataset.device;
+                const wrapper = document.getElementById('previewFrameWrapper');
+                
+                if (wrapper) {
+                    wrapper.className = `preview-frame-wrapper ${device}`;
+                    console.log('📱 Device changé:', device);
+                }
+            });
+        });
+        console.log('✅ Device switcher configuré');
+    }
+
+    if (copyPreviewUrl && previewUrl) {
+        copyPreviewUrl.addEventListener('click', () => {
+            previewUrl.select();
+            document.execCommand('copy');
+            
+            copyPreviewUrl.textContent = '✅';
+            setTimeout(() => {
+                copyPreviewUrl.textContent = '📋';
+            }, 2000);
+            
+            console.log('📋 URL copiée');
+        });
+        console.log('✅ Copy URL configuré');
+    }
+
+    if (openPreviewNew) {
+        openPreviewNew.addEventListener('click', () => {
+            if (userData && userData.siteUrl) {
+                window.open(userData.siteUrl, '_blank');
+                console.log('🔗 Site ouvert dans nouvel onglet');
+            }
+        });
+        console.log('✅ Open new tab configuré');
+    }
+
+    if (refreshPreview) {
+        refreshPreview.addEventListener('click', () => {
+            if (sitePreview && userData && userData.siteUrl) {
+                sitePreview.src = userData.siteUrl + '?t=' + new Date().getTime();
+                console.log('🔄 Preview rafraîchi');
+            }
+        });
+        console.log('✅ Refresh configuré');
+    }
+}
+
+const editProjectInfoBtn = document.getElementById('editProjectInfoBtn');
+const editProjectModal = document.getElementById('editProjectModal');
+const closeEditProjectModal = document.getElementById('closeEditProjectModal');
+const editProjectForm = document.getElementById('editProjectForm');
+
+if (editProjectInfoBtn) {
+    editProjectInfoBtn.addEventListener('click', () => {
+        const editProjectName = document.getElementById('editProjectName');
+        const editProjectDesc = document.getElementById('editProjectDesc');
+        const editProjectUrl = document.getElementById('editProjectUrl');
+
+        if (editProjectName) editProjectName.value = userData.projectName || '';
+        if (editProjectDesc) editProjectDesc.value = userData.projectDescription || '';
+        if (editProjectUrl) editProjectUrl.value = userData.siteUrl || '';
+
+        if (editProjectModal) editProjectModal.classList.add('open');
+    });
+}
+
+if (closeEditProjectModal) {
+    closeEditProjectModal.addEventListener('click', () => {
+        if (editProjectModal) editProjectModal.classList.remove('open');
+    });
+}
+
+if (editProjectForm) {
+    editProjectForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const newName = document.getElementById('editProjectName')?.value.trim();
+        const newDesc = document.getElementById('editProjectDesc')?.value.trim();
+        const newUrl = document.getElementById('editProjectUrl')?.value.trim();
+
+        try {
+            const userDocRef = doc(db, 'users', currentUser.uid);
+            await updateDoc(userDocRef, {
+                projectName: newName,
+                projectDescription: newDesc,
+                siteUrl: newUrl
+            });
+
+            userData.projectName = newName;
+            userData.projectDescription = newDesc;
+            userData.siteUrl = newUrl;
+
+            renderProjectInfo();
+            setupPreview();
+
+            if (editProjectModal) editProjectModal.classList.remove('open');
+
+            await addTimelineEvent('Informations projet mises à jour', '', 'done');
+            await addNotification('Projet mis à jour avec succès ! ✅', 'success');
+
+        } catch (error) {
+            console.error('Error updating project:', error);
+            alert('Erreur lors de la mise à jour');
+        }
+    });
 }
 
 // ===================================================================
@@ -1156,7 +1836,10 @@ async function addTimelineEvent(message, type = 'completed') {
 // ===================================================================
 
 function generateReferralCode() {
-    const name = (currentUser.displayName || currentUser.email).toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4);
+    const name = (currentUser.displayName || currentUser.email)
+        .toUpperCase()
+        .replace(/[^A-Z]/g, '')
+        .slice(0, 4);
     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
     return `${name}${random}`;
 }
@@ -1164,7 +1847,11 @@ function generateReferralCode() {
 function formatDate(date) {
     if (!date) return 'N/A';
     const d = date instanceof Date ? date : new Date(date);
-    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    return d.toLocaleDateString('fr-FR', { 
+        day: 'numeric', 
+        month: 'short', 
+        year: 'numeric' 
+    });
 }
 
 function formatTimeAgo(date) {
@@ -1338,4 +2025,4 @@ setInterval(() => {
     loadChatMessages();
 }, 30000);
 
-console.log("🚀 Dashboard initialized - Version fusionnée");
+console.log('✅ dashboard.js chargé');

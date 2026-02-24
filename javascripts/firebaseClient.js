@@ -27,7 +27,8 @@ import {
   orderBy,
   limit,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  onSnapshot // 🆕 AJOUTÉ ICI
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 import { 
@@ -94,7 +95,8 @@ export {
   orderBy,
   limit,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  onSnapshot // 🆕 AJOUTÉ ICI
 };
 
 
@@ -243,9 +245,3 @@ export async function addReview(reviewData) {
   }
 }
 
-
-// ======================
-// 🎯 INITIALIZATION LOG
-// ======================
-console.log("🔥 Firebase initialized successfully");
-console.log("📦 Available services: Auth, Firestore, Storage");
