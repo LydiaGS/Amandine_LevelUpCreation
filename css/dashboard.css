@@ -768,7 +768,7 @@ body {
 }
 
 /* ===================================================================
-   TIMELINE - STYLES MODERNES
+   TIMELINE - STYLES MODERNES ET RESPONSIVE
    =================================================================== */
 
 .timeline-container {
@@ -776,6 +776,9 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .timeline-item {
@@ -783,6 +786,7 @@ body {
     gap: 1.5rem;
     opacity: 0;
     position: relative;
+    width: 100%;
 }
 
 .timeline-item.animate-fade-in {
@@ -800,6 +804,7 @@ body {
     }
 }
 
+/* Timeline Dot */
 .timeline-dot {
     width: 40px;
     height: 40px;
@@ -822,6 +827,7 @@ body {
     width: 2px;
     height: calc(100% + 24px);
     background: var(--border);
+    z-index: -1;
 }
 
 .timeline-item:last-child .timeline-dot::after {
@@ -833,6 +839,7 @@ body {
     filter: brightness(2);
 }
 
+/* Timeline Content */
 .timeline-content {
     flex: 1;
     background: var(--card-bg);
@@ -840,6 +847,9 @@ body {
     border-radius: 12px;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
+    min-width: 0; /* Important pour éviter le débordement */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .timeline-content:hover {
@@ -865,6 +875,7 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .timeline-status-badge.status-done {
@@ -886,6 +897,7 @@ body {
     font-size: 0.85rem;
     color: var(--muted);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .timeline-title {
@@ -893,6 +905,9 @@ body {
     font-weight: 600;
     color: var(--text);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .timeline-description {
@@ -900,6 +915,8 @@ body {
     color: var(--muted);
     line-height: 1.6;
     margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* States */
@@ -925,10 +942,74 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Responsive */
+/* ===================================================================
+   RESPONSIVE - TABLET (768px et moins)
+   =================================================================== */
+
 @media (max-width: 768px) {
+    .timeline-container {
+        gap: 1.25rem;
+        padding: 0.75rem 0;
+    }
+
     .timeline-item {
         gap: 1rem;
+    }
+    
+    .timeline-dot {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .timeline-dot::after {
+        top: 45px;
+    }
+    
+    .timeline-dot-icon {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content {
+        padding: 1rem 1.25rem;
+    }
+    
+    .timeline-title {
+        font-size: 1rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.9rem;
+    }
+    
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-status-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.75rem;
+    }
+
+    .timeline-date {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===================================================================
+   RESPONSIVE - MOBILE (480px et moins)
+   =================================================================== */
+
+@media (max-width: 480px) {
+    .timeline-container {
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    .timeline-item {
+        gap: 0.75rem;
     }
     
     .timeline-dot {
@@ -936,22 +1017,333 @@ body {
         height: 32px;
     }
     
+    .timeline-dot::after {
+        top: 40px;
+        width: 1.5px;
+    }
+    
     .timeline-dot-icon {
         font-size: 1rem;
     }
     
     .timeline-content {
-        padding: 1rem;
+        padding: 0.875rem 1rem;
+        border-radius: 10px;
+    }
+
+    .timeline-content:hover {
+        transform: translateX(3px);
     }
     
     .timeline-title {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
     }
     
     .timeline-header {
-        flex-direction: column;
-        align-items: flex-start;
+        gap: 0.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .timeline-status-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.65rem;
+        gap: 0.35rem;
+    }
+
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+
+    /* States responsive */
+    .timeline-loader,
+    .timeline-empty,
+    .timeline-error {
+        padding: 2rem 0.75rem;
+    }
+
+    .timeline-empty-icon,
+    .timeline-error-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* ===================================================================
+   RESPONSIVE - TRÈS PETIT MOBILE (375px et moins)
+   =================================================================== */
+
+@media (max-width: 375px) {
+    .timeline-container {
+        gap: 0.875rem;
+    }
+
+    .timeline-item {
+        gap: 0.625rem;
+    }
+    
+    .timeline-dot {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .timeline-dot::after {
+        top: 38px;
+    }
+    
+    .timeline-dot-icon {
+        font-size: 0.9rem;
+    }
+    
+    .timeline-content {
+        padding: 0.75rem 0.875rem;
+    }
+    
+    .timeline-title {
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+    
+    .timeline-description {
+        font-size: 0.8rem;
+    }
+    
+    .timeline-status-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .timeline-date {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===================================================================
+   RESPONSIVE - ULTRA PETIT (320px)
+   =================================================================== */
+
+@media (max-width: 320px) {
+    .timeline-container {
+        gap: 0.75rem;
+        padding: 0.25rem 0;
+    }
+
+    .timeline-item {
         gap: 0.5rem;
+    }
+    
+    .timeline-dot {
+        width: 28px;
+        height: 28px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .timeline-dot::after {
+        top: 35px;
+        width: 1px;
+    }
+    
+    .timeline-dot-icon {
+        font-size: 0.85rem;
+    }
+    
+    .timeline-content {
+        padding: 0.65rem 0.75rem;
+        border-radius: 8px;
+    }
+
+    .timeline-content:hover {
+        transform: translateX(2px);
+        box-shadow: 0 2px 8px rgba(223, 67, 124, 0.08);
+    }
+    
+    .timeline-title {
+        font-size: 0.85rem;
+        line-height: 1.25;
+        margin-bottom: 0.3rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .timeline-header {
+        gap: 0.35rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .timeline-status-badge {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+        gap: 0.3rem;
+        border-radius: 16px;
+    }
+
+    .timeline-date {
+        font-size: 0.65rem;
+    }
+
+    /* States ultra petit écran */
+    .timeline-loader,
+    .timeline-empty,
+    .timeline-error {
+        padding: 1.5rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .timeline-empty-icon,
+    .timeline-error-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Message d'erreur plus petit */
+    .timeline-error p,
+    .timeline-empty p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .timeline-error small,
+    .timeline-empty small {
+        font-size: 0.75rem;
+    }
+}
+
+/* ===================================================================
+   AMÉLIORATIONS POUR TRÈS PETITS ÉCRANS
+   =================================================================== */
+
+@media (max-width: 320px) {
+    /* Amélioration de la lisibilité */
+    .timeline-content {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* Réduction des espacements */
+    .timeline-item {
+        margin-bottom: 0;
+    }
+
+    /* Optimisation du hover sur tactile */
+    @media (hover: none) {
+        .timeline-content:hover {
+            transform: none;
+            border-color: var(--border);
+        }
+        
+        .timeline-content:active {
+            transform: scale(0.98);
+            border-color: var(--accent);
+        }
+    }
+
+    /* Status badge plus compact */
+    .timeline-status-badge {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Amélioration de l'alignement vertical */
+    .timeline-dot {
+        margin-top: 0.2rem;
+    }
+}
+
+/* ===================================================================
+   FIXES POUR DÉBORDEMENT DE TEXTE
+   =================================================================== */
+
+@media (max-width: 480px) {
+    .timeline-title,
+    .timeline-description {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+
+    /* Empêcher le débordement horizontal */
+    .timeline-content * {
+        max-width: 100%;
+    }
+}
+
+/* ===================================================================
+   OPTIMISATION PERFORMANCE MOBILE
+   =================================================================== */
+
+@media (max-width: 768px) {
+    /* Désactiver les animations complexes sur mobile */
+    .timeline-item.animate-fade-in {
+        animation-duration: 0.3s;
+    }
+
+    /* Réduire les transitions */
+    .timeline-content {
+        transition: all 0.2s ease;
+    }
+    
+    .timeline-dot {
+        transition: all 0.2s ease;
+    }
+}
+
+/* ===================================================================
+   DARK MODE OPTIMISÉ
+   =================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .timeline-dot {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .timeline-content {
+        box-shadow: none;
+    }
+    
+    .timeline-content:hover {
+        box-shadow: 0 4px 12px rgba(223, 67, 124, 0.2);
+    }
+}
+
+/* ===================================================================
+   ACCESSIBILITÉ
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-item.animate-fade-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .timeline-content {
+        transition: none;
+    }
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+
+@media print {
+    .timeline-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    
+    .timeline-dot::after {
+        display: block !important;
+    }
+    
+    .timeline-content:hover {
+        transform: none;
+        border-color: var(--border);
     }
 }
 
@@ -3874,3 +4266,5 @@ body.light-theme {
         font-size: 1.25rem;
     }
 }
+
+
