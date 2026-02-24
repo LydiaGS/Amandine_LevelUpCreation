@@ -252,3 +252,81 @@
       #chatWidget { right: 16px; width: calc(100vw - 32px); bottom: 90px; }
       #chatToggle { right: 16px; bottom: 20px; }
     }
+    .chatgpt-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 380px;
+  height: 520px;
+  background: #111;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+.chatgpt-header {
+  padding: 20px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.chatgpt-logo {
+  background: #ff2e8b;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.chatgpt-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.chat-msg.user {
+  background: #ff2e8b;
+  padding: 12px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.chat-msg.bot {
+  background: #222;
+  padding: 12px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+.chatgpt-footer {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #222;
+}
+
+.chatgpt-footer textarea {
+  flex: 1;
+  resize: none;
+  background: #222;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.chatgpt-footer button {
+  background: #ff2e8b;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  padding: 0 15px;
+  border-radius: 12px;
+}

@@ -1,27 +1,19 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="./css/auth.css">
-  <link rel="stylesheet" href="./css/font.css">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/profils.css">
-  <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
-<link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
-<link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
-<link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
-<link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
-<link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
-<link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
-  <title>Dashboard | Level Up Creation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/dashboard.html">
+    <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/dashboard.html">
+    <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/dashboard.html">
+    <link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/dashboard.html">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Dashboard Client | LevelUpCreation</title>
 </head>
 <body>
-  <!-- Top glow / background -->
-  <div class="bg-ambient" aria-hidden="true"></div>
-
-  <header class="site-header" id="top">
+    <header class="site-header" id="top">
     <nav class="nav">
       <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
         <span class="brand__logo">
@@ -29,6 +21,7 @@
         </span>
         <span class="brand__name">Level Up Creation</span>
       </a>
+
 
       <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="nav__toggle-bars" aria-hidden="true"></span>
@@ -39,175 +32,77 @@
    <a class="nav__link " href="./infos.html">
     À propos
   </a>
+
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-     <!--<a class="nav__link" href="./dashboard.html">Dashboard</a>
-        <a class="nav__cta" href="./register.html">Inscription</a>
-        <a class="nav__cta" href="./login.html">Connexion</a>-->
+      <a class="nav__link" href="./dashboard.html">Dashboard</a>
       </div>
     </nav>
   </header>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader"></div>
+        <div class="loading-text">Chargement de votre espace...</div>
+    </div>
 
-  <!-- Loading (affiché pendant la vérification de connexion) -->
-  <div id="loading" style="margin: 18px auto; max-width: 980px; padding: 14px; text-align:center;">
-    Chargement...
-  </div>
-          <div class="container hero__content" id="heroPublic">
-  <div class="hero__text">
-    <h1 class="hero__title">
-      <span class="hero__title--light">
-        Bienvenue dans votre espace,<br>
-        client Level Up Creation<br>
-      </span>
-    </h1>
-      <div class="brand">
-            <span class="dot"></span> Level Up Creation — Dashboard
-          </div>
-          <br> <br>
-  </div>
-  
-</div>
+    <!-- Admin Badge -->
+    <div id="adminBadge" class="admin-badge">
+        Mode Admin activé
+    </div>
 
-  <!-- DASHBOARD (visible seulement si connecté) -->
-  <div id="dashboard" class="hidden">
-       <button class="btn" id="logoutBtn" style="width: 160px; display:flex; justify-content:center; align-items:center; text-align:center; height: 45px;margin:35px ;">
-            Se déconnecter
-          </button>
-    <div class="bg-ambient" aria-hidden="true"></div>
-    <div class="boite">
-  <h2></h2>
-  <!-- Photo de profil -->
-  <div class="profile-photo">
-    <img
-      id="profilePreview"
-      src="./asset/image/avatar-default.png"
-      alt=""
-      style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:10px;"
-    >
-    <input type="file" id="profilePhoto" accept="image/*"style="width: auto;">
-  </div>
-
-  <input id="name" placeholder="Nom">
-  <input id="company" placeholder="Société">
-
-  <button id="saveProfile">Enregistrer</button>
-</div>    <br><br>
-<div class="chat-wrapper">
-  <div class="chat-header">
-    <h2> Messages</h2>
-  </div>
-  <div id="chatBox" class="chat-box"></div>
-  <div class="chat-input-area">
-    <input id="msgInput" class="chat-input" type="text" placeholder="Écris un message…" autocomplete="off" />
-    <button id="sendMsg" class="chat-send-btn">Envoyer</button>
-  </div>
-</div>    <br><br>
-        <div class="boite">
-  <h2>Envoyer un fichier</h2>
-  <input type="file" id="fileInput">
-  <button class="btn" id="uploadBtn"style="width: 150px;height: 40px; color:white;">Envoyer</button>
-  <ul id="fileList"></ul>
-</div>       <br><br>
-    <div class="auth-wrap">
-      <br><br>
-       <section class="card">
-       <div class="card-inner">
-        <div class="boite">
-  <h2>Formations</h2>
-  <ul id="formations"></ul>
-</div>    <br><br>
-<div class="boite">
-  <h2>Planning</h2>
-  <ul id="planning"></ul>
-</div>
-    <br><br>
-<div class="boite">
-  <h2>agenda</h2>
-  <ul id="Agenda"></ul>
-</div>
-          <br>
+    <!-- Main Container -->
+    <div class="container" id="mainContent" style="display: none;">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">LevelUpCreation</div>
+            <div class="header-actions">
+                <button class="btn-logout" id="logoutBtn">Se déconnecter</button>
+            </div>
         </div>
-         </section>
-    </div>
-  </div>
-<footer class="footer">
-  <div class="container footer__grid">
-
-    <!-- Logo + description -->
-    <div class="footer__brand">
-      <div class="footer__logo">
-        <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
-      </div>
-
-      <p class="footer__founder">
-        Fondatrice : <strong>Amandine Letellier</strong>
-      </p>
-    </div>
-
-    <!-- Contact -->
-    <div class="footer__contact">
-      <h4>Contact</h4>
-
-      <a href="mailto:amandine@levelupcreation.com">
-        amandine@levelupcreation.com
-      </a>
-
-      <a href="tel:+32497746906">
-        +32 497 74 69 06
-      </a>
+<!-- Profile Card -->
+<div class="profile-card fade-in">
+    <div class="profile-header">
+        <div class="profile-photo-container">
+            <img id="profilePhoto" class="profile-photo" src="" alt="Photo de profil">
+            <label for="photoInput" class="photo-upload-btn" title="Changer la photo">
+                📷
+            </label>
+            <input type="file" id="photoInput" accept="image/*" style="display: none;">
+        </div>
+        <div class="profile-info">
+            <h2 id="userName">Chargement...</h2>
+            <p id="userEmail">email@example.com</p>
+            <p class="project-name" id="projectName">Projet: -</p>
+        </div>
     </div>
 
-    <!-- Réseaux -->
-    <div class="footer__social">
-      <h4>Réseaux</h4>
-
-      <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
-      <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
-      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">LinkedIn</a>
+    <div class="progress-section">
+        <div class="progress-label">
+            <span>Avancement global du projet</span>
+            <span id="globalProgress">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
     </div>
-
-    <!-- Partenaires -->
-    <div class="footer__partners">
-      <h4>Nos partenaires</h4>
-
-      <ul class="footer__partners-list">
-     <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-      </ul>
-    </div>
-<!-- Newsletter -->
-<section class="newsletter">
-  <h2>Level Up News </h2>
-  <p>Reçois les nouveautés et conseils web directement par email.</p>
-
-  <form id="newsletterForm">
-    <input type="email" placeholder="Ton email" required>
-    <button type="submit">Je m'inscris</button>
-  </form>
-<br>
-  <small>Pas de spam. Désinscription en 1 clic.</small>
-</section>
 </div>
-  <div class="footer__bottom">
-    <p>
-      © <span id="year"></span> Level Up Creation — Tous droits réservés.
-    </p>
-  </div>
-</footer>
-<button id="scrollTopBtn" aria-label="Remonter en haut">
-  ↑
-</button>
-  <!-- Scripts UI (si pas d'import dedans) -->
-    <!--<script src="./javascripts/scripts.js"></script>-->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init("uxZcJJCuE7h_IO835");
-</script>
+
+        <!-- Project Steps Section -->
+        <section>
+            <h3 class="section-title">Avancement du Projet</h3>
+            <div class="steps-grid" id="stepsContainer"></div>
+        </section>
+
+        <!-- Formations Section -->
+        <section>
+            <h3 class="section-title">Mes Formations</h3>
+            <div class="formations-grid" id="formationsContainer"></div>
+        </section>
+    </div>
+    <script src="./javascripts/404.js"></script>
 <script src="./javascripts/scripts.js"></script>
-<script type="module" src="./Back_end/dashboard.js"></script>
+   <script type="module" src="./javascripts/dashboard.js">
+</script>
 </body>
 </html>
-

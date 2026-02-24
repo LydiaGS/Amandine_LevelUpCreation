@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contactez votre développeuse web à Bruxelles pour la création de votre site internet. Devis personnalisé et accompagnement complet.">
-<link rel="stylesheet" href="./css/tchat.css">
-<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js">
-<link rel="modulepreload" href="./javascripts/reviews.js">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Contactez votre développeuse web à Bruxelles pour la création de votre site internet. Devis personnalisé et accompagnement complet.">
+  <link rel="stylesheet" href="./css/tchat.css">
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js">
+  <link rel="modulepreload" href="./javascripts/reviews.js">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
-<link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
-<link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
-<link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-   <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
+  <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
+  <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
   <link rel="shortcut icon" href="./asset/image/favicon/2080x2080.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
-<link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
-<link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
+  <link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
+  <link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/image/favicon/2080x2080.png">
 
   <link rel="manifest" href="https://levelupcreation.com">
-<script type="module">
-  import { auth, db } from "./firebase.js";
+  <script type="module">
+    import { auth, db } from "./firebase.js";
 
-  console.log("Firebase connecté !");
-</script>
+    console.log("Firebase connecté !");
+  </script>
 
   <meta name="theme-color" content="#ff2e8b">
-   <title>Level Up Creation-Contacts</title>
+  <title>Level Up Creation-Contacts</title>
 </head>
+
 <body>
-   <!-- Top glow / background -->
+  <!-- Top glow / background -->
   <div class="bg-ambient" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
@@ -54,29 +59,26 @@
 
       <div class="nav__links" id="navLinks">
         <a class="nav__link" href="./index.html">Accueil</a>
-   
-  <a class="nav__link " href="./infos.html">
-    À propos
-  </a>
+        <a class="nav__link " href="./infos.html">
+          À propos
+        </a>
 
- 
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-          <!--<a class="nav__link" href="./dashboard.html">Dashboard</a>
-        <a class="nav__cta" href="./register.html">Inscription</a>
-        <a class="nav__cta" href="./login.html">Connexion</a>-->
+        <a class="nav__link" href="./dashboard.html">Dashboard</a>
       </div>
     </nav>
   </header>
 
-    <main class="quote">
+  <main class="quote">
     <section class="container quote__hero">
       <p class="quote__kicker" style="font-size: 18px;">Recevez un devis précis, sans engagement</p>
 
-      <h1 class="quote__title"style="font-size: 30px;">UNE QUESTION ? DEMANDE DE DEVIS SUR MESURE? UNE RÉSERVATION ?</h1>
+      <h1 class="quote__title" style="font-size: 30px;">UNE QUESTION ? DEMANDE DE DEVIS SUR MESURE? UNE RÉSERVATION ?
+      </h1>
 
-      <p class="quote__subtitle"style="font-size: 16px;">
+      <p class="quote__subtitle" style="font-size: 16px;">
         Expliquez-nous votre projet, on vous envoie une proposition claire .<br>
         Expliquez-nous votre question, on vous répond rapidement. <br>
         Réservé la formation les bases du développement web, c'est par ici.
@@ -127,8 +129,8 @@
     <br> <br>
 
   </main>
-<!-- MAP API (dark rose Level Up) -->
-<!--<section class="contact-map section" id="map">
+  <!-- MAP API (dark rose Level Up) -->
+  <!--<section class="contact-map section" id="map">
   <div class="container">
     <div class="contact-map__content">
       <h2 class="contact-map__title">Nous trouver à Bruxelles</h2>
@@ -151,85 +153,87 @@
     </div>
   </div>
 </section>-->
-<footer class="footer">
-  <div class="container footer__grid">
+  <footer class="footer">
+    <div class="container footer__grid">
 
-    <!-- Logo + description -->
-    <div class="footer__brand">
-      <div class="footer__logo">
-        <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+      <!-- Logo + description -->
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+        </div>
+
+        <p class="footer__founder">
+          Fondatrice : <strong>Amandine Letellier</strong>
+        </p>
       </div>
 
-      <p class="footer__founder">
-        Fondatrice : <strong>Amandine Letellier</strong>
+      <!-- Contact -->
+      <div class="footer__contact">
+        <h4>Contact</h4>
+
+        <a href="mailto:amandine@levelupcreation.com">
+          amandine@levelupcreation.com
+        </a>
+
+        <a href="tel:+32497746906">
+          +32 497 74 69 06
+        </a>
+      </div>
+
+      <!-- Réseaux -->
+      <div class="footer__social">
+        <h4>Réseaux</h4>
+
+        <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit"
+          target="_blank">LinkedIn</a>
+      </div>
+
+      <!-- Partenaires -->
+      <div class="footer__partners">
+        <h4>Nos partenaires</h4>
+
+        <ul class="footer__partners-list">
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+        </ul>
+      </div>
+      <!-- Newsletter -->
+      <section class="newsletter">
+        <h2>Level Up News </h2>
+        <p>Reçois les nouveautés et conseils web directement par email.</p>
+
+        <form id="newsletterForm">
+          <input type="email" placeholder="Ton email" required>
+          <button type="submit">Je m'inscris</button>
+        </form>
+        <br>
+        <small>Pas de spam. Désinscription en 1 clic.</small>
+      </section>
+    </div>
+
+    <div class="footer__bottom">
+
+      <p>
+        © <span id="year"></span> Level Up Creation — Tous droits réservés.
       </p>
     </div>
-
-    <!-- Contact -->
-    <div class="footer__contact">
-      <h4>Contact</h4>
-
-      <a href="mailto:amandine@levelupcreation.com">
-        amandine@levelupcreation.com
-      </a>
-
-      <a href="tel:+32497746906">
-        +32 497 74 69 06
-      </a>
-    </div>
-
-    <!-- Réseaux -->
-    <div class="footer__social">
-      <h4>Réseaux</h4>
-
-      <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
-      <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
-      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">LinkedIn</a>
-    </div>
-
-    <!-- Partenaires -->
-    <div class="footer__partners">
-      <h4>Nos partenaires</h4>
-
-      <ul class="footer__partners-list">
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-      </ul>
-    </div>
-<!-- Newsletter -->
-<section class="newsletter">
-  <h2>Level Up News </h2>
-  <p>Reçois les nouveautés et conseils web directement par email.</p>
-
-  <form id="newsletterForm">
-    <input type="email" placeholder="Ton email" required>
-    <button type="submit">Je m'inscris</button>
-  </form>
-<br>
-  <small>Pas de spam. Désinscription en 1 clic.</small>
-</section>
-</div>
-
-  <div class="footer__bottom">
-    
-    <p>
-      © <span id="year"></span> Level Up Creation — Tous droits réservés.
-    </p>
-  </div>
-</footer>
-<button id="scrollTopBtn" aria-label="Remonter en haut">
-  ↑
-</button>
-<!-- ═══════════════════════════════════════════════════
+  </footer>
+  <button id="scrollTopBtn" aria-label="Remonter en haut">
+    ↑
+  </button>
+  <!-- ═══════════════════════════════════════════════════
        CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
 
   <!-- Bouton bulle -->
   <button id="chatToggle" aria-label="Ouvrir l'assistant Level Up Creation">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
     <span id="chatBadge" aria-hidden="true"></span>
   </button>
@@ -250,79 +254,74 @@
     </div>
 
     <div class="cw-footer">
-      <input
-        class="cw-input"
-        id="cwInput"
-        type="text"
-        placeholder="Pose ta question…"
-        autocomplete="off"
-        aria-label="Message"
-      />
-        <button class="cw-send" id="cwSend" aria-label="Envoyer">
-          ↑
+      <input class="cw-input" id="cwInput" type="text" placeholder="Pose ta question…" autocomplete="off"
+        aria-label="Message" />
+      <button class="cw-send" id="cwSend" aria-label="Envoyer">
+        ↑
       </button>
     </div>
   </div>
   <script src="./javascripts/tchat.js"></script>
-   <script src="./javascripts/scripts.js" defer></script>
-<script src="./Javascripts/email.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./javascripts/scripts.js" defer></script>
+  <script src="./Javascripts/email.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script>
-  emailjs.init("pBMx5f_soArWQDzqS");
-</script>
+  <script>
+    emailjs.init("pBMx5f_soArWQDzqS");
+  </script>
 
-<script>
-  const form = document.getElementById("quoteForm");
-  const successMsg = document.getElementById("successMsg");
-  const submitBtn = form.querySelector('button[type="submit"]');
+  <script>
+    const form = document.getElementById("quoteForm");
+    const successMsg = document.getElementById("successMsg");
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    // UI
-    submitBtn.disabled = true;
-    submitBtn.textContent = "ENVOI EN COURS...";
+      // UI
+      submitBtn.disabled = true;
+      submitBtn.textContent = "ENVOI EN COURS...";
 
-    emailjs
-      .sendForm("service_jjxz4c6", "template_k9i1f5v", this)
-      .then(() => {
-        successMsg.hidden = false;
-        form.reset();
-      })
-      .catch((error) => {
-        alert("Erreur lors de l'envoi. Merci de réessayer.");
-        console.error("EmailJS error:", error);
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "ENVOYER MA DEMANDE";
+      emailjs
+        .sendForm("service_jjxz4c6", "template_k9i1f5v", this)
+        .then(() => {
+          successMsg.hidden = false;
+          form.reset();
+        })
+        .catch((error) => {
+          alert("Erreur lors de l'envoi. Merci de réessayer.");
+          console.error("EmailJS error:", error);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "ENVOYER MA DEMANDE";
+        });
+    });
+  </script>
+  <script>
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    });
+
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
-  });
-</script>
-<script>
-const scrollBtn = document.getElementById("scrollTopBtn");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add("show");
-  } else {
-    scrollBtn.classList.remove("show");
-  }
-});
-
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
-
-<script src="./javascripts/contact-map.js"></script>
-<script src="./javascripts/reviews.js"></script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqqMr-UFDNml3bdTzKsB7pW0qd04AdnU&callback=initMap">
-</script>
+    });
+  </script>
+    <script src="./javascripts/404.js"></script>
+  <script src="./javascripts/contact-map.js"></script>
+  <script src="./javascripts/reviews.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqqMr-UFDNml3bdTzKsB7pW0qd04AdnU&callback=initMap">
+    </script>
 </body>
+
 </html>
