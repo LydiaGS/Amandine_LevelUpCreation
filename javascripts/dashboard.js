@@ -27,7 +27,6 @@ import {
     getDownloadURL,
     deleteObject
 } from "./firebaseClient.js";
-
 // ===================================================================
 // 🎯 GLOBAL STATE
 // ===================================================================
@@ -39,7 +38,7 @@ let notifications = [];
 let chatMessages = [];
 let unreadNotifications = 0;
 let unreadMessages = 0;
-let unsubscribeTimeline = null;
+let unsubscribeTimeline = null; 
 
 // ===================================================================
 // 📊 DEFAULT DATA
@@ -70,21 +69,6 @@ const availableBadges = [
     { id: 'early-adopter', title: 'Early Adopter', icon: '⭐', description: 'Parmi les premiers clients', xp: 50 },
     { id: 'referrer', title: 'Ambassadeur', icon: '🎁', description: 'Premier parrainage réussi', xp: 30 }
 ];
-
-const STATUS_CONFIG = {
-    'done': {
-        icon: '✅',
-        label: 'Terminé'
-    },
-    'in-progress': {
-        icon: '⚡',
-        label: 'En cours'
-    },
-    'todo': {
-        icon: '📌',
-        label: 'À faire'
-    }
-};
 
 // ===================================================================
 // 🎨 DOM ELEMENTS
@@ -270,173 +254,230 @@ function initializeDashboard() {
     // Vérification après initialisation
     setTimeout(verifyTimelineSetup, 1000);
     
-    console.log('✅ Dashboard initialisé');
 }
+// ===================================================================
+// 📅 TIMELINE - SYSTÈME COMPLET
+// ===================================================================
+
+// Configuration des statuts
+const STATUS_CONFIG = {
+    'done': {
+        icon: '✅',
+        label: 'Terminé',
+        color: '#10b981'
+    },
+    'in-progress': {
+        icon: '⚡',
+        label: 'En cours',
+        color: '#f59e0b'
+    },
+    'todo': {
+        icon: '📌',
+        label: 'À faire',
+        color: '#6b7280'
+    }
+};
 
 // ===================================================================
-// 🆕 TIMELINE - CHARGEMENT TEMPS RÉEL
+// 🔄 CHARGEMENT TEMPS RÉEL
 // ===================================================================
 
 function loadTimelineRealtime() {
+    console.log('📊 [TIMELINE] Initialisation...');
+    
+    // Vérifier l'utilisateur
     if (!currentUser) {
-        console.error('❌ Utilisateur non connecté');
+        console.error('❌ [TIMELINE] Utilisateur non connecté');
         showTimelineError('Vous devez être connecté');
         return;
     }
 
-    console.log('📊 Chargement timeline pour:', currentUser.uid);
+    console.log('✅ [TIMELINE] User ID:', currentUser.uid);
     showTimelineLoader();
 
-    // Nettoyer l'ancien listener si existant
+    // Nettoyer l'ancien listener
     if (unsubscribeTimeline) {
-        console.log('🧹 Nettoyage ancien listener');
+        console.log('🧹 [TIMELINE] Nettoyage ancien listener');
         unsubscribeTimeline();
+        unsubscribeTimeline = null;
     }
 
+    // Référence Firestore
     const userRef = doc(db, 'users', currentUser.uid);
 
-    // 🔥 ÉCOUTE EN TEMPS RÉEL
+    // 🔥 Écoute en temps réel
     unsubscribeTimeline = onSnapshot(
         userRef,
         
-        // ✅ Callback de succès
+        // ✅ Succès
         (docSnapshot) => {
+            console.log('📥 [TIMELINE] Snapshot reçu');
             hideTimelineLoader();
             
             try {
+                // Vérifier l'existence du document
                 if (!docSnapshot.exists()) {
-                    console.warn('⚠️ Document utilisateur inexistant');
+                    console.warn('⚠️ [TIMELINE] Document inexistant');
                     showTimelineEmpty();
                     return;
                 }
 
+                // Récupérer les données
                 const data = docSnapshot.data();
                 const timeline = data.timeline || [];
 
-                console.log('📊 Timeline chargée:', timeline.length, 'événements');
+                console.log('📊 [TIMELINE] Événements trouvés:', timeline.length);
 
+                // Afficher selon le contenu
                 if (timeline.length === 0) {
                     showTimelineEmpty();
                 } else {
                     renderTimelineRealtime(timeline);
                 }
+                
             } catch (err) {
-                console.error('❌ Erreur traitement données:', err);
+                console.error('❌ [TIMELINE] Erreur traitement:', err);
                 showTimelineError('Erreur lors du traitement des données');
             }
         },
         
-        // ❌ Callback d'erreur
+        // ❌ Erreur
         (error) => {
-            console.error('❌ Erreur Firestore onSnapshot:', error);
-            console.error('Code erreur:', error.code);
+            console.error('❌ [TIMELINE] Erreur Firestore:', error);
+            console.error('Code:', error.code);
             console.error('Message:', error.message);
             
             hideTimelineLoader();
             
+            // Messages d'erreur personnalisés
             let errorMsg = 'Une erreur est survenue';
             
             switch (error.code) {
                 case 'permission-denied':
-                    errorMsg = '🔒 Permissions insuffisantes. Vérifiez les règles Firestore.';
-                    console.error('💡 Ajoutez cette règle Firestore:', 
-                        'allow read, write: if request.auth != null && request.auth.uid == resource.id;');
+                    errorMsg = '🔒 Permissions insuffisantes';
+                    console.error('💡 Vérifiez les règles Firestore');
                     break;
+                    
                 case 'unavailable':
-                    errorMsg = '📡 Service temporairement indisponible. Réessayez.';
+                    errorMsg = '📡 Service indisponible';
                     break;
+                    
                 case 'unauthenticated':
-                    errorMsg = '🔑 Session expirée. Reconnectez-vous.';
-                    setTimeout(() => window.location.href = './login.html', 2000);
+                    errorMsg = '🔑 Session expirée';
+                    setTimeout(() => {
+                        window.location.href = './login.html';
+                    }, 2000);
                     break;
+                    
                 case 'not-found':
-                    errorMsg = '📭 Document utilisateur non trouvé';
+                    errorMsg = '📭 Document non trouvé';
                     break;
+                    
                 default:
-                    errorMsg = `Erreur: ${error.message}`;
+                    errorMsg = error.message;
             }
             
             showTimelineError(errorMsg);
         }
     );
 
-    console.log('✅ Listener timeline activé');
+    console.log('✅ [TIMELINE] Listener activé');
 }
 
 // ===================================================================
-// 🆕 RENDER TIMELINE EN TEMPS RÉEL
+// 🎨 RENDU DE LA TIMELINE
 // ===================================================================
 
 function renderTimelineRealtime(timelineData) {
+    console.log('🎨 [TIMELINE] Rendu de', timelineData.length, 'événements');
+    
+    // Vérifier le container
     if (!timelineContainer) {
-        console.warn('⚠️ timelineContainer non trouvé');
+        console.error('❌ [TIMELINE] Container non trouvé');
         return;
     }
 
-    console.log('🎨 Rendu timeline:', timelineData.length, 'événements');
-
-    // Trier par timestamp ou date (plus récent en premier)
+    // Trier par date (plus récent en premier)
     const sortedTimeline = [...timelineData].sort((a, b) => {
-        // Priorité au timestamp si disponible
+        // Priorité au timestamp
         if (a.timestamp && b.timestamp) {
             return b.timestamp - a.timestamp;
         }
         
-        // Sinon parser les dates
+        // Fallback sur les dates
         const dateA = parseTimelineDate(a.date);
         const dateB = parseTimelineDate(b.date);
-        return dateB - dateA;
+        return dateB.getTime() - dateA.getTime();
     });
+
+    console.log('✅ [TIMELINE] Tri effectué');
 
     // Générer le HTML
     const timelineHTML = sortedTimeline.map((item, index) => {
         const status = item.status || 'todo';
-        const statusConfig = STATUS_CONFIG[status] || STATUS_CONFIG['todo'];
+        const config = STATUS_CONFIG[status] || STATUS_CONFIG['todo'];
+        const formattedDate = formatTimelineDate(item.date);
+        const title = escapeHtml(item.title || item.message || 'Événement');
+        const description = item.description ? escapeHtml(item.description) : '';
+        
+        // Log pour debug
+        if (index < 3) {
+            console.log(`📝 [TIMELINE] Item ${index}:`, {
+                title: item.title,
+                date: item.date,
+                formatted: formattedDate
+            });
+        }
         
         return `
             <div class="timeline-item animate-fade-in" 
                  style="animation-delay: ${index * 0.05}s"
-                 data-status="${status}">
+                 data-status="${status}"
+                 data-index="${index}">
+                
                 <div class="timeline-dot status-${status}" 
-                     title="${statusConfig.label}">
-                    ${statusConfig.icon}
+                     title="${config.label}"
+                     style="background: ${config.color}">
+                    <span class="timeline-dot-icon">${config.icon}</span>
                 </div>
                 
                 <div class="timeline-content">
-                    <span class="timeline-status-badge status-${status}">
-                        ${statusConfig.label}
-                    </span>
-                    
-                    <h3 class="timeline-title">
-                        ${escapeHtml(item.title || item.message || 'Événement')}
-                    </h3>
-                    
-                    ${item.description ? 
-                        `<p class="timeline-description">${escapeHtml(item.description)}</p>` 
-                        : ''}
-                    
-                    <div class="timeline-date" title="${item.date}">
-                        ${formatTimelineDate(item.date)}
+                    <div class="timeline-header">
+                        <span class="timeline-status-badge status-${status}">
+                            ${config.icon} ${config.label}
+                        </span>
+                        <span class="timeline-date" title="${item.date || 'Date inconnue'}">
+                            ${formattedDate}
+                        </span>
                     </div>
+                    
+                    <h3 class="timeline-title">${title}</h3>
+                    
+                    ${description ? 
+                        `<p class="timeline-description">${description}</p>` 
+                        : ''}
                 </div>
             </div>
         `;
     }).join('');
 
+    // Injecter le HTML
     timelineContainer.innerHTML = timelineHTML;
     timelineContainer.style.display = 'block';
     
+    // Masquer les états vides/erreur
     if (timelineEmpty) timelineEmpty.style.display = 'none';
     if (timelineError) timelineError.style.display = 'none';
     
-    console.log('✅ Timeline rendue avec succès');
+    console.log('✅ [TIMELINE] Rendu terminé');
 }
 
 // ===================================================================
-// 🆕 TIMELINE - UTILITAIRES D'AFFICHAGE
+// 🛠️ UTILITAIRES D'AFFICHAGE
 // ===================================================================
 
 function showTimelineLoader() {
+    console.log('⏳ [TIMELINE] Affichage loader');
     if (timelineLoader) timelineLoader.style.display = 'flex';
     if (timelineContainer) timelineContainer.style.display = 'none';
     if (timelineError) timelineError.style.display = 'none';
@@ -444,24 +485,158 @@ function showTimelineLoader() {
 }
 
 function hideTimelineLoader() {
+    console.log('✅ [TIMELINE] Masquage loader');
     if (timelineLoader) timelineLoader.style.display = 'none';
 }
 
 function showTimelineError(message) {
-    if (timelineError) timelineError.style.display = 'block';
-    if (timelineErrorMessage) timelineErrorMessage.textContent = message;
+    console.log('❌ [TIMELINE] Affichage erreur:', message);
+    if (timelineError) {
+        timelineError.style.display = 'block';
+        if (timelineErrorMessage) {
+            timelineErrorMessage.textContent = message;
+        }
+    }
     if (timelineContainer) timelineContainer.style.display = 'none';
     if (timelineEmpty) timelineEmpty.style.display = 'none';
 }
 
 function showTimelineEmpty() {
+    console.log('ℹ️ [TIMELINE] Affichage état vide');
     if (timelineEmpty) timelineEmpty.style.display = 'block';
     if (timelineContainer) timelineContainer.style.display = 'none';
     if (timelineError) timelineError.style.display = 'none';
 }
 
 // ===================================================================
-// 🆕 TIMELINE - UTILITAIRES DE FORMATAGE
+// 📅 PARSING DE DATE ROBUSTE
+// ===================================================================
+
+function parseTimelineDate(date) {
+    try {
+        let dateObj = null;
+        
+        // 1. Firestore Timestamp
+        if (date && typeof date.toDate === 'function') {
+            dateObj = date.toDate();
+            if (!isNaN(dateObj.getTime())) {
+                return dateObj;
+            }
+        }
+        
+        // 2. Timestamp numérique (millisecondes)
+        if (typeof date === 'number' && date > 0) {
+            dateObj = new Date(date);
+            if (!isNaN(dateObj.getTime())) {
+                return dateObj;
+            }
+        }
+        
+        // 3. String (ISO ou autre format)
+        if (typeof date === 'string' && date.trim() !== '') {
+            // Essai direct
+            dateObj = new Date(date);
+            if (!isNaN(dateObj.getTime())) {
+                return dateObj;
+            }
+            
+            // Fallback : parsing manuel pour ISO
+            const isoMatch = date.match(/^(\d{4})-(\d{2})-(\d{2})/);
+            if (isoMatch) {
+                const [, year, month, day] = isoMatch;
+                dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+                if (!isNaN(dateObj.getTime())) {
+                    return dateObj;
+                }
+            }
+        }
+        
+        // 4. Objet Date
+        if (date instanceof Date && !isNaN(date.getTime())) {
+            return date;
+        }
+        
+        // Si tout échoue
+        console.warn('⚠️ [TIMELINE] Date invalide:', date);
+        return new Date(0); // Epoch
+        
+    } catch (error) {
+        console.error('❌ [TIMELINE] Erreur parsing:', error);
+        return new Date(0);
+    }
+}
+
+// ===================================================================
+// 🎨 FORMATAGE DE DATE ROBUSTE
+// ===================================================================
+
+function formatTimelineDate(date) {
+    try {
+        const dateObj = parseTimelineDate(date);
+        
+        // Vérifier validité
+        if (!dateObj || isNaN(dateObj.getTime()) || dateObj.getTime() === 0) {
+            return 'Date inconnue';
+        }
+
+        const now = new Date();
+        const diffMs = now - dateObj;
+        const diffSecs = Math.floor(diffMs / 1000);
+        const diffMins = Math.floor(diffSecs / 60);
+        const diffHours = Math.floor(diffMins / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        // Temps relatif récent
+        if (diffSecs < 10) return 'À l\'instant';
+        if (diffSecs < 60) return `Il y a ${diffSecs}s`;
+        if (diffMins < 60) return `Il y a ${diffMins} min`;
+        if (diffHours < 24) return `Il y a ${diffHours}h`;
+        if (diffDays < 7) return `Il y a ${diffDays}j`;
+
+        // Date formatée (avec fallback manuel)
+        try {
+            const options = {
+                day: 'numeric',
+                month: 'long'
+            };
+            
+            if (dateObj.getFullYear() !== now.getFullYear()) {
+                options.year = 'numeric';
+            }
+            
+            return dateObj.toLocaleDateString('fr-FR', options);
+            
+        } catch (e) {
+            // Fallback manuel si toLocaleDateString échoue (Safari mobile)
+            return formatDateManual(dateObj);
+        }
+        
+    } catch (error) {
+        console.error('❌ [TIMELINE] Erreur formatage:', error);
+        return 'Date invalide';
+    }
+}
+
+// Formatage manuel (fallback)
+function formatDateManual(date) {
+    const months = [
+        'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+        'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+    ];
+    
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    const currentYear = new Date().getFullYear();
+    
+    if (year === currentYear) {
+        return `${day} ${month}`;
+    }
+    return `${day} ${month} ${year}`;
+}
+
+// ===================================================================
+// 🔐 ÉCHAPPEMENT HTML
 // ===================================================================
 
 function escapeHtml(text) {
@@ -471,170 +646,176 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function parseTimelineDate(date) {
-    try {
-        // Timestamp Firestore
-        if (date && typeof date.toDate === 'function') {
-            return date.toDate();
-        }
-        
-        // Timestamp numérique
-        if (typeof date === 'number') {
-            return new Date(date);
-        }
-        
-        // String ISO
-        if (typeof date === 'string') {
-            const parsed = new Date(date);
-            if (!isNaN(parsed.getTime())) {
-                return parsed;
-            }
-        }
-        
-        // Object Date
-        if (date instanceof Date && !isNaN(date.getTime())) {
-            return date;
-        }
-        
-        console.warn('⚠️ Date invalide:', date);
-        return new Date(0); // Epoch par défaut
-        
-    } catch (error) {
-        console.error('❌ Erreur parsing date:', error, date);
-        return new Date(0);
-    }
-}
-
-function formatTimelineDate(date) {
-    try {
-        const dateObj = parseTimelineDate(date);
-        
-        if (dateObj.getTime() === 0) {
-            return 'Date inconnue';
-        }
-
-        const now = new Date();
-        const diffMs = now - dateObj;
-        const diffMins = Math.floor(diffMs / 60000);
-        const diffHours = Math.floor(diffMs / 3600000);
-        const diffDays = Math.floor(diffMs / 86400000);
-
-        // Temps relatif pour les événements récents
-        if (diffMins < 1) return 'À l\'instant';
-        if (diffMins < 60) return `Il y a ${diffMins} min`;
-        if (diffHours < 24) return `Il y a ${diffHours}h`;
-        if (diffDays < 7) return `Il y a ${diffDays}j`;
-
-        // Date formatée pour les événements plus anciens
-        return dateObj.toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-            year: dateObj.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
-        });
-        
-    } catch (error) {
-        console.error('❌ Erreur formatage date:', error);
-        return 'Date invalide';
-    }
-}
-
 // ===================================================================
-// 🆕 ADD TIMELINE EVENT (VERSION UNIFIÉE)
+// ➕ AJOUTER UN ÉVÉNEMENT
 // ===================================================================
 
 async function addTimelineEvent(title, description = '', status = 'todo') {
+    console.log('➕ [TIMELINE] Ajout événement:', title);
+    
+    // Vérifications
     if (!currentUser) {
-        console.error('❌ Aucun utilisateur connecté');
+        console.error('❌ [TIMELINE] User non connecté');
         return;
     }
 
+    if (!userData) {
+        console.error('❌ [TIMELINE] userData non défini');
+        return;
+    }
+
+    // Initialiser timeline si besoin
     if (!userData.timeline) {
         userData.timeline = [];
     }
     
+    // Créer l'événement
     const now = new Date();
     const newEvent = {
         title: title,
         description: description,
         status: status,
-        date: now.toISOString(),
-        timestamp: now.getTime()
+        date: now.toISOString(), // Format ISO
+        timestamp: now.getTime()  // Timestamp numérique
     };
     
-    userData.timeline.unshift(newEvent); // Ajouter au début (plus récent)
+    console.log('📝 [TIMELINE] Nouvel événement:', newEvent);
     
-    // Garder seulement les 50 derniers événements
+    // Ajouter au début (plus récent)
+    userData.timeline.unshift(newEvent);
+    
+    // Limiter à 50 événements
     if (userData.timeline.length > 50) {
         userData.timeline = userData.timeline.slice(0, 50);
+        console.log('🗑️ [TIMELINE] Nettoyage: gardé 50 événements');
     }
     
+    // Sauvegarder dans Firestore
     try {
         const userDocRef = doc(db, 'users', currentUser.uid);
         await updateDoc(userDocRef, {
             timeline: userData.timeline
         });
-        console.log('✅ Timeline mise à jour:', title);
+        console.log('✅ [TIMELINE] Sauvegardé:', title);
     } catch (error) {
-        console.error('❌ Erreur mise à jour timeline:', error);
+        console.error('❌ [TIMELINE] Erreur sauvegarde:', error);
         throw error;
     }
 }
 
 // ===================================================================
-// 🆕 GESTION DU BOUTON RETRY
+// 🔄 BOUTON RETRY
 // ===================================================================
 
 if (timelineRetry) {
     timelineRetry.addEventListener('click', () => {
-        console.log('🔄 Retry timeline...');
+        console.log('🔄 [TIMELINE] Retry demandé');
         loadTimelineRealtime();
     });
+    console.log('✅ [TIMELINE] Bouton retry configuré');
 }
 
 // ===================================================================
-// 🆕 NETTOYAGE TIMELINE
+// 🧹 NETTOYAGE
 // ===================================================================
 
 function cleanupTimeline() {
     if (unsubscribeTimeline) {
+        console.log('🧹 [TIMELINE] Nettoyage listener');
         unsubscribeTimeline();
         unsubscribeTimeline = null;
-        console.log('🧹 Timeline listener nettoyé');
     }
 }
 
+// Nettoyage automatique
 window.addEventListener('beforeunload', cleanupTimeline);
 
 // ===================================================================
-// 🔍 DEBUG TIMELINE
+// 🔍 DEBUG ET DIAGNOSTIC
 // ===================================================================
 
 function verifyTimelineSetup() {
-    console.group('🔍 Vérification Timeline');
+    console.group('🔍 [TIMELINE] DIAGNOSTIC');
     
     const checks = {
         'User connecté': !!currentUser,
+        'User ID': currentUser?.uid || 'N/A',
         'UserData chargé': !!userData,
         'Timeline existe': !!userData?.timeline,
-        'Timeline est array': Array.isArray(userData?.timeline),
+        'Timeline array': Array.isArray(userData?.timeline),
+        'Timeline length': userData?.timeline?.length || 0,
         'Container trouvé': !!timelineContainer,
         'Loader trouvé': !!timelineLoader,
-        'Empty state trouvé': !!timelineEmpty,
-        'Error state trouvé': !!timelineError
+        'Empty trouvé': !!timelineEmpty,
+        'Error trouvé': !!timelineError,
+        'Retry trouvé': !!timelineRetry,
+        'Listener actif': !!unsubscribeTimeline
     };
     
-    Object.entries(checks).forEach(([check, status]) => {
-        console.log(`${status ? '✅' : '❌'} ${check}`);
-    });
+    console.table(checks);
     
-    if (userData?.timeline) {
-        console.log(`📊 ${userData.timeline.length} événements dans la timeline`);
+    if (userData?.timeline && userData.timeline.length > 0) {
+        console.group('📊 Événements timeline');
+        userData.timeline.slice(0, 5).forEach((event, i) => {
+            console.log(`Event ${i}:`, {
+                title: event.title,
+                date: event.date,
+                timestamp: event.timestamp,
+                status: event.status,
+                parsed: parseTimelineDate(event.date),
+                formatted: formatTimelineDate(event.date)
+            });
+        });
+        console.groupEnd();
     }
     
     console.groupEnd();
 }
 
+// Fonction de nettoyage timeline
+function cleanTimelineData() {
+    console.log('🧹 [TIMELINE] Nettoyage des données');
+    
+    if (!userData || !userData.timeline) {
+        console.error('❌ Pas de timeline à nettoyer');
+        return;
+    }
+    
+    userData.timeline = userData.timeline.map(event => {
+        const cleaned = { ...event };
+        
+        // Ajouter timestamp si manquant
+        if (!cleaned.timestamp) {
+            const parsed = parseTimelineDate(cleaned.date);
+            cleaned.timestamp = parsed.getTime();
+        }
+        
+        // Normaliser date en ISO
+        if (!cleaned.date || typeof cleaned.date !== 'string') {
+            cleaned.date = new Date(cleaned.timestamp).toISOString();
+        }
+        
+        // Assurer status
+        if (!cleaned.status) {
+            cleaned.status = 'todo';
+        }
+        
+        return cleaned;
+    });
+    
+    // Sauvegarder
+    const userDocRef = doc(db, 'users', currentUser.uid);
+    return updateDoc(userDocRef, {
+        timeline: userData.timeline
+    }).then(() => {
+        console.log('✅ Timeline nettoyée et sauvegardée');
+    });
+}
+
+// Exposer globalement pour debug
 window.debugTimeline = verifyTimelineSetup;
+window.cleanTimelineData = cleanTimelineData;
+
 
 // ===================================================================
 // 👤 DISPLAY PROFILE
