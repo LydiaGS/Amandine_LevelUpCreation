@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form) return;
 
   let lastDocRef = null;
+  let allLoadedDocs = new Set(); // ← NOUVEAU : Pour éviter les doublons
 
   // =========================
   // Helpers
@@ -119,41 +120,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // Charger avis
+  // Charger avis (CORRIGÉ)
   // =========================
   async function loadReviews(reset = false) {
 
+    // ✅ Si reset, on vide TOUT
     if (reset) {
       lastDocRef = null;
-      list.innerHTML = "";
+      allLoadedDocs.clear(); // ← Réinitialise le tracking
+      list.innerHTML = "";    // ← Vide la liste
     }
 
     try {
-      const baseQuery = query(
-        collection(db, "reviews"),
-        where("approved", "==", true),
-        orderBy("createdAt", "desc"),
-        limit(6)
-      );
-
-      const q = lastDocRef
-        ? query(
-            collection(db, "reviews"),
-            where("approved", "==", true),
-            orderBy("createdAt", "desc"),
-            startAfter(lastDocRef),
-            limit(6)
-          )
-        : baseQuery;
+      // Construire la requête
+      let q;
+      
+      if (lastDocRef) {
+        // Requête pour charger la suite
+        q = query(
+          collection(db, "reviews"),
+          where("approved", "==", true),
+          orderBy("createdAt", "desc"),
+          startAfter(lastDocRef),
+          limit(6)
+        );
+      } else {
+        // Première requête
+        q = query(
+          collection(db, "reviews"),
+          where("approved", "==", true),
+          orderBy("createdAt", "desc"),
+          limit(6)
+        );
+      }
 
       const snap = await getDocs(q);
 
+      // ✅ Ajouter uniquement les nouveaux avis
       snap.forEach(doc => {
-        list.appendChild(renderReview(doc));
+        // Vérifier si cet avis n'a pas déjà été affiché
+        if (!allLoadedDocs.has(doc.id)) {
+          allLoadedDocs.add(doc.id);        // ← Marquer comme affiché
+          list.appendChild(renderReview(doc)); // ← Ajouter à la liste
+        }
       });
 
-      lastDocRef = snap.docs[snap.docs.length - 1];
+      // ✅ Mettre à jour le dernier document
+      if (snap.docs.length > 0) {
+        lastDocRef = snap.docs[snap.docs.length - 1];
+      }
 
+      // ✅ Masquer le bouton "Voir plus" s'il n'y a plus d'avis
       if (loadMoreBtn) {
         loadMoreBtn.hidden = snap.size < 6;
       }
@@ -192,14 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.textContent = "ENVOI EN COURS…";
 
     try {
-     await addDoc(collection(db, "reviews"), {
-  name,
-  email: email || null,
-  message,
- rating: Number(rating),
-  approved: false,
-  page: window.location.href
-});
+      await addDoc(collection(db, "reviews"), {
+        name,
+        email: email || null,
+        message,
+        rating: Number(rating),
+        approved: false,
+        createdAt: serverTimestamp(),
+        page: window.location.href
+      });
 
       form.reset();
       charCount.textContent = "0";
@@ -212,25 +230,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 5000);
 
     } catch (err) {
-  console.error("Firestore error:", err);
-  console.error("Code:", err.code);
-  console.error("Message:", err.message);
-  alert("Erreur Firestore, regarde la console.");
-}
+      console.error("Firestore error:", err);
+      console.error("Code:", err.code);
+      console.error("Message:", err.message);
+      alert("Erreur Firestore, regarde la console.");
+    }
 
     btn.disabled = false;
     btn.textContent = "ENVOYER MON AVIS";
   });
 
   // =========================
-  // Voir plus
+  // Voir plus (CORRIGÉ)
   // =========================
-  loadMoreBtn?.addEventListener("click", () => loadReviews());
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      console.log("📖 Chargement de plus d'avis...");
+      loadReviews(false); // ← NE PAS reset
+    });
+  }
 
   // =========================
   // INIT
   // =========================
   loadStats();
-  loadReviews(true);
+  loadReviews(true); // ← Reset au chargement initial
 
 });
