@@ -127,7 +127,7 @@ exports.chatAI = onRequest(
 **Formations** : HTML, CSS, JavaScript, Web Développement Complet
 
 ## ÉQUIPE
-- Amandine Letellier : Fondatrice & développeuse web
+- Amandine : Fondatrice & développeuse web
 - Jonathan : Designer graphique & motion designer
 
 ## CONTACT
@@ -140,7 +140,7 @@ Tu es professionnelle, chaleureuse et tu tutoies avec bienveillance.
 Tu structures tes réponses avec titres, listes et emojis.
 Tu rediriges vers le contact pour les demandes spécifiques.
 
-Tu ne réponds QUE sur Level Up Creation et le développement web.`
+Tu ne réponds QUE sur Level Up Creation et le développement web les Hamsters, les rats, le java, le C, le référencement web, php, my sql, minecraft, Hytale, et tout les adobes .`
         },
         ...conversationHistory.slice(-10),
         {
