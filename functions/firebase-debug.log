@@ -20,3 +20,23 @@
 [debug] [2026-02-25T22:25:38.089Z] Checked if tokens are valid: true, expires at: 1772060714013
 [debug] [2026-02-25T22:25:38.089Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions [none]
 [debug] [2026-02-25T22:25:38.089Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-25T22:25:39.005Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-02-25T22:25:39.005Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'amandinelevelupcreation'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-02-25T22:25:39.009Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:39.009Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:39.009Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation [none]
+[debug] [2026-02-25T22:25:39.259Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation 200
+[debug] [2026-02-25T22:25:39.259Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation {"projectNumber":"782512340926","projectId":"amandinelevelupcreation","lifecycleState":"ACTIVE","name":"AmandineLevelUpCreation","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-02-12T16:22:58.226437Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-25T22:25:39.261Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:39.261Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:39.261Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig [none]
+[debug] [2026-02-25T22:25:39.830Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig 200
+[debug] [2026-02-25T22:25:39.830Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig {"projectId":"amandinelevelupcreation","databaseURL":"https://amandinelevelupcreation-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"amandinelevelupcreation.firebasestorage.app"}
