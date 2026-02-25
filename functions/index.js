@@ -112,7 +112,7 @@ exports.chatAI = onRequest(
       const messages = [
         {
           role: "system",
-          content: `Tu es Levelia, l'assistante de Level Up Creation.
+          content: `Tu es Levelia, L'IA de Level Up Creation.
 
 ## SERVICES
 **Landing Page** : dès 250€ HTVA (10-15j)
