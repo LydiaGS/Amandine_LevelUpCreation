@@ -12,6 +12,7 @@
   <title>Connexion | Level Up Creation</title>
 </head>
 <body>
+  
     <a href="./index.html" class="close-btn" aria-label="Fermer et retourner à l'accueil">✕</a>
 <section class="hero" id="guestHero" aria-label="Hero">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -43,7 +44,7 @@
    <a class="btn" href="./contact.html" style="margin-top:12px; display:inline-block; width:260px;">
             Besoin d’aide ? Contacte-nous
           </a>
-              <script src="./javascripts/404.js"></script>
+
   <script type="module">
     import { auth, signInWithEmailAndPassword } from "./javascripts/firebaseClient.js";
 
@@ -66,7 +67,10 @@ form.addEventListener("submit", async (e) => {
   msg.textContent = `❌ ${err.code || ""} ${err.message || "Erreur"}`;
 }
 });
-
   </script>
+     <script src="./javascripts/404.js"></script>
+      <script type="module" src="./javascripts/reviews.js"></script>
+      <script src="./javascripts/ai.js"></script>
+    <script src="./javascripts/tchat.js"></script>
 </body>
 </html>

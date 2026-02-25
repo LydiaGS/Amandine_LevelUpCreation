@@ -612,7 +612,47 @@
         </div>
     </div>
 </div>
-    <script src="./javascripts/404.js"></script>
+<!-- ═══════════════════════════════════════════════════
+       CHAT WIDGET — HTML
+  ═══════════════════════════════════════════════════ -->
+<!-- Bouton flottant -->
+<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+  💬
+</button>
+
+<!-- Panneau Chat -->
+<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+  <div class="cw-header">
+    <div class="cw-avatar">💬</div>
+    <div class="cw-title">
+      <strong>Levelia</strong>
+      <span>En ligne</span>
+    </div>
+      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+    🗑️
+  </button>
+    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+  </div>
+
+  <div class="cw-messages" id="cwMessages">
+    <!-- Messages injectés par JavaScript -->
+  </div>
+
+  <div class="cw-footer">
+    <input
+      class="cw-input"
+      id="cwInput"
+      type="text"
+      placeholder="Pose ta question…"
+      autocomplete="off"
+      aria-label="Message"
+      maxlength="2000"
+    />
+    <button class="cw-send" id="cwSend" aria-label="Envoyer">
+      ↑
+    </button>
+  </div>
+</div>
 <script src="./javascripts/scripts.js"></script>
    <script type="module" src="./javascripts/dashboard.js">
 </script>
