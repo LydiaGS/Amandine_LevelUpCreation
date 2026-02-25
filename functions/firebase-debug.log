@@ -1,0 +1,136 @@
+[debug] [2026-02-25T21:33:40.793Z] ----------------------------------------------------------------------
+[debug] [2026-02-25T21:33:40.794Z] Command:       /home/amandine/.nvm/versions/node/v20.19.6/bin/node /home/amandine/.nvm/versions/node/v20.19.6/bin/firebase deploy --only functions:chatAI
+[debug] [2026-02-25T21:33:40.795Z] CLI Version:   15.7.0
+[debug] [2026-02-25T21:33:40.795Z] Platform:      linux
+[debug] [2026-02-25T21:33:40.795Z] Node Version:  v20.19.6
+[debug] [2026-02-25T21:33:40.795Z] Time:          Wed Feb 25 2026 22:33:40 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2026-02-25T21:33:40.795Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-25T21:33:41.467Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-25T21:33:41.467Z] > authorizing via signed-in user (letellier.ama@gmail.com)
+[debug] [2026-02-25T21:33:41.467Z] [iam] checking project amandinelevelupcreation for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-02-25T21:33:41.468Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:41.468Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:41.469Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions [none]
+[debug] [2026-02-25T21:33:41.469Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions  x-goog-user-project=amandinelevelupcreation
+[debug] [2026-02-25T21:33:41.469Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-25T21:33:42.302Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions 200
+[debug] [2026-02-25T21:33:42.302Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-25T21:33:42.302Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:42.302Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:42.303Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-02-25T21:33:42.303Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-25T21:33:43.114Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-02-25T21:33:43.114Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'amandinelevelupcreation'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-02-25T21:33:43.117Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:43.117Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:43.117Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation [none]
+[debug] [2026-02-25T21:33:43.309Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation 200
+[debug] [2026-02-25T21:33:43.309Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation {"projectNumber":"782512340926","projectId":"amandinelevelupcreation","lifecycleState":"ACTIVE","name":"AmandineLevelUpCreation","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-02-12T16:22:58.226437Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-25T21:33:43.310Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:43.310Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:43.310Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig [none]
+[debug] [2026-02-25T21:33:43.892Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig 200
+[debug] [2026-02-25T21:33:43.892Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/amandinelevelupcreation/adminSdkConfig {"projectId":"amandinelevelupcreation","databaseURL":"https://amandinelevelupcreation-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"amandinelevelupcreation.firebasestorage.app"}
+[debug] [2026-02-25T21:33:43.893Z] Validating nodejs source
+[warn] ⚠  functions: Runtime Node.js 20 will be deprecated on 2026-04-30 and will be decommissioned on 2026-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2026-02-25T21:33:44.783Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Level Up Creation",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^4.5.0",
+    "firebase-admin": "^12.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2026-02-25T21:33:44.783Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[info] i  functions: You are using a version of firebase-functions SDK (4.9.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2026-02-25T21:33:44.784Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-02-25T21:33:44.787Z] Found firebase-functions binary at '/home/amandine/Documents/Amandine_LevelUpCreation/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8809
+
+[debug] [2026-02-25T21:33:44.978Z] Got response from /__/functions.yaml {"endpoints":{"hello":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"labels":{},"httpsTrigger":{},"entryPoint":"hello"},"autoApproveReview":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"reviews/{reviewId}"},"retry":false},"entryPoint":"autoApproveReview"},"chatAI":{"availableMemoryMb":256,"timeoutSeconds":60,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"OPENAI_KEY"}],"labels":{},"httpsTrigger":{"invoker":["public"]},"entryPoint":"chatAI"}},"specVersion":"v1alpha1","requiredAPIs":[],"params":[{"type":"secret","name":"OPENAI_KEY"}]}
+[debug] [2026-02-25T21:33:49.003Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.004Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.004Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY [none]
+[debug] [2026-02-25T21:33:49.361Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY 200
+[debug] [2026-02-25T21:33:49.361Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY {"name":"projects/782512340926/secrets/OPENAI_KEY","replication":{"automatic":{}},"createTime":"2026-02-25T13:51:36.683001Z","labels":{"firebase-managed":"functions"},"etag":"\"164ba64d8eb979\""}
+[debug] [2026-02-25T21:33:49.361Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.361Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.361Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest [none]
+[debug] [2026-02-25T21:33:49.565Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest 200
+[debug] [2026-02-25T21:33:49.565Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest {"name":"projects/782512340926/secrets/OPENAI_KEY/versions/6","createTime":"2026-02-25T16:38:20.511847Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"164ba8a1bf2667\""}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /home/amandine/Documents/Amandine_LevelUpCreation/functions (70.82 KB) for uploading 
+[debug] [2026-02-25T21:33:49.591Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.591Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:49.591Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/amandinelevelupcreation/locations/-/functions [none]
+[debug] [2026-02-25T21:33:50.490Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/amandinelevelupcreation/locations/-/functions 200
+[debug] [2026-02-25T21:33:50.490Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/amandinelevelupcreation/locations/-/functions {}
+[debug] [2026-02-25T21:33:50.490Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:50.490Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:50.491Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/amandinelevelupcreation/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2026-02-25T21:33:51.512Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/amandinelevelupcreation/locations/-/functions 200
+[debug] [2026-02-25T21:33:51.513Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/amandinelevelupcreation/locations/-/functions {"functions":[{"name":"projects/amandinelevelupcreation/locations/us-central1/functions/autoApproveReview","buildConfig":{"build":"projects/782512340926/locations/us-central1/builds/a5ad478b-e174-4674-9100-810b795c0339","runtime":"nodejs20","entryPoint":"autoApproveReview","source":{"storageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"autoApproveReview/function-source.zip","generation":"1772035740701328"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/amandinelevelupcreation/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"autoApproveReview/function-source.zip","generation":"1772035740701328"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/amandinelevelupcreation/serviceAccounts/782512340926-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/amandinelevelupcreation/locations/us-central1/services/autoapprovereview","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"amandinelevelupcreation\",\"databaseURL\":\"https://amandinelevelupcreation-default-rtdb.europe-west1.firebasedatabase.app\",\"storageBucket\":\"amandinelevelupcreation.firebasestorage.app\"}","GCLOUD_PROJECT":"amandinelevelupcreation","EVENTARC_CLOUD_EVENT_SOURCE":"projects/amandinelevelupcreation/locations/us-central1/services/autoApproveReview","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"autoApproveReview","LOG_EXECUTION_ID":"true"},"maxInstanceCount":20,"ingressSettings":"ALLOW_ALL","uri":"https://autoapprovereview-2c4gzibzha-uc.a.run.app","serviceAccountEmail":"782512340926-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"autoapprovereview-00007-muy","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/amandinelevelupcreation/locations/europe-west1/triggers/autoapprovereview-951847","triggerRegion":"europe-west1","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"document","value":"reviews/{reviewId}","operator":"match-path-pattern"},{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"}],"pubsubTopic":"projects/amandinelevelupcreation/topics/eventarc-europe-west1-autoapprovereview-951847-919","serviceAccountEmail":"782512340926-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"state":"ACTIVE","updateTime":"2026-02-25T16:10:27.347352198Z","labels":{"firebase-functions-hash":"1abf5cc6433f29f3e1b8ec20c6bf20c47fd454dd","deployment-tool":"cli-firebase"},"environment":"GEN_2","url":"https://us-central1-amandinelevelupcreation.cloudfunctions.net/autoApproveReview","createTime":"2026-02-25T14:15:04.735670604Z","satisfiesPzi":true},{"name":"projects/amandinelevelupcreation/locations/us-central1/functions/chatAI","buildConfig":{"build":"projects/782512340926/locations/us-central1/builds/b7bd067b-76ad-4fa7-8072-e95912705a34","runtime":"nodejs20","entryPoint":"chatAI","source":{"storageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"chatAI/function-source.zip","generation":"1772054818271548"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/amandinelevelupcreation/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"chatAI/function-source.zip","generation":"1772054818271548"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/amandinelevelupcreation/serviceAccounts/782512340926-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/amandinelevelupcreation/locations/us-central1/services/chatai","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"amandinelevelupcreation\",\"databaseURL\":\"https://amandinelevelupcreation-default-rtdb.europe-west1.firebasedatabase.app\",\"storageBucket\":\"amandinelevelupcreation.firebasestorage.app\"}","GCLOUD_PROJECT":"amandinelevelupcreation","EVENTARC_CLOUD_EVENT_SOURCE":"projects/amandinelevelupcreation/locations/us-central1/services/chatAI","FUNCTION_TARGET":"chatAI","LOG_EXECUTION_ID":"true"},"maxInstanceCount":20,"ingressSettings":"ALLOW_ALL","uri":"https://chatai-2c4gzibzha-uc.a.run.app","serviceAccountEmail":"782512340926-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"secretEnvironmentVariables":[{"key":"OPENAI_KEY","projectId":"amandinelevelupcreation","secret":"OPENAI_KEY","version":"6"}],"revision":"chatai-00024-hik","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2026-02-25T21:27:48.958145422Z","labels":{"firebase-functions-hash":"7ed7493e93ebd2b15730fb927810a87fd823a912","deployment-tool":"cli-firebase"},"environment":"GEN_2","url":"https://us-central1-amandinelevelupcreation.cloudfunctions.net/chatAI","createTime":"2026-02-25T14:04:12.516353174Z","satisfiesPzi":true},{"name":"projects/amandinelevelupcreation/locations/us-central1/functions/hello","buildConfig":{"build":"projects/782512340926/locations/us-central1/builds/a5ad478b-e174-4674-9100-810b795c0339","runtime":"nodejs20","entryPoint":"hello","source":{"storageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"hello/function-source.zip","generation":"1772035569146321"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/amandinelevelupcreation/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-782512340926-us-central1","object":"hello/function-source.zip","generation":"1772035569146321"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/amandinelevelupcreation/serviceAccounts/782512340926-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/amandinelevelupcreation/locations/us-central1/services/hello","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"amandinelevelupcreation\",\"databaseURL\":\"https://amandinelevelupcreation-default-rtdb.europe-west1.firebasedatabase.app\",\"storageBucket\":\"amandinelevelupcreation.firebasestorage.app\"}","GCLOUD_PROJECT":"amandinelevelupcreation","EVENTARC_CLOUD_EVENT_SOURCE":"projects/amandinelevelupcreation/locations/us-central1/services/hello","FUNCTION_TARGET":"hello","LOG_EXECUTION_ID":"true","FUNCTION_SIGNATURE_TYPE":"http"},"maxInstanceCount":20,"ingressSettings":"ALLOW_ALL","uri":"https://hello-2c4gzibzha-uc.a.run.app","serviceAccountEmail":"782512340926-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"hello-00008-jar","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2026-02-25T16:10:27.777601825Z","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"1abf5cc6433f29f3e1b8ec20c6bf20c47fd454dd"},"environment":"GEN_2","url":"https://us-central1-amandinelevelupcreation.cloudfunctions.net/hello","createTime":"2026-02-20T00:04:38.334267900Z","satisfiesPzi":true}]}
+[debug] [2026-02-25T21:33:51.515Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:51.515Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:51.515Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/amandinelevelupcreation/databases/(default) [none]
+[debug] [2026-02-25T21:33:51.705Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/amandinelevelupcreation/databases/(default) 200
+[debug] [2026-02-25T21:33:51.706Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/amandinelevelupcreation/databases/(default) {"name":"projects/amandinelevelupcreation/databases/(default)","uid":"0e7f3690-77bd-4adc-9172-218ad6d9aba2","createTime":"2026-02-13T15:25:25.252856Z","updateTime":"2026-02-13T15:25:25.252856Z","locationId":"europe-west1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-02-25T20:33:51.765803Z","appEngineIntegrationMode":"DISABLED","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IMO28pTM9ZIDMLTxsvOq5JID"}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2026-02-25T21:33:51.708Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:51.708Z] Checked if tokens are valid: true, expires at: 1772057665844
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2026-02-25T21:33:51.708Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:51.708Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:51.708Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-02-25T21:33:51.708Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/pubsub.googleapis.com:generateServiceIdentity  x-goog-user-project=782512340926
+[debug] [2026-02-25T21:33:51.708Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/pubsub.googleapis.com:generateServiceIdentity {}
+[debug] [2026-02-25T21:33:51.709Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-02-25T21:33:51.709Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/eventarc.googleapis.com:generateServiceIdentity  x-goog-user-project=782512340926
+[debug] [2026-02-25T21:33:51.709Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/eventarc.googleapis.com:generateServiceIdentity {}
+[debug] [2026-02-25T21:33:52.946Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2026-02-25T21:33:52.946Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-782512340926@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"102785378090377148767"}}
+[debug] [2026-02-25T21:33:52.947Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2026-02-25T21:33:52.947Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/782512340926/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-782512340926@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"115297014401920944457"}}
+[info] i  functions: ensuring required API secretmanager.googleapis.com is enabled... 
+[debug] [2026-02-25T21:33:52.949Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:52.949Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:52.949Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest [none]
+[debug] [2026-02-25T21:33:53.107Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest 200
+[debug] [2026-02-25T21:33:53.107Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/amandinelevelupcreation/secrets/OPENAI_KEY/versions/latest {"name":"projects/782512340926/secrets/OPENAI_KEY/versions/6","createTime":"2026-02-25T16:38:20.511847Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"164ba8a1bf2667\""}
+[debug] [2026-02-25T21:33:53.107Z] Resolved secret version of OPENAI_KEY to 6.
+[debug] [2026-02-25T21:33:53.108Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:53.108Z] Checked if tokens are valid: true, expires at: 1772057665844
+[debug] [2026-02-25T21:33:53.108Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation [none]
