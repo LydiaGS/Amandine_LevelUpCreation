@@ -1,0 +1,22 @@
+[debug] [2026-02-25T22:25:36.442Z] ----------------------------------------------------------------------
+[debug] [2026-02-25T22:25:36.443Z] Command:       /home/amandine/.nvm/versions/node/v20.19.6/bin/node /home/amandine/.nvm/versions/node/v20.19.6/bin/firebase deploy --only functions:chatAI
+[debug] [2026-02-25T22:25:36.443Z] CLI Version:   15.7.0
+[debug] [2026-02-25T22:25:36.443Z] Platform:      linux
+[debug] [2026-02-25T22:25:36.443Z] Node Version:  v20.19.6
+[debug] [2026-02-25T22:25:36.444Z] Time:          Wed Feb 25 2026 23:25:36 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2026-02-25T22:25:36.444Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-25T22:25:37.108Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-25T22:25:37.109Z] > authorizing via signed-in user (letellier.ama@gmail.com)
+[debug] [2026-02-25T22:25:37.109Z] [iam] checking project amandinelevelupcreation for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-02-25T22:25:37.110Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:37.110Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:37.110Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions [none]
+[debug] [2026-02-25T22:25:37.110Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions  x-goog-user-project=amandinelevelupcreation
+[debug] [2026-02-25T22:25:37.111Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-25T22:25:38.088Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions 200
+[debug] [2026-02-25T22:25:38.088Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/amandinelevelupcreation:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-25T22:25:38.089Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:38.089Z] Checked if tokens are valid: true, expires at: 1772060714013
+[debug] [2026-02-25T22:25:38.089Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-02-25T22:25:38.089Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/amandinelevelupcreation/serviceAccounts/amandinelevelupcreation@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
