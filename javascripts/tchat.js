@@ -119,7 +119,6 @@
     messages.appendChild(msg);
     scrollToBottom();
 
-    // Ajouter à l'historique
     ajouterAuHistorique(role === "bot" ? "assistant" : "user", texte);
   }
 
@@ -168,7 +167,6 @@
     
     if (!texte) return;
 
-    // Validation longueur
     if (texte.length > CONFIG.MAX_MESSAGE_LENGTH) {
       ajouterMessage(
         `⚠️ Ton message est trop long (${texte.length} caractères).\n\nMerci de le réduire à ${CONFIG.MAX_MESSAGE_LENGTH} caractères maximum.`,
@@ -177,7 +175,6 @@
       return;
     }
 
-    // Afficher message utilisateur
     ajouterMessage(texte, "user");
     input.value = "";
     
@@ -187,9 +184,8 @@
     try {
       console.log("🚀 Envoi vers:", CONFIG.API_URL);
 
-      // Appel API avec timeout
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 secondes
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
 
       const response = await window.fetch(CONFIG.API_URL, {
         method: "POST",
@@ -218,7 +214,6 @@
 
       retirerTyping();
       
-      // Simulation de typing pour effet naturel
       await new Promise(r => setTimeout(r, CONFIG.TYPING_DELAY));
       
       ajouterMessage(data.reply, "bot");
@@ -228,7 +223,6 @@
 
       retirerTyping();
 
-      // Gestion timeout
       if (error.name === 'AbortError') {
         ajouterMessage(
           `⏱️ La requête a pris trop de temps.\n\nRéessaie ou contacte directement :\n📧 amandine@levelupcreation.com\n📞 +32 497 74 69 06`,
@@ -238,7 +232,6 @@
         return;
       }
 
-      // Retry automatique
       if (retryCount < CONFIG.MAX_RETRIES) {
         ajouterMessage(
           `⏳ Connexion instable... Nouvelle tentative (${retryCount + 1}/${CONFIG.MAX_RETRIES})`,
@@ -249,7 +242,6 @@
         return envoyerMessage(retryCount + 1);
       }
 
-      // Échec final
       ajouterMessage(
         `😅 Impossible de se connecter.\n\n**Solutions :**\n\n1️⃣ Vérifie ta connexion Internet\n2️⃣ Réessaie dans quelques instants\n3️⃣ Contacte directement :\n\n📧 amandine@levelupcreation.com\n📞 +32 497 74 69 06`,
         "bot"
@@ -274,6 +266,27 @@
     isOpen = false;
     widget.classList.remove("open");
     toggle.classList.remove("hidden");
+    
+    // ✅ EFFACER l'historique à la fermeture
+    conversationHistory = [];
+    localStorage.removeItem('levelup_chat_history');
+    
+    // ✅ VIDER les messages affichés
+    messages.innerHTML = '';
+    
+    // ✅ RÉAFFICHER le message de bienvenue
+    setTimeout(() => {
+      afficherMessageBienvenue();
+    }, 100);
+  }
+
+  function effacerConversation() {
+    if (confirm("Veux-tu vraiment effacer toute la conversation ?")) {
+      conversationHistory = [];
+      localStorage.removeItem('levelup_chat_history');
+      messages.innerHTML = '';
+      afficherMessageBienvenue();
+    }
   }
 
   // ============================================
@@ -281,7 +294,7 @@
   // ============================================
   function afficherMessageBienvenue() {
     ajouterMessage(
-      `Hey 👋\nJe suis Levelia, ton copilote digital.\n\nComment puis-je t'aider aujourd'hui ? ✨`,
+      `Hey 👋\nJe suis Levelia, ton copilote LevelUpCreation.\n\nComment puis-je t'aider aujourd'hui ? ✨`,
       "bot"
     );
   }
@@ -291,6 +304,11 @@
   // ============================================
   toggle.addEventListener("click", ouvrirChat);
   closeBtn.addEventListener("click", fermerChat);
+
+  const clearBtn = document.getElementById("chatClear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", effacerConversation);
+  }
 
   sendBtn.addEventListener("click", () => {
     envoyerMessage();
@@ -303,7 +321,6 @@
     }
   });
 
-  // Fermer avec ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen) {
       fermerChat();
@@ -315,13 +332,11 @@
   // ============================================
   chargerHistorique();
   
-  // Restaurer l'historique au chargement
   if (conversationHistory.length > 0) {
     conversationHistory.forEach(msg => {
       ajouterMessage(msg.content, msg.role === "assistant" ? "bot" : "user");
     });
   } else {
-    // Premier chargement : message de bienvenue
     setTimeout(() => {
       afficherMessageBienvenue();
       if (!isOpen && badge) {
