@@ -1,55 +1,181 @@
 // /javascripts/scripts.js
+
 (() => {
   "use strict";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // =========================
-    // 1) MOBILE MENU (BURGER)
-    // =========================
+  // ============================================
+  // CONFIGURATION GLOBALE
+  // ============================================
+  const CONFIG = {
+    MOBILE_BREAKPOINT: 920,
+    SCROLL_THRESHOLD: 300,
+    LONG_PRESS_DURATION: 250,
+    DROPDOWN_CLOSE_DELAY: 700,
+    MESSAGE_DELAY: 5000,
+    CHAT_BADGE_DELAY: 1500
+  };
+
+  // ============================================
+  // UTILITAIRES
+  // ============================================
+  const isMobile = () => window.innerWidth <= CONFIG.MOBILE_BREAKPOINT;
+
+  const safeQuerySelector = (selector) => {
+    try {
+      return document.querySelector(selector);
+    } catch (e) {
+      console.warn(`Sélecteur invalide: ${selector}`);
+      return null;
+    }
+  };
+
+  // ============================================
+  // 1. MOBILE MENU (BURGER)
+  // ============================================
+  const initMobileMenu = () => {
     const navToggle = document.getElementById("navToggle");
     const navLinks = document.getElementById("navLinks");
 
-    if (navToggle && navLinks) {
-      const setMenu = (open) => {
-        navLinks.classList.toggle("is-open", open);
-        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      };
+    if (!navToggle || !navLinks) return;
 
-      navToggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        setMenu(!navLinks.classList.contains("is-open"));
-      });
+    const setMenu = (open) => {
+      navLinks.classList.toggle("is-open", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+      
+      if (open) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    };
 
-      // Fermer au clic sur un lien
-      navLinks.addEventListener("click", (e) => {
-        if (e.target.closest("a")) setMenu(false);
-      });
+    // Toggle au clic sur le burger
+    navToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      setMenu(!navLinks.classList.contains("is-open"));
+    });
 
-      // Fermer au clic hors nav
-      document.addEventListener("click", (e) => {
-        if (!navLinks.classList.contains("is-open")) return;
-        if (!e.target.closest(".nav")) setMenu(false);
-      });
+    // Fermer au clic sur un lien
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.closest("a")) {
+        setMenu(false);
+      }
+    });
 
-      // Fermer avec ESC
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") setMenu(false);
-      });
-    }
+    // Fermer au clic hors navigation
+    document.addEventListener("click", (e) => {
+      if (!navLinks.classList.contains("is-open")) return;
+      if (!e.target.closest(".nav")) {
+        setMenu(false);
+      }
+    });
 
-    // =========================
-    // 2) BOUTON "RETOUR EN HAUT"
-    // =========================
+    // Fermer avec la touche ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navLinks.classList.contains("is-open")) {
+        setMenu(false);
+      }
+    });
+  };
 
+  // ============================================
+  // 2. DROPDOWN NAVIGATION
+  // ============================================
+  const initDropdown = () => {
+    const dropdown = document.querySelector(".nav__dropdown");
+    const mainLink = document.querySelector(".nav__dropdown-main");
+
+    if (!dropdown || !mainLink) return;
+
+    let pressTimer = null;
+    let closeTimer = null;
+
+    const openDropdown = () => {
+      dropdown.classList.add("is-open", "is-peek");
+    };
+
+    const closeDropdown = (delay = 0) => {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        dropdown.classList.remove("is-open", "is-peek");
+      }, delay);
+    };
+
+    // Desktop: click classique
+    mainLink.addEventListener("click", (e) => {
+      if (!isMobile()) {
+        // Laisser le lien fonctionner normalement
+        return;
+      }
+
+      e.preventDefault();
+      
+      if (dropdown.classList.contains("is-open")) {
+        closeDropdown(0);
+      } else {
+        openDropdown();
+      }
+    });
+
+    // Mobile: long press
+    mainLink.addEventListener("touchstart", (e) => {
+      if (!isMobile()) return;
+
+      clearTimeout(pressTimer);
+      
+      pressTimer = setTimeout(() => {
+        openDropdown();
+      }, CONFIG.LONG_PRESS_DURATION);
+    }, { passive: true });
+
+    mainLink.addEventListener("touchend", () => {
+      if (!isMobile()) return;
+
+      clearTimeout(pressTimer);
+
+      if (dropdown.classList.contains("is-peek")) {
+        closeDropdown(CONFIG.DROPDOWN_CLOSE_DELAY);
+      }
+    }, { passive: true });
+
+    // Fermer si clic/touch en dehors
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target)) {
+        closeDropdown(0);
+      }
+    });
+
+    document.addEventListener("touchstart", (e) => {
+      if (!isMobile()) return;
+      if (!dropdown.contains(e.target)) {
+        closeDropdown(0);
+      }
+    }, { passive: true });
+
+    // Fermer après clic sur un sous-item
+    dropdown.addEventListener("click", (e) => {
+      if (e.target.closest(".nav__dropdown-item")) {
+        closeDropdown(0);
+      }
+    });
+  };
+
+  // ============================================
+  // 3. BOUTON RETOUR EN HAUT
+  // ============================================
+  const initScrollTop = () => {
     const scrollBtn = document.getElementById("scrollTopBtn");
+    if (!scrollBtn) return;
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
+    const toggleButton = () => {
+      if (window.scrollY > CONFIG.SCROLL_THRESHOLD) {
         scrollBtn.classList.add("show");
       } else {
         scrollBtn.classList.remove("show");
       }
-    });
+    };
+
+    window.addEventListener("scroll", toggleButton, { passive: true });
 
     scrollBtn.addEventListener("click", () => {
       window.scrollTo({
@@ -58,32 +184,27 @@
       });
     });
 
+    // Vérifier au chargement
+    toggleButton();
+  };
 
-    // =========================
-    // 3) MODAL "PLEIN ÉCRAN" (IMG/VIDEO)
-    //    HTML attendu:
-    //    - <div id="exModal" class="modal" aria-hidden="true">
-    //        <button data-close>...</button>
-    //        <div id="modalContent"></div>
-    //      </div>
-    //    - boutons: <button data-open>...</button>
-    //    - carte: .ex-card (contient img[data-full] ou video[data-full])
-    // =========================
+  // ============================================
+  // 4. MODAL PLEIN ÉCRAN (IMAGE/VIDEO)
+  // ============================================
+  const initModal = () => {
     const exModal = document.getElementById("exModal");
     const modalContent = document.getElementById("modalContent");
 
-    const isModalReady = !!(exModal && modalContent);
+    if (!exModal || !modalContent) return;
 
-    const openExModal = (html) => {
-      if (!isModalReady) return;
+    const openModal = (html) => {
       modalContent.innerHTML = html;
       exModal.classList.add("is-open");
       exModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     };
 
-    const closeExModal = () => {
-      if (!isModalReady) return;
+    const closeModal = () => {
       exModal.classList.remove("is-open");
       exModal.setAttribute("aria-hidden", "true");
       modalContent.innerHTML = "";
@@ -98,19 +219,20 @@
       const card = btn.closest(".ex-card");
       if (!card) return;
 
-      // Image priorité
+      // Priorité: image
       const img = card.querySelector("img[data-full], .ex-card__media img[data-full]");
       if (img) {
         const src = img.getAttribute("data-full") || img.src;
-        openExModal(`<img src="${src}" alt="${img.alt || "Aperçu"}" style="max-width:100%;height:auto;">`);
+        const alt = img.alt || "Aperçu";
+        openModal(`<img src="${src}" alt="${alt}" style="max-width:100%;height:auto;">`);
         return;
       }
 
-      // Vidéo
+      // Sinon: vidéo
       const video = card.querySelector("video[data-full]");
       if (video) {
         const src = video.getAttribute("data-full");
-        openExModal(`
+        openModal(`
           <video controls autoplay style="max-width:100%;height:auto;">
             <source src="${src}" type="video/mp4">
           </video>
@@ -118,186 +240,195 @@
       }
     });
 
-    // Fermer (croix / backdrop)
-    if (isModalReady) {
-      exModal.addEventListener("click", (e) => {
-        if (e.target.closest("[data-close]")) closeExModal();
-      });
-    }
-
-    // ESC ferme modal
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && isModalReady && exModal.classList.contains("is-open")) {
-        closeExModal();
+    // Fermer avec bouton [data-close] ou backdrop
+    exModal.addEventListener("click", (e) => {
+      if (e.target.closest("[data-close]") || e.target === exModal) {
+        closeModal();
       }
     });
 
-    // =========================
-    // 4) ANNÉE AUTO DANS FOOTER
-    // =========================
-    const yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    // Fermer avec ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && exModal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+  };
 
-    // =========================
-    // 5) FORMULAIRE DEVIS (quoteForm)
-    // =========================
+  // ============================================
+  // 5. ANNÉE AUTOMATIQUE FOOTER
+  // ============================================
+  const initYearDisplay = () => {
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = String(new Date().getFullYear());
+    }
+  };
+
+  // ============================================
+  // 6. FORMULAIRE DEVIS
+  // ============================================
+  const initQuoteForm = () => {
     const form = document.getElementById("quoteForm");
     const success = document.getElementById("successMsg");
 
-    form?.addEventListener("submit", (e) => {
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (success) success.hidden = false;
+
+      if (success) {
+        success.hidden = false;
+      }
+
       form.reset();
+
       setTimeout(() => {
-        if (success) success.hidden = true;
-      }, 5000);
+        if (success) {
+          success.hidden = true;
+        }
+      }, CONFIG.MESSAGE_DELAY);
     });
+  };
 
-    // =========================
-    // 6) ANIMATION TITRE HERO (IntersectionObserver)
-    // =========================
+  // ============================================
+  // 7. ANIMATION TITRE HERO
+  // ============================================
+  const initHeroAnimation = () => {
     const title = document.querySelector(".hero__title--animate");
-    if (title && "IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            title.classList.add("is-visible");
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.4 }
-      );
+    
+    if (!title || !("IntersectionObserver" in window)) return;
 
-      observer.observe(title);
-    }
-  });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          title.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
 
-  // =========================
-  // 7) (OPTIONNEL) Contact backend (à appeler depuis un form)
-  // =========================
-  async function sendContactForm(payload) {
-    const res = await fetch("https://TON-BACKEND.onrender.com/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+    observer.observe(title);
+  };
+
+  // ============================================
+  // 8. CHATBOT WIDGET
+  // ============================================
+  const initChatWidget = () => {
+    const toggle = document.getElementById("chatToggle");
+    const widget = document.getElementById("chatWidget");
+    const closeBtn = document.getElementById("chatClose");
+    const badge = document.getElementById("chatBadge");
+    const input = document.getElementById("cwInput");
+
+    if (!toggle || !widget || !closeBtn) return;
+
+    let isOpen = false;
+
+    const ouvrirChat = () => {
+      isOpen = true;
+      widget.classList.add("open");
+      toggle.classList.add("hidden");
+      badge?.classList.remove("visible");
+      input?.focus();
+    };
+
+    const fermerChat = () => {
+      isOpen = false;
+      widget.classList.remove("open");
+      toggle.classList.remove("hidden");
+    };
+
+    // Événements
+    toggle.addEventListener("click", ouvrirChat);
+    closeBtn.addEventListener("click", fermerChat);
+
+    // Fermer avec ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        fermerChat();
+      }
     });
-    const data = await res.json();
-    if (!res.ok || !data.ok) throw new Error(data.error || "Erreur");
-    return data;
-  }
 
-  // expose si tu en as besoin ailleurs
+    // Message de bienvenue + badge
+    setTimeout(() => {
+      if (typeof afficherMessageBienvenue === "function") {
+        afficherMessageBienvenue();
+      }
+      
+      if (!isOpen && badge) {
+        badge.classList.add("visible");
+      }
+    }, CONFIG.CHAT_BADGE_DELAY);
+  };
+
+  // ============================================
+  // 9. FONCTION CONTACT BACKEND (OPTIONNEL)
+  // ============================================
+  const sendContactForm = async (payload) => {
+    try {
+      const res = await fetch("https://TON-BACKEND.onrender.com/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Erreur lors de l'envoi");
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Erreur sendContactForm:", error);
+      throw error;
+    }
+  };
+
+  // Exposer globalement si nécessaire
   window.sendContactForm = sendContactForm;
+
+  // ============================================
+  // INITIALISATION AU CHARGEMENT
+  // ============================================
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("🚀 Initialisation Level Up Creation");
+
+    initMobileMenu();
+    initDropdown();
+    initScrollTop();
+    initModal();
+    initYearDisplay();
+    initQuoteForm();
+    initHeroAnimation();
+    initChatWidget();
+
+    console.log("✅ Scripts chargés avec succès");
+  });
+
+  // ============================================
+  // GESTION RESPONSIVE AU RESIZE
+  // ============================================
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Fermer le menu mobile si on passe en desktop
+      if (!isMobile()) {
+        const navLinks = document.getElementById("navLinks");
+        if (navLinks?.classList.contains("is-open")) {
+          navLinks.classList.remove("is-open");
+          document.body.style.overflow = "";
+        }
+
+        const dropdown = document.querySelector(".nav__dropdown");
+        if (dropdown?.classList.contains("is-open")) {
+          dropdown.classList.remove("is-open", "is-peek");
+        }
+      }
+    }, 250);
+  }, { passive: true });
+
 })();
-// Dropdown mobile
-const dropdown = document.querySelector(".nav__dropdown");
-const dropdownMain = document.querySelector(".nav__dropdown-main");
-
-dropdownMain?.addEventListener("click", function(e){
-  if (window.innerWidth < 921) {
-    e.preventDefault();
-    dropdown.classList.toggle("is-open");
-  }
-});
-const aboutDropdown = document.getElementById("aboutDropdown");
-const aboutLink = document.getElementById("aboutLink");
-
-let pressTimer = null;
-let closeTimer = null;
-
-function openPeek() {
-  if (!aboutDropdown) return;
-  aboutDropdown.classList.add("is-peek");
-}
-
-function closePeek(delay = 0) {
-  if (!aboutDropdown) return;
-  clearTimeout(closeTimer);
-  closeTimer = setTimeout(() => {
-    aboutDropdown.classList.remove("is-peek");
-  }, delay);
-}
-
-// Mobile only: long press behavior
-function isMobile() {
-  return window.innerWidth <= 920;
-}
-
-aboutLink?.addEventListener("touchstart", () => {
-  if (!isMobile()) return;
-
-  // long press -> open
-  clearTimeout(pressTimer);
-  pressTimer = setTimeout(() => {
-    openPeek();
-  }, 250); // durée appui long (250ms)
-}, { passive: true });
-
-aboutLink?.addEventListener("touchend", () => {
-  if (!isMobile()) return;
-
-  clearTimeout(pressTimer);
-
-  // Si le menu s'est ouvert (appui long), on le ferme après un petit délai
-  // pour laisser le temps de cliquer "Site web / Design"
-  if (aboutDropdown?.classList.contains("is-peek")) {
-    closePeek(700); // ajuste: 400-900ms selon ton feeling
-  }
-}, { passive: true });
-
-// Si on touche ailleurs -> ferme
-document.addEventListener("touchstart", (e) => {
-  if (!isMobile()) return;
-  if (!aboutDropdown) return;
-  if (!aboutDropdown.contains(e.target)) closePeek(0);
-}, { passive: true });
-
-// Si on clique un sous-lien -> ferme proprement
-aboutDropdown?.addEventListener("click", (e) => {
-  if (!isMobile()) return;
-  if (e.target.closest(".nav__dropdown-item")) {
-    closePeek(0);
-  }
-});
-document.addEventListener("DOMContentLoaded", () => {
-
-  const dropdown = document.querySelector(".nav__dropdown");
-  const mainLink = document.querySelector(".nav__dropdown-main");
-
-  if (!dropdown || !mainLink) return;
-
-  mainLink.addEventListener("click", (e) => {
-
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      dropdown.classList.toggle("is-open");
-    }
-
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("is-open");
-    }
-  });
-
-});
-document.addEventListener("DOMContentLoaded", () => {
-
-  const dropdown = document.querySelector(".nav__dropdown");
-  const mainLink = document.querySelector(".nav__dropdown-main");
-
-  if (!dropdown || !mainLink) return;
-
-  mainLink.addEventListener("touchstart", function (e) {
-
-    // Si menu pas encore ouvert
-    if (!dropdown.classList.contains("is-open")) {
-      e.preventDefault(); // empêche navigation
-      dropdown.classList.add("is-open");
-    }
-
-  });
-
-});
- 

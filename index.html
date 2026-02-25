@@ -10,12 +10,12 @@
   <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
   <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
   <link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
-  <link rel="stylesheet" href="./css/tchat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="./css/tchat.css">
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/font.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
@@ -330,42 +330,40 @@
   <!-- ═══════════════════════════════════════════════════
        CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
+<!-- Bouton flottant -->
+<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+  💬
+  <span id="chatBadge" class="chat-badge">1</span>
+</button>
 
-  <!-- Bouton bulle -->
-  <button id="chatToggle" aria-label="Ouvrir l'assistant Level Up Creation">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-    <span id="chatBadge" aria-hidden="true"></span>
-  </button>
-
-  <!-- Panneau -->
-  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
-    <div class="cw-header">
-      <div class="cw-avatar">💬</div>
-      <div class="cw-title">
-        <strong>Level Up Creation</strong>
-        <span>En ligne</span>
-      </div>
-      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+<!-- Panneau Chat -->
+<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+  <div class="cw-header">
+    <div class="cw-avatar">💬</div>
+    <div class="cw-title">
+      <strong>Levelia</strong>
+      <span>En ligne</span>
     </div>
+    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+  </div>
 
-    <div class="cw-messages" id="cwMessages">
-      <!-- Message de bienvenue injecté par JS -->
-    </div>
+  <div class="cw-messages" id="cwMessages">
+    <!-- Messages injectés par JavaScript -->
+  </div>
 
-   <div class="cw-footer">
-  <input
-    class="cw-input"
-    id="cwInput"
-    type="text"
-    placeholder="Pose ta question…"
-    autocomplete="off"
-    aria-label="Message"
-  />
-  <button class="cw-send" id="cwSend" aria-label="Envoyer">
-    ↑
-  </button>
+  <div class="cw-footer">
+    <input
+      class="cw-input"
+      id="cwInput"
+      type="text"
+      placeholder="Pose ta question…"
+      autocomplete="off"
+      aria-label="Message"
+      maxlength="2000"
+    />
+    <button class="cw-send" id="cwSend" aria-label="Envoyer">
+      ↑
+    </button>
   </div>
 </div>
     <script src="./javascripts/404.js"></script>
@@ -386,7 +384,24 @@
       form.reset();
     });
   </script>
-  
+  <script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add("show");
+  } else {
+    scrollBtn.classList.remove("show");
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 </body>
 
 </html>
