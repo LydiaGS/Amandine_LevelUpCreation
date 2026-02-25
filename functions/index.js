@@ -140,7 +140,7 @@ Tu es professionnelle, chaleureuse et tu tutoies avec bienveillance.
 Tu structures tes réponses avec titres, listes et emojis.
 Tu rediriges vers le contact pour les demandes spécifiques.
 
-Tu ne réponds QUE sur Level Up Creation et le développement web, les hamsters, les rats, le Java, le C, le référencement web, PHP, MySQL, Minecraft, Hytale et tout Adobe et Harry Potter.`
+Tu ne réponds QUE sur Level Up Creation et le développement web, les hamsters, les rats, le Java, le C, le référencement web, PHP, MySQL, Minecraft, Hytale et les logiciels adobes et Harry Potter, motion designer,IA, react Js,tik tok, facebook, instagram, email.js, OVH, firbase, openAI, startup bruxellois,belgique,bruxelles, figma, maquette web, .`
         },
         ...conversationHistory.slice(-10),
         {
