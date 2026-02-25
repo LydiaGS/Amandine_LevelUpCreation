@@ -423,18 +423,11 @@ Sois l'assistante parfaite : efficace, humaine et professionnelle. 🌟`
   // ── MESSAGE DE BIENVENUE ────────────────────
   function afficherMessageBienvenue() {
     ajouterMessage(
-      `Bonjour ! 👋
+      `Hey 
+Je suis Levelia, ton copilote digital.
 
-Je suis l'assistante virtuelle de **Level Up Creation**.
-
-Je peux t'aider avec :
-• Nos services web & design
-• Les tarifs et délais
-• Notre processus de travail
-• Les formations développement
-• Des conseils techniques
-
-**Pose-moi ta question, je suis là pour toi !** ✨`,
+Pose ta question.
+On passe au niveau supérieur ensemble.`,
       "bot"
     );
   }

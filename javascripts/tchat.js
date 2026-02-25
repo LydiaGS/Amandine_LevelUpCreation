@@ -7,15 +7,8 @@
     // ── SALUTATIONS ──────────────────────────────
     {
       mots: ["bonjour", "salut", "hello", "coucou", "bonsoir", "hey", "hi"],
-      reponse: `Bonjour ! 👋
-
-Je suis l'assistante virtuelle de Level Up Creation.
-
-Je peux vous renseigner sur :
-• Nos services (sites web, design, formations)
-• Nos tarifs et délais
-• Notre processus de travail
-• Comment nous contacter
+      reponse: `Hey 👋
+Je suis Levelia, ton copilote digital.
 
 Comment puis-je vous aider aujourd'hui ? ✨`
     },
@@ -26,6 +19,279 @@ Comment puis-je vous aider aujourd'hui ? ✨`
       reponse: `Merci de demander ! Je suis opérationnelle et prête à vous aider 😊
 
 Que puis-je faire pour vous ?`
+    },
+
+    // ── QUESTION SITE WEB ────────────────────────
+    {
+      mots: ["je désire un site web", "je veux un site", "site web", "comment avoir un site web", "besoin d'un site", "créer un site"],
+      reponse: `Ravi de l'entendre ! 🚀
+
+Quel type de site désires-tu ?
+
+Réponds par :
+
+✨ **Landing page**
+🌐 **Site vitrine**
+🛒 **Boutique en ligne**
+🎯 **Site web sur mesure**
+
+Et je te répondrai au mieux pour t'accompagner dans ton projet.`
+    },
+
+    // ── LANDING PAGE ────────────────────────────
+    {
+      mots: ["landing page", "page unique", "page de vente", "one page"],
+      reponse: `**Landing Page** 🎯
+
+Une page unique ultra clean, pensée pour convertir (contact, devis, inscription, etc.).
+
+💰 **À partir de 250€ HTVA**
+📅 **Livraison :** 10 à 15 jours
+📱 Design responsive (mobile & tablette)
+🔍 SEO de base inclus
+
+Idéal pour :
+• Lancer un produit/service
+• Capter des leads
+• Événements ponctuels
+• Campagnes publicitaires
+
+Les prix peuvent varier selon la complexité du projet.`
+    },
+
+    // ── SITE VITRINE ────────────────────────────
+    {
+      mots: ["site vitrine", "site présentation", "plusieurs pages", "site classique", "site entreprise"],
+      reponse: `**Site Vitrine** 🌐
+
+Un site professionnel pour présenter votre activité et attirer des clients.
+
+💰 **À partir de 500€ HTVA**
+📄 Jusqu'à 7 pages
+📅 **Livraison :** 15 à 30 jours
+📱 Responsive design
+🔍 SEO optimisé
+✉️ Formulaire de contact
+
+Parfait pour :
+• Présenter votre activité
+• Générer des contacts qualifiés
+• Établir votre crédibilité en ligne
+• Améliorer votre visibilité`
+    },
+
+    // ── BOUTIQUE EN LIGNE ──────────────────────────────
+    {
+      mots: ["boutique en ligne", "boutique", "e-commerce", "ecommerce", "vendre en ligne", "shop", "e-shop"],
+      reponse: `**Boutique en ligne** 🛒
+
+Vendez vos produits 24h/24 avec une boutique professionnelle et sécurisée.
+
+💰 **À partir de 950€ HTVA**
+📅 **Livraison :** 30 à 50 jours (selon nb. de produits)
+🛒 Gestion des produits et stocks
+💳 Paiements sécurisés
+📱 Mobile-first
+📊 Tableau de bord complet
+🔍 SEO optimisé
+
+Solution complète pour vendre en ligne et développer votre business.`
+    },
+
+    // ── SITE WEB SUR MESURE ─────────────────────────
+    {
+      mots: ["site web sur mesure", "site sur mesure", "personnalisé", "spécifique", "complexe", "sur mesure"],
+      reponse: `**Votre site web sur mesure** 🎯
+
+Un site 100% adapté à vos besoins spécifiques et à votre vision.
+
+💰 **À partir de 750€ HTVA**
+📄 7+ pages avec fonctionnalités avancées
+📅 **Délai :** 30+ jours selon complexité
+⚡ Entièrement personnalisé
+🔧 Fonctionnalités spécifiques à votre métier
+📱 Responsive et performant
+
+Conçu pour des besoins uniques et des projets ambitieux.
+
+Parlons de votre projet pour créer quelque chose d'unique !`
+    },
+
+    // ── FORMATION HTML ────────────────────────────
+    {
+      mots: ["formation html", "apprendre html", "cours html", "html débutant"],
+      reponse: `**Formation HTML** 🏗️
+
+Apprenez à créer la structure de vos pages web !
+
+Au programme :
+• Les balises HTML essentielles
+• Structurer un document web
+• Créer des formulaires
+• Intégrer images et liens
+• Les bonnes pratiques HTML5
+
+📅 **Durée :** Adaptée à votre rythme
+👤 **Format :** Individuel ou groupe
+💻 **Niveau :** Débutant
+
+📞 Pour vous inscrire ou en savoir plus :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── FORMATION CSS ────────────────────────────
+    {
+      mots: ["formation css", "apprendre css", "cours css", "css débutant"],
+      reponse: `**Formation CSS** 🎨
+
+Donnez du style à vos pages web !
+
+Au programme :
+• Les sélecteurs et propriétés CSS
+• Couleurs, polices et espacements
+• Le positionnement des éléments
+• Flexbox et Grid
+• Les animations CSS
+• Design responsive
+
+📅 **Durée :** Adaptée à votre rythme
+👤 **Format :** Individuel ou groupe
+💻 **Niveau :** Débutant
+
+📞 Pour vous inscrire :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── FORMATION JAVASCRIPT ────────────────────────────
+    {
+      mots: ["formation javascript", "formation js", "apprendre javascript", "cours javascript"],
+      reponse: `**Formation JavaScript** ⚡
+
+Rendez vos sites interactifs et dynamiques !
+
+Au programme :
+• Les bases de JavaScript
+• Manipuler le DOM
+• Gérer les événements
+• Créer des animations
+• Formulaires interactifs
+• Introduction aux frameworks
+
+📅 **Durée :** Adaptée à votre rythme
+👤 **Format :** Individuel ou groupe
+💻 **Niveau :** Débutant à intermédiaire
+
+📞 Pour vous inscrire :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── FORMATION WEB DÉVELOPPEMENT COMPLET ────────────────────────────
+    {
+      mots: ["formation web développement complet", "développement complet", "formation complète", "tout apprendre", "formation totale"],
+      reponse: `**Formation Web Développement Complet** 🚀
+
+La formation ultime pour devenir développeur web !
+
+Au programme :
+✅ **HTML5** - Structure
+✅ **CSS3** - Design & animations
+✅ **JavaScript** - Interactivité
+✅ **Responsive Design**
+✅ **SEO de base**
+✅ **Mise en ligne**
+✅ **Bonnes pratiques**
+
+📅 **Durée :** Programme intensif personnalisé
+👤 **Format :** Individuel ou groupe
+💻 **Niveau :** De débutant à autonome
+🎓 **Objectif :** Créer vos propres sites web
+
+📞 Contactez-nous pour un programme sur mesure :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── MOTION DESIGN ────────────────────────────
+    {
+      mots: ["motion design", "animation", "vidéo animée", "motion", "animation graphique"],
+      reponse: `**Motion Design** 🎬
+
+Donnez vie à votre contenu avec des animations professionnelles !
+
+Nos services :
+✨ Animations logo
+🎥 Vidéos explicatives
+📱 Stories & posts animés
+🎯 Publicités vidéo
+💼 Présentations dynamiques
+🎨 Génériques et transitions
+
+💰 **À partir de 280€ HTVA**
+📅 **Délai :** 15 à 20 jours
+
+Parfait pour :
+• Capter l'attention sur les réseaux
+• Présenter un produit/service
+• Moderniser votre communication
+
+📞 Parlons de votre projet :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── DESIGN GRAPHIQUE ────────────────────────────
+    {
+      mots: ["design graphique", "graphisme", "logo", "identité visuelle", "charte graphique", "branding"],
+      reponse: `**Design Graphique** 🎨
+
+Créez une identité visuelle qui vous ressemble !
+
+Nos services :
+🎯 Logos professionnels
+📐 Identité visuelle complète
+📚 Chartes graphiques
+🖼️ Visuels réseaux sociaux
+📄 Supports print (flyers, cartes de visite...)
+🎨 Packaging et étiquettes
+
+💰 **À partir de 280€ HTVA**
+📅 **Délai :** 15 à 20 jours
+
+Une image de marque forte et cohérente pour vous démarquer !
+
+📞 Contactez-nous :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
+    },
+
+    // ── VOTRE DESIGN SUR MESURE ────────────────────────────
+    {
+      mots: ["votre design sur mesure", "design sur mesure", "design personnalisé", "branding complet", "design premium"],
+      reponse: `**Votre Design Sur Mesure** 🏆
+
+Une identité visuelle 100% unique, pensée pour votre marque.
+
+Inclus :
+✅ Analyse de votre univers et valeurs
+✅ Création de logo premium
+✅ Charte graphique complète
+✅ Déclinaisons tous supports
+✅ Kit réseaux sociaux
+✅ Templates personnalisés
+✅ Guide d'utilisation
+
+💰 **À partir de 450€ HTVA**
+📅 **Délai :** 30+ jours
+🎯 Stratégie de marque incluse
+
+Pour une identité forte, mémorable et cohérente.
+
+📞 Créons ensemble votre image de marque :
+📧 amandine@levelupcreation.com
+📞 +32 497 74 69 06`
     },
 
     // ── RÉPONSE POSITIVE ────────────────────────
@@ -41,7 +307,7 @@ Comment puis-je vous accompagner aujourd'hui ?`
       mots: ["pas bien", "mal", "triste", "déprimé", "déçu", "frustré", "stressé", "anxieux", "bof", "difficile"],
       reponse: `Je suis désolée d'apprendre cela.
 
-Si je peux vous aider avec votre projet web, ce sera avec plaisir. En quoi puis-je vous être utile ?`
+Si je peux vous aider avec votre projet web ou design, ce sera avec plaisir. En quoi puis-je vous être utile ?`
     },
 
     // ── AMANDINE ────────────────────────────────
@@ -63,7 +329,7 @@ Il s'occupe de toute la partie visuelle : logos, identité de marque, animations
     // ── LE STUDIO ───────────────────────────────
     {
       mots: ["level up", "studio", "agence", "à propos", "votre agence", "présentation"],
-      reponse: `**Level Up Creation** est un studio digital belge spécialisé dans la création de sites web sur-mesure.
+      reponse: `**Level Up Creation** est un studio digital belge spécialisé dans la création de sites web sur-mesure et le design graphique.
 
 Notre philosophie :
 ✓ Design premium et moderne
@@ -73,7 +339,7 @@ Notre philosophie :
 ✓ Transparence des prix
 ✓ Livraison rapide
 
-Nous créons des sites qui convertissent, pas des sites vitrines ordinaires.`
+Nous créons des sites qui convertissent et des designs qui marquent les esprits.`
     },
 
     // ── DEVIS ───────────────────────────────────
@@ -90,190 +356,29 @@ Nous créons des sites qui convertissent, pas des sites vitrines ordinaires.`
 Nous analysons votre projet et vous proposons une solution adaptée à vos besoins et votre budget.`
     },
 
-    // ── POURQUOI NOUS ───────────────────────────
-    {
-      mots: ["pourquoi vous", "avantages", "différence", "points forts", "distingue"],
-      reponse: `**Pourquoi choisir Level Up Creation ?**
-
-1️⃣ **Design Premium**
-Des sites modernes, élégants et professionnels
-
-2️⃣ **100% Sur-mesure**
-Chaque section pensée pour votre marque
-
-3️⃣ **Optimisation maximale**
-SEO, performances, mobile-first
-
-4️⃣ **Accompagnement complet**
-Support et conseils même après livraison
-
-5️⃣ **Tarifs transparents**
-Pas de frais cachés, tout est clair dès le départ
-
-6️⃣ **Livraison rapide**
-Votre site en ligne en quelques semaines`
-    },
-
-    // ── PROCESSUS ───────────────────────────────
-    {
-      mots: ["processus", "comment ça marche", "étapes", "déroulement", "méthode"],
-      reponse: `**Notre processus en 4 étapes :**
-
-**1. Écoute & Analyse** 🎯
-Nous définissons ensemble vos objectifs et votre vision
-
-**2. Maquette Personnalisée** 🎨
-Création du design sur-mesure aligné à votre marque
-
-**3. Intégration & Développement** ⚙️
-Codage, optimisations et tests approfondis
-
-**4. Mise en ligne & Suivi** 🚀
-Livraison + formation + accompagnement
-
-Tout commence par un **échange gratuit** pour comprendre votre projet.`
-    },
-
     // ── SERVICES GLOBAUX ────────────────────────
     {
       mots: ["services", "prestations", "offres", "que faites vous", "proposez"],
       reponse: `**Nos services :**
 
 🌐 **SITES WEB**
-• Landing pages
-• Sites vitrines
-• E-commerce
-• Sites sur-mesure
+• Landing page
+• Site vitrine
+• Boutique en ligne
+• Site web sur mesure
 
-🎨 **DESIGN GRAPHIQUE & MOTION**
-• Logos & identité visuelle
-• Chartes graphiques
-• Animations & motion design
-• Montages vidéo
+🎨 **DESIGN**
+• Design graphique
+• Motion design
+• Votre design sur mesure
 
 📚 **FORMATIONS**
-• Les bases du développement web
+• Formation HTML
+• Formation CSS
+• Formation JavaScript
+• Formation Web Développement Complet
 
 Quel service vous intéresse ?`
-    },
-
-    // ── LANDING PAGE ────────────────────────────
-    {
-      mots: ["landing page", "page unique", "page de vente", "one page"],
-      reponse: `**Landing Page**
-
-💰 **À partir de 250€ HTVA**
-
-📅 Livraison : 10 à 15 jours
-📱 Design responsive (mobile & tablette)
-🔍 SEO de base inclus
-
-Idéal pour :
-• Lancer un produit/service
-• Capter des leads
-• Événements ponctuels`
-    },
-
-    // ── SITE VITRINE ────────────────────────────
-    {
-      mots: ["site vitrine", "site présentation", "plusieurs pages", "site classique", "site entreprise"],
-      reponse: `**Site Vitrine**
-
-💰 **À partir de 500€ HTVA**
-
-📄 Jusqu'à 7 pages
-📅 Livraison : 15 à 30 jours
-📱 Responsive design
-🔍 SEO optimisé
-
-Parfait pour :
-• Présenter votre activité
-• Générer des contacts qualifiés
-• Établir votre crédibilité en ligne`
-    },
-
-    // ── E-COMMERCE ──────────────────────────────
-    {
-      mots: ["boutique", "e-commerce", "ecommerce", "vendre en ligne", "shop", "e-shop"],
-      reponse: `**Boutique en ligne / E-commerce**
-
-💰 **À partir de 950€ HTVA**
-
-📅 Livraison : 30 à 50 jours (selon nb. de produits)
-🛒 Gestion des produits et stocks
-💳 Paiements sécurisés
-📱 Mobile-first
-📊 Tableau de bord complet
-
-Solution complète pour vendre vos produits en ligne.`
-    },
-
-    // ── SITE SUR MESURE ─────────────────────────
-    {
-      mots: ["sur mesure", "personnalisé", "spécifique", "complexe"],
-      reponse: `**Site Web Sur-Mesure**
-
-💰 **À partir de 750€ HTVA**
-
-📄 7+ pages avec fonctionnalités avancées
-📅 Délai : 30+ jours selon complexité
-⚡ Entièrement personnalisé
-🔧 Fonctionnalités spécifiques
-
-Conçu pour des besoins uniques et des projets ambitieux.`
-    },
-
-    // ── DESIGN GRAPHIQUE ────────────────────────
-    {
-      mots: ["design graphique", "motion design", "logo", "identité visuelle", "charte", "branding"],
-      reponse: `**Design Graphique & Motion Design**
-
-💰 **À partir de 280€ HTVA**
-
-📅 Livraison : 15 à 20 jours
-🎨 Design professionnel
-📐 Tous supports (print, web, réseaux)
-
-Nos prestations :
-• Logos
-• Identité visuelle complète
-• Chartes graphiques
-• Motion design & animations
-• Montage vidéo
-• Retouches photo`
-    },
-
-    // ── DESIGN SUR MESURE ───────────────────────
-    {
-      mots: ["design premium", "design complet", "branding complet"],
-      reponse: `**Design Sur-Mesure / Branding Premium**
-
-💰 **À partir de 450€ HTVA**
-
-📅 Livraison : 30+ jours
-🏆 Identité visuelle complète
-📋 Charte graphique détaillée
-🎯 Stratégie de marque
-
-Pour une identité forte et cohérente sur tous vos supports.`
-    },
-
-    // ── FORMATION ───────────────────────────────
-    {
-      mots: ["formation", "apprendre", "cours", "développement web", "bases", "débutant"],
-      reponse: `**Formation : Les bases du développement web**
-
-Apprenez à créer vos premières pages web !
-
-Au programme :
-• HTML (structure)
-• CSS (design)
-• JavaScript (interactivité)
-
-📞 Pour vous inscrire ou en savoir plus :
-• Formulaire de contact sur le site
-• amandine@levelupcreation.com
-• +32 497 74 69 06`
     },
 
     // ── TARIFS GLOBAUX ──────────────────────────
@@ -284,31 +389,18 @@ Au programme :
 🌐 **SITES WEB**
 • Landing Page : dès 250€ HTVA
 • Site Vitrine : dès 500€ HTVA
-• E-commerce : dès 950€ HTVA
-• Sur-mesure : dès 750€ HTVA
+• Boutique en ligne : dès 950€ HTVA
+• Site web sur mesure : dès 750€ HTVA
 
 🎨 **DESIGN**
-• Graphique : dès 280€ HTVA
-• Premium : dès 450€ HTVA
+• Design graphique : dès 280€ HTVA
+• Motion design : dès 280€ HTVA
+• Votre design sur mesure : dès 450€ HTVA
 
 ✅ Prix clairs, sans frais cachés
 ✅ Devis gratuit et personnalisé
 
 Contactez-nous pour un devis adapté à votre projet.`
-    },
-
-    // ── PAGES SUPPLÉMENTAIRES ───────────────────
-    {
-      mots: ["page supplémentaire", "ajouter page", "plus de pages", "page en plus"],
-      reponse: `**Pages supplémentaires :**
-
-Chaque page ajoutée après la mise en ligne est facturée **100€ HTVA**.
-
-Cela comprend :
-• Design de la page
-• Intégration responsive
-• Optimisation SEO
-• Tests et mise en ligne`
     },
 
     // ── DÉLAIS ──────────────────────────────────
@@ -318,28 +410,12 @@ Cela comprend :
 
 ⏱️ **Landing Page** : 10-15 jours
 ⏱️ **Site Vitrine** : 15-30 jours
-⏱️ **E-commerce** : 30-50 jours
-⏱️ **Site Sur-mesure** : 30+ jours
-⏱️ **Design Graphique** : 15-20 jours
-⏱️ **Design Premium** : 30+ jours
+⏱️ **Boutique en ligne** : 30-50 jours
+⏱️ **Site web sur mesure** : 30+ jours
+⏱️ **Design Graphique / Motion** : 15-20 jours
+⏱️ **Votre design sur mesure** : 30+ jours
 
 Ces délais démarrent après validation du projet et réception de tous les éléments (textes, images, contenus).`
-    },
-
-    // ── RÉALISATIONS ────────────────────────────
-    {
-      mots: ["réalisations", "portfolio", "exemples", "projets", "références", "travaux"],
-      reponse: `**Nos réalisations :**
-
-Découvrez nos projets dans la section **"Nos Réalisations"** du site :
-
-• Landing pages percutantes
-• Sites vitrines élégants
-• Boutiques e-commerce performantes
-• Identités visuelles complètes
-• Motion design & montages vidéo
-
-Chaque projet est unique et reflète l'identité de nos clients.`
     },
 
     // ── CONTACT ─────────────────────────────────
@@ -354,105 +430,6 @@ Chaque projet est unique et reflète l'identité de nos clients.`
 ⏰ Amandine répond généralement sous **24h en semaine**.
 
 Les demandes sont traitées dans l'ordre d'arrivée. Merci de votre patience !`
-    },
-
-    // ── LOCALISATION ────────────────────────────
-    {
-      mots: ["belgique", "bruxelles", "où", "localisation", "distance", "adresse", "lieu"],
-      reponse: `**Notre localisation :**
-
-📍 **Bruxelles, Belgique**
-
-Nous travaillons avec :
-• Des clients partout en Belgique
-• Des clients à l'international (à distance)
-
-**Rendez-vous au bureau :**
-Sur rendez-vous uniquement
-🕘 09h30 - 12h00 et 13h00 - 16h30
-
-La plupart des projets se déroulent à distance (email, visio, téléphone).`
-    },
-
-    // ── RÉSEAUX SOCIAUX ─────────────────────────
-    {
-      mots: ["instagram", "tiktok", "linkedin", "réseaux sociaux", "suivre", "social media"],
-      reponse: `**Suivez-nous sur les réseaux :**
-
-📱 **TikTok** : @levelupcreation
-📸 **Instagram** : @level_upcreation
-💼 **LinkedIn** : Level Up Creation
-
-Au programme :
-• Conseils web & design
-• Coulisses du studio
-• Actus et projets
-• Tips développement
-
-Rejoignez notre communauté ! ✨`
-    },
-
-    // ── HTML ────────────────────────────────────
-    {
-      mots: ["html", "c'est quoi html", "definition html", "signification html"],
-      reponse: `**HTML (HyperText Markup Language)**
-
-C'est le **langage de structure** d'un site web.
-
-Avec HTML, on crée :
-• Les titres et paragraphes
-• Les images
-• Les liens
-• Les boutons
-• Les formulaires
-
-💡 **Analogie :**
-HTML = le squelette d'une maison
-
-➡️ Envie d'en apprendre plus ? Découvrez notre formation "Les bases du développement web" !`
-    },
-
-    // ── CSS ─────────────────────────────────────
-    {
-      mots: ["css", "c'est quoi css", "definition css", "signification css"],
-      reponse: `**CSS (Cascading Style Sheets)**
-
-C'est le **langage de mise en forme** d'un site web.
-
-Avec CSS, on contrôle :
-• Les couleurs 🎨
-• Les polices et tailles de texte
-• Les espacements et marges
-• Le positionnement des éléments
-• Les animations
-
-💡 **Analogie :**
-HTML = le squelette
-CSS = la décoration et le style
-
-➡️ Apprenez-en plus dans notre formation !`
-    },
-
-    // ── JAVASCRIPT ──────────────────────────────
-    {
-      mots: ["javascript", "js", "c'est quoi javascript", "definition javascript"],
-      reponse: `**JavaScript (JS)**
-
-C'est le **langage d'interactivité** d'un site web.
-
-Avec JavaScript, on peut :
-• Gérer les clics et interactions
-• Ouvrir/fermer des menus
-• Valider des formulaires
-• Créer des animations avancées
-• Charger du contenu dynamiquement
-
-💡 **Analogie :**
-HTML = le squelette 🏗️
-CSS = le style 🎨
-JavaScript = les actions ⚙️
-
-➡️ Maîtrisez les 3 avec notre formation !`
     },
 
     // ── REMERCIEMENTS ───────────────────────────
@@ -482,8 +459,8 @@ Belle journée à vous ! ✨`
 
 Je suis spécialisée dans **Level Up Creation** et je peux vous aider sur :
 • Nos services web et design
+• Nos formations
 • Nos tarifs et processus
-• Les formations
 • Comment nous contacter
 
 Avez-vous une question dans l'un de ces domaines ?`
@@ -493,10 +470,10 @@ Avez-vous une question dans l'un de ces domaines ?`
   const REPONSE_DEFAULT = `Je n'ai pas compris votre question 😊
 
 Je peux vous renseigner sur :
-• Nos **services** (sites web, design, formations)
-• Nos **tarifs** et délais
-• Notre **processus** de travail
-• Comment **nous contacter**
+
+🌐 **Sites Web :** Landing page, Site vitrine, Boutique en ligne, Site web sur mesure
+🎨 **Design :** Design graphique, Motion design, Votre design sur mesure
+📚 **Formations :** HTML, CSS, JavaScript, Web Développement Complet
 
 Pourriez-vous reformuler votre question ?
 
@@ -541,7 +518,6 @@ Ou contactez directement Amandine :
   }
 
   function ajouterMessage(texte, estBot) {
-    // Supprimer l'indicateur de saisie
     const typing = messages.querySelector(".cw-typing");
     if (typing) typing.remove();
 
@@ -551,14 +527,13 @@ Ou contactez directement Amandine :
     if (estBot) {
       const name = document.createElement("div");
       name.className = "cw-msg__name";
-      name.textContent = "Level Up Creation";
+      name.textContent = "Levelia";
       msg.appendChild(name);
     }
 
     const bubble = document.createElement("div");
     bubble.className = "cw-msg__bubble";
     
-    // Support du formatage (gras, listes, etc.)
     bubble.innerHTML = texte
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/\n/g, "<br>");
@@ -609,7 +584,6 @@ Ou contactez directement Amandine :
     widget.classList.remove("open");
   }
 
-  // ── ÉVÉNEMENTS ──────────────────────────────
   toggle.addEventListener("click", () => {
     isOpen ? fermerChat() : ouvrirChat();
   });
@@ -627,17 +601,10 @@ Ou contactez directement Amandine :
   // ── MESSAGE DE BIENVENUE ────────────────────
   setTimeout(() => {
     ajouterMessage(
-      `Bonjour ! 👋
+      `Hey 👋
+Je suis Levelia, ton copilote digital.
 
-Je suis l'assistante virtuelle de **Level Up Creation**.
-
-Je peux répondre à vos questions sur :
-• Nos services web & design
-• Nos tarifs
-• Notre processus de travail
-• Les formations
-
-Comment puis-je vous aider ? ✨`,
+Comment puis-je vous aider aujourd'hui ? ✨`,
       true
     );
     
