@@ -289,15 +289,36 @@
     }
   }
 
-  // ============================================
-  // MESSAGE DE BIENVENUE
-  // ============================================
-  function afficherMessageBienvenue() {
-    ajouterMessage(
-      `Hey 👋\nJe suis Levelia, ton copilote LevelUpCreation.\n\nComment puis-je t'aider aujourd'hui ? ✨`,
-      "bot"
-    );
-  }
+// ============================================
+// MESSAGE DE BIENVENUE
+// ============================================
+function afficherMessageBienvenue() {
+  // Créer le message sans passer par ajouterMessage()
+  const msg = document.createElement("div");
+  msg.className = "cw-msg cw-msg--bot";
+
+  const name = document.createElement("div");
+  name.className = "cw-msg__name";
+  name.textContent = "Levelia";
+  msg.appendChild(name);
+
+  const bubble = document.createElement("div");
+  bubble.className = "cw-msg__bubble";
+  bubble.innerHTML = formatMessage(
+    `Hey 👋\nJe suis Levelia, ton copilote LevelUpCreation.\n\nComment puis-je t'aider aujourd'hui ? ✨`
+  );
+  msg.appendChild(bubble);
+
+  const time = document.createElement("div");
+  time.className = "cw-msg__time";
+  time.textContent = heure();
+  msg.appendChild(time);
+
+  messages.appendChild(msg);
+  scrollToBottom();
+  
+  // ✅ PAS d'ajout à l'historique pour éviter la boucle
+}
 
   // ============================================
   // ÉVÉNEMENTS
