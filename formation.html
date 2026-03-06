@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="description" content="Tarifs création site web à Bruxelles. Découvrez les packs et options pour un site professionnel, et adapté à votre budget.">
+<link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
+<link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
+<link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
+<link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
+<link rel="stylesheet" href="./css/tchat.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/formation.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+ <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
+  <link rel="shortcut icon" href="./asset/image/favicon/2080x2080.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./asset/image/favicon/2080x2080.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
+<link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
+<link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
+  <link rel="manifest" href="https://levelupcreation.com">
+  <link rel="stylesheet" href="./css/tchat.css">
+
+  <meta name="theme-color" content="#ff2e8b">
+  <script type="module">
+  import { auth, db } from "./firebase.js";
+
+  console.log("Firebase connecté !");
+</script>
+
+   <title>Level Up Creation-Tarifs</title>
+</head>
+
+<body>
+ <!-- Top glow / background -->
+    <div class="bg-ambient" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+    <nav class="nav">
+      <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
+        <span class="brand__logo">
+          <img src="./asset/image/LOGO LVLUP_Ivoire 01.png" alt="Level Up Creation">
+        </span>
+        <span class="brand__name">Level Up Creation</span>
+      </a>
+
+
+      <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="nav__toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav__links" id="navLinks">
+        <a class="nav__link" href="./index.html">Accueil</a>
+        <a class="nav__link " href="./infos.html">
+          À propos
+        </a>
+        <a class="nav__link" href="./formation">Formations</a>
+        <a class="nav__link" href="./tarif.html">Tarifs</a>
+        <a class="nav__link" href="./realisation.html">Nos réalisations</a>
+        <a class="nav__link" href="./contact.html">Contact</a>
+        <a class="nav__link" href="./dashboard.html">Dashboard</a>
+      </div>
+    </nav>
+  </header>
+  <div class="bg-ambient"></div>
+ <!-- ====== HERO ====== -->
+  <section class="formation-hero">
+    <div class="formation-hero__badge fade-up">
+      <i class="fas fa-graduation-cap"></i> Catalogue 2025
+    </div>
+    <h1 class="fade-up">Nos <span>Formations</span></h1>
+    <p class="fade-up">
+      Du débutant au confirmé, maîtrisez les compétences clés du numérique.
+      Des formations pratiques, à votre rythme, encadrées par des professionnels.
+    </p>
+    <div class="formation-hero__stats fade-up">
+      <div class="formation-hero__stat">
+        <span class="formation-hero__stat-number">7</span>
+        <span class="formation-hero__stat-label">Formations</span>
+      </div>
+      <div class="formation-hero__stat">
+        <span class="formation-hero__stat-number">150+</span>
+        <span class="formation-hero__stat-label">Heures de contenu</span>
+      </div>
+      <div class="formation-hero__stat">
+        <span class="formation-hero__stat-number">98%</span>
+        <span class="formation-hero__stat-label">Satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FILTERS ====== -->
+  <div class="formation-filters fade-up">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">
+        <i class="fas fa-th-large"></i> Tout
+      </button>
+      <button class="filter-tab" data-filter="web">
+        <i class="fas fa-globe"></i> Web
+      </button>
+      <button class="filter-tab" data-filter="code">
+        <i class="fas fa-code"></i> Code
+      </button>
+      <button class="filter-tab" data-filter="creative">
+        <i class="fas fa-palette"></i> Créatif
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== FORMATIONS GRID ====== -->
+  <div class="formations-grid" id="formationsGrid">
+
+    <!-- ─── 1. Les Bases du Web ─── -->
+    <div class="formation-card fade-up delay-1 fc-web" data-category="web">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <span class="formation-card__level level-debutant">Débutant</span>
+        <h3 class="formation-card__title">Les Bases du Web</h3>
+        <p class="formation-card__desc">
+          Comprenez le fonctionnement d'Internet, les navigateurs, les serveurs, les noms de domaine et l'hébergement. La fondation essentielle avant tout apprentissage web.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Fonctionnement d'Internet & protocoles (HTTP/HTTPS)</li>
+          <li>Navigateurs, moteurs de recherche & DNS</li>
+          <li>Noms de domaine & hébergement web</li>
+          <li>Outils du développeur (inspecteur, console)</li>
+          <li>Introduction au référencement (SEO)</li>
+          <li>Sécurité web : les fondamentaux</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 12h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 6 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 2. HTML ─── -->
+    <div class="formation-card fade-up delay-2 fc-html" data-category="code">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fab fa-html5"></i>
+        </div>
+        <span class="formation-card__level level-debutant">Débutant</span>
+        <h3 class="formation-card__title">HTML — Structure du Web</h3>
+        <p class="formation-card__desc">
+          Apprenez à structurer vos pages web avec HTML5. Des balises de base aux formulaires, en passant par la sémantique et l'accessibilité.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Structure d'une page HTML5 (DOCTYPE, head, body)</li>
+          <li>Balises sémantiques (header, nav, main, footer)</li>
+          <li>Textes, listes, liens & images</li>
+          <li>Tableaux & formulaires avancés</li>
+          <li>Intégration audio, vidéo & iframes</li>
+          <li>Accessibilité (ARIA, alt, rôles)</li>
+          <li>Projet final : site multi-pages</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 18h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 7 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 3. CSS ─── -->
+    <div class="formation-card fade-up delay-3 fc-css" data-category="code">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fab fa-css3-alt"></i>
+        </div>
+        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
+        <h3 class="formation-card__title">CSS — Le Design du Web</h3>
+        <p class="formation-card__desc">
+          Maîtrisez CSS3 pour transformer vos pages en expériences visuelles. Flexbox, Grid, animations, responsive design et variables CSS.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Sélecteurs, spécificité & cascade</li>
+          <li>Box model, marges & positionnement</li>
+          <li>Flexbox : layouts flexibles</li>
+          <li>CSS Grid : grilles avancées</li>
+          <li>Responsive design & media queries</li>
+          <li>Animations, transitions & keyframes</li>
+          <li>Variables CSS & architecture BEM</li>
+          <li>Projet final : landing page responsive</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 24h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 8 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 4. JavaScript ─── -->
+    <div class="formation-card fade-up delay-4 fc-js" data-category="code">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fab fa-js-square"></i>
+        </div>
+        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
+        <h3 class="formation-card__title">JavaScript — Interactivité</h3>
+        <p class="formation-card__desc">
+          Rendez vos sites dynamiques avec JavaScript. Variables, fonctions, DOM, événements, API et introduction aux frameworks modernes.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Variables, types de données & opérateurs</li>
+          <li>Fonctions, boucles & conditions</li>
+          <li>Manipulation du DOM (sélection, création)</li>
+          <li>Événements & gestion de formulaires</li>
+          <li>Fetch API & requêtes asynchrones</li>
+          <li>ES6+ : destructuring, arrow functions, modules</li>
+          <li>LocalStorage & gestion des données</li>
+          <li>Projet final : application web interactive</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 30h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 8 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 5. Design Graphique ─── -->
+    <div class="formation-card fade-up delay-5 fc-design" data-category="creative">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <span class="formation-card__level level-debutant">Débutant</span>
+        <h3 class="formation-card__title">Design Graphique</h3>
+        <p class="formation-card__desc">
+          Maîtrisez les fondamentaux du design : couleurs, typographie, composition, identité visuelle. Outils : Photoshop, Illustrator, Figma & Canva.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Théorie des couleurs & psychologie visuelle</li>
+          <li>Typographie : choix, hiérarchie, lisibilité</li>
+          <li>Composition & règle des tiers</li>
+          <li>Création de logos & identité visuelle</li>
+          <li>Photoshop : retouche & montage photo</li>
+          <li>Illustrator : création vectorielle</li>
+          <li>Figma : maquettes UI/UX</li>
+          <li>Projet final : charte graphique complète</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 28h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 8 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 6. Montage Vidéo ─── -->
+    <div class="formation-card fade-up delay-6 fc-video" data-category="creative">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fas fa-film"></i>
+        </div>
+        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
+        <h3 class="formation-card__title">Montage Vidéo</h3>
+        <p class="formation-card__desc">
+          De la prise de vue au rendu final. Apprenez le montage professionnel avec Premiere Pro et DaVinci Resolve. Motion design, étalonnage, son.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Bases du montage : timeline, cuts & transitions</li>
+          <li>Premiere Pro : interface & workflow</li>
+          <li>DaVinci Resolve : étalonnage couleur</li>
+          <li>Mixage audio & sound design</li>
+          <li>Titrage, sous-titres & motion graphics</li>
+          <li>Export & compression pour le web / réseaux</li>
+          <li>Montage pour YouTube, TikTok & Instagram</li>
+          <li>Projet final : court-métrage / vidéo promo</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 32h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 8 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── 7. Animation 3D ─── -->
+    <div class="formation-card fade-up delay-7 fc-3d" data-category="creative">
+      <div class="formation-card__header">
+        <div class="formation-card__icon">
+          <i class="fas fa-cube"></i>
+        </div>
+        <span class="formation-card__level level-avance">Avancé</span>
+        <h3 class="formation-card__title">Animation 3D</h3>
+        <p class="formation-card__desc">
+          Plongez dans l'univers de la 3D avec Blender. Modélisation, textures, éclairage, animation de personnages et rendu photoréaliste.
+        </p>
+      </div>
+      <div class="formation-card__body">
+        <ul class="formation-card__modules">
+          <li>Interface Blender & navigation 3D</li>
+          <li>Modélisation : mesh, courbes & sculpt</li>
+          <li>Matériaux, textures & UV mapping</li>
+          <li>Éclairage : HDRI, spots & ambiance</li>
+          <li>Rigging & animation de personnages</li>
+          <li>Particles, simulations physiques & VFX</li>
+          <li>Rendu : Cycles & Eevee</li>
+          <li>Projet final : scène 3D animée complète</li>
+        </ul>
+      </div>
+      <div class="formation-card__footer">
+        <div class="formation-card__meta">
+          <span class="formation-card__meta-item">
+            <i class="fas fa-clock"></i> 40h
+          </span>
+          <span class="formation-card__meta-item">
+            <i class="fas fa-book"></i> 8 modules
+          </span>
+        </div>
+        <a href="../contact.html" class="formation-card__cta">
+          S'inscrire <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====== POURQUOI NOS FORMATIONS ====== -->
+  <section class="formation-why">
+    <h2 class="formation-why__title fade-up">Pourquoi choisir nos formations ?</h2>
+    <p class="formation-why__subtitle fade-up">
+      Un accompagnement humain et professionnel pour booster vos compétences digitales.
+    </p>
+    <div class="formation-why__grid">
+      <div class="why-card fade-up delay-1">
+        <div class="why-card__icon"><i class="fas fa-user-check"></i></div>
+        <h3>Suivi personnalisé</h3>
+        <p>Chaque apprenant bénéficie d'un accompagnement individuel adapté à son rythme et ses objectifs.</p>
+      </div>
+      <div class="why-card fade-up delay-2">
+        <div class="why-card__icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>100% Pratique</h3>
+        <p>Apprenez en construisant de vrais projets. Chaque formation se termine par une réalisation concrète.</p>
+      </div>
+      <div class="why-card fade-up delay-3">
+        <div class="why-card__icon"><i class="fas fa-certificate"></i></div>
+        <h3>Certificat de fin</h3>
+        <p>Recevez un certificat attestant de vos compétences à la fin de chaque formation complétée.</p>
+      </div>
+      <div class="why-card fade-up delay-4">
+        <div class="why-card__icon"><i class="fas fa-infinity"></i></div>
+        <h3>Accès illimité</h3>
+        <p>Accédez à vos contenus de formation à vie. Revisionnez les modules quand vous le souhaitez.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="formation-faq">
+    <h2 class="formation-faq__title fade-up">Questions fréquentes</h2>
+
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Ai-je besoin de connaissances préalables ?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Non ! Nos formations débutantes commencent de zéro. Pour les niveaux intermédiaires et avancés, les prérequis sont clairement indiqués sur chaque fiche.</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Les formations sont-elles en présentiel ou en ligne ?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Nous proposons les deux formats. Les sessions en présentiel ont lieu à Bruxelles. Les formations en ligne sont disponibles en live et en replay.</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Puis-je payer en plusieurs fois ?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Oui, nous proposons un paiement en 2 ou 3 fois sans frais. Contactez-nous pour mettre en place un plan de paiement adapté.</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Combien de temps ai-je accès aux contenus ?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>L'accès est illimité dans le temps. Une fois inscrit, vous gardez l'accès aux vidéos, ressources et mises à jour à vie.</p>
+      </div>
+    </div>
+
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Y a-t-il un support après la formation ?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Absolument ! Vous avez accès à un groupe privé et à un support par email pour poser vos questions même après la fin de la formation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="formation-cta">
+    <div class="formation-cta__inner fade-up">
+      <h2>Prêt à <span style="color: var(--accent2);">level up</span> vos compétences ?</h2>
+      <p>Contactez-nous pour discuter de vos objectifs et trouver la formation parfaite pour vous.</p>
+      <a href="../contact.html" class="formation-cta__btn">
+        <i class="fas fa-rocket"></i> Nous contacter
+      </a>
+    </div>
+  </section>
+<footer class="footer">
+  <div class="container footer__grid">
+
+    <!-- Logo + description -->
+    <div class="footer__brand">
+      <div class="footer__logo">
+        <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+      </div>
+
+      <p class="footer__founder">
+        Fondatrice : <strong>Amandine Letellier</strong>
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer__contact">
+      <h4>Contact</h4>
+
+      <a href="mailto:amandine@levelupcreation.com">
+        amandine@levelupcreation.com
+      </a>
+
+      <a href="tel:+32497746906">
+        +32 497 74 69 06
+      </a>
+    </div>
+
+    <!-- Réseaux -->
+    <div class="footer__social">
+      <h4>Réseaux</h4>
+      <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
+      <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">LinkedIn</a>
+    </div>
+
+    <!-- Partenaires -->
+    <div class="footer__partners">
+      <h4>Nos partenaires</h4>
+
+      <ul class="footer__partners-list">
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank"></a></li>
+      </ul>
+    </div>
+    <!-- Newsletter -->
+      <!--<section class="newsletter">
+  <h2>Level Up News </h2>
+  <p>Reçois les nouveautés et conseils web directement par email.</p>
+
+  <form id="newsletterForm">
+    <input type="email" placeholder="Ton email" required>
+    <button type="submit">Je m'inscris</button>
+  </form>
+<br>
+  <small>Pas de spam. Désinscription en 1 clic.</small>
+</section> -->
+
+  <div class="footer__bottom">
+    <p>
+      © <span id="year"></span> Level Up Creation — Tous droits réservés.
+    </p>
+  </div>
+</footer>
+
+<button id="scrollTopBtn" aria-label="Remonter en haut">
+  ↑
+</button>
+ <!-- ═══════════════════════════════════════════════════
+       CHAT WIDGET — HTML
+  ═══════════════════════════════════════════════════ -->
+<!-- Bouton flottant -->
+<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+  💬
+</button>
+
+<!-- Panneau Chat -->
+<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+  <div class="cw-header">
+    <div class="cw-avatar">💬</div>
+    <div class="cw-title">
+      <strong>Levelia</strong>
+      <span>En ligne</span>
+    </div>
+      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+    🗑️
+  </button>
+    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+  </div>
+
+  <div class="cw-messages" id="cwMessages">
+    <!-- Messages injectés par JavaScript -->
+  </div>
+
+  <div class="cw-footer" style="color: black;">
+    <input style="color: black; background-color: white;"
+      class="cw-input"
+      id="cwInput"
+      type="text"
+      placeholder="Pose ta question…"
+      autocomplete="off"
+      aria-label="Message"
+      maxlength="2000"
+    />
+    <button class="cw-send" id="cwSend" aria-label="Envoyer">
+      ↑
+    </button>
+  </div>
+</div>
+  
+  <script src="./javascripts/ai.js"></script>
+  <script src="./javascripts/tchat.js"></script>
+  <script src="./javascripts/scripts.js" defer></script>
+      <script src="./javascripts/404.js"></script>
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const form = document.getElementById("newsletterForm");
+  const msg = document.getElementById("newsletterMsg");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    msg.textContent = "✅ Merci pour ton inscription !";
+    form.reset();
+  });
+</script>
+<script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add("show");
+  } else {
+    scrollBtn.classList.remove("show");
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+</body>
+</html>
