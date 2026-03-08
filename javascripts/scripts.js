@@ -432,3 +432,6 @@
   }, { passive: true });
 
 })();
+function openFormation(page){
+    window.location.href = page;
+}

@@ -13,7 +13,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/formation.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
  <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
@@ -59,7 +58,13 @@
         <a class="nav__link " href="./infos.html">
           À propos
         </a>
-        <a class="nav__link" href="./formation">Formations</a>
+        <li class="nav__item nav__dropdown">
+  <a class="nav__link" href="./formation.html">Formations</a>
+ <!--  <ul class="dropdown-menu">
+    <li><a href="#WEB"style="font-size: 18px;" >FORMATIONS EN DÉVELOPPEMENT WEB</a></li>
+    <li><a href="#DESIGN"style="font-size: 18px;" >FORMATIONS EN DESIGN</a></li>
+  </ul> -->
+</li>
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
@@ -71,417 +76,260 @@
  <!-- ====== HERO ====== -->
   <section class="formation-hero">
     <div class="formation-hero__badge fade-up">
-      <i class="fas fa-graduation-cap"></i> Catalogue 2025
+      <i class="fas fa-graduation-cap" style="font-size: 18px;">Catalogue 2026-2027</i> 
     </div>
     <h1 class="fade-up">Nos <span>Formations</span></h1>
-    <p class="fade-up">
+    <p class="fade-up" style="font-size: 18px;">
       Du débutant au confirmé, maîtrisez les compétences clés du numérique.
       Des formations pratiques, à votre rythme, encadrées par des professionnels.
     </p>
     <div class="formation-hero__stats fade-up">
       <div class="formation-hero__stat">
-        <span class="formation-hero__stat-number">7</span>
-        <span class="formation-hero__stat-label">Formations</span>
+        <span class="formation-hero__stat-number">9+</span>
+        <span class="formation-hero__stat-label" style="font-size: 18px;">Formations</span>
       </div>
       <div class="formation-hero__stat">
         <span class="formation-hero__stat-number">150+</span>
-        <span class="formation-hero__stat-label">Heures de contenu</span>
+        <span class="formation-hero__stat-label" style="font-size: 18px;">Heures de contenu</span>
       </div>
       <div class="formation-hero__stat">
-        <span class="formation-hero__stat-number">98%</span>
-        <span class="formation-hero__stat-label">Satisfaction</span>
+        <span class="formation-hero__stat-number">95%</span>
+        <span class="formation-hero__stat-label" style="font-size: 18px;">Satisfaction</span>
       </div>
     </div>
   </section>
 
-  <!-- ====== FILTERS ====== -->
-  <div class="formation-filters fade-up">
-    <div class="filter-tabs">
-      <button class="filter-tab active" data-filter="all">
-        <i class="fas fa-th-large"></i> Tout
-      </button>
-      <button class="filter-tab" data-filter="web">
-        <i class="fas fa-globe"></i> Web
-      </button>
-      <button class="filter-tab" data-filter="code">
-        <i class="fas fa-code"></i> Code
-      </button>
-      <button class="filter-tab" data-filter="creative">
-        <i class="fas fa-palette"></i> Créatif
-      </button>
+  <section class="examples">
+  <div class="container">
+
+    <h2 class="examples__title" id="DESIGN">NOS FORMATIONS EN DESIGN</h2>
+
+    <div class="examples__grid">
+
+      <!--Photoshops-->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/photo.png" alt="Formation Photoshop">
+        </div>
+
+        <h3 class="ex-card__title">Photoshops</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+          Modifiez, composez et créez de superbes images graphiques et illustrations.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('photoshop.html')">
+          VOIR PLUS
+        </button>  -->
+       
+      </div>
+
+
+      <!-- Illustrator -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/AI.png" alt="Formation Illustrator">
+        </div>
+
+        <h3 class="ex-card__title">Illustrator</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+          Créez de superbes illustrations vectorielles : logos, icônes, design de packaging etc.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('illustrator.html')">
+          VOIR PLUS
+        </button> -->
+        
+      </div>
+
+
+      <!-- InDesign -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/indesign.png" alt="Formation InDesign">
+        </div>
+
+        <h3 class="ex-card__title">InDesign</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+          Publiez des mises en page élégantes pour l’impression et le digital.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('indesign.html')">
+          VOIR PLUS
+        </button> -->
+        
+      </div>
+
+      <!-- première pro -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/pro.png" alt="première pro">
+        </div>
+
+        <h3 class="ex-card__title">Premiere Pro</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+         Découvrez l’univers de la composition
+et des effets spéciaux.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('première pro.html')">
+          VOIR PLUS
+        </button> -->
+        
+      </div>
+    <!-- After Effects -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/ae.png" alt="After Effects">
+        </div>
+
+        <h3 class="ex-card__title">After Effects</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+          Transformez vos séquences en films
+et en vidéos accomplis grâce
+à ce logiciel de montage professionnel.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('After Effects.html')">
+          VOIR PLUS
+        </button> -->
+        
+      </div>
+
+      <!--Affinity-->
+
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/affiniti.png" alt="Formation Affinity">
+        </div>
+
+        <h3 class="ex-card__title">Affinity</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+         Maîtrisez Affinity pour concevoir des illustrations, retoucher des images et créer des visuels professionnels avec des outils puissants et modernes.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('Affinity.html')">
+          VOIR PLUS
+        </button>-->
+       
+      </div>
+           <!--C4D-->
+
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/c4d.webp" alt="Formation C4D">
+        </div>
+
+        <h3 class="ex-card__title">C4D</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+        Apprenez à créer des animations et des objets 3D professionnels avec Cinema 4D, et donnez vie à vos idées grâce à la modélisation, l’éclairage et le rendu.
+        </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('Affinity.html')">
+          VOIR PLUS
+        </button>-->
+       
+      </div>
+      
     </div>
   </div>
+</section>
+<section class="examples">
+  <div class="container">
 
-  <!-- ====== FORMATIONS GRID ====== -->
-  <div class="formations-grid" id="formationsGrid">
+    <h2 class="examples__title"id="WEB">NOS FORMATIONS DÉVELOPPEMENT WEB</h2>
 
-    <!-- ─── 1. Les Bases du Web ─── -->
-    <div class="formation-card fade-up delay-1 fc-web" data-category="web">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fas fa-globe"></i>
+
+    <div class="examples__grid">
+
+      <!-- html -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/html.png" alt="Formation HTML">
         </div>
-        <span class="formation-card__level level-debutant">Débutant</span>
-        <h3 class="formation-card__title">Les Bases du Web</h3>
-        <p class="formation-card__desc">
-          Comprenez le fonctionnement d'Internet, les navigateurs, les serveurs, les noms de domaine et l'hébergement. La fondation essentielle avant tout apprentissage web.
+
+        <h3 class="ex-card__title">HTML</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+        Plongez dans le monde de la conception web et apprenez le langage HTML.
         </p>
+<!-- <button class="ex-card__btn" onclick="openFormation('wordpress.html')">
+          VOIR PLUS
+        </button> -->
+        
       </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Fonctionnement d'Internet & protocoles (HTTP/HTTPS)</li>
-          <li>Navigateurs, moteurs de recherche & DNS</li>
-          <li>Noms de domaine & hébergement web</li>
-          <li>Outils du développeur (inspecteur, console)</li>
-          <li>Introduction au référencement (SEO)</li>
-          <li>Sécurité web : les fondamentaux</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 12h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 6 modules
-          </span>
-        </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
 
-    <!-- ─── 2. HTML ─── -->
-    <div class="formation-card fade-up delay-2 fc-html" data-category="code">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fab fa-html5"></i>
+
+      <!-- CSS -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/css.png" alt="Formation CSS">
         </div>
-        <span class="formation-card__level level-debutant">Débutant</span>
-        <h3 class="formation-card__title">HTML — Structure du Web</h3>
-        <p class="formation-card__desc">
-          Apprenez à structurer vos pages web avec HTML5. Des balises de base aux formulaires, en passant par la sémantique et l'accessibilité.
+
+        <h3 class="ex-card__title">CSS</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+          Structurez des documents, intégrez des médias et changez la couleur des textes et fonds.
         </p>
+<!--<button class="ex-card__btn" onclick="openFormation('html-css.html')">
+          VOIR PLUS
+        </button>  -->
+        
       </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Structure d'une page HTML5 (DOCTYPE, head, body)</li>
-          <li>Balises sémantiques (header, nav, main, footer)</li>
-          <li>Textes, listes, liens & images</li>
-          <li>Tableaux & formulaires avancés</li>
-          <li>Intégration audio, vidéo & iframes</li>
-          <li>Accessibilité (ARIA, alt, rôles)</li>
-          <li>Projet final : site multi-pages</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 18h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 7 modules
-          </span>
-        </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
 
-    <!-- ─── 3. CSS ─── -->
-    <div class="formation-card fade-up delay-3 fc-css" data-category="code">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fab fa-css3-alt"></i>
+
+      <!-- Javascripts -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/js.png" alt="Formation Javascripts">
         </div>
-        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
-        <h3 class="formation-card__title">CSS — Le Design du Web</h3>
-        <p class="formation-card__desc">
-          Maîtrisez CSS3 pour transformer vos pages en expériences visuelles. Flexbox, Grid, animations, responsive design et variables CSS.
+
+        <h3 class="ex-card__title">Javascripts</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+    Apprenez JavaScript et donnez vie à vos pages web grâce à l’interactivité et aux fonctionnalités dynamiques.
         </p>
+<!--   <button class="ex-card__btn" onclick="openFormation('html.html')">
+          VOIR PLUS
+        </button>-->
+       
       </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Sélecteurs, spécificité & cascade</li>
-          <li>Box model, marges & positionnement</li>
-          <li>Flexbox : layouts flexibles</li>
-          <li>CSS Grid : grilles avancées</li>
-          <li>Responsive design & media queries</li>
-          <li>Animations, transitions & keyframes</li>
-          <li>Variables CSS & architecture BEM</li>
-          <li>Projet final : landing page responsive</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 24h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 8 modules
-          </span>
+      <!-- Développement web -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/Développement web.png" alt="Formation Développement web">
         </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
 
-    <!-- ─── 4. JavaScript ─── -->
-    <div class="formation-card fade-up delay-4 fc-js" data-category="code">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fab fa-js-square"></i>
-        </div>
-        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
-        <h3 class="formation-card__title">JavaScript — Interactivité</h3>
-        <p class="formation-card__desc">
-          Rendez vos sites dynamiques avec JavaScript. Variables, fonctions, DOM, événements, API et introduction aux frameworks modernes.
+        <h3 class="ex-card__title">Développement web</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+    Apprenez à créer des sites et des applications web modernes en maîtrisant les technologies essentielles du développement web.
         </p>
+<!--   <button class="ex-card__btn" onclick="openFormation('html.html')">
+          VOIR PLUS
+        </button>-->
+       
       </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Variables, types de données & opérateurs</li>
-          <li>Fonctions, boucles & conditions</li>
-          <li>Manipulation du DOM (sélection, création)</li>
-          <li>Événements & gestion de formulaires</li>
-          <li>Fetch API & requêtes asynchrones</li>
-          <li>ES6+ : destructuring, arrow functions, modules</li>
-          <li>LocalStorage & gestion des données</li>
-          <li>Projet final : application web interactive</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 30h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 8 modules
-          </span>
+            <!-- Figma -->
+      <div class="ex-card">
+        <div class="ex-card__media">
+          <img src="./asset/image/figma.png" alt="Formation Figma">
         </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
 
-    <!-- ─── 5. Design Graphique ─── -->
-    <div class="formation-card fade-up delay-5 fc-design" data-category="creative">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fas fa-palette"></i>
-        </div>
-        <span class="formation-card__level level-debutant">Débutant</span>
-        <h3 class="formation-card__title">Design Graphique</h3>
-        <p class="formation-card__desc">
-          Maîtrisez les fondamentaux du design : couleurs, typographie, composition, identité visuelle. Outils : Photoshop, Illustrator, Figma & Canva.
+        <h3 class="ex-card__title">Figma</h3>
+
+        <p class="ex-card__desc"style="font-size: 16px;">
+    Apprenez à concevoir des interfaces modernes et des prototypes interactifs avec Figma, l’outil incontournable du design UI/UX.
         </p>
+<!--   <button class="ex-card__btn" onclick="openFormation('html.html')">
+          VOIR PLUS
+        </button>-->
+       
       </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Théorie des couleurs & psychologie visuelle</li>
-          <li>Typographie : choix, hiérarchie, lisibilité</li>
-          <li>Composition & règle des tiers</li>
-          <li>Création de logos & identité visuelle</li>
-          <li>Photoshop : retouche & montage photo</li>
-          <li>Illustrator : création vectorielle</li>
-          <li>Figma : maquettes UI/UX</li>
-          <li>Projet final : charte graphique complète</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 28h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 8 modules
-          </span>
-        </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
+   
     </div>
-
-    <!-- ─── 6. Montage Vidéo ─── -->
-    <div class="formation-card fade-up delay-6 fc-video" data-category="creative">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fas fa-film"></i>
-        </div>
-        <span class="formation-card__level level-intermediaire">Intermédiaire</span>
-        <h3 class="formation-card__title">Montage Vidéo</h3>
-        <p class="formation-card__desc">
-          De la prise de vue au rendu final. Apprenez le montage professionnel avec Premiere Pro et DaVinci Resolve. Motion design, étalonnage, son.
-        </p>
-      </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Bases du montage : timeline, cuts & transitions</li>
-          <li>Premiere Pro : interface & workflow</li>
-          <li>DaVinci Resolve : étalonnage couleur</li>
-          <li>Mixage audio & sound design</li>
-          <li>Titrage, sous-titres & motion graphics</li>
-          <li>Export & compression pour le web / réseaux</li>
-          <li>Montage pour YouTube, TikTok & Instagram</li>
-          <li>Projet final : court-métrage / vidéo promo</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 32h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 8 modules
-          </span>
-        </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- ─── 7. Animation 3D ─── -->
-    <div class="formation-card fade-up delay-7 fc-3d" data-category="creative">
-      <div class="formation-card__header">
-        <div class="formation-card__icon">
-          <i class="fas fa-cube"></i>
-        </div>
-        <span class="formation-card__level level-avance">Avancé</span>
-        <h3 class="formation-card__title">Animation 3D</h3>
-        <p class="formation-card__desc">
-          Plongez dans l'univers de la 3D avec Blender. Modélisation, textures, éclairage, animation de personnages et rendu photoréaliste.
-        </p>
-      </div>
-      <div class="formation-card__body">
-        <ul class="formation-card__modules">
-          <li>Interface Blender & navigation 3D</li>
-          <li>Modélisation : mesh, courbes & sculpt</li>
-          <li>Matériaux, textures & UV mapping</li>
-          <li>Éclairage : HDRI, spots & ambiance</li>
-          <li>Rigging & animation de personnages</li>
-          <li>Particles, simulations physiques & VFX</li>
-          <li>Rendu : Cycles & Eevee</li>
-          <li>Projet final : scène 3D animée complète</li>
-        </ul>
-      </div>
-      <div class="formation-card__footer">
-        <div class="formation-card__meta">
-          <span class="formation-card__meta-item">
-            <i class="fas fa-clock"></i> 40h
-          </span>
-          <span class="formation-card__meta-item">
-            <i class="fas fa-book"></i> 8 modules
-          </span>
-        </div>
-        <a href="../contact.html" class="formation-card__cta">
-          S'inscrire <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-
   </div>
+</section>
 
-  <!-- ====== POURQUOI NOS FORMATIONS ====== -->
-  <section class="formation-why">
-    <h2 class="formation-why__title fade-up">Pourquoi choisir nos formations ?</h2>
-    <p class="formation-why__subtitle fade-up">
-      Un accompagnement humain et professionnel pour booster vos compétences digitales.
-    </p>
-    <div class="formation-why__grid">
-      <div class="why-card fade-up delay-1">
-        <div class="why-card__icon"><i class="fas fa-user-check"></i></div>
-        <h3>Suivi personnalisé</h3>
-        <p>Chaque apprenant bénéficie d'un accompagnement individuel adapté à son rythme et ses objectifs.</p>
-      </div>
-      <div class="why-card fade-up delay-2">
-        <div class="why-card__icon"><i class="fas fa-laptop-code"></i></div>
-        <h3>100% Pratique</h3>
-        <p>Apprenez en construisant de vrais projets. Chaque formation se termine par une réalisation concrète.</p>
-      </div>
-      <div class="why-card fade-up delay-3">
-        <div class="why-card__icon"><i class="fas fa-certificate"></i></div>
-        <h3>Certificat de fin</h3>
-        <p>Recevez un certificat attestant de vos compétences à la fin de chaque formation complétée.</p>
-      </div>
-      <div class="why-card fade-up delay-4">
-        <div class="why-card__icon"><i class="fas fa-infinity"></i></div>
-        <h3>Accès illimité</h3>
-        <p>Accédez à vos contenus de formation à vie. Revisionnez les modules quand vous le souhaitez.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== FAQ ====== -->
-  <section class="formation-faq">
-    <h2 class="formation-faq__title fade-up">Questions fréquentes</h2>
-
-    <div class="faq-item fade-up">
-      <button class="faq-question">
-        Ai-je besoin de connaissances préalables ?
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="faq-answer">
-        <p>Non ! Nos formations débutantes commencent de zéro. Pour les niveaux intermédiaires et avancés, les prérequis sont clairement indiqués sur chaque fiche.</p>
-      </div>
-    </div>
-
-    <div class="faq-item fade-up">
-      <button class="faq-question">
-        Les formations sont-elles en présentiel ou en ligne ?
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="faq-answer">
-        <p>Nous proposons les deux formats. Les sessions en présentiel ont lieu à Bruxelles. Les formations en ligne sont disponibles en live et en replay.</p>
-      </div>
-    </div>
-
-    <div class="faq-item fade-up">
-      <button class="faq-question">
-        Puis-je payer en plusieurs fois ?
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="faq-answer">
-        <p>Oui, nous proposons un paiement en 2 ou 3 fois sans frais. Contactez-nous pour mettre en place un plan de paiement adapté.</p>
-      </div>
-    </div>
-
-    <div class="faq-item fade-up">
-      <button class="faq-question">
-        Combien de temps ai-je accès aux contenus ?
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="faq-answer">
-        <p>L'accès est illimité dans le temps. Une fois inscrit, vous gardez l'accès aux vidéos, ressources et mises à jour à vie.</p>
-      </div>
-    </div>
-
-    <div class="faq-item fade-up">
-      <button class="faq-question">
-        Y a-t-il un support après la formation ?
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="faq-answer">
-        <p>Absolument ! Vous avez accès à un groupe privé et à un support par email pour poser vos questions même après la fin de la formation.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== CTA ====== -->
-  <section class="formation-cta">
-    <div class="formation-cta__inner fade-up">
-      <h2>Prêt à <span style="color: var(--accent2);">level up</span> vos compétences ?</h2>
-      <p>Contactez-nous pour discuter de vos objectifs et trouver la formation parfaite pour vous.</p>
-      <a href="../contact.html" class="formation-cta__btn">
-        <i class="fas fa-rocket"></i> Nous contacter
-      </a>
-    </div>
-  </section>
 <footer class="footer">
   <div class="container footer__grid">
 
@@ -597,19 +445,7 @@
   <script src="./javascripts/tchat.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
       <script src="./javascripts/404.js"></script>
-<script>
 
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  const form = document.getElementById("newsletterForm");
-  const msg = document.getElementById("newsletterMsg");
-
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    msg.textContent = "✅ Merci pour ton inscription !";
-    form.reset();
-  });
-</script>
 <script>
 const scrollBtn = document.getElementById("scrollTopBtn");
 
