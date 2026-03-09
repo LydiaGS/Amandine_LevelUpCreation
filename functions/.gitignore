@@ -1,2 +1,23 @@
 node_modules/
 *.local
+# env
+.env
+.env.*
+
+# backend
+Back_end/
+
+# config
+config.js
+
+# logs
+firebase-debug.log
+
+# node
+node_modules/
+
+# vscode
+.vscode/
+
+# system
+.DS_Store
