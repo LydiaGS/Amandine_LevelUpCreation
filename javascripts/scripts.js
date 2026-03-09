@@ -435,3 +435,9 @@
 function openFormation(page){
     window.location.href = page;
 }
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
+document.addEventListener("dragstart", function(e) {
+  e.preventDefault();
+});

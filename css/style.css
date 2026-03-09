@@ -4994,3 +4994,8 @@ button {
   visibility: visible;
   transform: translateY(0);
 }
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
