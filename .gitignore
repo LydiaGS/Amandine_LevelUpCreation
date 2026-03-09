@@ -22,3 +22,6 @@ node_modules/
 
 # admin
 admin-newsletter.html
+
+#vscode
+.vscode/
