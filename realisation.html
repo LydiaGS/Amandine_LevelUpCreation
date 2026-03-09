@@ -1,46 +1,63 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Découvrez les réalisations web de Level Up Creation à Bruxelles. Sites modernes, Ultra personnalsié et SEO de base.">
-<link rel="stylesheet" href="./css/tchat.css">
-<link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
-<link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
-<link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
-<link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
-
+  <meta name="description"
+    content="Découvrez les réalisations web de Level Up Creation à Bruxelles. Sites modernes, Ultra personnalsié et SEO de base.">
+  <meta property="og:title" content="Level Up Creation - Création de sites web et formations digitales">
+  <meta property="og:description"
+    content="Création de sites web modernes, rapides et optimisés SEO. Formations en design et développement web.">
+  <meta property="og:image" content="https://levelupcreation.com/asset/image/levelupcreation.png">
+  <meta property="og:url" content="https://levelupcreation.com">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="./css/tchat.css">
+  <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
+  <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
+  <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
+  <link rel="canonical" href="https://levelupcreation.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/font.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
- <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/font.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
   <link rel="shortcut icon" href="./asset/image/favicon/2080x2080.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
-<link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
-<link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/32x32.png">
+  <link rel="shortcut icon" href="./asset/image/favicon/32x32.png">
+  <link rel="icon" type="image/png" href="./asset/image/favicon/32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./asset/image/favicon/2080x2080.png">
 
   <link rel="manifest" href="https://levelupcreation.com">
-
-  <meta name="theme-color" content="#ff2e8b">
-<script type="module">
-  import { auth, db } from "./firebase.js";
-
-  console.log("Firebase connecté !");
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Level Up Creation",
+ "url": "https://levelupcreation.com"
+}
 </script>
+  <meta name="theme-color" content="#ff2e8b">
+  <script type="module">
+    import { auth, db } from "./firebase.js";
 
-    <title>Level Up Creation-Nos réalisations</title>
+    console.log("Firebase connecté !");
+  </script>
+
+  <title>Level Up Creation-Nos réalisations</title>
 </head>
 
 <body>
 
- <!-- Top glow / background -->
-    <div class="bg-ambient" aria-hidden="true"></div>
+  <!-- Top glow / background -->
+  <div class="bg-ambient" aria-hidden="true"></div>
 
-    <header class="site-header" id="top">
+  <header class="site-header" id="top">
     <nav class="nav">
       <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
         <span class="brand__logo">
@@ -56,20 +73,20 @@
 
       <div class="nav__links" id="navLinks">
         <a class="nav__link" href="./index.html">Accueil</a>
-   <a class="nav__link " href="./infos.html">
-    À propos
-  </a>
+        <a class="nav__link " href="./infos.html">
+          À propos
+        </a>
         <li class="nav__item nav__dropdown">
-  <a class="nav__link" href="./formation.html">Formations</a>
- <!-- <ul class="dropdown-menu">
+          <a class="nav__link" href="./formation.html">Formations</a>
+          <!-- <ul class="dropdown-menu">
     <li><a href="#WEB"style="font-size: 18px;" >FORMATIONS EN DÉVELOPPEMENT WEB</a></li>
     <li><a href="#DESIGN"style="font-size: 18px;" >FORMATIONS EN DESIGN</a></li>
   </ul> -->
-</li>
+        </li>
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-           <a class="nav__link" href="./dashboard.html">Espace Client</a>
+        <a class="nav__link" href="./dashboard.html">Espace Client</a>
       </div>
     </nav>
   </header>
@@ -82,12 +99,8 @@
         <!-- Card 1 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/landingpage.png"
-              alt="Exemple Landing Page"
-              loading="lazy"
-              data-full="./asset/image/landingpage.png"
-            />
+            <img src="./asset/image/landingpage.png" alt="Exemple Landing Page" loading="lazy"
+              data-full="./asset/image/landingpage.png" />
           </div>
 
           <h3 class="ex-card__title">Landing Page</h3>
@@ -96,118 +109,104 @@
             méthode, FAQ et page contact.
           </p>
           <button class="ex-card__btn" type="button" data-open>
-          <a href="https://lydiags.github.io/templete1/" style="text-decoration: none; color: black;">voir le template</a>
+            <a href="https://lydiags.github.io/templete1/" style="text-decoration: none; color: black;">voir le
+              template</a>
           </button>
         </article>
         <!-- Card 2 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/template_2.png"
-              alt="Exemple Site Vitrine"
-              loading="lazy"
-              data-full="./asset/image/template_2.png"
-            />
+            <img src="./asset/image/template_2.png" alt="Exemple Site Vitrine" loading="lazy"
+              data-full="./asset/image/template_2.png" />
           </div>
           <h3 class="ex-card__title">Site Vitrine</h3>
           <p class="ex-card__desc">
             Site complet : accueil, présentation, planning des cours, galerie photos
             et page contact.
           </p>
-            <button class="ex-card__btn" type="button" data-open>
-          <a href="https://lydiags.github.io/templete2/" style="text-decoration: none; color: black;">voir le template</a>
+          <button class="ex-card__btn" type="button" data-open>
+            <a href="https://lydiags.github.io/templete2/" style="text-decoration: none; color: black;">voir le
+              template</a>
           </button>
         </article>
         <!-- Card 3 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/e-shops.png"
-              alt="Exemple Site e-commerce"
-              loading="lazy"
-              data-full="./asset/image/e-shops.png"
-            />
+            <img src="./asset/image/e-shops.png" alt="Exemple Site e-commerce" loading="lazy"
+              data-full="./asset/image/e-shops.png" />
           </div>
           <h3 class="ex-card__title">Site e-commerce</h3>
           <p class="ex-card__desc">
             Boutique moderne : page d’accueil, catalogue produits, fiche produit,
             écran de paiement et page “À propos”.
           </p>
-           <button class="ex-card__btn" type="button" data-open>
-          <a href=" https://lydiags.github.io/templete3/" style="text-decoration: none; color: black;">voir le template</a>
+          <button class="ex-card__btn" type="button" data-open>
+            <a href=" https://lydiags.github.io/templete3/" style="text-decoration: none; color: black;">voir le
+              template</a>
           </button>
         </article>
         <!-- Card 4 -->
         <article class="ex-card">
           <div class="ex-card__media">
-              <video controls style="width:400px">
-  <source src="./asset/video/ANIM 1.mp4" type="video/mp4">
-</video>
+            <video controls style="width:400px">
+              <source src="./asset/video/ANIM 1.mp4" type="video/mp4">
+            </video>
           </div>
-         <h3 class="ex-card__title">Design</h3>
+          <h3 class="ex-card__title">Design</h3>
           <p class="ex-card__desc">
             Montage vidéo Pour une marque de cheveux Bouclé BOTANEYA.
           </p>
 
           <button class="ex-card__btn" type="button" data-open>
-            <a href="https://lydiags.github.io/Botaneya/" style="text-decoration: none;color: black;">Voir le site Web</a>
-            
+            <a href="https://lydiags.github.io/Botaneya/" style="text-decoration: none;color: black;">Voir le site
+              Web</a>
+
           </button>
         </article>
         <!-- Card 5 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/todoliste.png"
-              alt="Exemple Site e-commerce"
-              loading="lazy"
-              data-full="./asset/image/todoliste.png"
-            />
+            <img src="./asset/image/todoliste.png" alt="Exemple Site e-commerce" loading="lazy"
+              data-full="./asset/image/todoliste.png" />
           </div>
           <h3 class="ex-card__title">To_Do_Liste</h3>
           <p class="ex-card__desc">
-           To_Do_Liste en React.JS.
+            To_Do_Liste en React.JS.
           </p>
-           <button class="ex-card__btn" type="button" data-open>
-          <a href=" https://lydiags.github.io/todo-list/" style="text-decoration: none; color: black;">voir le projet</a>
+          <button class="ex-card__btn" type="button" data-open>
+            <a href=" https://lydiags.github.io/todo-list/" style="text-decoration: none; color: black;">voir le
+              projet</a>
           </button>
         </article>
         <!-- Card 6 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/artofskin.png"
-              alt="Exemple Site e-commerce"
-              loading="lazy"
-              data-full="./asset/image/artofskin.png"
-            />
+            <img src="./asset/image/artofskin.png" alt="Exemple Site e-commerce" loading="lazy"
+              data-full="./asset/image/artofskin.png" />
           </div>
           <h3 class="ex-card__title">Site_ArtOfSkin</h3>
           <p class="ex-card__desc">
-         Site en maintenance de texte et d'image. <br> Site d'une boutique de tatouage, piercing, songles & Coiffeur.
+            Site en maintenance de texte et d'image. <br> Site d'une boutique de tatouage, piercing, songles & Coiffeur.
           </p>
-           <button class="ex-card__btn" type="button" data-open>
-          <a href="https://lydiags.github.io/application_ArtOfSkin/" style="text-decoration: none; color: black;">voir le site</a>
+          <button class="ex-card__btn" type="button" data-open>
+            <a href="https://lydiags.github.io/application_ArtOfSkin/" style="text-decoration: none; color: black;">voir
+              le site</a>
           </button>
         </article>
         <!-- Card 7 -->
         <article class="ex-card">
           <div class="ex-card__media">
-            <img
-              src="./asset/image/galerieart.png"
-              alt="Exemple Site e-commerce"
-              loading="lazy"
-              data-full="./asset/image/galerieart.png"
-            />
+            <img src="./asset/image/galerieart.png" alt="Exemple Site e-commerce" loading="lazy"
+              data-full="./asset/image/galerieart.png" />
           </div>
           <h3 class="ex-card__title">Site pour artiste</h3>
           <p class="ex-card__desc">
-        Template de Site vitrine pour artiste.</p>
-           <button class="ex-card__btn" type="button" data-open>
-          <a href="https://lydiags.github.io/Oeuvreart/" style="text-decoration: none; color: black;">voir le site</a>
+            Template de Site vitrine pour artiste.</p>
+          <button class="ex-card__btn" type="button" data-open>
+            <a href="https://lydiags.github.io/Oeuvreart/" style="text-decoration: none; color: black;">voir le site</a>
           </button>
         </article>
-          <!--<article class="ex-card">
+        <!--<article class="ex-card">
           <div class="ex-card__media">
             <img
               src="./asset/image/refuges.png"
@@ -303,82 +302,83 @@
       </div>
     </section>
     <section class="cta_container" aria-label="Appel à l'action">
-  <div class="cta__box">
-    <h2 class="cta__title">Prête à passer au niveau supérieur ?</h2>
-    <p class="cta__text">
-      Dis-nous ce dont tu as besoin et on te propose une solution sur-mesure,
-      claire et rapide à mettre en ligne.
-    </p>
-    <div class="cta__actions">
-      <a class="btn btn--primary" href="./contact.html">Demander un devis</a>
-      <a class="btn btn--primary" href="./tarif.html">Voir les tarifs</a>
-    </div>
-  </div>
-</section>
+      <div class="cta__box">
+        <h2 class="cta__title">Prête à passer au niveau supérieur ?</h2>
+        <p class="cta__text">
+          Dis-nous ce dont tu as besoin et on te propose une solution sur-mesure,
+          claire et rapide à mettre en ligne.
+        </p>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="./contact.html">Demander un devis</a>
+          <a class="btn btn--primary" href="./tarif.html">Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-<!-- MODAL Plein écran (image/vidéo) -->
-<div class="modal" id="exModal" aria-hidden="true">
-  <div class="modal__backdrop" data-close></div>
+  <!-- MODAL Plein écran (image/vidéo) -->
+  <div class="modal" id="exModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
 
-  <div class="modal__panel" role="dialog" aria-modal="true">
-    <button class="modal__close" type="button" aria-label="Fermer" data-close>✕</button>
+    <div class="modal__panel" role="dialog" aria-modal="true">
+      <button class="modal__close" type="button" aria-label="Fermer" data-close>✕</button>
 
-    <!-- Ici on injecte image ou vidéo -->
-    <div class="modal__content" id="modalContent"></div>
+      <!-- Ici on injecte image ou vidéo -->
+      <div class="modal__content" id="modalContent"></div>
+    </div>
   </div>
-</div>
 
-<footer class="footer">
-  <div class="container footer__grid">
+  <footer class="footer">
+    <div class="container footer__grid">
 
-    <!-- Logo + description -->
-    <div class="footer__brand">
-      <div class="footer__logo">
-        <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+      <!-- Logo + description -->
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="./asset/image/LOGO LVLUP_Ivoire 03.png" alt="Level Up Creation">
+        </div>
+
+        <p class="footer__founder">
+          Fondatrice : <strong>Amandine Letellier</strong>
+        </p>
       </div>
 
-      <p class="footer__founder">
-        Fondatrice : <strong>Amandine Letellier</strong>
-      </p>
-    </div>
+      <!-- Contact -->
+      <div class="footer__contact">
+        <h4>Contact</h4>
 
-    <!-- Contact -->
-    <div class="footer__contact">
-      <h4>Contact</h4>
+        <a href="mailto:amandine@levelupcreation.com">
+          amandine@levelupcreation.com
+        </a>
 
-      <a href="mailto:amandine@levelupcreation.com">
-        amandine@levelupcreation.com
-      </a>
+        <a href="tel:+32497746906">
+          +32 497 74 69 06
+        </a>
+      </div>
 
-      <a href="tel:+32497746906">
-        +32 497 74 69 06
-      </a>
-    </div>
+      <!-- Réseaux -->
+      <div class="footer__social">
+        <h4>Réseaux</h4>
 
-    <!-- Réseaux -->
-    <div class="footer__social">
-      <h4>Réseaux</h4>
+        <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit"
+          target="_blank">LinkedIn</a>
+      </div>
 
-      <a href="https://www.tiktok.com/@levelupcreation" target="_blank">TikTok</a>
-      <a href="https://www.instagram.com/level_upcreation/" target="_blank">Instagram</a>
-      <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">LinkedIn</a>
-    </div>
+      <!-- Partenaires -->
+      <div class="footer__partners">
+        <h4>Nos partenaires</h4>
 
-    <!-- Partenaires -->
-    <div class="footer__partners">
-      <h4>Nos partenaires</h4>
+        <ul class="footer__partners-list">
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+          <li><a href="#" target="_blank"></a></li>
+        </ul>
+      </div>
 
-      <ul class="footer__partners-list">
-       <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-        <li><a href="#" target="_blank"></a></li>
-      </ul>
-    </div>
-
-<!-- Newsletter -->
-  <!--<section class="newsletter">
+      <!-- Newsletter -->
+      <!--<section class="newsletter">
   <h2>Level Up News </h2>
   <p>Reçois les nouveautés et conseils web directement par email.</p>
 
@@ -390,91 +390,86 @@
   <small>Pas de spam. Désinscription en 1 clic.</small>
 </section> -->
 
-</div></div>
-  <div class="footer__bottom">
-    <p>
-      © <span id="year"></span> Level Up Creation — Tous droits réservés.
-    </p>
-  </div>
-</footer>
-<button id="scrollTopBtn" aria-label="Remonter en haut">
-  ↑
-</button>
-<!-- ═══════════════════════════════════════════════════
+    </div>
+    </div>
+    <div class="footer__bottom">
+      <p>
+        © <span id="year"></span> Level Up Creation — Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+  <button id="scrollTopBtn" aria-label="Remonter en haut">
+    ↑
+  </button>
+  <!-- ═══════════════════════════════════════════════════
        CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
-<!-- Bouton flottant -->
-<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
-  💬
-</button>
-
-<!-- Panneau Chat -->
-<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
-  <div class="cw-header">
-    <div class="cw-avatar">💬</div>
-    <div class="cw-title">
-      <strong>Levelia</strong>
-      <span>En ligne</span>
-    </div>
-      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
-    🗑️
+  <!-- Bouton flottant -->
+  <button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+    💬
   </button>
-    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
-  </div>
 
-  <div class="cw-messages" id="cwMessages">
-    <!-- Messages injectés par JavaScript -->
-  </div>
+  <!-- Panneau Chat -->
+  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+    <div class="cw-header">
+      <div class="cw-avatar">💬</div>
+      <div class="cw-title">
+        <strong>Levelia</strong>
+        <span>En ligne</span>
+      </div>
+      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+        🗑️
+      </button>
+      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+    </div>
 
-  <div class="cw-footer">
-    <input
-      class="cw-input"
-      id="cwInput"
-      type="text"
-      placeholder="Pose ta question…"
-      autocomplete="off"
-      aria-label="Message"
-      maxlength="2000"
-    />
-    <button class="cw-send" id="cwSend" aria-label="Envoyer">
-      ↑
-    </button>
+    <div class="cw-messages" id="cwMessages">
+      <!-- Messages injectés par JavaScript -->
+    </div>
+
+    <div class="cw-footer">
+      <input class="cw-input" id="cwInput" type="text" placeholder="Pose ta question…" autocomplete="off"
+        aria-label="Message" maxlength="2000" />
+      <button class="cw-send" id="cwSend" aria-label="Envoyer">
+        ↑
+      </button>
+    </div>
   </div>
-</div>
-      <script src="./javascripts/404.js"></script>
+  <script src="./javascripts/404.js"></script>
   <script src="./javascripts/tchat.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
   <script>
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  const form = document.getElementById("newsletterForm");
-  const msg = document.getElementById("newsletterMsg");
+    const form = document.getElementById("newsletterForm");
+    const msg = document.getElementById("newsletterMsg");
 
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    msg.textContent = "✅ Merci pour ton inscription !";
-    form.reset();
-  });
-</script>
-<script>
-const scrollBtn = document.getElementById("scrollTopBtn");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      msg.textContent = "✅ Merci pour ton inscription !";
+      form.reset();
+    });
+  </script>
+  <script>
+    const scrollBtn = document.getElementById("scrollTopBtn");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add("show");
-  } else {
-    scrollBtn.classList.remove("show");
-  }
-});
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    });
 
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
 
 </body>
+
 </html>

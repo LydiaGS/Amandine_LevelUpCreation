@@ -1,20 +1,37 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="./css/auth.css">
-    <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
-<link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
-<link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
-<link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
-<link rel="stylesheet" href="./css/login.css">
+  <meta property="og:title" content="Level Up Creation - Création de sites web et formations digitales">
+  <meta property="og:description"
+    content="Création de sites web modernes, rapides et optimisés SEO. Formations en design et développement web.">
+  <meta property="og:image" content="https://levelupcreation.com/asset/image/levelupcreation.png">
+  <meta property="og:url" content="https://levelupcreation.com">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="./css/auth.css">
+  <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
+  <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
+  <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
+  <link rel="canonical" href="https://levelupcreation.com">
+  <link rel="alternate" hreflang="x-default" href="https://levelupcreation.com/fr/index.html">
+  <link rel="stylesheet" href="./css/login.css">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Level Up Creation",
+ "url": "https://levelupcreation.com"
+}
+</script>
   <title>Connexion | Level Up Creation</title>
 </head>
+
 <body>
-  
-    <a href="./index.html" class="close-btn" aria-label="Fermer et retourner à l'accueil">✕</a>
-<section class="hero" id="guestHero" aria-label="Hero">
+
+  <a href="./index.html" class="close-btn" aria-label="Fermer et retourner à l'accueil">✕</a>
+  <section class="hero" id="guestHero" aria-label="Hero">
     <div class="hero__bg" aria-hidden="true"></div>
 
     <div class="container hero__content">
@@ -29,48 +46,51 @@
       </div>
     </div>
     <br>
-      <h1>Connexion</h1>
-  <form id="loginForm">
-    <input id="email" type="email" placeholder="Email" required>
-    <br><br>
-    <input id="password" type="password" placeholder="Mot de passe" required>
-    <br><br>
-    <button type="submit" style="background: rgb(231, 139, 231); border: none;  border-radius: 5px; color: rgb(90, 41, 8); height: 45px; width: 135px; font-size: 16px; font-weight: 900;">Se connecter</button>
-    <p id="msg"></p>
-  </form>
-  <br>
-   <p>Pas de compte ? <a href="./register.html" style="color: rgb(250, 119, 255);">Créer un compte</a></p>
+    <h1>Connexion</h1>
+    <form id="loginForm">
+      <input id="email" type="email" placeholder="Email" required>
+      <br><br>
+      <input id="password" type="password" placeholder="Mot de passe" required>
+      <br><br>
+      <button type="submit"
+        style="background: rgb(231, 139, 231); border: none;  border-radius: 5px; color: rgb(90, 41, 8); height: 45px; width: 135px; font-size: 16px; font-weight: 900;">Se
+        connecter</button>
+      <p id="msg"></p>
+    </form>
+    <br>
+    <p>Pas de compte ? <a href="./register.html" style="color: rgb(250, 119, 255);">Créer un compte</a></p>
   </section>
-   <a class="btn" href="./contact.html" style="margin-top:12px; display:inline-block; width:260px;">
-            Besoin d’aide ? Contacte-nous
-          </a>
+  <a class="btn" href="./contact.html" style="margin-top:12px; display:inline-block; width:260px;">
+    Besoin d’aide ? Contacte-nous
+  </a>
 
   <script type="module">
     import { auth, signInWithEmailAndPassword } from "./javascripts/firebaseClient.js";
 
-const form = document.getElementById("loginForm");
-const msg = document.getElementById("msg");
+    const form = document.getElementById("loginForm");
+    const msg = document.getElementById("msg");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  msg.textContent = "Connexion...";
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "Connexion...";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    msg.textContent = "✅ Connecté ! Redirection...";
-    window.location.href = "./dashboard.html";
-  } catch (err) {
-  console.error(err);
-  msg.textContent = `❌ ${err.code || ""} ${err.message || "Erreur"}`;
-}
-});
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        msg.textContent = "✅ Connecté ! Redirection...";
+        window.location.href = "./dashboard.html";
+      } catch (err) {
+        console.error(err);
+        msg.textContent = `❌ ${err.code || ""} ${err.message || "Erreur"}`;
+      }
+    });
   </script>
-     <script src="./javascripts/404.js"></script>
-      <script type="module" src="./javascripts/reviews.js"></script>
-      <script src="./javascripts/ai.js"></script>
-    <script src="./javascripts/tchat.js"></script>
+  <script src="./javascripts/404.js"></script>
+  <script type="module" src="./javascripts/reviews.js"></script>
+  <script src="./javascripts/ai.js"></script>
+  <script src="./javascripts/tchat.js"></script>
 </body>
+
 </html>

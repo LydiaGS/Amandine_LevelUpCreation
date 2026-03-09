@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
     content="Level Up Creation, développeuse web à Bruxelles. Création de sites sur mesure et accompagnement personnalisé pour entrepreneurs.">
+  <meta property="og:title" content="Level Up Creation - Création de sites web et formations digitales">
+  <meta property="og:description"
+    content="Création de sites web modernes, rapides et optimisés SEO. Formations en design et développement web.">
+  <meta property="og:image" content="https://levelupcreation.com/asset/image/levelupcreation.png">
+  <meta property="og:url" content="https://levelupcreation.com">
+  <meta property="og:type" content="website">
+  <title>Level Up Creation | Création de sites web et formations digitales</title>
+
+  <meta name="description"
+    content="Level Up Creation crée des sites web modernes, rapides et optimisés SEO. Découvrez aussi nos formations en design et développement web.">
   <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
   <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
   <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
@@ -15,9 +25,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="./css/tchat.css">
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/font.css">
+  <link rel="canonical" href="https://levelupcreation.com">
+  <link rel="preload" href="./css/style.css" as="style">
+  <link rel="preload" href="./css/font.css" as="style">
+  <link rel="preload" href="./css/tchat.css" as="style">
   <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
   <link rel="shortcut icon" href="./asset/image/favicon/2080x2080.png">
@@ -38,6 +49,14 @@
 
 
   <title>Level Up Creation-Accueil</title>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Level Up Creation",
+ "url": "https://levelupcreation.com"
+}
+</script>
 </head>
 
 <body>
@@ -63,16 +82,16 @@
           À propos
         </a>
         <li class="nav__item nav__dropdown">
-  <a class="nav__link" href="./formation.html">Formations</a>
- <!-- <ul class="dropdown-menu">
+          <a class="nav__link" href="./formation.html">Formations</a>
+          <!-- <ul class="dropdown-menu">
     <li><a href="#WEB"style="font-size: 18px;" >FORMATIONS EN DÉVELOPPEMENT WEB</a></li>
     <li><a href="#DESIGN"style="font-size: 18px;" >FORMATIONS EN DESIGN</a></li>
   </ul> -->
-</li>
+        </li>
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-     <a class="nav__link" href="./dashboard.html">Espace Client</a>
+        <a class="nav__link" href="./dashboard.html">Espace Client</a>
       </div>
     </nav>
   </header>
@@ -276,7 +295,7 @@
 
       <div class="footer__contact">
         <h4>Contact</h4>
-        
+
         <a href="mailto:amandine@levelupcreation.com">
           amandine@levelupcreation.com
         </a>
@@ -307,7 +326,7 @@
           <li><a href="#" target="_blank"></a></li>
         </ul>
       </div>
-<!-- <section class="newsletter">
+      <!-- <section class="newsletter">
         <h2>Level Up News </h2>
         <p>Reçois les nouveautés et conseils web directement par email.</p>
 
@@ -318,7 +337,7 @@
         <br>
         <small>Pas de spam. Désinscription en 1 clic.</small>
       </section> -->
-  
+
 
     </div>
 
@@ -329,57 +348,50 @@
       </p>
     </div>
   </footer>
-  
+
   <button id="scrollTopBtn" aria-label="Remonter en haut">
     ↑
   </button>
   <!-- ═══════════════════════════════════════════════════
     CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
-<!-- Bouton flottant -->
-<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
-  💬
-</button>
-
-<!-- Panneau Chat -->
-<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
-  <div class="cw-header">
-    <div class="cw-avatar">💬</div>
-    <div class="cw-title">
-      <strong>Levelia</strong>
-      <span>En ligne</span>
-    </div>
-      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
-    🗑️
+  <!-- Bouton flottant -->
+  <button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+    💬
   </button>
-    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
-  </div>
 
-  <div class="cw-messages" id="cwMessages">
-    <!-- Messages injectés par JavaScript -->
-  </div>
+  <!-- Panneau Chat -->
+  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+    <div class="cw-header">
+      <div class="cw-avatar">💬</div>
+      <div class="cw-title">
+        <strong>Levelia</strong>
+        <span>En ligne</span>
+      </div>
+      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+        🗑️
+      </button>
+      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+    </div>
 
-  <div class="cw-footer">
-    <input
-      class="cw-input"
-      id="cwInput"
-      type="text"
-      placeholder="Pose ta question…"
-      autocomplete="off"
-      aria-label="Message"
-      maxlength="2000"
-    />
-    <button class="cw-send" id="cwSend" aria-label="Envoyer">
-      ↑
-    </button>
+    <div class="cw-messages" id="cwMessages">
+      <!-- Messages injectés par JavaScript -->
+    </div>
+
+    <div class="cw-footer">
+      <input class="cw-input" id="cwInput" type="text" placeholder="Pose ta question…" autocomplete="off"
+        aria-label="Message" maxlength="2000" />
+      <button class="cw-send" id="cwSend" aria-label="Envoyer">
+        ↑
+      </button>
+    </div>
   </div>
-</div>
-    <script src="./javascripts/404.js"></script>
+  <script src="./javascripts/404.js"></script>
   <script src="./javascripts/ai.js"></script>
   <script src="./javascripts/tchat.js"></script>
   <script type="module" src="./javascripts/reviews.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
-    <script>
+  <script>
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -393,23 +405,23 @@
     });
   </script>
   <script>
-const scrollBtn = document.getElementById("scrollTopBtn");
+    const scrollBtn = document.getElementById("scrollTopBtn");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add("show");
-  } else {
-    scrollBtn.classList.remove("show");
-  }
-});
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    });
 
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
 </body>
 
 </html>

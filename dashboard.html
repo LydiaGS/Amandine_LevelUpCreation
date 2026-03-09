@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Level Up Creation - Création de sites web et formations digitales">
+    <meta property="og:description"
+        content="Création de sites web modernes, rapides et optimisés SEO. Formations en design et développement web.">
+    <meta property="og:image" content="https://levelupcreation.com/asset/image/levelupcreation.png">
+    <meta property="og:url" content="https://levelupcreation.com">
+    <meta property="og:type" content="website">
     <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/dashboard.html">
     <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/dashboard.html">
     <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/dashboard.html">
@@ -10,15 +17,25 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="canonical" href="https://levelupcreation.com">
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Level Up Creation",
+ "url": "https://levelupcreation.com"
+}
+</script>
     <title>Dashboard Client | LevelUpCreation</title>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loading">
         <div class="loader"></div>
         <div class="loading-text">Chargement de votre espace...</div>
     </div>
-<br> <br>
+    <br> <br>
     <!-- Admin Badge -->
     <div id="adminBadge" class="admin-badge">🔧 Mode Admin</div>
 
@@ -34,7 +51,7 @@
     </div>
 
     <!-- Chat Widget -->
-      <!-- <div id="chatWidget" class="chat-widget">
+    <!-- <div id="chatWidget" class="chat-widget">
         <button id="chatTrigger" class="chat-trigger">
             💬
             <span class="chat-badge" id="chatBadge">0</span>
@@ -45,20 +62,20 @@
                 <button id="closeChat">✕</button>
             </div>
             <div id="chatMessages" class="chat-messages">  -->
-   
-                <!-- Messages dynamiques -->
-                  <!--  </div>
+
+    <!-- Messages dynamiques -->
+    <!--  </div>
             <div class="chat-input">
                 <input type="text" id="chatInput" placeholder="Votre message...">
                 <button id="chatSend">📤</button>
             </div>
         </div>
     </div> -->
-           
+
 
     <!-- Main Container -->
     <div class="container" id="mainContent" style="display: none;">
-        
+
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo">LevelUpCreation</div>
@@ -83,18 +100,18 @@
                     <span class="nav-icon">📅</span>
                     <span class="nav-label">Historique</span>
                 </a>
-                   <!--   <a href="#rewards" class="nav-item" data-section="rewards">
+                <!--   <a href="#rewards" class="nav-item" data-section="rewards">
                     <span class="nav-icon">🎮</span>
                     <span class="nav-label">Accueil</span>
                 </a> -->
-              
+
             </nav>
 
             <div class="sidebar-footer">
                 <!-- Bouton Accueil -->
-            <a href="./index.html" class="btn-home-sidebar">
-                <span>🏠</span> Retour à l'accueil
-            </a>
+                <a href="./index.html" class="btn-home-sidebar">
+                    <span>🏠</span> Retour à l'accueil
+                </a>
                 <button id="logoutBtn" class="btn-logout">
                     <span></span> Déconnexion
                 </button>
@@ -103,7 +120,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            
+
             <!-- Top Bar -->
             <header class="topbar">
                 <div class="topbar-left">
@@ -116,17 +133,17 @@
                         <span class="notification-badge" id="notifBadge">0</span>
                     </button>
                     <button id="themeToggle" class="btn-icon">🌙</button>
-                      <!-- <div class="user-menu">
+                    <!-- <div class="user-menu">
                         <img id="topbarPhoto" class="topbar-photo" src="" alt="Profil">
                         <span id="topbarName">User</span>
                     </div> -->
-                   
+
                 </div>
             </header>
 
             <!-- SECTION: DASHBOARD -->
             <section id="section-dashboard" class="content-section active">
-                
+
                 <!-- Profile Card -->
                 <div class="profile-card fade-in">
                     <div class="profile-header">
@@ -210,57 +227,57 @@
 
             </section>
 
-        <!-- ===================================================================
+            <!-- ===================================================================
      SECTION: PROJECT - VERSION MODERNE
      =================================================================== -->
 
-<section id="section-project" class="content-section">
-    <div class="section-title-block">
-        <h2>📊 Mon Projet</h2>
-        <p class="section-subtitle">Gérez et visualisez votre projet en temps réel</p>
-    </div>
-
-    <!-- ========== PROJECT INFO CARD ========== -->
-    <div class="project-info-card">
-        <div class="project-info-header">
-            <div class="project-title-group">
-                <div class="project-icon">🚀</div>
-                <div class="project-details">
-                    <h3 id="projectInfoName">Nom du projet</h3>
-                    <p id="projectInfoDescription">Description du projet</p>
+            <section id="section-project" class="content-section">
+                <div class="section-title-block">
+                    <h2>📊 Mon Projet</h2>
+                    <p class="section-subtitle">Gérez et visualisez votre projet en temps réel</p>
                 </div>
-            </div>
-            <button class="btn-edit" id="editProjectInfoBtn" title="Modifier">
-                <span class="btn-edit-icon">✏️</span>
-                <span class="btn-edit-text">Modifier</span>
-            </button>
-        </div>
-        
-        <div class="project-stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">📈 Progression</div>
-                <div class="stat-progress-wrapper">
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-fill" id="projectProgressBar" style="width: 0%"></div>
+
+                <!-- ========== PROJECT INFO CARD ========== -->
+                <div class="project-info-card">
+                    <div class="project-info-header">
+                        <div class="project-title-group">
+                            <div class="project-icon">🚀</div>
+                            <div class="project-details">
+                                <h3 id="projectInfoName">Nom du projet</h3>
+                                <p id="projectInfoDescription">Description du projet</p>
+                            </div>
+                        </div>
+                        <button class="btn-edit" id="editProjectInfoBtn" title="Modifier">
+                            <span class="btn-edit-icon">✏️</span>
+                            <span class="btn-edit-text">Modifier</span>
+                        </button>
                     </div>
-                    <span class="stat-progress-text" id="projectProgressText">0%</span>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-label">📅 Date de début</div>
-                <div class="stat-value" id="projectStartDate">-</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-label">⏱️ Durée estimée</div>
-                <div class="stat-value" id="projectDuration">-</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- ========== TABS NAVIGATION ========== -->
-      <!-- <div class="project-tabs">
+                    <div class="project-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">📈 Progression</div>
+                            <div class="stat-progress-wrapper">
+                                <div class="stat-progress-bar">
+                                    <div class="stat-progress-fill" id="projectProgressBar" style="width: 0%"></div>
+                                </div>
+                                <span class="stat-progress-text" id="projectProgressText">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-label">📅 Date de début</div>
+                            <div class="stat-value" id="projectStartDate">-</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-label">⏱️ Durée estimée</div>
+                            <div class="stat-value" id="projectDuration">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== TABS NAVIGATION ========== -->
+                <!-- <div class="project-tabs">
         <button class="project-tab active" data-tab="steps">
             <span class="tab-icon">📋</span>
             <span class="tab-label">Étapes</span>
@@ -278,47 +295,47 @@
             <span class="tab-label">Aperçu</span>
         </button>
     </div>  -->
-   
 
-    <!-- ========== TAB CONTENT ========== -->
-    
-    <!-- TAB: STEPS -->
-    <div class="project-tab-content active" data-tab-content="steps">
-        <div class="section-header">
-            <h3>📋 Avancement des étapes</h3>
-            <span class="section-subtitle">Suivez la progression de chaque étape</span>
-        </div>
-        <div class="steps-grid" id="stepsContainer">
-            <!-- Steps dynamiques -->
-        </div>
-    </div>
 
-    <!-- TAB: ROADMAP -->
-    <div class="project-tab-content" data-tab-content="roadmap">
-        <div class="section-header">
-            <h3>🗓️ Roadmap du projet</h3>
-            <span class="section-subtitle">Visualisez l'avancement de votre projet</span>
-        </div>
-        <div class="roadmap-wrapper">
-            <div id="roadmapContainer" class="roadmap-container">
-                <!-- Roadmap dynamique -->
-            </div>
-        </div>
-    </div>
+                <!-- ========== TAB CONTENT ========== -->
 
-    <!-- TAB: VALIDATION -->
-    <div class="project-tab-content" data-tab-content="validation">
-        <div class="section-header">
-            <h3> Éléments à valider</h3>
-            <span class="section-subtitle">Actions requises de votre part</span>
-        </div>
-        <div id="validationItems" class="validation-items">
-            <!-- Validations dynamiques -->
-        </div>
-    </div>
+                <!-- TAB: STEPS -->
+                <div class="project-tab-content active" data-tab-content="steps">
+                    <div class="section-header">
+                        <h3>📋 Avancement des étapes</h3>
+                        <span class="section-subtitle">Suivez la progression de chaque étape</span>
+                    </div>
+                    <div class="steps-grid" id="stepsContainer">
+                        <!-- Steps dynamiques -->
+                    </div>
+                </div>
 
-    <!-- TAB: PREVIEW -->
-      <!--  <div class="project-tab-content" data-tab-content="preview">
+                <!-- TAB: ROADMAP -->
+                <div class="project-tab-content" data-tab-content="roadmap">
+                    <div class="section-header">
+                        <h3>🗓️ Roadmap du projet</h3>
+                        <span class="section-subtitle">Visualisez l'avancement de votre projet</span>
+                    </div>
+                    <div class="roadmap-wrapper">
+                        <div id="roadmapContainer" class="roadmap-container">
+                            <!-- Roadmap dynamique -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: VALIDATION -->
+                <div class="project-tab-content" data-tab-content="validation">
+                    <div class="section-header">
+                        <h3> Éléments à valider</h3>
+                        <span class="section-subtitle">Actions requises de votre part</span>
+                    </div>
+                    <div id="validationItems" class="validation-items">
+                        <!-- Validations dynamiques -->
+                    </div>
+                </div>
+
+                <!-- TAB: PREVIEW -->
+                <!--  <div class="project-tab-content" data-tab-content="preview">
         <div class="section-header">
             <h3>🖥️ Aperçu de votre site</h3>
             <span class="section-subtitle">Prévisualisation en temps réel</span>
@@ -372,82 +389,69 @@
             </div>
         </div>
     </div>-->
-   
 
-</section>
 
-<!-- ===================================================================
+            </section>
+
+            <!-- ===================================================================
      MODAL: EDIT PROJECT INFO - VERSION MODERNE
      =================================================================== -->
 
-<div class="modal" id="editProjectModal">
-    <div class="modal-backdrop" id="editProjectBackdrop"></div>
-    <div class="modal-content modal-content-modern">
-        <div class="modal-header">
-            <div class="modal-title-group">
-                <span class="modal-icon">✏️</span>
-                <h3>Modifier le projet</h3>
+            <div class="modal" id="editProjectModal">
+                <div class="modal-backdrop" id="editProjectBackdrop"></div>
+                <div class="modal-content modal-content-modern">
+                    <div class="modal-header">
+                        <div class="modal-title-group">
+                            <span class="modal-icon">✏️</span>
+                            <h3>Modifier le projet</h3>
+                        </div>
+                        <button class="modal-close" id="closeEditProjectModal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editProjectForm">
+                            <div class="form-group">
+                                <label for="editProjectName">
+                                    <span class="label-icon">🚀</span>
+                                    Nom du projet
+                                </label>
+                                <input type="text" id="editProjectName" class="form-input"
+                                    placeholder="Mon super site web" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editProjectDesc">
+                                    <span class="label-icon">📝</span>
+                                    Description
+                                </label>
+                                <textarea id="editProjectDesc" class="form-textarea" rows="4"
+                                    placeholder="Description détaillée du projet..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editProjectUrl">
+                                    <span class="label-icon">🔗</span>
+                                    URL du site <span class="label-optional">(optionnel)</span>
+                                </label>
+                                <input type="url" id="editProjectUrl" class="form-input"
+                                    placeholder="https://mon-site.com">
+                                <small class="form-hint">L'URL de votre site en production</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" id="cancelEditProject">
+                                    Annuler
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    <span class="btn-icon">💾</span>
+                                    Enregistrer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button class="modal-close" id="closeEditProjectModal">
-                <span>&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form id="editProjectForm">
-                <div class="form-group">
-                    <label for="editProjectName">
-                        <span class="label-icon">🚀</span>
-                        Nom du projet
-                    </label>
-                    <input 
-                        type="text" 
-                        id="editProjectName" 
-                        class="form-input"
-                        placeholder="Mon super site web" 
-                        required
-                    >
-                </div>
-                
-                <div class="form-group">
-                    <label for="editProjectDesc">
-                        <span class="label-icon">📝</span>
-                        Description
-                    </label>
-                    <textarea 
-                        id="editProjectDesc" 
-                        class="form-textarea"
-                        rows="4" 
-                        placeholder="Description détaillée du projet..."
-                    ></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="editProjectUrl">
-                        <span class="label-icon">🔗</span>
-                        URL du site <span class="label-optional">(optionnel)</span>
-                    </label>
-                    <input 
-                        type="url" 
-                        id="editProjectUrl" 
-                        class="form-input"
-                        placeholder="https://mon-site.com"
-                    >
-                    <small class="form-hint">L'URL de votre site en production</small>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" id="cancelEditProject">
-                        Annuler
-                    </button>
-                    <button type="submit" class="btn-primary">
-                        <span class="btn-icon">💾</span>
-                        Enregistrer
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
             <!-- SECTION: FORMATIONS -->
             <section id="section-formations" class="content-section">
                 <h2>🎓 Mes Formations</h2>
@@ -484,7 +488,7 @@
             </section>
 
             <!-- SECTION: REWARDS -->
-                <!--  <section id="section-rewards" class="content-section">
+            <!--  <section id="section-rewards" class="content-section">
                 <h2>🎮 Récompenses & Badges</h2>
                 
                 <div class="rewards-header">
@@ -498,10 +502,10 @@
                 </div>
 
                 <div class="badges-grid" id="badgesContainer"> -->
-           
-                    <!-- Badges dynamiques -->
-               
-               <!-- </div>
+
+            <!-- Badges dynamiques -->
+
+            <!-- </div>
             </section>  -->
         </main>
     </div>
@@ -558,103 +562,95 @@
             </div>
         </div>
     </div>
-<!-- Request Document Modal -->
-<div id="requestDocumentModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>📧 Demander un document</h3>
-            <button class="modal-close" id="closeRequestDocModal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <p style="color: var(--muted); margin-bottom: 20px;">
-                Indique-nous quel document tu souhaites recevoir et nous te l'enverrons au plus vite.
-            </p>
-            
-            <form id="requestDocumentForm">
-                <div class="form-group">
-                    <label>Type de document <span style="color: var(--accent2);">*</span></label>
-                    <select id="docType" required>
-                        <option value="">-- Sélectionne --</option>
-                        <option value="maquette">Maquette / Design</option>
-                        <option value="logo">Logo / Identité visuelle</option>
-                        <option value="brief">Brief / Cahier des charges</option>
-                        <option value="facture">Facture / Devis</option>
-                        <option value="contrat"> Contrat</option>
-                        <option value="formation"> Support de formation</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Message / Précisions <span style="color: var(--accent2);">*</span></label>
-                    <textarea 
-                        id="docMessage" 
-                        rows="4" 
-                        placeholder="Ex: J'aimerais recevoir la dernière version de la maquette pour validation..."
-                    ></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label style="display: flex; align-items: center; cursor: pointer;">
-                        <input type="checkbox" id="docUrgent" style="width: auto; margin-right: 8px;">
-                        C'est urgent
-                    </label>
-                </div>
-
-                <button type="submit" class="btn-primary" id="submitDocRequest">
-                     Envoyer la demande
-                </button>
-
-                <p id="docRequestSuccess" style="display: none; color: #10b981; margin-top: 15px; text-align: center; font-weight: 600;">
-                     Demande envoyée ! Nous te contacterons rapidement.
+    <!-- Request Document Modal -->
+    <div id="requestDocumentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📧 Demander un document</h3>
+                <button class="modal-close" id="closeRequestDocModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Indique-nous quel document tu souhaites recevoir et nous te l'enverrons au plus vite.
                 </p>
-            </form>
+
+                <form id="requestDocumentForm">
+                    <div class="form-group">
+                        <label>Type de document <span style="color: var(--accent2);">*</span></label>
+                        <select id="docType" required>
+                            <option value="">-- Sélectionne --</option>
+                            <option value="maquette">Maquette / Design</option>
+                            <option value="logo">Logo / Identité visuelle</option>
+                            <option value="brief">Brief / Cahier des charges</option>
+                            <option value="facture">Facture / Devis</option>
+                            <option value="contrat"> Contrat</option>
+                            <option value="formation"> Support de formation</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message / Précisions <span style="color: var(--accent2);">*</span></label>
+                        <textarea id="docMessage" rows="4"
+                            placeholder="Ex: J'aimerais recevoir la dernière version de la maquette pour validation..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="docUrgent" style="width: auto; margin-right: 8px;">
+                            C'est urgent
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="submitDocRequest">
+                        Envoyer la demande
+                    </button>
+
+                    <p id="docRequestSuccess"
+                        style="display: none; color: #10b981; margin-top: 15px; text-align: center; font-weight: 600;">
+                        Demande envoyée ! Nous te contacterons rapidement.
+                    </p>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!-- ═══════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════
        CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
-<!-- Bouton flottant -->
-<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
-  💬
-</button>
-
-<!-- Panneau Chat -->
-<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
-  <div class="cw-header">
-    <div class="cw-avatar">💬</div>
-    <div class="cw-title">
-      <strong>Levelia</strong>
-      <span>En ligne</span>
-    </div>
-      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
-    🗑️
-  </button>
-    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
-  </div>
-
-  <div class="cw-messages" id="cwMessages">
-    <!-- Messages injectés par JavaScript -->
-  </div>
-
-  <div class="cw-footer">
-    <input
-      class="cw-input"
-      id="cwInput"
-      type="text"
-      placeholder="Pose ta question…"
-      autocomplete="off"
-      aria-label="Message"
-      maxlength="2000"
-    />
-    <button class="cw-send" id="cwSend" aria-label="Envoyer">
-      ↑
+    <!-- Bouton flottant -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+        💬
     </button>
-  </div>
-</div>
-<script src="./javascripts/scripts.js"></script>
-   <script type="module" src="./javascripts/dashboard.js">
-</script>
+
+    <!-- Panneau Chat -->
+    <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+        <div class="cw-header">
+            <div class="cw-avatar">💬</div>
+            <div class="cw-title">
+                <strong>Levelia</strong>
+                <span>En ligne</span>
+            </div>
+            <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+                🗑️
+            </button>
+            <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+        </div>
+
+        <div class="cw-messages" id="cwMessages">
+            <!-- Messages injectés par JavaScript -->
+        </div>
+
+        <div class="cw-footer">
+            <input class="cw-input" id="cwInput" type="text" placeholder="Pose ta question…" autocomplete="off"
+                aria-label="Message" maxlength="2000" />
+            <button class="cw-send" id="cwSend" aria-label="Envoyer">
+                ↑
+            </button>
+        </div>
+    </div>
+    <script src="./javascripts/scripts.js"></script>
+    <script type="module" src="./javascripts/dashboard.js">
+    </script>
 </body>
+
 </html>

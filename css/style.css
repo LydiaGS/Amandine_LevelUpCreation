@@ -4999,3 +4999,7 @@ img {
   -webkit-user-drag: none;
   pointer-events: none;
 }
+img {
+  pointer-events: none;
+  user-select: none;
+}

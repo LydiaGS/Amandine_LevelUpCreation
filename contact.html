@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Contactez votre développeuse web à Bruxelles pour la création de votre site internet. Devis personnalisé et accompagnement complet.">
+  <meta property="og:title" content="Level Up Creation - Création de sites web et formations digitales">
+  <meta property="og:description"
+    content="Création de sites web modernes, rapides et optimisés SEO. Formations en design et développement web.">
+  <meta property="og:image" content="https://levelupcreation.com/asset/image/levelupcreation.png">
+  <meta property="og:url" content="https://levelupcreation.com">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="./css/tchat.css">
   <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js">
   <link rel="modulepreload" href="./javascripts/reviews.js">
@@ -13,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/font.css">
+  <link rel="canonical" href="https://levelupcreation.com">
   <link rel="alternate" hreflang="fr" href="https://levelupcreation.com/fr/index.html">
   <link rel="alternate" hreflang="en" href="https://levelupcreation.com/en/index.html">
   <link rel="alternate" hreflang="nl" href="https://levelupcreation.com/nl/index.html">
@@ -34,7 +41,14 @@
 
     console.log("Firebase connecté !");
   </script>
-
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Level Up Creation",
+ "url": "https://levelupcreation.com"
+}
+</script>
   <meta name="theme-color" content="#ff2e8b">
   <title>Level Up Creation-Contacts</title>
 </head>
@@ -63,17 +77,17 @@
           À propos
         </a>
         <li class="nav__item nav__dropdown">
-  <a class="nav__link" href="./formation.html">Formations</a>
- <!--<ul class="dropdown-menu">
+          <a class="nav__link" href="./formation.html">Formations</a>
+          <!--<ul class="dropdown-menu">
     <li><a href="#WEB"style="font-size: 18px;" >FORMATIONS EN DÉVELOPPEMENT WEB</a></li>
     <li><a href="#DESIGN"style="font-size: 18px;" >FORMATIONS EN DESIGN</a></li>
   </ul> -->
-  
-</li>
+
+        </li>
         <a class="nav__link" href="./tarif.html">Tarifs</a>
         <a class="nav__link" href="./realisation.html">Nos réalisations</a>
         <a class="nav__link" href="./contact.html">Contact</a>
-             <a class="nav__link" href="./dashboard.html">Espace Client</a>
+        <a class="nav__link" href="./dashboard.html">Espace Client</a>
       </div>
     </nav>
   </header>
@@ -137,28 +151,26 @@
   </main>
   <!-- MAP API (dark rose Level Up) -->
   <section class="contact-map section" id="map">
-  <div class="container">
-    <div class="contact-map__content">
-      <h2 class="contact-map__title">Nous trouver à Bruxelles<br><br>Nos bureaux sont ouverts du lundi au vendredi, de 9h30 à 16h30, uniquement sur rendez-vous.</h2>
-      <br>
-      <p class="contact-map__desc">
-        Level Up Creation — Rdpt Robert Schuman 6, 1040 Bruxelles
-      </p>
-      <br>
-      <a
-        href="https://www.google.com/maps/dir/?api=1&destination=Rdpt+Robert+Schuman+6,+1040+Bruxelles"
-        target="_blank"
-        rel="noopener"
-        class="map__btn">
-        Obtenir l’itinéraire
-      </a>
-    </div>
+    <div class="container">
+      <div class="contact-map__content">
+        <h2 class="contact-map__title">Nous trouver à Bruxelles<br><br>Nos bureaux sont ouverts du lundi au vendredi, de
+          9h30 à 16h30, uniquement sur rendez-vous.</h2>
+        <br>
+        <p class="contact-map__desc">
+          Level Up Creation — Rdpt Robert Schuman 6, 1040 Bruxelles
+        </p>
+        <br>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Rdpt+Robert+Schuman+6,+1040+Bruxelles"
+          target="_blank" rel="noopener" class="map__btn">
+          Obtenir l’itinéraire
+        </a>
+      </div>
 
-    <div class="contact-map__card">
-      <div id="gmap" class="gmap" aria-label="Carte Google Maps"></div>
+      <div class="contact-map__card">
+        <div id="gmap" class="gmap" aria-label="Carte Google Maps"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <footer class="footer">
     <div class="container footer__grid">
@@ -209,7 +221,7 @@
         </ul>
       </div>
       <!-- Newsletter -->
-        <!--    <section class="newsletter">
+      <!--    <section class="newsletter">
     <h2>Level Up News 📰</h2>
     <p>Reçois les nouveautés et conseils web directement par email.</p>
 
@@ -243,111 +255,104 @@
   <!-- ═══════════════════════════════════════════════════
        CHAT WIDGET — HTML
   ═══════════════════════════════════════════════════ -->
-<!-- Bouton flottant -->
-<button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
-  💬
-</button>
-
-<!-- Panneau Chat -->
-<div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
-  <div class="cw-header">
-    <div class="cw-avatar">💬</div>
-    <div class="cw-title">
-      <strong>Levelia</strong>
-      <span>En ligne</span>
-    </div>
-      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
-    🗑️
+  <!-- Bouton flottant -->
+  <button id="chatToggle" class="chat-toggle" aria-label="Ouvrir le chat">
+    💬
   </button>
-    <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
-  </div>
 
-  <div class="cw-messages" id="cwMessages">
-    <!-- Messages injectés par JavaScript -->
-  </div>
+  <!-- Panneau Chat -->
+  <div id="chatWidget" role="dialog" aria-label="Assistant Level Up Creation" aria-modal="true">
+    <div class="cw-header">
+      <div class="cw-avatar">💬</div>
+      <div class="cw-title">
+        <strong>Levelia</strong>
+        <span>En ligne</span>
+      </div>
+      <button class="cw-clear" id="chatClear" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+        🗑️
+      </button>
+      <button class="cw-close" id="chatClose" aria-label="Fermer le chat">✕</button>
+    </div>
 
-  <div class="cw-footer">
-    <input
-      class="cw-input"
-      id="cwInput"
-      type="text"
-      placeholder="Pose ta question…"
-      autocomplete="off"
-      aria-label="Message"
-      maxlength="2000"
-    />
-    <button class="cw-send" id="cwSend" aria-label="Envoyer">
-      ↑
-    </button>
+    <div class="cw-messages" id="cwMessages">
+      <!-- Messages injectés par JavaScript -->
+    </div>
+
+    <div class="cw-footer">
+      <input class="cw-input" id="cwInput" type="text" placeholder="Pose ta question…" autocomplete="off"
+        aria-label="Message" maxlength="2000" />
+      <button class="cw-send" id="cwSend" aria-label="Envoyer">
+        ↑
+      </button>
+    </div>
   </div>
-</div>
   <script src="./javascripts/tchat.js"></script>
   <script src="./javascripts/scripts.js" defer></script>
   <script src="./Javascripts/email.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="./javascripts/newsletter.js"></script>
+  <script src="./javascripts/newsletter.js"></script>
   <script>
     emailjs.init("pBMx5f_soArWQDzqS");
   </script>
   <!-- Firebase Scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-  
+
   <!-- Votre script newsletter -->
   <script src="./js/newsletter.js"></script>
 </body>
-  <script>
-    const form = document.getElementById("quoteForm");
-    const successMsg = document.getElementById("successMsg");
-    const submitBtn = form.querySelector('button[type="submit"]');
+<script>
+  const form = document.getElementById("quoteForm");
+  const successMsg = document.getElementById("successMsg");
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      // UI
-      submitBtn.disabled = true;
-      submitBtn.textContent = "ENVOI EN COURS...";
+    // UI
+    submitBtn.disabled = true;
+    submitBtn.textContent = "ENVOI EN COURS...";
 
-      emailjs
-        .sendForm("service_jjxz4c6", "template_k9i1f5v", this)
-        .then(() => {
-          successMsg.hidden = false;
-          form.reset();
-        })
-        .catch((error) => {
-          alert("Erreur lors de l'envoi. Merci de réessayer.");
-          console.error("EmailJS error:", error);
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "ENVOYER MA DEMANDE";
-        });
-    });
-  </script>
-  <script>
-    const scrollBtn = document.getElementById("scrollTopBtn");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
-    });
-
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    emailjs
+      .sendForm("service_jjxz4c6", "template_k9i1f5v", this)
+      .then(() => {
+        successMsg.hidden = false;
+        form.reset();
+      })
+      .catch((error) => {
+        alert("Erreur lors de l'envoi. Merci de réessayer.");
+        console.error("EmailJS error:", error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "ENVOYER MA DEMANDE";
       });
+  });
+</script>
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  });
+
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
+  });
+</script>
+<script src="./javascripts/404.js"></script>
+<script src="./javascripts/contact-map.js"></script>
+<script src="./javascripts/reviews.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqqMr-UFDNml3bdTzKsB7pW0qd04AdnU&callback=initMap">
   </script>
-    <script src="./javascripts/404.js"></script>
-  <script src="./javascripts/contact-map.js"></script>
-  <script src="./javascripts/reviews.js"></script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqqMr-UFDNml3bdTzKsB7pW0qd04AdnU&callback=initMap">
-    </script>
 </body>
 
 </html>
