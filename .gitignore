@@ -1,3 +1,10 @@
 Back_end/
 .env
 config.js
+functions
+asset
+.htaccass
+firebase-debug.log
+firestore.rules
+robots.txt
+Sitemap.xml
