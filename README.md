@@ -1,18 +1,18 @@
-# Level Up Creation 🚀
+# Level Up Creation 
 
 Level Up Creation est une plateforme de création de sites web et de formations digitales.
 
-## 🌐 Site
+## Site
 https://levelupcreation.com
 
-## 💻 Technologies utilisées
+## Technologies utilisées
 - HTML
 - CSS
 - JavaScript
 - Firebase
 - Firestore
 
-## 🎓 Formations proposées
+##  Formations proposées
 - HTML / CSS
 - JavaScript
 - Figma
@@ -21,13 +21,21 @@ https://levelupcreation.com
 - After Effects
 - Premiere Pro
 
-## ⚡ Fonctionnalités
+## Services
+
+✔ Création de sites web  
+✔ Landing pages  
+✔ E-commerce  
+✔ Design UI / UX  
+✔ Formations digitales
+
+## Fonctionnalités
 - site vitrine
 - dashboard utilisateur
 - système de contact
 - newsletter
 - chatbot
 
-## 👩‍💻 Auteur
+## Auteur
 Amandine Letellier  
 https://levelupcreation.com
