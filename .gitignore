@@ -9,8 +9,6 @@ firebase-debug.log
 firestore.rules
 robots.txt
 Sitemap.xml
-.env
-.env.*
 node_modules/
 firebase-debug.log
 .vscode/
