@@ -1,5 +1,6 @@
 Back_end/
 .env
+.env.*
 config.js
 functions
 asset
