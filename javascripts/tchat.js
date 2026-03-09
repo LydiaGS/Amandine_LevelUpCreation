@@ -187,18 +187,18 @@
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-      const response = await window.fetch(CONFIG.API_URL, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ 
-          message: texte,
-          conversationHistory: conversationHistory 
-        }),
-        signal: controller.signal
-      });
-
+    const response = await window.fetch(CONFIG.API_URL, {
+  method: "POST",
+  headers: { 
+    "Content-Type": "application/json"
+  },
+  credentials: "omit",
+  body: JSON.stringify({ 
+    message: texte,
+    conversationHistory: conversationHistory 
+  }),
+  signal: controller.signal
+});
       clearTimeout(timeoutId);
 
       console.log("📡 Statut:", response.status);
