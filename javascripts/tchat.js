@@ -18,7 +18,7 @@
   // GESTION DE L'HISTORIQUE
   // ============================================
   let conversationHistory = [];
-  const MAX_HISTORY = 20;
+  const MAX_HISTORY = 10;
 
   function ajouterAuHistorique(role, content) {
     conversationHistory.push({ role, content });
