@@ -5010,6 +5010,8 @@ background:#0f0f0f;
 color:white;
 }
 
+/* BLOG */
+
 .blog{
 padding:80px 40px;
 }
@@ -5072,6 +5074,9 @@ transition:0.3s;
 .blog__btn:hover{
 background:#c0557a;
 }
+
+/* ARTICLE */
+
 .article{
 max-width:1100px;
 margin:auto;
@@ -5120,6 +5125,9 @@ transition:0.3s;
 .back:hover{
 background:#df437c;
 }
+
+/* HERO */
+
 .blog-hero{
 height:350px;
 display:flex;
@@ -5147,6 +5155,9 @@ color:#aaa;
 font-size:18px;
 line-height:1.6;
 }
+
+/* TIPS */
+
 .tips{
 padding:80px 20px;
 max-width:1100px;
@@ -5194,4 +5205,149 @@ color:white;
 .tip p{
 color:#bbb;
 line-height:1.6;
+}
+
+/* ===================== */
+/* TABLETTE */
+/* ===================== */
+
+@media (max-width:900px){
+
+.blog{
+padding:60px 20px;
+}
+
+.blog__container{
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.article__layout{
+grid-template-columns:1fr;
+gap:40px;
+}
+
+.title{
+font-size:32px;
+}
+
+.blog-hero h1{
+font-size:50px;
+}
+
+}
+
+/* ===================== */
+/* MOBILE */
+/* ===================== */
+
+@media (max-width:600px){
+
+.blog__container{
+grid-template-columns:1fr;
+}
+
+.blog{
+padding:50px 18px;
+}
+
+.title{
+font-size:26px;
+}
+
+.blog-hero{
+height:auto;
+padding:60px 20px;
+}
+
+.blog-hero h1{
+font-size:38px;
+letter-spacing:3px;
+}
+
+.blog-hero p{
+font-size:16px;
+}
+
+.article{
+padding:60px 18px;
+}
+
+.article__content{
+font-size:16px;
+}
+
+.article__content h2{
+font-size:22px;
+}
+
+.tips h2{
+font-size:28px;
+}
+
+}
+
+/* ===================== */
+/* PETIT MOBILE */
+/* ===================== */
+
+@media (max-width:400px){
+
+.blog{
+padding:40px 15px;
+}
+
+.blog__card h2{
+font-size:18px;
+}
+
+.blog__card p{
+font-size:14px;
+}
+
+.blog-hero h1{
+font-size:32px;
+}
+
+.article{
+padding:50px 16px;
+}
+
+.article__content{
+font-size:15px;
+}
+
+.tips{
+padding:60px 16px;
+}
+
+}
+
+/* ===================== */
+/* 320px */
+/* ===================== */
+
+@media (max-width:320px){
+
+.blog-hero h1{
+font-size:28px;
+}
+
+.blog-hero p{
+font-size:14px;
+}
+
+.article__content{
+font-size:14px;
+}
+
+.blog__btn{
+font-size:14px;
+padding:8px 12px;
+}
+
+.tip{
+padding:20px;
+}
+
 }
