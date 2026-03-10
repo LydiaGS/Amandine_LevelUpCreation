@@ -441,3 +441,24 @@ document.addEventListener("contextmenu", function(e) {
 document.addEventListener("dragstart", function(e) {
   e.preventDefault();
 });
+/*blog*/
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".blog-card");
+
+searchInput.addEventListener("keyup", function(){
+
+let value = this.value.toLowerCase();
+
+cards.forEach(card => {
+
+let title = card.querySelector("h2").textContent.toLowerCase();
+
+if(title.includes(value)){
+card.style.display = "block";
+}else{
+card.style.display = "none";
+}
+
+});
+
+});
