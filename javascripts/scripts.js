@@ -29,21 +29,23 @@
     }
   };
 
+ // On attend que tout le HTML soit chargé
+document.addEventListener("DOMContentLoaded", function() {
+
   // ============================================
   // 1. MOBILE MENU (BURGER)
   // ============================================
-  const initMobileMenu = () => {
-    const navToggle = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
 
-    if (!navToggle || !navLinks) return;
-
+  if (navToggle && navLinks) {
     const setMenu = (open) => {
-      navLinks.classList.toggle("is-open", open);
+      // Attention : Assure-toi que ton CSS utilise bien la classe ".is-open" pour afficher le menu mobile
+      navLinks.classList.toggle("is-open", open); 
       navToggle.setAttribute("aria-expanded", String(open));
       
       if (open) {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden"; // Empêche le scroll du site derrière le menu
       } else {
         document.body.style.overflow = "";
       }
@@ -57,7 +59,18 @@
 
     // Fermer au clic sur un lien
     navLinks.addEventListener("click", (e) => {
-      if (e.target.closest("a")) {
+      const clickedLink = e.target.closest("a");
+      
+      if (clickedLink) {
+        // Est-ce que le lien cliqué est un parent de sous-menu (ex: "À propos") ?
+        const isDropdownTrigger = clickedLink.parentElement.classList.contains("nav__dropdown");
+
+        // Si on est sur mobile ET qu'on clique sur un parent de sous-menu, ON NE FERME PAS le burger
+        if (window.innerWidth <= 900 && isDropdownTrigger) {
+          return; 
+        }
+
+        // Sinon (lien normal comme "Accueil", ou lien final dans un sous-menu), on ferme le burger
         setMenu(false);
       }
     });
@@ -76,30 +89,47 @@
         setMenu(false);
       }
     });
-  };
-const toggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
+  }
 
-toggle.addEventListener("click", () => {
-navLinks.classList.toggle("active");
+  // ============================================
+  // 2. DROPDOWN NAVIGATION 
+  // ============================================
+  const dropdownLinks = document.querySelectorAll(".nav__dropdown > a");
+
+  dropdownLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+      
+      if (window.innerWidth <= 900) {
+        e.preventDefault(); // Empêche d'aller sur la page "infos.html" quand on clique sur "À propos"
+        
+        const parentLi = this.parentElement;
+
+        // Fermer les autres dropdowns ouverts (Optionnel mais recommandé)
+        document.querySelectorAll(".nav__dropdown").forEach(item => {
+          if (item !== parentLi) {
+            item.classList.remove("open");
+          }
+        });
+
+        // Ouvre/ferme le dropdown cliqué
+        parentLi.classList.toggle("open");
+      }
+    });
+  });
+
 });
   // ============================================
   // 2. DROPDOWN NAVIGATION
   // ============================================
-document.querySelectorAll(".nav__dropdown > a").forEach(link => {
-
-link.addEventListener("click", function(e){
-
-if(window.innerWidth <= 900){
-
-e.preventDefault();
-
-this.parentElement.classList.toggle("open");
-
-}
-
-});
-
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".nav__dropdown > a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        this.parentElement.classList.toggle("open");
+      }
+    });
+  });
 });
   // ============================================
   // 3. BOUTON RETOUR EN HAUT

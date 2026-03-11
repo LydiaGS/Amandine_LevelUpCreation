@@ -53,7 +53,7 @@ body{
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:15px;
   text-decoration:none;
   color:var(--text);
 }
@@ -5497,7 +5497,6 @@ color:#aaa;
 font-size:18px;
 line-height:1.6;
 }
-/* ===== DESKTOP ===== */
 
 /* ===== DROPDOWN DESKTOP ===== */
 
@@ -5514,7 +5513,6 @@ list-style:none;
 padding:10px 0;
 border-radius:8px;
 min-width:200px;
-
 display:none;
 }
 
@@ -5589,8 +5587,33 @@ font-size:15px;
 @media (max-width:320px){
 
 .dropdown-menu li a{
-font-size:14px;
+font-size:15px;
 padding:8px 12px;
 }
 
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  position: relative;
+  list-style: none;
+}
+/* Exemple de ton CSS pour le mobile */
+@media (max-width: 900px) {
+  .nav__links {
+    /* ... ton style de base (caché) ... */
+    display: none; /* ou transform: translateX(-100%); etc... */
+  }
+
+  /* C'est CETTE classe qui ouvre le menu ! */
+  .nav__links.is-open {
+    display: flex; /* ou transform: translateX(0); */
+  }
 }
