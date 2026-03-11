@@ -1,0 +1,261 @@
+/* HERO */
+
+.portfolio-hero{
+padding:120px 20px 80px;
+text-align:center;
+background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+}
+
+.portfolio-hero h1{
+font-size:70px;
+letter-spacing:6px;
+margin:0;
+background:linear-gradient(90deg,#df437c,#ff7aa2);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.portfolio-hero p{
+max-width:600px;
+margin:20px auto 0;
+color:#aaa;
+font-size:18px;
+line-height:1.6;
+}
+
+
+/* ABOUT */
+
+.portfolio-about{
+padding:80px 20px;
+max-width:900px;
+margin:auto;
+}
+
+.portfolio-about h2{
+font-size:36px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.portfolio-about p{
+color:#bbb;
+line-height:1.7;
+margin-bottom:15px;
+}
+
+
+/* TIMELINE */
+
+.timeline{
+padding:100px 20px;
+}
+
+.timeline h2{
+text-align:center;
+font-size:36px;
+margin-bottom:60px;
+}
+
+.timeline__grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+}
+
+.timeline__item{
+background:#111;
+padding:25px;
+border-radius:12px;
+border:1px solid #1f1f1f;
+transition:.3s;
+}
+
+.timeline__item:hover{
+transform:translateY(-5px);
+border-color:#df437c;
+}
+
+.timeline__date{
+display:block;
+font-weight:bold;
+color:#df437c;
+margin-bottom:10px;
+}
+
+
+/* EXPERIENCE */
+
+.portfolio-experience{
+padding:100px 20px;
+}
+
+.portfolio-experience h2{
+text-align:center;
+font-size:36px;
+margin-bottom:60px;
+}
+
+.experience__grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.experience__card{
+background:#111;
+padding:25px;
+border-radius:12px;
+border:1px solid #1f1f1f;
+transition:.3s;
+}
+
+.experience__card:hover{
+transform:translateY(-5px);
+border-color:#df437c;
+}
+
+.experience__card h3{
+margin-bottom:10px;
+}
+
+.experience__card p{
+color:#bbb;
+line-height:1.6;
+}
+
+
+/* SKILLS */
+
+.portfolio-skills{
+padding:100px 20px;
+background:#0f0f0f;
+}
+
+.portfolio-skills h2{
+text-align:center;
+font-size:36px;
+margin-bottom:60px;
+}
+
+.skills__grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+}
+
+.skill{
+background:#111;
+padding:20px;
+border-radius:10px;
+text-align:center;
+border:1px solid #1f1f1f;
+transition:.3s;
+}
+
+.skill:hover{
+transform:translateY(-5px);
+border-color:#df437c;
+}
+
+.skill h3{
+margin-bottom:8px;
+}
+
+.skill p{
+color:#bbb;
+font-size:14px;
+}
+
+
+/* FORMATION */
+
+.portfolio-formation{
+padding:100px 20px;
+max-width:900px;
+margin:auto;
+text-align:center;
+}
+
+.portfolio-formation h2{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.portfolio-formation p{
+color:#bbb;
+line-height:1.7;
+}
+
+.formation__card{
+margin-top:40px;
+background:#111;
+padding:30px;
+border-radius:12px;
+border:1px solid #1f1f1f;
+}
+
+.formation__card ul{
+margin:20px 0;
+padding-left:20px;
+text-align:left;
+}
+
+.formation__card li{
+margin-bottom:8px;
+}
+
+.price{
+color:#df437c;
+font-weight:bold;
+font-size:20px;
+}
+
+
+/* VALUES */
+
+.portfolio-values{
+padding:100px 20px;
+background:#0f0f0f;
+text-align:center;
+}
+
+.portfolio-values h2{
+font-size:36px;
+margin-bottom:40px;
+}
+
+.values__list{
+max-width:700px;
+margin:auto;
+list-style:none;
+padding:0;
+}
+
+.values__list li{
+background:#111;
+padding:15px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #1f1f1f;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.portfolio-hero h1{
+font-size:48px;
+}
+
+.portfolio-about h2,
+.timeline h2,
+.portfolio-experience h2,
+.portfolio-skills h2,
+.portfolio-formation h2,
+.portfolio-values h2{
+font-size:28px;
+}
+
+}

@@ -57,7 +57,7 @@
 </head>
 
 <body>
-  <!-- Top glow / background -->
+<!-- Top glow / background -->
   <div class="bg-ambient" aria-hidden="true"></div>
   <header class="site-header" id="top">
     <nav class="nav">
@@ -93,7 +93,7 @@
           <a class="nav__link" href="./contact.html">Contact</a>
           <ul class="dropdown-menu">
             <li><a class="nav__link" href="./dashboard.html" style="font-size: 18px;">Espace Client</a></li>
-            <li><a class="nav__link" href="./faq.html" style="font-size: 18px;">FAQ</a></li>
+             <li><a class="nav__link" href="./faq.html" style="font-size: 18px;">FAQ</a></li>
           </ul>
         </li>
         <a class="nav__link" href="./blog.html">Blog</a>
@@ -101,187 +101,296 @@
     </nav>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <div class="hero__bg" aria-hidden="true"></div>
+<section class="services">
 
-      <div class="container hero__content">
-        <div class="hero__text">
-          <h1 class="hero__title">
-            <span class="hero__title--light">
-              Studio créatif,<br>
-              Création site web <br>
-              & Design graphique.
-            </span>
-            <span class="hero__title--accent">
-              <br>Pas du prêt à porter, <br>
-              mais du sur-mesure<br>
-              accessibles.
-            </span>
-          </h1>
+<div class="container">
+
+<div class="services__hero">
+
+<h1>Nos services</h1>
+
+<p>
+Nous accompagnons les entrepreneurs, créateurs et entreprises
+dans la création de projets digitaux modernes et performants.
+Découvrez nos principaux services pour développer votre présence en ligne.
+</p>
+
+</div>
 
 
-          <p class="hero__lead">
-            Pour indépendants, PME et organisations souhaitant créer/<br>
-            restructurer/moderniser leur site web. Vous gérez votre activité,<br>
-            nous structurons l’image et la visibilité pour assurer la conversion.
-          </p>
+<div class="services__grid">
 
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="./contact.html">PARLONS DE VOTRE PROJET</a>
-            <a class="btn btn--ghost" href="./realisation.html">EXEMPLES DE RÉALISATIONS</a>
-          </div>
-        </div>
-      </div>
-      <!-- INFOS IMPORTANTES / NEWSLETTER -->
-             <!--   <section class="infos-key section">
-        <h2 class="infos-key__title">
-          <strong style="font-size: 45px;">Infos importantes & actualités</strong>
-        </h2>
-        <br> <br>
-        <div class="infos-key__content">
+<!-- SERVICE 1 -->
 
-          <p class="infos-key__text" style="font-size: 30px;">
-            <br>Formation les bases du développement web.
-          </p>
-        </div>
-        <div class="container infos-key__grid">
+<div class="service-card">
 
-      
-          <div class="infos-key__media">
-        
-            <div class="infos-key__image">
-              <img src="./asset/image/0956c6ef-5a96-48d6-9fc2-a671b4817e51.jpeg" loading="lazy" alt="Level Up Creation">
-            </div>
+<img src="./asset/image/image copy 11.png" alt="Design graphique">
 
-            <div class="infos-key__video">
-              <video src="./asset/video/0fa923f929ff473485df409353c10fbf.mov" loading="lazy" preload="none" controls muted playsinline
-                poster="./asset/image/video-cover.jpg">
-                Ton navigateur ne supporte pas la vidéo.
-              </video>
-            </div>
-          </div>
+<h3 style="font-size: 25px;">Design graphique</h3>
 
-        </div>
-        <a href="./contact.html" class="btn btn--primary">
-          Inscription immédiate
-        </a>
-        </div>
+<p style="font-size: 18px;">
+Nous créons des visuels modernes et professionnels pour renforcer
+l’identité visuelle de votre marque et améliorer votre communication.
+</p>
 
-      </section> -->
-   
+<ul>
+<li style="font-size: 18px;">Création de logo</li>
+<li style="font-size: 18px;">Identité visuelle</li>
+<li style="font-size: 18px;">Montage professionnel</li>
+<li style="font-size: 18px;">Animation 3D</li>
+</ul>
 
-      <div class="container hero__bottom">
-        <div class="panel">
-          <p class="panel__headline">
-            Un site 100% sur mesure, aligné à votre marque & avec des coûts maîtrisé. <br> <span class="panel__accent"
-              style="color: rgb(145, 137, 137);">Avec un accompagenement humain</span>
-          </p>
-          <p class="panel__sub">
-            Des projets pensée, <strong>pour évoluer.</strong>
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="reviews section" id="avis">
-      <div class="container">
-        <div class="reviews__head">
-          <h2 class="reviews__title">Avis clients</h2>
-          <p class="reviews__subtitle">
-            Votre retour aide Level Up Creation à s’améliorer 💗
-          </p>
-        </div>
+<a href="/contact.html" class="btn btn--primary" style="font-size: 13px;">
+Demander un devis
+</a>
 
-        <!-- Stats + liste -->
-        <div class="reviews__grid">
-          <div class="reviews__panel">
-            <div class="reviews__summary">
-              <div class="reviews__score">
-                <span id="avgRating" class="reviews__score-number">—</span>
-                <span class="reviews__score-label">/ 5</span>
-              </div>
-              <div class="reviews__meta">
-                <p class="reviews__meta-line">
-                  <strong id="reviewCount">0</strong> avis
-                </p>
-                <p class="reviews__meta-sub" id="reviewHint">Soyez le/la premier(e) à laisser un avis ✨</p>
-              </div>
-            </div>
+</div>
 
-            <div class="reviews__list" id="reviewsList">
-              <!-- Avis injectés ici -->
-            </div>
 
-            <button class="reviews__more" id="loadMoreReviews" type="button" hidden>
-              Voir plus d’avis
-            </button>
-          </div>
+<!-- SERVICE 2 -->
 
-          <!-- Formulaire -->
-          <div class="reviews__formCard">
-            <h3 class="reviews__formTitle">Laisser un avis</h3>
-            <p class="reviews__formDesc">
-              Merci 🙏 Ton avis sera publié après validation.
-            </p>
-            <br>
-            <form class="rform" id="reviewForm">
-              <div class="rform__row">
-                <div class="field">
-                  <label for="r_name">Nom <span>*</span></label>
-                  <input id="r_name" name="name" type="text" required />
-                </div>
+<div class="service-card">
 
-                <div class="field">
-                  <label for="r_email">Email (optionnel)</label>
-                  <input id="r_email" name="email" type="email" placeholder="pour te recontacter si besoin" />
-                </div>
-              </div>
-              <br>
-              <div class="field field--full">
-                <label>Note <span>*</span></label>
+<img src="./asset/image/image copy 9.png" alt="Création web">
 
-                <div class="rating" role="radiogroup" aria-label="Note sur 5">
-                  <input type="radio" id="star5" name="rating" value="5" />
-                  <label for="star5" title="5">★</label>
+<h3 style="font-size: 25px;">Création web</h3>
 
-                  <input type="radio" id="star4" name="rating" value="4" />
-                  <label for="star4" title="4">★</label>
+<p style="font-size: 18px;">
+Nous développons des sites web modernes, rapides et optimisés
+pour offrir une excellente expérience utilisateur.
+</p>
 
-                  <input type="radio" id="star3" name="rating" value="3" />
-                  <label for="star3" title="3">★</label>
+<ul>
+<li style="font-size: 18px;">Site vitrine</li>
+<li style="font-size: 18px;">Site professionnel</li>
+<li style="font-size: 18px;">Design responsive</li>
+<li style="font-size: 18px;">Optimisation SEO</li>
+</ul>
 
-                  <input type="radio" id="star2" name="rating" value="2" />
-                  <label for="star2" title="2">★</label>
+<a href="/contact.html" class="btn btn--primary" style="font-size: 13px;">
+Lancer un projet
+</a>
 
-                  <input type="radio" id="star1" name="rating" value="1" />
-                  <label for="star1" title="1">★</label>
-                </div>
+</div>
 
-                <small class="rform__help">Clique sur les étoiles ⭐</small>
-              </div>
 
-              <div class="field field--full">
-                <label for="r_message">Ton avis <span>*</span></label>
-                <textarea id="r_message" name="message" required minlength="10" maxlength="700"
-                  placeholder="Compréhension, rapidité, design, communication, résultats…"></textarea>
-                <small class="rform__help"><span id="charCount">0</span>/700</small>
-              </div>
-              <br>
-              <button class="form__btn" type="submit" id="reviewBtn">
-                ENVOYER MON AVIS
-              </button>
+<!-- SERVICE 3 -->
 
-              <p class="form__success" id="reviewSuccess" hidden>
-                Merci 💗 Ton avis a bien été envoyé (en attente de validation).
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
+<div class="service-card">
 
-    </section>
-  </main>
+<img src="./asset/image/image copy 12.png" alt="Formation web">
+
+<h3 style="font-size: 25px;">Formation web</h3>
+
+<p style="font-size: 18px;">
+Apprenez à créer vos propres sites web grâce à nos formations
+sur les technologies du développement moderne.
+</p>
+
+<ul>
+<li style="font-size: 18px;">HTML</li>
+<li style="font-size: 18px;">CSS</li>
+<li style="font-size: 18px;">JavaScript</li>
+<li style="font-size: 18px;">Création de site web</li>
+</ul>
+
+<a href="/formation.html" class="btn btn--primary" style="font-size: 13px;">
+Voir la formation
+</a>
+
+</div>
+
+
+<!-- SERVICE 4 -->
+
+<div class="service-card">
+
+<img src="./asset/image/image copy 13.png" alt="Formation design graphique">
+
+<h3 style="font-size: 25px;">Formation design graphique</h3>
+
+<p style="font-size: 18px;">
+Apprenez les bases du design graphique et développez
+vos compétences pour créer des visuels professionnels.
+</p>
+
+<ul>
+<li style="font-size: 18px;">Création de logo</li>
+<li style="font-size: 18px;">Design visuel</li>
+<li style="font-size: 18px;">Montage graphique</li>
+<li style="font-size: 18px;">Animation visuelle</li>
+</ul>
+
+<a href="/formation.html" class="btn btn--primary"style="font-size: 13px;">
+Découvrir
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="why">
+
+<div class="container">
+
+<h2 style="font-size: 30px;">Pourquoi choisir Level Up Creation</h2>
+<br>
+<p class="why__intro"style="font-size: 18px;">
+Nous créons des sites web modernes, rapides et optimisés
+pour offrir la meilleure expérience possible aux utilisateurs
+et aux moteurs de recherche.
+</p>
+
+<div class="why__grid">
+
+<div class="why__card">
+
+<h3 style="font-size: 25px;">Sites ultra rapides</h3>
+<br>
+<p style="font-size: 18px;">
+Nos sites sont développés avec du code optimisé
+(HTML, CSS et JavaScript) afin d'offrir des temps
+de chargement très rapides.
+</p>
+
+<p class="highlight"style="font-size: 18px;">
+Un site rapide améliore le SEO et l'expérience utilisateur.
+</p>
+
+</div>
+
+
+<div class="why__card">
+
+<h3 style="font-size: 25px;">Optimisé mobile</h3>
+<br>
+<p style="font-size: 18px;">
+Aujourd’hui plus de <strong>50% du trafic web</strong>
+vient des smartphones.
+</p>
+
+<p style="font-size: 18px;">
+Nos sites sont conçus en <strong>mobile first</strong>
+afin d’offrir une navigation parfaite sur tous les appareils.
+</p>
+
+</div>
+
+
+<div class="why__card">
+
+<h3 style="font-size: 25px;">SEO</h3>
+<br>
+<p style="font-size: 18px;">
+Un site rapide et bien structuré permet
+de mieux se positionner sur Google.
+</p>
+
+<p style="font-size: 15px;">
+Nous optimisons la structure du code,
+les performances et l’accessibilité
+pour améliorer votre référencement.
+</p>
+
+</div>
+
+
+<div class="why__card">
+
+<h3 style="font-size: 25px;">Code propre et optimisé</h3>
+<br>
+<p style="font-size: 18px;">
+Contrairement aux outils drag-and-drop,
+nos sites utilisent un code propre
+sans surcharge inutile.
+</p>
+
+<p style="font-size: 18px;">
+Résultat :
+</p>
+
+<ul>
+
+<li style="font-size: 18px;">chargement plus rapide</li>
+<li style="font-size: 18px;">meilleur SEO</li>
+<li style="font-size: 18px;">site plus léger</li>
+
+</ul>
+
+</div>
+
+</div>
+<br><br><br><br>
+<div class="why__card">
+
+<h3 class="why__title" style="font-size: 25px;">Design sur mesure</h3>
+
+<p class="why__text" style="font-size: 18px;">
+Nous créons des designs uniques et modernes
+adaptés à votre marque et à votre activité.
+Chaque site est pensé pour offrir une expérience
+visuelle professionnelle et engageante.
+</p>
+
+<p class="why__text" style="font-size: 18px;">Résultat :</p>
+
+<ul class="why__list">
+
+<li style="font-size: 18px;">Identité visuelle unique</li>
+<li style="font-size: 18px;">Design moderne et professionnel</li>
+<li style="font-size: 18px;">Meilleure expérience utilisateur</li>
+
+</ul>
+
+</div>
+<br><br>
+<div class="why__impact">
+
+<h3 style="font-size: 25px;">Impact réel sur les visiteurs</h3>
+
+<p style="font-size: 18px;">
+<strong>53% des visiteurs quittent un site mobile
+si celui-ci met plus de 3 secondes à charger.</strong>
+</p>
+
+<p style="font-size: 18px;">
+C’est pourquoi la vitesse influence directement :
+</p>
+
+<ul>
+
+<li style="font-size: 18px;">Le référencement SEO</li>
+<li style="font-size: 18px;">Le taux de conversion</li>
+<li style="font-size: 18px;">L’expérience utilisateur</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+<section class="services-cta">
+
+<div class="container">
+
+<h2>Un projet en tête ?</h2>
+
+<p>
+Contactez-nous pour discuter de votre projet et trouver
+la solution digitale adaptée à vos besoins.
+</p>
+
+<a href="/contact.html" class="btn btn--primary">
+Nous contacter
+</a>
+
+</div>
+
+</section>
 
   <footer class="footer">
 
