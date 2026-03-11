@@ -1,13 +1,4 @@
 
-/* ═══════════════════════════════════════════════════════════
-   fixes.css — Correctifs de conflits CSS
-   Charger APRÈS style.css : <link rel="stylesheet" href="./css/fixes.css">
-   ═══════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────
-   1. CONFLIT CRITIQUE : le sélecteur générique `button`
-      casse TOUS les boutons du site (nav, chat, quiz, FAQ…)
-   ───────────────────────────────────────────────────────── */
 button {
   display: revert;
   margin-top: revert;
@@ -21,7 +12,6 @@ button {
   transition: 0.3s ease;
 }
 
-/* Réapplique le style rose uniquement aux boutons newsletter */
 #newsletterForm button[type="submit"] {
   display: flex;
   margin-top: 0;
@@ -34,10 +24,6 @@ button {
   font-size: 0.95rem;
 }
 
-/* ─────────────────────────────────────────────────────────
-   2. CONFLIT : .bg-ambient défini 3 fois
-      → On fixe une seule version cohérente
-   ───────────────────────────────────────────────────────── */
 .bg-ambient {
   position: fixed;
   inset: 0;
@@ -48,10 +34,6 @@ button {
   filter: none;
 }
 
-/* ─────────────────────────────────────────────────────────
-   3. CONFLIT : .container défini 3 fois
-      → Une seule version
-   ───────────────────────────────────────────────────────── */
 .container {
   width: min(var(--container), calc(100% - 48px));
   margin-inline: auto;
@@ -63,10 +45,6 @@ button {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   4. CONFLIT : .nav a margin:35px puis margin:20px
-      → Fix : padding cohérent, position relative pour dropdown
-   ───────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
@@ -97,9 +75,7 @@ button {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   5. CONFLIT : .brand défini 3 fois
-   ───────────────────────────────────────────────────────── */
+
 .brand {
   display: flex;
   align-items: center;
@@ -145,10 +121,7 @@ button {
   .brand__name { font-size: 12px; }
 }
 
-/* ─────────────────────────────────────────────────────────
-   6. CONFLIT : .nav__link font-size 23px vs 21px vs 15px
-      → Fix cohérent
-   ───────────────────────────────────────────────────────── */
+
 .nav__link {
   text-decoration: none;
   color: rgba(242,242,244,.86);
@@ -169,10 +142,7 @@ button {
   color: var(--accent2);
 }
 
-/* ─────────────────────────────────────────────────────────
-   7. CONFLIT MAJEUR : .nav__toggle défini 4+ fois
-      → Version finale unique
-   ───────────────────────────────────────────────────────── */
+
 .nav__toggle {
   display: none;
   width: 46px;
@@ -250,10 +220,7 @@ button {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   8. CONFLIT MAJEUR : .nav__links responsive défini 4+ fois
-      → Version finale unique
-   ───────────────────────────────────────────────────────── */
+
 .nav__links {
   display: flex;
   align-items: center;
@@ -298,11 +265,7 @@ button {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   9. CONFLIT MAJEUR : .nav__dropdown-menu défini 5+ fois
-      Problèmes : background blanc vs noir, position, opacity…
-      → Version consolidée desktop + mobile
-   ───────────────────────────────────────────────────────── */
+
 
 /* Base */
 .nav__dropdown {
@@ -440,11 +403,7 @@ button {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   10. CONFLIT : .faq-item utilisé sur 2 pages différentes
-       → design.html (avec <details>) vs formation (avec JS)
-       Scoper les styles par page
-   ───────────────────────────────────────────────────────── */
+
 
 /* FAQs page Design (avec <details><summary>) */
 .design-faq .faq-item {
@@ -498,11 +457,7 @@ button {
   margin-bottom: 0;
   overflow: visible;
 }
-
-/* ─────────────────────────────────────────────────────────
-   11. CONFLIT : .cta utilisé sur about + formation
-       → Scoper par page
-   ───────────────────────────────────────────────────────── */
+────── */
 
 /* CTA About page */
 .about__cta .cta {
@@ -527,10 +482,7 @@ section.cta .cta__box {
   backdrop-filter: blur(10px);
 }
 
-/* ─────────────────────────────────────────────────────────
-   12. CONFLIT : .footer__grid défini 4+ fois
-       → Version unique consolidée
-   ───────────────────────────────────────────────────────── */
+
 .footer__grid {
   display: grid;
   gap: 2rem;
@@ -572,9 +524,6 @@ section.cta .cta__box {
   .newsletter      { order: 5; }
 }
 
-/* ─────────────────────────────────────────────────────────
-   13. CONFLIT : .team__grid défini 3+ fois
-   ───────────────────────────────────────────────────────── */
 .team__grid {
   display: grid;
   grid-template-columns: repeat(2, 380px);
@@ -612,10 +561,7 @@ section.cta .cta__box {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   14. CONFLIT : .profile width:320px fixe
-       → Responsive
-   ───────────────────────────────────────────────────────── */
+
 .profile {
   padding: 24px 22px;
   border-radius: 26px;
@@ -626,9 +572,7 @@ section.cta .cta__box {
   width: 100%;
 }
 
-/* ─────────────────────────────────────────────────────────
-   15. CONFLIT : .modal défini 2 fois
-   ───────────────────────────────────────────────────────── */
+
 .modal {
   position: fixed;
   inset: 0;
@@ -682,9 +626,6 @@ section.cta .cta__box {
   color: var(--accent2);
 }
 
-/* ─────────────────────────────────────────────────────────
-   16. FIX : Chat widget boutons cassés par le `button` générique
-   ───────────────────────────────────────────────────────── */
 #chatToggle {
   display: flex;
   margin-top: 0;
@@ -730,9 +671,7 @@ section.cta .cta__box {
   height: 44px;
 }
 
-/* ─────────────────────────────────────────────────────────
-   17. FIX : Boutons formation cassés par `button` générique
-   ───────────────────────────────────────────────────────── */
+
 .filter-tab {
   margin-top: 0;
   background: var(--card);
@@ -782,9 +721,7 @@ section.cta .cta__box {
   margin-top: 0;
 }
 
-/* ─────────────────────────────────────────────────────────
-   18. FIX : ScrollTopBtn cassé par `button` générique
-   ───────────────────────────────────────────────────────── */
+
 #scrollTopBtn {
   display: flex;
   justify-content: center;
@@ -797,9 +734,7 @@ section.cta .cta__box {
   color: white;
 }
 
-/* ─────────────────────────────────────────────────────────
-   19. FIX : Review & About boutons cassés
-   ───────────────────────────────────────────────────────── */
+
 .reviews__more {
   margin-top: 14px;
   padding: 12px 14px;
@@ -861,9 +796,7 @@ section.cta .cta__box {
   border: none;
 }
 
-/* ─────────────────────────────────────────────────────────
-   20. FIX : .site-header défini 2 fois
-   ───────────────────────────────────────────────────────── */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -873,9 +806,7 @@ section.cta .cta__box {
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
-/* ─────────────────────────────────────────────────────────
-   21. FIX : .why__grid conflit entre section Why et formation
-   ───────────────────────────────────────────────────────── */
+
 .why .why__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -900,10 +831,7 @@ section.cta .cta__box {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   22. FIX : .hero__title animation conflit
-       → L'animation slideFromLeft + opacity crée un flash
-   ───────────────────────────────────────────────────────── */
+
 .hero__title {
   opacity: 0;
   animation: slideFromLeft 1s cubic-bezier(.22,.61,.36,1) forwards;
@@ -924,9 +852,6 @@ section.cta .cta__box {
   animation-delay: 0.2s;
 }
 
-/* ─────────────────────────────────────────────────────────
-   23. FIX : Boutons rating (étoiles) cassés
-   ───────────────────────────────────────────────────────── */
 .rating label {
   cursor: pointer;
   background: transparent;
@@ -937,9 +862,7 @@ section.cta .cta__box {
   color: rgba(242,242,244,.25);
 }
 
-/* ─────────────────────────────────────────────────────────
-   24. FIX : .about__bullets conflit responsive
-   ───────────────────────────────────────────────────────── */
+
 .about__bullets {
   margin-top: 18px;
   display: grid;
@@ -959,9 +882,6 @@ section.cta .cta__box {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   25. FIX : .bloc responsive
-   ───────────────────────────────────────────────────────── */
 .bloc {
   display: flex;
   gap: 30px;
@@ -977,9 +897,7 @@ section.cta .cta__box {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   26. FIX : .pricing__grid conflit responsive
-   ───────────────────────────────────────────────────────── */
+
 .pricing__grid {
   margin-top: 34px;
   display: grid;
@@ -994,9 +912,7 @@ section.cta .cta__box {
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   27. FIX : newsletter form input conflit couleur
-   ───────────────────────────────────────────────────────── */
+
 .newsletter-form input {
   color: rgba(255,255,255,.92);
   background: rgba(255,255,255,.06);
