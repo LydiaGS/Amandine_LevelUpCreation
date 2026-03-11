@@ -799,7 +799,8 @@ La vitesse influence directement :
             });
         });
     </script>
-    const plans = document.querySelectorAll(".plan");
+    <script>
+          const plans = document.querySelectorAll(".plan");
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -808,6 +809,8 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 });
+    </script>
+  
 
 plans.forEach(plan => observer.observe(plan));
 </body>
