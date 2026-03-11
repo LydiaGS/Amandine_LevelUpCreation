@@ -86,85 +86,21 @@ navLinks.classList.toggle("active");
   // ============================================
   // 2. DROPDOWN NAVIGATION
   // ============================================
-  const initDropdown = () => {
-    const dropdown = document.querySelector(".nav__dropdown");
-    const mainLink = document.querySelector(".nav__dropdown-main");
+document.querySelectorAll(".nav__dropdown > a").forEach(link => {
 
-    if (!dropdown || !mainLink) return;
+link.addEventListener("click", function(e){
 
-    let pressTimer = null;
-    let closeTimer = null;
+if(window.innerWidth <= 900){
 
-    const openDropdown = () => {
-      dropdown.classList.add("is-open", "is-peek");
-    };
+e.preventDefault();
 
-    const closeDropdown = (delay = 0) => {
-      clearTimeout(closeTimer);
-      closeTimer = setTimeout(() => {
-        dropdown.classList.remove("is-open", "is-peek");
-      }, delay);
-    };
+this.parentElement.classList.toggle("open");
 
-    // Desktop: click classique
-    mainLink.addEventListener("click", (e) => {
-      if (!isMobile()) {
-        // Laisser le lien fonctionner normalement
-        return;
-      }
+}
 
-      e.preventDefault();
-      
-      if (dropdown.classList.contains("is-open")) {
-        closeDropdown(0);
-      } else {
-        openDropdown();
-      }
-    });
+});
 
-    // Mobile: long press
-    mainLink.addEventListener("touchstart", (e) => {
-      if (!isMobile()) return;
-
-      clearTimeout(pressTimer);
-      
-      pressTimer = setTimeout(() => {
-        openDropdown();
-      }, CONFIG.LONG_PRESS_DURATION);
-    }, { passive: true });
-
-    mainLink.addEventListener("touchend", () => {
-      if (!isMobile()) return;
-
-      clearTimeout(pressTimer);
-
-      if (dropdown.classList.contains("is-peek")) {
-        closeDropdown(CONFIG.DROPDOWN_CLOSE_DELAY);
-      }
-    }, { passive: true });
-
-    // Fermer si clic/touch en dehors
-    document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) {
-        closeDropdown(0);
-      }
-    });
-
-    document.addEventListener("touchstart", (e) => {
-      if (!isMobile()) return;
-      if (!dropdown.contains(e.target)) {
-        closeDropdown(0);
-      }
-    }, { passive: true });
-
-    // Fermer après clic sur un sous-item
-    dropdown.addEventListener("click", (e) => {
-      if (e.target.closest(".nav__dropdown-item")) {
-        closeDropdown(0);
-      }
-    });
-  };
-
+});
   // ============================================
   // 3. BOUTON RETOUR EN HAUT
   // ============================================
