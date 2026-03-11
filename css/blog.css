@@ -95,7 +95,7 @@
     ══════════════════════════════════════ */
     .magazine-section {
       padding: 4rem 0;
-
+      width: auto;
     }
 
     .magazine__grid {
@@ -111,7 +111,7 @@
         display: grid;
         grid-template-columns: 1.2fr 1fr;
         align-items: center;
-        gap: 3rem;
+        gap: 2rem;
       }
       .magazine-section:first-of-type .magazine__card:first-child .magazine__media {
         height: 100%;
