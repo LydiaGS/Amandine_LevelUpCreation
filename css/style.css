@@ -4562,3 +4562,154 @@ gap:30px ;
 justify-content:center;
 margin-top:65px;
 }
+/* --- BLOC ATTENTION --- */
+    .attention-block {
+      background: linear-gradient(145deg, rgba(223, 67, 124, 0.08) 0%, var(--card) 100%);
+      border: 1px solid var(--stroke);
+      border-left: 6px solid var(--accent2);
+      border-radius: var(--radius);
+      padding: 3.5rem;
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow), 0 0 40px rgba(223, 67, 124, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .attention-block:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow), 0 0 60px rgba(223, 67, 124, 0.1);
+    }
+
+    /* Icône optionnelle flottante */
+    .attention-icon {
+      position: absolute;
+      top: -20px;
+      left: 3.5rem;
+      background: var(--bg);
+      border: 1px solid var(--accent2);
+      color: var(--accent2);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(223, 67, 124, 0.2);
+    }
+
+    .attention-title {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .attention-title strong {
+      color: var(--accent2);
+      position: relative;
+    }
+
+    /* Soulignement stylisé sous le texte fort */
+    .attention-title strong::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 0px;
+      background: var(--accent2);
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+
+    .attention-text {
+      color: var(--muted);
+      font-size: 1.3rem !important;
+      margin-bottom: 1.5rem;
+    }
+
+    .attention-text strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Liste d'approche */
+    .attention-list {
+      list-style: none;
+      margin: 2rem 0;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .attention-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-size: 1.1rem !important;
+    }
+
+    .attention-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .attention-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent2);
+      font-weight: bold !important;
+      font-size: 1.2rem !important;
+    }
+
+    /* Conclusion en surbrillance */
+    .attention-highlight {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--stroke);
+      text-align: center;
+      font-size: 1.15rem !important;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .attention-highlight span {
+      color: var(--accent2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .attention-block {
+        padding: 2.5rem 1.5rem;
+        border-left-width: 4px;
+      }
+      .attention-icon {
+        left: 1.5rem;
+      }
+      .attention-title {
+        font-size: 1.7rem;
+        margin-top: 1rem;
+      }
+      .attention-text {
+        font-size: 1rem;
+      }
+      .attention-list {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .attention-title {
+        font-size: 1.4rem;
+      }
+      .attention-list li {
+        font-size: 0.95rem;
+      }
+      .attention-highlight {
+        font-size: 1.05rem;
+      }
+    }
