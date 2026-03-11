@@ -1,0 +1,284 @@
+  :root {
+      /* Backgrounds */
+      --bg: #0b0b0d;        
+      --bg2: #070708;          
+
+      /* Text */
+      --text: #f2f2f4;        
+      --muted: #c7c7cc;      
+      --muted2: #9a9aa1;    
+
+      /* Accents */
+      --accent: #2f2f33;      
+      --accent2: #df437c;    
+
+      /* Cards & borders */
+      --card: rgba(255,255,255,.05);
+      --stroke: rgba(255,255,255,.10);
+
+      /* Effects */
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+
+      /* Layout */
+      --radius: 18px;
+      --radius2: 22px;
+      --container: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 4rem 1rem;
+    }
+
+    /* Container global */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    /* En-tête de la section pour la présentation */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grille de prix */
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    /* Design des cartes */
+.plan {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius2);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+    /* Animation d'apparition au scroll (via JS) */
+    
+.plan.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Effet de survol (Hover) */
+    .plan:hover {
+      transform: translateY(-8px);
+      border-color: rgba(223, 67, 124, 0.3);
+      box-shadow: var(--shadow), 0 0 30px rgba(223, 67, 124, 0.05);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    /* Carte Recommandée */
+    .plan--featured {
+      border-color: var(--accent2);
+      background: linear-gradient(180deg, rgba(223,67,124,0.08) 0%, var(--card) 100%);
+    }
+
+    .plan--featured:hover {
+      border-color: var(--accent2);
+      box-shadow: var(--shadow), 0 0 40px rgba(223, 67, 124, 0.15);
+    }
+
+    /* Tag de recommandation */
+    .plan__tag {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent2);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 1.2rem;
+      border-bottom-left-radius: var(--radius);
+      box-shadow: 0 5px 15px rgba(223, 67, 124, 0.3);
+    }
+
+    /* En-tête de carte */
+    .plan__head {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .plan__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .plan__subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .plan__subtitle strong {
+      color: var(--muted2);
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    /* Prix */
+    .plan__price {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0.5rem 0;
+    }
+
+    .plan__amount {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .plan__tax {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .plan__meta {
+      font-size: 0.85rem;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* Liste des fonctionnalités */
+    .plan__list {
+      list-style: none;
+      margin-bottom: 2.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .plan__list p {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0.5rem 0;
+    }
+
+    .plan__list li {
+      font-size: 0.95rem;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .check {
+      color: var(--accent2);
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    /* Boutons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn--primary {
+      background: var(--accent2);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(223, 67, 124, 0.2);
+    }
+
+    .btn--primary:hover {
+      background: #e8558a;
+      box-shadow: 0 8px 25px rgba(223, 67, 124, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Layout Responsive Extrême (jusqu'à 320px) */
+    @media (max-width: 768px) {
+      .pricing__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 2rem 1rem;
+      }
+      .plan {
+        padding: 1.5rem;
+      }
+      .plan__amount {
+        font-size: 1.8rem;
+      }
+      .plan__title {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      /* Ajustements pour les très petits écrans iPhone SE etc */
+      .plan__tag {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+      }
+      .plan__amount {
+        font-size: 1.6rem;
+      }
+      .plan__list li {
+        font-size: 0.9rem;
+      }
+    }

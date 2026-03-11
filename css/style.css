@@ -448,9 +448,9 @@ img{
 }
 
 .why__grid{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:26px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:2rem;
 }
 
 .why__card{
@@ -1087,7 +1087,6 @@ img{
   border:1px solid rgba(255,255,255,.10);
   box-shadow:var(--shadow);
   height:auto;
-  width:320px;
 }
 
 .profile__top{
@@ -4602,4 +4601,11 @@ button{
 }
 p{
   font-size: 18px !important;
+}
+.bloc{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+gap:30px ;
+justify-content:center;
+margin-top:65px;
 }

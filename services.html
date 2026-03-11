@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="./css/tchat.css">
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/services.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./asset/image/favicon/2080x2080.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./asset/image/favicon/2080x2080.png">
   <link rel="shortcut icon" href="./asset/image/favicon/2080x2080.png">
@@ -60,18 +61,18 @@
 <!-- Top glow / background -->
   <div class="bg-ambient" aria-hidden="true"></div>
 <header class="site-header" id="top">
-  <nav class="nav">
-    <a class="brand" href="#top" aria-label="Level Up Creation - Accueil">
+  <nav class="nav" style="height: 35px;">
+    <a class="brand" href="#top" aria-label="Level Up Creation - Accueil"style="display: flex;">
       <span class="brand__logo">
         <img src="./asset/image/LOGO LVLUP_Ivoire 01.png" alt="Level Up Creation">
       </span>
       <span class="brand__name">Level Up Creation</span>
     </a>
-    
+
     <button class="nav__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
       <span class="nav__toggle-bars" aria-hidden="true"></span>
     </button>
-    <ul class="nav__links" id="navLinks">
+    <ul class="nav__links" id="navLinks" >
       <li class="nav__item">
         <a class="nav__link" href="./index.html"style="font-size: 26px;">Accueil</a>
       </li>
@@ -80,8 +81,7 @@
         <a class="nav__link" href="./infos.html"style="font-size: 26px;">À propos</a>
         <ul class="dropdown-menu">
           <li><a href="./Portefolio.html" style="font-size: 22px;">Portfolio</a></li>
-          <li><a href="./services.html"style="font-size: 22px;">Services</a></li>
-          <li><a href="./tarif.html"style="font-size: 22px;">Tarifs</a></li>
+          <li><a href="./services.html"style="font-size: 22px;">Services & Tarifs</a></li>
           <li><a href="./realisation.html"style="font-size: 22px;">Réalisations</a></li>
         </ul>
       </li>
@@ -108,298 +108,531 @@
     </ul>
   </nav>
 </header>
-
+<!-- SECTION SERVICES -->
 <section class="services">
-
 <div class="container">
 
-<div class="services__hero">
-
-<h1>Nos services</h1>
-
-<p>
-Nous accompagnons les entrepreneurs, créateurs et entreprises
-dans la création de projets digitaux modernes et performants.
-Découvrez nos principaux services pour développer votre présence en ligne.
-</p>
-
+<div class="services__hero reveal">
+<h1>Nos services & Tarifs</h1>
+<p>Nous accompagnons les entrepreneurs, créateurs et entreprises dans la création de projets digitaux modernes et performants.<br><br>TOUS LES PRIX AFFICHÉS SONT HORS TVA (HTVA)</p>
 </div>
-
-
-<div class="services__grid">
+   <div class="pricing__header reveal">
+        <h2>Nos services</h2>
+      </div>
+<div class="grid-layout reveal">
 
 <!-- SERVICE 1 -->
-
-<div class="service-card">
-
-<img src="./asset/image/image copy 11.png" alt="Design graphique">
-
-<h3 style="font-size: 25px;">Design graphique</h3>
-
-<p style="font-size: 18px;">
-Nous créons des visuels modernes et professionnels pour renforcer
-l’identité visuelle de votre marque et améliorer votre communication.
-</p>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop" alt="Design graphique">
+<h3>Design graphique</h3>
+<p>Nous créons des visuels modernes et professionnels pour renforcer l’identité visuelle de votre marque et améliorer votre communication.</p>
 
 <ul>
-<li style="font-size: 18px;">Création de logo</li>
-<li style="font-size: 18px;">Identité visuelle</li>
-<li style="font-size: 18px;">Montage professionnel</li>
-<li style="font-size: 18px;">Animation 3D</li>
+<li>Création de logo</li>
+<li>Identité visuelle</li>
+<li>Montage professionnel</li>
+<li>Animation 3D</li>
 </ul>
 
-<a href="/contact.html" class="btn btn--primary" style="font-size: 13px;">
-Demander un devis
-</a>
-
+<a class="btn" href="#tarifs">Nos Tarifs</a>
 </div>
 
 
 <!-- SERVICE 2 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" alt="Création web">
 
-<div class="service-card">
+<h3>Création web</h3>
 
-<img src="./asset/image/image copy 9.png" alt="Création web">
-
-<h3 style="font-size: 25px;">Création web</h3>
-
-<p style="font-size: 18px;">
-Nous développons des sites web modernes, rapides et optimisés
-pour offrir une excellente expérience utilisateur.
-</p>
+<p>Nous développons des sites web modernes, rapides et optimisés pour offrir une excellente expérience utilisateur.</p>
 
 <ul>
-<li style="font-size: 18px;">Site vitrine</li>
-<li style="font-size: 18px;">Site professionnel</li>
-<li style="font-size: 18px;">Design responsive</li>
-<li style="font-size: 18px;">Optimisation SEO</li>
+<li>Site vitrine</li>
+<li>Site professionnel</li>
+<li>Design responsive</li>
+<li>Optimisation SEO</li>
 </ul>
 
-<a href="/contact.html" class="btn btn--primary" style="font-size: 13px;">
-Lancer un projet
-</a>
 
+<a class="btn" href="#tarifs">Nos Tarifs</a>
 </div>
 
 
 <!-- SERVICE 3 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop" alt="Formation web">
 
-<div class="service-card">
+<h3>Formation web</h3>
 
-<img src="./asset/image/image copy 12.png" alt="Formation web">
-
-<h3 style="font-size: 25px;">Formation web</h3>
-
-<p style="font-size: 18px;">
-Apprenez à créer vos propres sites web grâce à nos formations
-sur les technologies du développement moderne.
-</p>
+<p>Apprenez à créer vos propres sites web grâce à nos formations sur les technologies du développement moderne.</p>
 
 <ul>
-<li style="font-size: 18px;">HTML</li>
-<li style="font-size: 18px;">CSS</li>
-<li style="font-size: 18px;">JavaScript</li>
-<li style="font-size: 18px;">Création de site web</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Création de site web</li>
 </ul>
 
-<a href="/formation.html" class="btn btn--primary" style="font-size: 13px;">
-Voir la formation
-</a>
 
+<a class="btn" href="#tarifs">Nos Tarifs</a>
 </div>
 
 
 <!-- SERVICE 4 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a?q=80&w=600&auto=format&fit=crop" alt="Formation design graphique">
 
-<div class="service-card">
+<h3>Formation design graphique</h3>
 
-<img src="./asset/image/image copy 13.png" alt="Formation design graphique">
-
-<h3 style="font-size: 25px;">Formation design graphique</h3>
-
-<p style="font-size: 18px;">
-Apprenez les bases du design graphique et développez
-vos compétences pour créer des visuels professionnels.
-</p>
+<p>Apprenez les bases du design graphique et développez vos compétences pour créer des visuels professionnels.</p>
 
 <ul>
-<li style="font-size: 18px;">Création de logo</li>
-<li style="font-size: 18px;">Design visuel</li>
-<li style="font-size: 18px;">Montage graphique</li>
-<li style="font-size: 18px;">Animation visuelle</li>
+<li>Création de logo</li>
+<li>Design visuel</li>
+<li>Montage graphique</li>
+<li>Animation visuelle</li>
 </ul>
 
-<a href="/formation.html" class="btn btn--primary"style="font-size: 13px;">
-Découvrir
-</a>
+<a class="btn" href="#tarifs">Nos Tarifs</a>
+</div>
 
+
+<!-- SERVICE 5 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600&auto=format&fit=crop" alt="Médiateur numérique">
+
+<h3>Médiateur numérique</h3>
+
+<p>Accompagnement des personnes en difficulté avec les outils numériques pour favoriser leur autonomie et inclusion digitale.</p>
+
+<ul>
+<li>Mise à jour PC & smartphone</li>
+<li>Installation d'applications</li>
+<li>Création CV et lettre de motivation</li>
+<li>PC et smartphone pour débutant</li>
+</ul>
+
+
+<a class="btn" href="#tarifs">Nos Tarifs</a>
+</div>
+
+
+<!-- SERVICE 6 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=600&auto=format&fit=crop" alt="Animateur multimédia">
+
+<h3>Animateur multimédias</h3>
+
+<p>Transmission des bases de la programmation et de la robotique à des enfants et adolescents.</p>
+
+<ul>
+<li>Scratch</li>
+<li>Micro:bit (MakeCode)</li>
+<li>Arduino</li>
+<li>Création de robot & PCB</li>
+</ul>
+
+
+<a class="btn" href="#tarifs">Nos Tarifs</a>
 </div>
 
 </div>
-
 </div>
-
 </section>
+
+  <!-- SECTION PRIX -->
+  <section class="pricing" id="tarifs">
+    <div class="container">
+      <div class="pricing__header reveal">
+        <h2>Nos Tarifs</h2>
+      </div>
+
+      <div class="grid-layout reveal">
+        <!-- Card 1 -->
+        <article class="plan">
+          <header class="plan__head">
+            <h3 class="plan__title">Landing Page</h3>
+            <p class="plan__subtitle">Une page unique ultra clean, pensée pour convertir. <br><strong>Les prix peuvent varier selon projet.</strong></p>
+            <div class="plan__price">
+              <span class="plan__amount">dès 250 €</span>
+              <span class="plan__tax">HTVA</span>
+            </div>
+            <p class="plan__meta">Livraison : 10–15 jours • Mobile + SEO</p>
+          </header>
+          <ul class="plan__list">
+            <li><span class="check">✓</span>Structure pensée pour maximiser l’acquisition</li>
+            <li><span class="check">✓</span>Design élégant inspirant confiance</li>
+            <li><span class="check">✓</span>Version mobile travaillée au millimètre</li>
+            <li><span class="check">✓</span>Formation prise en main</li>
+          </ul>
+        <a class="btn" href="./contact.html">Contactez-nous</a>
+        </article>
+
+        <!-- Card 2 (recommandée) -->
+        <article class="plan plan--featured">
+          <div class="plan__tag">Recommandée</div>
+          <header class="plan__head">
+            <h3 class="plan__title">Site vitrine</h3>
+            <p class="plan__subtitle">Idéal pour présenter votre activité et générer des contacts qualifiés.<br><strong>Les prix peuvent varier selon projet.</strong></p>
+            <div class="plan__price">
+              <span class="plan__amount">dès 500 €</span>
+              <span class="plan__tax">HTVA</span>
+            </div>
+            <p class="plan__meta">Jusqu’à 7 pages • Livraison : 15–30 jours</p>
+          </header>
+          <ul class="plan__list">
+            <li><span class="check">✓</span>Design sur-mesure aligné à votre marque</li>
+            <li><span class="check">✓</span>Jusqu’à 6 pages (Accueil, Services, etc.)</li>
+            <li><span class="check">✓</span>Version mobile comme une application</li>
+            <li><span class="check">✓</span>Formation prise en main</li>
+          </ul>
+       <a class="btn" href="./contact.html">Contactez-nous</a>
+        </article>
+        
+        <!-- Card 3 -->
+        <article class="plan">
+          <header class="plan__head">
+            <h3 class="plan__title">Nos Formations</h3>
+            <p class="plan__subtitle">Formation : "Numérique".</p>
+            <div class="plan__price">
+              <span class="plan__amount">dès 85 €</span>
+              <span class="plan__tax">HTVA</span>
+            </div>
+            <p class="plan__meta">En Ligne ou en présentiel.</p>
+          </header>
+          <ul class="plan__list">
+            <p>En Programmation web :</p>
+            <li><span class="check">✓</span>Les bases du HTML & CSS</li>
+            <li><span class="check">✓</span>Les bases en Javascripts</li>
+            <p>En design graphique :</p>
+            <li><span class="check">✓</span>Montage Vidéo & Animation 3D</li>
+                    <p>Animateur multimédias :</p>
+                        <li><span class="check">✓</span>Scratch,Micro:bit (MakeCode),Arduino,Création de robot & PCB </li>
+          </ul>
+      <a class="btn" href="./contact.html">Contactez-nous</a>
+        </article>
+      </div>
+      <br>
+       <div class="grid-layout reveal">
+      <!-- Card 4 -->
+<article class="plan">
+<header class="plan__head">
+<h3 class="plan__title">Boutique en ligne</h3>
+<p class="plan__subtitle">Pour vendre vos produits en ligne avec une image de marque forte.<br><strong>Les prix peuvent varier selon projet.</strong></p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 950 €</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">Livraison : 30 – 50 jours • Mobile + performance</p>
+</header>
+
+<ul class="plan__list">
+<li><span class="check">✓</span>Catalogue clair et structuré</li>
+<li><span class="check">✓</span>Design sur mesure aligné à votre marque</li>
+<li><span class="check">✓</span>Paiements intégrés</li>
+<li><span class="check">✓</span>Optimisation performance</li>
+<li><span class="check">✓</span>Ajout de pages possible</li>
+<li><span class="check">✓</span>Formation prise en main</li>
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+</article>
+
+
+<!-- Card 5 -->
+<article class="plan">
+<header class="plan__head">
+<h3 class="plan__title">Motion design</h3>
+
+<p class="plan__subtitle">Création de visuels animés et contenus vidéo professionnels.</p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 680 €</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">Livraison : 15-20 jours</p>
+</header>
+
+<ul class="plan__list">
+<li><span class="check">✓</span>Création de logo animé</li>
+<li><span class="check">✓</span>Animation 3D</li>
+<li><span class="check">✓</span>Montage vidéo professionnel</li>
+<li><span class="check">✓</span>Retouche image</li>
+<li><span class="check">✓</span>Création visuelle de marque</li>
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+</article>
+
+
+<!-- Card 6 -->
+<article class="plan">
+<header class="plan__head">
+<h3 class="plan__title">Design graphique</h3>
+
+<p class="plan__subtitle">Création d’identité visuelle et supports graphiques professionnels.</p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 480 €</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">Livraison : 15-20 jours</p>
+</header>
+
+<ul class="plan__list">
+<li><span class="check">✓</span>Création de logo</li>
+<li><span class="check">✓</span>Design aligné à votre marque</li>
+<li><span class="check">✓</span>Supports visuels professionnels</li>
+<li><span class="check">✓</span>Retouche image</li>
+<li><span class="check">✓</span>Création visuelle complète</li>
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+</article>
+
+
+<!-- Card 7 -->
+<article class="plan">
+<header class="plan__head">
+<h3 class="plan__title">Votre site web sur mesure</h3>
+
+<p class="plan__subtitle">Des pages uniques ultra clean pensées pour convertir.<br><strong>Les prix peuvent varier selon projet.</strong></p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 750 €</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">Livraison : 30 jours et +</p>
+</header>
+
+<ul class="plan__list">
+<li><span class="check">✓</span>Structure optimisée conversion</li>
+<li><span class="check">✓</span>Design élégant et professionnel</li>
+<li><span class="check">✓</span>Formulaire + WhatsApp</li>
+<li><span class="check">✓</span>Optimisation performance</li>
+<li><span class="check">✓</span>Section offre + FAQ</li>
+<li><span class="check">✓</span>Formation prise en main</li>
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+</article>
+
+
+<!-- Card 8 -->
+<article class="plan plan--featured">
+
+<div class="plan__tag">Recommandée</div>
+
+<header class="plan__head">
+
+<h3 class="plan__title">Votre design sur mesure</h3>
+
+<p class="plan__subtitle">Design premium adapté à tous les supports.</p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 850 €</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">Livraison : 30 jours et +</p>
+
+</header>
+
+<ul class="plan__list">
+
+<li><span class="check">✓</span>Logo 100% personnalisé</li>
+<li><span class="check">✓</span>Design premium aligné à votre marque</li>
+<li><span class="check">✓</span>Animation 3D</li>
+<li><span class="check">✓</span>Montage professionnel</li>
+<li><span class="check">✓</span>Création visuelle complète</li>
+
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+
+</article>
+      
+<!-- Card 7 -->
+<article class="plan">
+<header class="plan__head">
+<h3 class="plan__title">Médiateur numérique</h3>
+
+<p class="plan__subtitle">Accompagnement des personnes en difficulté avec les outils numériques.</p>
+
+<div class="plan__price">
+<span class="plan__amount">dès 45€/h</span>
+<span class="plan__tax">HTVA</span>
+</div>
+
+<p class="plan__meta">En présentiel</p>
+</header>
+
+<ul class="plan__list">
+<li><span class="check">✓</span>Mise à jour PC & smartphone</li>
+<li><span class="check">✓</span>Installation d'applications</li>
+<li><span class="check">✓</span>Création CV et lettre de motivation</li>
+<li><span class="check">✓</span>PC et smartphone pour débutant</li>
+</ul>
+
+<a class="btn" href="./contact.html">Contactez-nous</a>
+</article>
+    </div>
+    </div>
+    
+  </section>
+<!-- SECTION POURQUOI NOUS -->
 <section class="why">
-
 <div class="container">
 
-<h2 style="font-size: 30px;">Pourquoi choisir Level Up Creation</h2>
-<br>
-<p class="why__intro"style="font-size: 18px;">
-Nous créons des sites web modernes, rapides et optimisés
-pour offrir la meilleure expérience possible aux utilisateurs
-et aux moteurs de recherche.
+<h2 class="reveal">Chez Level Up Creation</h2>
+
+<p class="why__intro reveal">
+Nous créons des sites web modernes, rapides et optimisés pour offrir la meilleure expérience possible aux utilisateurs et aux moteurs de recherche.
 </p>
 
-<div class="why__grid">
+<div class="grid-layout reveal">
 
-<div class="why__card">
-
-<h3 style="font-size: 25px;">Sites ultra rapides</h3>
-<br>
-<p style="font-size: 18px;">
-Nos sites sont développés avec du code optimisé
-(HTML, CSS et JavaScript) afin d'offrir des temps
-de chargement très rapides.
-</p>
-
-<p class="highlight"style="font-size: 18px;">
-Un site rapide améliore le SEO et l'expérience utilisateur.
-</p>
-
-</div>
-
-
-<div class="why__card">
-
-<h3 style="font-size: 25px;">Optimisé mobile</h3>
-<br>
-<p style="font-size: 18px;">
-Aujourd’hui plus de <strong>50% du trafic web</strong>
-vient des smartphones.
-</p>
-
-<p style="font-size: 18px;">
-Nos sites sont conçus en <strong>mobile first</strong>
-afin d’offrir une navigation parfaite sur tous les appareils.
-</p>
-
-</div>
-
-
-<div class="why__card">
-
-<h3 style="font-size: 25px;">SEO</h3>
-<br>
-<p style="font-size: 18px;">
-Un site rapide et bien structuré permet
-de mieux se positionner sur Google.
-</p>
-
-<p style="font-size: 15px;">
-Nous optimisons la structure du code,
-les performances et l’accessibilité
-pour améliorer votre référencement.
-</p>
-
-</div>
-
-
-<div class="why__card">
-
-<h3 style="font-size: 25px;">Code propre et optimisé</h3>
-<br>
-<p style="font-size: 18px;">
-Contrairement aux outils drag-and-drop,
-nos sites utilisent un code propre
-sans surcharge inutile.
-</p>
-
-<p style="font-size: 18px;">
-Résultat :
-</p>
-
-<ul>
-
-<li style="font-size: 18px;">chargement plus rapide</li>
-<li style="font-size: 18px;">meilleur SEO</li>
-<li style="font-size: 18px;">site plus léger</li>
-
-</ul>
-
-</div>
-
-</div>
-<br><br><br><br>
-<div class="why__card">
-
-<h3 class="why__title" style="font-size: 25px;">Design sur mesure</h3>
-
-<p class="why__text" style="font-size: 18px;">
-Nous créons des designs uniques et modernes
-adaptés à votre marque et à votre activité.
-Chaque site est pensé pour offrir une expérience
-visuelle professionnelle et engageante.
-</p>
-
-<p class="why__text" style="font-size: 18px;">Résultat :</p>
-
-<ul class="why__list">
-
-<li style="font-size: 18px;">Identité visuelle unique</li>
-<li style="font-size: 18px;">Design moderne et professionnel</li>
-<li style="font-size: 18px;">Meilleure expérience utilisateur</li>
-
-</ul>
-
-</div>
-<br><br>
-<div class="why__impact">
-
-<h3 style="font-size: 25px;">Impact réel sur les visiteurs</h3>
-
-<p style="font-size: 18px;">
-<strong>53% des visiteurs quittent un site mobile
-si celui-ci met plus de 3 secondes à charger.</strong>
-</p>
-
-<p style="font-size: 18px;">
-C’est pourquoi la vitesse influence directement :
-</p>
-
-<ul>
-
-<li style="font-size: 18px;">Le référencement SEO</li>
-<li style="font-size: 18px;">Le taux de conversion</li>
-<li style="font-size: 18px;">L’expérience utilisateur</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</section>
-<section class="services-cta">
-
-<div class="container">
-
-<h2>Un projet en tête ?</h2>
+<!-- CARD 1 -->
+<div class="card">
+<h3>Sites ultra rapides</h3>
 
 <p>
-Contactez-nous pour discuter de votre projet et trouver
-la solution digitale adaptée à vos besoins.
+Nos sites sont développés avec du code optimisé (HTML, CSS et JavaScript) afin d'offrir des temps de chargement très rapides.
 </p>
 
-<a href="/contact.html" class="btn btn--primary">
-Nous contacter
-</a>
+<p class="highlight">
+Un site rapide améliore le SEO et l'expérience utilisateur.
+</p>
+</div>
+
+
+<!-- CARD 2 -->
+<div class="card">
+
+<h3>Optimisé mobile</h3>
+
+<p>
+Aujourd’hui plus de <strong>50% du trafic web</strong> vient des smartphones.
+</p>
+
+<p>
+Nos sites sont conçus en <strong>mobile first</strong> afin d’offrir une navigation parfaite sur tous les appareils.
+</p>
 
 </div>
 
-</section>
 
+<!-- CARD 3 -->
+<div class="card">
+
+<h3>SEO optimisé</h3>
+
+<p>
+Un site rapide et bien structuré permet de mieux se positionner sur Google et d’attirer davantage de visiteurs.
+</p>
+
+<p class="highlight">
+Nous optimisons la structure du code, les performances et l’accessibilité pour améliorer votre référencement.
+</p>
+
+</div>
+
+
+<!-- CARD 4 -->
+<div class="card">
+
+<h3>Code propre et optimisé</h3>
+
+<p>
+Contrairement aux outils drag-and-drop, nos sites utilisent un code propre sans surcharge inutile.
+</p>
+
+<ul>
+<li>Chargement plus rapide</li>
+<li>Meilleur référencement SEO</li>
+<li>Site plus léger et plus performant</li>
+</ul>
+
+</div>
+
+
+<!-- CARD 5 -->
+<div class="card">
+
+<h3>Design sur mesure</h3>
+
+<p>
+Nous créons des designs uniques et modernes adaptés à votre marque et à votre activité.
+</p>
+
+<ul>
+<li>Identité visuelle unique</li>
+<li>Design moderne et professionnel</li>
+<li>Expérience utilisateur optimisée</li>
+</ul>
+
+</div>
+
+
+<!-- CARD 6 -->
+<div class="card">
+
+<h3>Impact réel sur les visiteurs</h3>
+
+<p>
+<strong>53% des visiteurs quittent un site mobile</strong> si celui-ci met plus de 3 secondes à charger.
+</p>
+
+<p>
+La vitesse influence directement :
+</p>
+
+<ul>
+<li>Le référencement SEO</li>
+<li>Le taux de conversion</li>
+<li>L’expérience utilisateur</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+</section>
+  <!-- CTA FINAL -->
+  <section class="services-cta reveal">
+    <div class="container">
+      <h2>Un projet en tête ?</h2>
+      <p>Contactez-nous pour discuter de votre projet et trouver la solution digitale adaptée à vos besoins.</p>
+      <a href="#" class="btn">Nous contacter</a>
+    </div>
+  </section>
+
+  <script>
+    // Petit script léger pour animer l'apparition au scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".reveal");
+
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+
+        reveals.forEach(reveal => {
+          const elementTop = reveal.getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add("active");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll(); // Trigger a first check
+    });
+  </script>
   <footer class="footer">
 
     <div class="container footer__grid">
@@ -544,6 +777,39 @@ Nous contacter
       });
     });
   </script>
+   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        });
+    </script>
+    const plans = document.querySelectorAll(".plan");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+    }
+  });
+});
+
+plans.forEach(plan => observer.observe(plan));
 </body>
 
 </html>
