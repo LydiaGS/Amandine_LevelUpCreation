@@ -4600,3 +4600,6 @@ button{
     transition:none !important;
   }
 }
+p{
+  font-size: 18px !important;
+}
