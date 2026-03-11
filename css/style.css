@@ -5497,3 +5497,45 @@ color:#aaa;
 font-size:18px;
 line-height:1.6;
 }
+/* dropdown desktop */
+
+.dropdown-menu{
+display:none;
+position:absolute;
+background:transparent;
+padding:10px 0;
+list-style:none;
+border-radius:8px;
+}
+
+.nav__item:hover .dropdown-menu{
+display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.nav__links{
+flex-direction:column;
+align-items:flex-start;
+padding:20px;
+}
+
+.nav__item{
+width:100%;
+}
+
+.dropdown-menu{
+position:relative;
+display:none;
+width:100%;
+padding-left:20px;
+margin-top:10px;
+}
+
+.nav__item.open .dropdown-menu{
+display:block;
+}
+
+}
