@@ -4749,3 +4749,13 @@ margin-top:65px;
       gap: 1rem;
       z-index: 1001; /* Pour rester cliquable au-dessus du menu mobile */
     }
+        .dropdown-menu {
+      pointer-events: none; /* Empêche de cliquer quand c'est caché */
+    }
+        .nav__dropdown:hover .dropdown-menu {
+      pointer-events: auto; /* Rend le sous-menu cliquable */
+    }
+        .dropdown-menu a:hover {
+      padding-left: 2rem; /* Petit effet de décalage stylé */
+    }
+  
