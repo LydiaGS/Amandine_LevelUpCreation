@@ -4016,11 +4016,6 @@ button{
     gap:30px;
   }
 
-  .article__layout{
-    grid-template-columns:1fr;
-    gap:40px;
-  }
-
   .title{
     font-size:32px;
   }
@@ -4212,21 +4207,6 @@ button{
     font-size:16px;
   }
 
-  .article{
-    padding:60px 18px;
-  }
-
-  .article__content{
-    font-size:16px;
-  }
-
-  .article__content h2{
-    font-size:22px;
-  }
-
-  .tips h2{
-    font-size:28px;
-  }
 }
 
 @media (max-width:560px){
@@ -4758,4 +4738,9 @@ margin-top:65px;
         .dropdown-menu a:hover {
       padding-left: 2rem; /* Petit effet de décalage stylé */
     }
-  
+    .page{
+     padding: 20px;
+    }
+    .main{
+      display: flex;
+    }
