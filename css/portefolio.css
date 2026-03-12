@@ -1083,3 +1083,6 @@
         .chat-toggle:hover {
             transform: scale(1.1) rotate(-10deg);
         }
+        body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

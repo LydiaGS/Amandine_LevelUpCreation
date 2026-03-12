@@ -330,3 +330,6 @@
   padding: 0 15px;
   border-radius: 12px;
 }
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

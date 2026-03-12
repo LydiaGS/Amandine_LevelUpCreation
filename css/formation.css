@@ -609,5 +609,7 @@ section.cta .cta__box {
   background: var(--accent2);
   color: rgb(90, 41, 8);
 }
-
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
 

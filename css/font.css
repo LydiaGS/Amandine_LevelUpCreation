@@ -24,4 +24,6 @@
   --radius2: 22px;
   --container: 1120px;
 }
-
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

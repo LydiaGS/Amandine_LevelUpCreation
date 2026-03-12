@@ -4,7 +4,7 @@ html,body{ height:100%; }
 
 body{
   margin:0;
-  font-family:Arial;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
   color:white;
   background:#0f0f0f;
   overflow-x:hidden;
@@ -4872,4 +4872,7 @@ display:none;
 display:block;
 }
 
+}
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
 }

@@ -25,7 +25,9 @@
       --radius2: 22px;
       --container: 1120px;
     }
-
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
 
     h1, h2, h3, h4 {
       color: #ffffff;
@@ -404,3 +406,6 @@
       .plan__amount { font-size: 1.6rem; }
       .plan__list li { font-size: 0.9rem; }
     }
+    body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

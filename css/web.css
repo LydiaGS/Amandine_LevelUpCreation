@@ -29,7 +29,9 @@
       text-decoration: none;
       color: inherit;
     }
-
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
     ul {
       list-style: none;
     }
@@ -396,3 +398,6 @@
         padding: 0.8rem 1rem;
       }
     }
+    body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

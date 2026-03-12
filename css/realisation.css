@@ -32,6 +32,9 @@
       margin: 0;
       padding: 0;
     }
+    body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
     .container {
       max-width: var(--container);
       margin: 0 auto;
@@ -316,3 +319,6 @@
         font-size: 1.3rem;
       }
     }
+    body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}

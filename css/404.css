@@ -199,3 +199,6 @@
       filter: blur(2px);
       pointer-events:none;
     }
+    body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
