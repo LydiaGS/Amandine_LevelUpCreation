@@ -32,16 +32,6 @@
       margin: 0;
       padding: 0;
     }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
     .container {
       max-width: var(--container);
       margin: 0 auto;
@@ -76,6 +66,7 @@
     .examples {
       padding: 8rem 0;
       position: relative;
+      margin-top: 65px;
     }
 
     .examples__title {
