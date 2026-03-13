@@ -254,12 +254,12 @@
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
       }
 
       h2 {
-        font-size: 0.5rem;
+        font-size: 1.5rem;
         margin-bottom: 1rem;
       }
 
