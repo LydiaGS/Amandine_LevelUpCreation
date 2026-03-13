@@ -1019,4 +1019,18 @@ color:white;
   }
 
 }
+.notif{
+padding:12px;
+border-bottom:1px solid #333;
+}
 
+.notif h4{
+margin:0;
+font-size:14px;
+}
+
+.notif p{
+margin:4px 0;
+font-size:13px;
+color:#bbb;
+}

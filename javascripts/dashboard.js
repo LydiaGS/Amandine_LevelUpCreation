@@ -1566,7 +1566,22 @@ document.querySelectorAll('.modal-close').forEach(btn => {
         document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('open'));
     });
 });
+// =======================================================
+// PROFIL MODAL
+// =======================================================
 
+const closeProfileModal = document.getElementById("closeProfileModal");
+if(editProfileBtn){
+editProfileBtn.addEventListener("click",()=>{
+editProfileModal.classList.add("open");
+});
+}
+
+if(closeProfileModal){
+closeProfileModal.addEventListener("click",()=>{
+editProfileModal.classList.remove("open");
+});
+}
 const editProfileForm = document.getElementById('editProfileForm');
 if (editProfileForm) {
     editProfileForm.addEventListener('submit', async (e) => {
@@ -1600,7 +1615,11 @@ if (editProfileForm) {
         }
     });
 }
-
+window.addEventListener("click",(e)=>{
+if(e.target === editProfileModal){
+editProfileModal.classList.remove("open");
+}
+});
 // ===================================================================
 // 🎮 GAMIFICATION
 // ===================================================================
@@ -2213,128 +2232,121 @@ if (notifBtn && notifPanel) {
   });
 }
 
-
-// ===== ATTENDRE UTILISATEUR CONNECTÉ =====
-onAuthStateChanged(auth, (user) => {
-
-  if (!user) return;
-
-  console.log("UID utilisateur :", user.uid);
-
-  const q = query(
-    collection(db, "notifications"),
-    where("userId", "==", user.uid)
-  );
-
-
-  // ===== ECOUTE TEMPS REEL FIREBASE =====
-  onSnapshot(q, (snapshot) => {
-
-    if (!notifList) return;
-
-    notifList.innerHTML = "";
-
-    let unreadCount = 0;
-
-    snapshot.forEach((docSnap) => {
-
-      const data = docSnap.data();
-
-      if (!data.read) unreadCount++;
-
-      notifList.innerHTML += `
-        <div class="notif">
-          <h4>${data.title || ""}</h4>
-          <p>${data.message || ""}</p>
-
-          ${
-            !data.read
-              ? `<button onclick="markNotifRead('${docSnap.id}')">
-                   Marquer comme lu
-                 </button>`
-              : `<span style="color:gray">Lu</span>`
-          }
-
-        </div>
-      `;
-
-    });
-
-
-    // ===== BADGE ROUGE =====
-    if (notifBadge) {
-
-      if (unreadCount > 0) {
-        notifBadge.style.display = "block";
-        notifBadge.textContent = unreadCount;
-      } else {
-        notifBadge.style.display = "none";
-      }
-
-    }
-
-  });
-
-});
-
-
-// ===== MARQUER NOTIFICATION COMME LUE =====
-window.markNotifRead = async function(id) {
-
-  try {
-
-    await updateDoc(
-      doc(db, "notifications", id),
-      { read: true }
-    );
-
-  } catch (error) {
-
-    console.error("Erreur lecture notification :", error);
-
-  }
-
-};
-const adminUID = "kYC7IKIezxdEZnUyHsddLLs0cDr2";
-const adminLink = document.getElementById("adminLink");
+// =======================================================
+// AUTH USER
+// =======================================================
 
 onAuthStateChanged(auth,(user)=>{
 
 if(!user) return;
 
-if(user.uid === adminUID){
+console.log("User connecté :", user.uid);
 
-adminLink.style.display = "block";
+// =======================================================
+// QUERY NOTIFICATIONS
+// =======================================================
 
-}else{
+const q = query(
+collection(db,"notifications"),
+orderBy("timestamp","desc")
+);
+// =======================================================
+// ECOUTE TEMPS REEL FIREBASE
+// =======================================================
 
-adminLink.style.display = "none";
+onSnapshot(q,(snapshot)=>{
+
+if(!notifList) return;
+
+notifList.innerHTML="";
+
+let unreadCount = 0;
+
+snapshot.forEach((docSnap)=>{
+
+const data = docSnap.data();
+
+// afficher seulement si notif pour cet utilisateur ou broadcast
+if(data.broadcast || data.userId === user.uid){
+
+if(!data.read) unreadCount++;
+
+notifList.innerHTML += `
+<div class="notif">
+
+<h4>${data.title || ""}</h4>
+
+<p>${data.message || ""}</p>
+
+${data.documentUrl ? `
+<a href="${data.documentUrl}" target="_blank" class="notif-doc">
+📄 Télécharger le document
+</a>
+` : ""}
+
+${data.link ? `
+<a href="${data.link}" class="notif-action">
+${data.buttonText || "Voir"}
+</a>
+` : ""}
+
+${
+!data.read
+? `<button onclick="markNotifRead('${docSnap.id}')">
+Marquer comme lu
+</button>`
+: `<span style="color:gray">Lu</span>`
+}
+
+</div>
+`;
 
 }
 
 });
 
-const closeProfileModal = document.getElementById("closeProfileModal");
-const saveProfileBtn = document.getElementById("saveProfileBtn");
 
-const editName = document.getElementById("editName");
-const editProjectName = document.getElementById("editProjectName");
+// =======================================================
+// BADGE ROUGE
+// =======================================================
 
+if(notifBadge){
 
-// ouvrir modal
-editProfileBtn.addEventListener("click", () => {
-  editProfileModal.classList.add("open");
+if(unreadCount > 0){
+
+notifBadge.style.display="block";
+notifBadge.textContent = unreadCount;
+
+}else{
+
+notifBadge.style.display="none";
+
+}
+
+}
+
+});
+
 });
 
 
-// fermer modal
-closeProfileModal.addEventListener("click", () => {
-  editProfileModal.classList.remove("open");
-});
-document.getElementById("notifBadge").style.display="block"
-document.getElementById("notifBadge").textContent=3
-console.log(notifBadge);
-console.log("User connecté:", user.uid);
-console.log("Notification:", data);
-console.log('✅ dashboard.js chargé');
+// =======================================================
+// MARQUER NOTIFICATION LUE
+// =======================================================
 
+window.markNotifRead = async function(id){
+
+try{
+
+await updateDoc(
+doc(db,"notifications",id),
+{ read:true }
+);
+
+}catch(error){
+
+console.error("Erreur lecture notification :",error);
+
+}
+
+};

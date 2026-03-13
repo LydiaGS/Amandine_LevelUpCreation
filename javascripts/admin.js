@@ -1,3 +1,6 @@
+// ======================================================
+// FIREBASE IMPORTS
+// ======================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 
@@ -14,10 +17,18 @@ doc,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
 
 
-// CONFIG FIREBASE
+// ======================================================
+// FIREBASE CONFIG
+// ======================================================
+
 const firebaseConfig = {
 apiKey: "AIzaSyDFdsNM9gOgVqDa_hMviIViEyJrMghETGg",
 authDomain: "amandinelevelupcreation.firebaseapp.com",
@@ -29,13 +40,20 @@ measurementId: "G-6H3EZ3K9L0"
 };
 
 
-// INITIALISER FIREBASE
+// ======================================================
+// INITIALISATION FIREBASE
+// ======================================================
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 
+// ======================================================
 // VARIABLES
+// ======================================================
+
 let notificationsData = [];
 
 const badgeCount = document.getElementById("badgeCount");
@@ -46,7 +64,10 @@ const historyGrid = document.getElementById("historyGrid");
 const toast = document.getElementById("toast");
 
 
-// ICÔNES
+// ======================================================
+// ICONES
+// ======================================================
+
 const icons = {
 info:"ℹ️",
 success:"✅",
@@ -57,24 +78,10 @@ promotion:"🎉"
 };
 
 
-// OUVRIR / FERMER PANEL
-const notifBtn = document.getElementById("notificationsBadge");
-const closeBtn = document.getElementById("closeNotifications");
+// ======================================================
+// TOAST
+// ======================================================
 
-if(notifBtn){
-notifBtn.addEventListener("click",()=>{
-notificationsPanel.classList.toggle("active");
-});
-}
-
-if(closeBtn){
-closeBtn.addEventListener("click",()=>{
-notificationsPanel.classList.remove("active");
-});
-}
-
-
-// TOAST MESSAGE
 function showToast(message,duration=3000){
 
 if(!toast) return;
@@ -89,7 +96,10 @@ toast.style.display="none";
 }
 
 
+// ======================================================
 // FORMAT DATE
+// ======================================================
+
 function formatTime(timestamp){
 
 if(!timestamp) return "";
@@ -113,7 +123,10 @@ return date.toLocaleDateString("fr-FR");
 }
 
 
-// AFFICHER NOTIFICATIONS
+// ======================================================
+// RENDER NOTIFICATIONS
+// ======================================================
+
 function renderNotifications(){
 
 if(!notificationsList) return;
@@ -173,7 +186,10 @@ Lire
 }
 
 
+// ======================================================
 // MARQUER COMME LU
+// ======================================================
+
 window.markAsRead = async function(id){
 
 try{
@@ -194,7 +210,10 @@ showToast("Erreur");
 }
 
 
+// ======================================================
 // HISTORIQUE
+// ======================================================
+
 function renderHistory(){
 
 if(!historyGrid) return;
@@ -238,7 +257,10 @@ ${formatTime(notif.timestamp)}
 }
 
 
-// LISTENER FIREBASE TEMPS RÉEL
+// ======================================================
+// FIREBASE LISTENER
+// ======================================================
+
 const q = query(
 collection(db,"notifications"),
 orderBy("timestamp","desc"),
@@ -266,7 +288,47 @@ showToast("Erreur Firebase");
 });
 
 
+// ======================================================
 // ENVOYER NOTIFICATION
+// ======================================================
+
+async function sendNotification({
+title,
+message,
+userId = null,
+broadcast = false,
+type = "info",
+buttonText = null,
+link = null,
+documentUrl = null,
+scheduledAt = null
+}){
+
+await addDoc(collection(db,"notifications"),{
+
+title,
+message,
+userId,
+broadcast,
+type,
+buttonText,
+link,
+documentUrl,
+scheduledAt,
+
+read:false,
+timestamp:serverTimestamp(),
+createdAt:new Date().toISOString()
+
+})
+
+}
+
+
+// ======================================================
+// FORMULAIRE ENVOI
+// ======================================================
+
 if(notificationForm){
 
 notificationForm.addEventListener("submit",async(e)=>{
@@ -283,16 +345,11 @@ submitBtn.disabled=true;
 
 try{
 
-await addDoc(collection(db,"notifications"),{
-
+await sendNotification({
 title,
 message,
 type,
-userId,
-timestamp:serverTimestamp(),
-read:false,
-createdAt:new Date().toISOString()
-
+userId
 });
 
 notificationForm.reset();
@@ -310,6 +367,31 @@ submitBtn.disabled=false;
 });
 
 }
+
+// ======================================================
+// OUVRIR / FERMER PANEL
+// ======================================================
+
+const notifBtn = document.getElementById("notificationsBadge");
+const closeBtn = document.getElementById("closeNotifications");
+
+if(notifBtn){
+notifBtn.addEventListener("click",()=>{
+notificationsPanel.classList.toggle("active");
+});
+}
+
+if(closeBtn){
+closeBtn.addEventListener("click",()=>{
+notificationsPanel.classList.remove("active");
+});
+}
+
+
+// ======================================================
+// SÉCURITÉ ADMIN
+// ======================================================
+
 onAuthStateChanged(auth,(user)=>{
 
 if(!user){
@@ -325,4 +407,3 @@ window.location.href = "dashboard.html";
 }
 
 });
-console.log("✅ Admin notifications chargé");
