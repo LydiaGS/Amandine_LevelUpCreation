@@ -2073,7 +2073,7 @@ function setupEventListeners() {
             }
         });
     }
-    
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-theme');
