@@ -76,7 +76,8 @@ const availableBadges = [
 
 const loading = document.getElementById('loading');
 const mainContent = document.getElementById('mainContent');
-const sidebar = document.querySelector('.sidebar');
+const toggleSidebarBtn = document.getElementById("toggleSidebar");
+const sidebar = document.querySelector(".sidebar");
 const topbarPhoto = document.getElementById('topbarPhoto');
 const topbarName = document.getElementById('topbarName');
 const profilePhoto = document.getElementById('profilePhoto');
@@ -91,7 +92,6 @@ const stepsContainer = document.getElementById('stepsContainer');
 const formationsContainer = document.getElementById('formationsContainer');
 const adminBadge = document.getElementById('adminBadge');
 const logoutBtn = document.getElementById('logoutBtn');
-const toggleSidebarBtn = document.getElementById('toggleSidebar');
 const themeToggle = document.getElementById('themeToggle');
 const notificationsBtn = document.getElementById('notificationsBtn');
 const notificationsPanel = document.getElementById('notificationsPanel');
@@ -2074,12 +2074,6 @@ function setupEventListeners() {
         });
     }
     
-    if (toggleSidebarBtn && sidebar) {
-        toggleSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    }
-    
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-theme');
@@ -2319,9 +2313,28 @@ adminLink.style.display = "none";
 }
 
 });
+
+const closeProfileModal = document.getElementById("closeProfileModal");
+const saveProfileBtn = document.getElementById("saveProfileBtn");
+
+const editName = document.getElementById("editName");
+const editProjectName = document.getElementById("editProjectName");
+
+
+// ouvrir modal
+editProfileBtn.addEventListener("click", () => {
+  editProfileModal.classList.add("open");
+});
+
+
+// fermer modal
+closeProfileModal.addEventListener("click", () => {
+  editProfileModal.classList.remove("open");
+});
 document.getElementById("notifBadge").style.display="block"
 document.getElementById("notifBadge").textContent=3
 console.log(notifBadge);
 console.log("User connecté:", user.uid);
 console.log("Notification:", data);
 console.log('✅ dashboard.js chargé');
+
