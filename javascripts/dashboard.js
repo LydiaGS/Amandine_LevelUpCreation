@@ -98,7 +98,6 @@ const notificationsPanel = document.getElementById('notificationsPanel');
 const closeNotifications = document.getElementById('closeNotifications');
 const notificationsList = document.getElementById('notificationsList');
 const recentNotifsList = document.getElementById('recentNotifsList');
-const notifBadge = document.getElementById('notifBadge');
 const chatTrigger = document.getElementById('chatTrigger');
 const chatWindow = document.getElementById('chatWindow');
 const closeChat = document.getElementById('closeChat');
@@ -2205,5 +2204,124 @@ setInterval(() => {
     loadNotifications();
     loadChatMessages();
 }, 30000);
+// ELEMENTS
+// ===== ELEMENTS DOM =====
+const notifBtn = document.getElementById("notifBtn");
+const notifPanel = document.getElementById("notifications");
+const notifList = document.getElementById("notifList");
+let notifBadge = document.getElementById("notifBadge");
 
+
+// ===== OUVRIR / FERMER PANNEAU =====
+if (notifBtn && notifPanel) {
+  notifBtn.addEventListener("click", () => {
+    notifPanel.classList.toggle("open");
+  });
+}
+
+
+// ===== ATTENDRE UTILISATEUR CONNECTÉ =====
+onAuthStateChanged(auth, (user) => {
+
+  if (!user) return;
+
+  console.log("UID utilisateur :", user.uid);
+
+  const q = query(
+    collection(db, "notifications"),
+    where("userId", "==", user.uid)
+  );
+
+
+  // ===== ECOUTE TEMPS REEL FIREBASE =====
+  onSnapshot(q, (snapshot) => {
+
+    if (!notifList) return;
+
+    notifList.innerHTML = "";
+
+    let unreadCount = 0;
+
+    snapshot.forEach((docSnap) => {
+
+      const data = docSnap.data();
+
+      if (!data.read) unreadCount++;
+
+      notifList.innerHTML += `
+        <div class="notif">
+          <h4>${data.title || ""}</h4>
+          <p>${data.message || ""}</p>
+
+          ${
+            !data.read
+              ? `<button onclick="markNotifRead('${docSnap.id}')">
+                   Marquer comme lu
+                 </button>`
+              : `<span style="color:gray">Lu</span>`
+          }
+
+        </div>
+      `;
+
+    });
+
+
+    // ===== BADGE ROUGE =====
+    if (notifBadge) {
+
+      if (unreadCount > 0) {
+        notifBadge.style.display = "block";
+        notifBadge.textContent = unreadCount;
+      } else {
+        notifBadge.style.display = "none";
+      }
+
+    }
+
+  });
+
+});
+
+
+// ===== MARQUER NOTIFICATION COMME LUE =====
+window.markNotifRead = async function(id) {
+
+  try {
+
+    await updateDoc(
+      doc(db, "notifications", id),
+      { read: true }
+    );
+
+  } catch (error) {
+
+    console.error("Erreur lecture notification :", error);
+
+  }
+
+};
+const adminUID = "kYC7IKIezxdEZnUyHsddLLs0cDr2";
+const adminLink = document.getElementById("adminLink");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user) return;
+
+if(user.uid === adminUID){
+
+adminLink.style.display = "block";
+
+}else{
+
+adminLink.style.display = "none";
+
+}
+
+});
+document.getElementById("notifBadge").style.display="block"
+document.getElementById("notifBadge").textContent=3
+console.log(notifBadge);
+console.log("User connecté:", user.uid);
+console.log("Notification:", data);
 console.log('✅ dashboard.js chargé');

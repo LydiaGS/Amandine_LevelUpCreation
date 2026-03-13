@@ -416,16 +416,20 @@ document.addEventListener("dragstart", function(e) {
 const searchInput = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".blog-card");
 
+if (searchInput) {
+
 searchInput.addEventListener("keyup", function(){
 
-let value = this.value.toLowerCase();
+const value = this.value.toLowerCase();
 
 cards.forEach(card => {
 
-let title = card.querySelector("h2").textContent.toLowerCase();
+const title = card.querySelector("h2");
 
-if(title.includes(value)){
-card.style.display = "block";
+if(!title) return;
+
+if(title.textContent.toLowerCase().includes(value)){
+card.style.display = "";
 }else{
 card.style.display = "none";
 }
@@ -433,3 +437,5 @@ card.style.display = "none";
 });
 
 });
+
+}
