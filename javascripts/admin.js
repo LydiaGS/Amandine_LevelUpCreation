@@ -14,6 +14,7 @@ onSnapshot,
 addDoc,
 updateDoc,
 doc,
+getDoc,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
@@ -124,6 +125,32 @@ return date.toLocaleDateString("fr-FR");
 
 
 // ======================================================
+// FIREBASE LISTENER NOTIFICATIONS
+// ======================================================
+
+const q = query(
+collection(db,"notifications"),
+orderBy("timestamp","desc"),
+limit(50)
+);
+
+onSnapshot(q,(snapshot)=>{
+
+notificationsData = snapshot.docs.map(docSnap=>({
+
+id:docSnap.id,
+...docSnap.data(),
+read:docSnap.data().read || false
+
+}));
+
+renderNotifications();
+renderHistory();
+
+});
+
+
+// ======================================================
 // RENDER NOTIFICATIONS
 // ======================================================
 
@@ -192,20 +219,11 @@ Lire
 
 window.markAsRead = async function(id){
 
-try{
-
 await updateDoc(doc(db,"notifications",id),{
 read:true
 });
 
 showToast("Notification marquée comme lue");
-
-}catch(error){
-
-console.error(error);
-showToast("Erreur");
-
-}
 
 }
 
@@ -258,152 +276,101 @@ ${formatTime(notif.timestamp)}
 
 
 // ======================================================
-// FIREBASE LISTENER
-// ======================================================
-
-const q = query(
-collection(db,"notifications"),
-orderBy("timestamp","desc"),
-limit(50)
-);
-
-onSnapshot(q,(snapshot)=>{
-
-notificationsData = snapshot.docs.map(doc=>({
-
-id:doc.id,
-...doc.data(),
-read:doc.data().read || false
-
-}));
-
-renderNotifications();
-renderHistory();
-
-},(error)=>{
-
-console.error(error);
-showToast("Erreur Firebase");
-
-});
-
-
-// ======================================================
-// ENVOYER NOTIFICATION
-// ======================================================
-
-async function sendNotification({
-title,
-message,
-userId = null,
-broadcast = false,
-type = "info",
-buttonText = null,
-link = null,
-documentUrl = null,
-scheduledAt = null
-}){
-
-await addDoc(collection(db,"notifications"),{
-
-title,
-message,
-userId,
-broadcast,
-type,
-buttonText,
-link,
-documentUrl,
-scheduledAt,
-
-read:false,
-timestamp:serverTimestamp(),
-createdAt:new Date().toISOString()
-
-})
-
-}
-
-
-// ======================================================
-// FORMULAIRE ENVOI
-// ======================================================
-
-if(notificationForm){
-
-notificationForm.addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-
-const title = document.getElementById("notifTitle").value;
-const message = document.getElementById("notifMessage").value;
-const type = document.getElementById("notifType").value;
-const userId = document.getElementById("notifUserId").value.trim();
-
-const submitBtn = notificationForm.querySelector("button");
-submitBtn.disabled=true;
-
-try{
-
-await sendNotification({
-title,
-message,
-type,
-userId
-});
-
-notificationForm.reset();
-showToast("Notification envoyée");
-
-}catch(error){
-
-console.error(error);
-showToast("Erreur envoi");
-
-}
-
-submitBtn.disabled=false;
-
-});
-
-}
-
-// ======================================================
-// OUVRIR / FERMER PANEL
-// ======================================================
-
-const notifBtn = document.getElementById("notificationsBadge");
-const closeBtn = document.getElementById("closeNotifications");
-
-if(notifBtn){
-notifBtn.addEventListener("click",()=>{
-notificationsPanel.classList.toggle("active");
-});
-}
-
-if(closeBtn){
-closeBtn.addEventListener("click",()=>{
-notificationsPanel.classList.remove("active");
-});
-}
-
-
-// ======================================================
 // SÉCURITÉ ADMIN
 // ======================================================
 
 onAuthStateChanged(auth,(user)=>{
 
 if(!user){
-window.location.href = "login.html";
+window.location.href="login.html";
 return;
 }
 
 if(user.uid !== "kYC7IKIezxdEZnUyHsddLLs0cDr2"){
-
 alert("Accès refusé");
-window.location.href = "dashboard.html";
-
+window.location.href="dashboard.html";
 }
 
 });
+
+
+// ======================================================
+// UPDATE PROJET CLIENT
+// ======================================================
+
+const btn = document.getElementById("updateProjectBtn");
+
+if(btn){
+
+btn.addEventListener("click",async()=>{
+
+const userId = document.getElementById("clientUid").value;
+
+const step1 = document.getElementById("step1").value;
+const step2 = document.getElementById("step2").value;
+const step3 = document.getElementById("step3").value;
+const step4 = document.getElementById("step4").value;
+const step5 = document.getElementById("step5").value;
+
+const userRef = doc(db,"users",userId);
+const snap = await getDoc(userRef);
+
+if(!snap.exists()){
+console.log("user introuvable");
+return;
+}
+
+const data = snap.data();
+const steps = data.steps || [];
+
+steps.forEach(step=>{
+
+if(step.id==="design") step.status=step1;
+if(step.id==="mockup") step.status=step2;
+if(step.id==="development") step.status=step3;
+if(step.id==="seo") step.status=step4;
+if(step.id==="launch") step.status=step5;
+
+});
+
+await updateDoc(userRef,{steps});
+
+console.log("Projet mis à jour");
+
+});
+
+}
+
+
+// ======================================================
+// UPDATE STEP RAPIDE
+// ======================================================
+
+window.updateClientStep = async function(userId,stepId,newStatus){
+
+const userRef = doc(db,"users",userId);
+
+const snap = await getDoc(userRef);
+
+if(!snap.exists()){
+console.log("user introuvable");
+return;
+}
+
+const data = snap.data();
+const steps = data.steps || [];
+
+const index = steps.findIndex(s=>s.id===stepId);
+
+if(index===-1){
+console.log("step introuvable");
+return;
+}
+
+steps[index].status=newStatus;
+
+await updateDoc(userRef,{steps});
+
+console.log("step mise à jour");
+
+}

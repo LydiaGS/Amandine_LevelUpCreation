@@ -71,9 +71,12 @@
                 </a>
             </nav>
             <div class="sidebar-footer">
-                  <a href="./admin.html" id="adminLink" class="btn-home-sidebar">
-    <span style="color: aliceblue; text-decoration: none !important; font-size: 20px;"><img src="./asset/image/LOGO LVLUP_WHITE 01.png" alt="" style="width: 35px; height: 35px;">Admin</span>
+                  <a href="./admin.html" id="adminLink"class="btn btn--secondary">
+    <span style="color: aliceblue; text-decoration: none !important; font-size: 20px;"><img src="./asset/image/LOGO LVLUP_WHITE 01.png" alt="" style="width: 25px; height: 25px;">Admin</span>
 </a>
+ <a href="https://lydiags.github.io/levelupcreation/" class="btn btn--secondary">
+                   📝Notes
+                </a>
                 <a href="./index.html" class="btn btn--secondary">
                     🏠 Accueil
                 </a>
@@ -103,12 +106,9 @@
 <div id="notifications" class="notif-panel">
 <div id="notifList"></div>
 </div>
-
-</div>
-                
+</div>  
                 </div>
             </header>
-
             <!-- SECTION: DASHBOARD -->
             <section id="section-dashboard" class="content-section active">
                 <!-- Profile Card -->
@@ -202,11 +202,272 @@
             </section>
 
             <!-- SECTION: PROJECT -->
-            <section id="section-project" class="content-section">
-                <h2>📊 Mon Projet</h2>
-                <p style="color: var(--muted); margin-bottom: 30px;">Gérez et visualisez votre projet en temps réel</p>
-            </section>
+              <section id="section-project" class="content-section">
 
+<h2>📊 Mon Projet</h2>
+<p>Gérez et visualisez votre projet en temps réel</p>
+
+<!-- PROJECT INFO CARD -->
+<div class="project-info-card">
+
+<div class="project-info-header">
+
+<div class="project-icon">🚀</div>
+
+<div class="project-details">
+<h3 id="projectTitle">Mon Site Web</h3>
+<p id="projectDescription">
+Un site web moderne et performant pour présenter votre activité et générer des contacts qualifiés.
+</p>
+</div>
+
+<button class="btn-edit">✏️ Modifier</button>
+
+</div>
+
+
+<!-- PROJECT STATS -->
+<div class="project-stats-grid">
+
+<div class="stat-card">
+
+<span class="stat-label">📈 Progression générale</span>
+
+<div class="stat-progress-wrapper">
+
+<div class="stat-progress-bar">
+
+<div
+class="stat-progress-fill"
+id="projectProgressBar"
+style="width:0%">
+</div>
+
+</div>
+
+<span
+class="stat-progress-text"
+id="projectProgressText">
+0%
+</span>
+
+</div>
+
+</div>
+
+
+<div class="stat-card">
+<span class="stat-label">📅 Date de début</span>
+<span class="stat-value" id="projectStartDate">
+15 Jan 2025
+</span>
+</div>
+
+
+<div class="stat-card">
+<span class="stat-label">⏱️ Durée estimée</span>
+<span class="stat-value" id="projectDuration">
+30 jours
+</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ÉTAPES DU PROJET -->
+<div class="project-steps-section">
+
+<div class="section-header">
+<h3>📋 Avancement du projet</h3>
+<p>Suivez chaque étape de la création de votre site</p>
+</div>
+
+<div class="steps-timeline">
+
+
+<!-- STEP DESIGN -->
+<div class="step-item" id="step-design">
+
+<div class="step-marker">
+<div class="step-number">1</div>
+</div>
+
+<div class="step-content">
+
+<div class="step-title">
+Briefing & Analyse
+<span class="step-status-badge status-todo">
+À faire
+</span>
+</div>
+
+<p class="step-description">
+Discussion des objectifs, des besoins et de la vision du projet.
+</p>
+
+<div class="step-progress">
+<div class="step-progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STEP MOCKUP -->
+<div class="step-item" id="step-mockup">
+
+<div class="step-marker">
+<div class="step-number">2</div>
+</div>
+
+<div class="step-content">
+
+<div class="step-title">
+Design & Maquette
+<span class="step-status-badge status-todo">
+À faire
+</span>
+</div>
+
+<p class="step-description">
+Création d'une maquette complète en Figma.
+</p>
+
+<div class="step-progress">
+<div class="step-progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STEP DEVELOPMENT -->
+<div class="step-item" id="step-development">
+
+<div class="step-marker">
+<div class="step-number">3</div>
+</div>
+
+<div class="step-content">
+
+<div class="step-title">
+Développement
+<span class="step-status-badge status-todo">
+À faire
+</span>
+</div>
+
+<p class="step-description">
+Développement du site web et optimisation.
+</p>
+
+<div class="step-progress">
+<div class="step-progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STEP SEO -->
+<div class="step-item" id="step-seo">
+
+<div class="step-marker">
+<div class="step-number">4</div>
+</div>
+
+<div class="step-content">
+
+<div class="step-title">
+Validation & Tests
+<span class="step-status-badge status-todo">
+À faire
+</span>
+</div>
+
+<p class="step-description">
+Tests complets du site et validation.
+</p>
+
+<div class="step-progress">
+<div class="step-progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STEP LAUNCH -->
+<div class="step-item" id="step-launch">
+
+<div class="step-marker">
+<div class="step-number">5</div>
+</div>
+
+<div class="step-content">
+
+<div class="step-title">
+Mise en Ligne
+<span class="step-status-badge status-todo">
+À faire
+</span>
+</div>
+
+<p class="step-description">
+Publication du site en production.
+</p>
+
+<div class="step-progress">
+<div class="step-progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- ROADMAP -->
+<div class="roadmap-section">
+
+<h3>🗓️ Roadmap du Projet</h3>
+
+<div class="roadmap-container">
+
+<div class="roadmap-item">
+<div class="roadmap-date">15 - 22 Jan</div>
+<div class="roadmap-title">Briefing & Design</div>
+</div>
+
+<div class="roadmap-item">
+<div class="roadmap-date">25 Jan - 2 Feb</div>
+<div class="roadmap-title">Développement</div>
+</div>
+
+<div class="roadmap-item">
+<div class="roadmap-date">2 - 5 Feb</div>
+<div class="roadmap-title">Tests & Validation</div>
+</div>
+
+<div class="roadmap-item">
+<div class="roadmap-date">5 Feb</div>
+<div class="roadmap-title">Mise en Ligne</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
             <!-- SECTION: FORMATIONS -->
             <section id="section-formations" class="content-section">
                 <h2>🎓 Mes Formations</h2>
@@ -234,45 +495,7 @@
     <script src="./javascripts/scripts.js"></script>
     <script type="module" src="./javascripts/dashboard.js">
     </script>
-    <script>
-        // Simulated loading delay
-        setTimeout(() => {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('mainContent').style.display = 'flex';
-            document.getElementById('adminBadge').classList.add('visible');
-        }, 2000);
-
-        // Navigation
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const section = item.getAttribute('data-section');
-                
-                // Update active nav
-                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                
-                // Update page title
-                document.getElementById('pageTitle').textContent = item.textContent.trim();
-                
-                // Show section
-                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-                document.getElementById(`section-${section}`).classList.add('active');
-            });
-        });
-
-        // Toggle Sidebar
-        document.getElementById('toggleSidebar').addEventListener('click', () => {
-            document.querySelector('.sidebar').classList.toggle('open');
-        });
-
-        // Profile data
-        document.getElementById('userName').textContent = 'Jean Dupont';
-        document.getElementById('userEmail').textContent = 'jean.dupont@email.com';
-        document.getElementById('projectName').textContent = 'Projet: Mon site web';
-        document.getElementById('globalProgress').textContent = '65%';
-        document.getElementById('progressFill').style.width = '65%';
-    </script>
+  
 </body>
 
 </html>

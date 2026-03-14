@@ -94,8 +94,49 @@ Envoyer
 </form>
 
 </section>
+<h2>Admin Projet</h2>
 
+<label>Progression générale</label>
+<input type="number" id="progressInput" value="65">
+
+<h3>Étapes</h3>
+
+<select id="step1">
+<option value="completed">Complétée</option>
+<option value="in-progress">En cours</option>
+<option value="todo">À faire</option>
+</select>
+
+<select id="step2">
+<option value="completed">Complétée</option>
+<option value="in-progress">En cours</option>
+<option value="todo">À faire</option>
+</select>
+
+<select id="step3">
+<option value="completed">Complétée</option>
+<option value="in-progress">En cours</option>
+<option value="todo">À faire</option>
+</select>
+
+<select id="step4">
+<option value="completed">Complétée</option>
+<option value="in-progress">En cours</option>
+<option value="todo">À faire</option>
+</select>
+
+<select id="step5">
+<option value="completed">Complétée</option>
+<option value="in-progress">En cours</option>
+<option value="todo">À faire</option>
+</select>
+<button class="admin-btn"
+onclick="updateClientStep('kYC7IKIezxdEZnUyHsddLLs0cDr2','development','done')">
+Terminer Développement
+</button>
+<br><br><br><br>
 </main>
+<br><br>
 <script src="./javascripts/admin.js" type="module"></script>
 </body>
 </html>

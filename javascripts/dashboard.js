@@ -232,7 +232,7 @@ async function loadUserData(userId) {
 
 function initializeDashboard() {
     console.log('🚀 Initialisation dashboard...');
-    
+    listenProjectSteps();
     displayProfile();
     renderSteps();
     renderFormations();
@@ -2350,3 +2350,111 @@ console.error("Erreur lecture notification :",error);
 }
 
 };
+// =======================================================
+// UPDATE PROJECT SECTION
+// =======================================================
+
+function updateProjectSection(steps){
+
+if(!steps || steps.length === 0) return;
+
+let completed = 0;
+
+steps.forEach(step => {
+
+const element = document.getElementById("step-" + step.id);
+
+if(!element) return;
+
+// reset classes
+element.classList.remove("completed","in-progress","todo");
+
+// normaliser le status
+let status = step.status;
+
+if(status === "done") status = "completed";
+
+element.classList.add(status);
+
+// mise à jour badge texte
+const badge = element.querySelector(".step-status-badge");
+
+if(badge){
+
+badge.classList.remove(
+"status-completed",
+"status-in-progress",
+"status-todo"
+);
+
+if(status === "completed"){
+
+badge.textContent = "Complétée";
+badge.classList.add("status-completed");
+completed++;
+
+}
+else if(status === "in-progress"){
+
+badge.textContent = "En cours";
+badge.classList.add("status-in-progress");
+
+}
+else{
+
+badge.textContent = "À faire";
+badge.classList.add("status-todo");
+
+}
+
+}
+
+});
+
+// calcul progression
+const progress = Math.round((completed / steps.length) * 100);
+
+// barre progression
+const bar = document.getElementById("projectProgressBar");
+const text = document.getElementById("projectProgressText");
+
+if(bar) bar.style.width = progress + "%";
+if(text) text.textContent = progress + "%";
+
+}
+
+
+// =======================================================
+// FIRESTORE LISTENER PROJET
+// =======================================================
+
+function listenProjectSteps(){
+
+if(!currentUser) return;
+
+const userRef = doc(db,"users",currentUser.uid);
+
+onSnapshot(userRef,(docSnap)=>{
+
+if(!docSnap.exists()) return;
+
+const data = docSnap.data();
+
+if(!data.steps) return;
+
+// mise à jour visuelle
+updateProjectSection(data.steps);
+
+// mise à jour data locale
+userData.steps = data.steps;
+
+// refresh autres parties du dashboard
+renderSteps();
+calculateGlobalProgress();
+calculateStats();
+
+console.log("📊 Projet mis à jour en temps réel");
+
+});
+
+}
