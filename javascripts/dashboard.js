@@ -77,7 +77,6 @@ const availableBadges = [
 const loading = document.getElementById('loading');
 const mainContent = document.getElementById('mainContent');
 const toggleSidebarBtn = document.getElementById("toggleSidebar");
-const sidebar = document.querySelector(".sidebar");
 const topbarPhoto = document.getElementById('topbarPhoto');
 const topbarName = document.getElementById('topbarName');
 const profilePhoto = document.getElementById('profilePhoto');
@@ -2152,6 +2151,7 @@ function setupEventListeners() {
                 copyReferralCode.textContent = '📋 Copier';
             }, 2000);
         });
+        
     }
     
     document.querySelectorAll('.nav-item').forEach(item => {
@@ -2458,3 +2458,9 @@ console.log("📊 Projet mis à jour en temps réel");
 });
 
 }
+const burger = document.getElementById("toggleSidebar");
+const sidebar = document.getElementById("sidebar");
+
+burger.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+});
